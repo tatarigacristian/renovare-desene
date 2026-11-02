@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Grup sanitar — desene</title>
 <link rel="stylesheet" href="css/desen.css">
+<script>try { var t = localStorage.getItem('desene:tema'); if (t === 'luminos' || t === 'intunecat') document.documentElement.dataset.tema = t; } catch (e) {}</script>
 </head>
 <body>
 <div class="app">
@@ -21,6 +22,7 @@
     <span class="bara-spatiu"></span>
     <button type="button" id="buton-straturi" class="buton straturi-btn" data-act="meniu" data-id="straturi" aria-haspopup="true" aria-expanded="false" aria-controls="meniu-straturi"></button>
     <span id="meta" class="chip-meta"></span>
+    <button type="button" id="buton-tema" class="buton-icon doar-lat" data-act="meniu" data-id="tema" aria-haspopup="true" aria-expanded="false" aria-controls="meniu-tema"></button>
     <button class="buton-icon doar-lat" data-act="ajutor" data-icon="ajutor" title="Cum se folosește și legenda" aria-label="Cum se folosește"></button>
     <button class="buton-icon doar-lat" data-act="tipareste" data-icon="tipar" title="Tipărește pe A3, scara 1:20" aria-label="Tipărește"></button>
     <button class="buton-icon doar-ingust" data-act="meniu" data-id="mai" data-icon="mai" title="Ajutorul, tiparul și revizia" aria-label="Mai mult" aria-haspopup="true" aria-expanded="false" aria-controls="meniu-mai"></button>
@@ -33,7 +35,9 @@
     <button type="button" class="meniu-rand" data-act="ajutor" role="menuitem" data-icon="ajutor">Cum se folosește și legenda</button>
     <button type="button" class="meniu-rand" data-act="tipareste" role="menuitem" data-icon="tipar">Tipărește pe A3</button>
     <button type="button" class="meniu-rand" data-act="ajutor" data-id="modificari" role="menuitem" data-icon="revizie"><span id="meta-meniu"></span></button>
+    <div class="tema-rand" role="group" aria-label="Tema"><span>Tema</span><div id="tema-mai" class="segmente"></div></div>
   </div>
+  <div id="meniu-tema" class="meniu meniu-tema" role="menu" aria-label="Tema" hidden></div>
 
   <main class="lucru">
     <div class="desen-cutie">
@@ -102,6 +106,7 @@
       <li><b>Pași de montaj:</b> semnul ▶ de lângă un cod, butonul „Cum se montează” din fișă sau fila Montaj deschid pașii animați. Treci între pași cu săgețile, cu tastatura sau glisând stânga-dreapta. Pașii văzuți rămân marcați, iar fereastra se redeschide de unde ai rămas. „Se aplică la” te duce la element, pe peretele lui. „Trimite linkul” trimite pe WhatsApp linkul spre pasul de acum.</li>
       <li><b>Verificări:</b> „De rezolvat” are atenționările; „Note și informații” se deschide la cerere. O atingere pe un text îl arată întreg, cu sursa.</li>
       <li><b>Bife pentru șantier:</b> fila Șantier din panou. Tabelul complet, cu sursa și starea, se deschide din ea.</li>
+      <li><b>Tema:</b> pe calculator, butonul de lângă ajutor; pe telefon, rândul „Tema” din meniul ⋯. Automat urmează tema telefonului sau a calculatorului; Luminos și Întunecat o fixează. Alegerea rămâne salvată în browser. Desenul rămâne pe fundal deschis în ambele teme.</li>
       <li><b>Telefon pe orizontală:</b> fișa și listele trec în dreapta, iar desenul ia toată înălțimea. Pașii de montaj ocupă tot ecranul, cu desenul în stânga.</li>
     </ul>
     <h3>Ce s-a schimbat</h3><p id="modificari-ajutor"></p>

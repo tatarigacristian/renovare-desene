@@ -64,6 +64,9 @@
     jos: ic('<path d="M6 9l6 6 6-6"/>'),
     bifa: ic('<path d="M5 12.5l4.5 4.5L19 7.5"/>'),
     revizie: ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+    soare: ic('<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/>'),
+    luna: ic('<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>'),
+    automat: ic('<circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/>'),
   };
 
   const f = n => (Math.round(n * 100) / 100).toString().replace('.', ',');
@@ -244,13 +247,17 @@
       if (vert) [e.x, e.x + e.lat].forEach(x => linie(g, x, H - e.h, x, H - e.h - e.inalt, a.stroke, a['stroke-width']).setAttribute('stroke-dasharray', a['stroke-dasharray']));
       else [e.h, e.h + e.inalt].forEach(hh => linie(g, e.x, H - hh, e.x + e.lat, H - hh, a.stroke, a['stroke-width']).setAttribute('stroke-dasharray', a['stroke-dasharray']));
     },
+    // "sticla": true = ușă cu geam (ușa de balcon): rama de ~6 cm, cu geamul în interior
     usa(g, e, H) {
       rect(g, e.x, 0, e.lat, e.inalt, H, { fill: '#f3f0ea', stroke: '#4b4b4b', 'stroke-width': 1.2 });
+      if (e.sticla) { const r = Math.min(6, e.lat / 8); rect(g, e.x + r, r, e.lat - 2 * r, e.inalt - 2 * r, H, { fill: '#dce9f4', stroke: '#4b4b4b', 'stroke-width': .8 }); }
       el('path', Object.assign({ d: `M${e.x},${H} L${e.x + e.lat / 2},${H - e.inalt} L${e.x + e.lat},${H}`, fill: 'none', stroke: '#777', 'stroke-width': .8, 'stroke-dasharray': '6 4' }, NSS), g);
     },
+    // "canaturi": câte geamuri are fereastra (implicit 2, cu montantul la mijloc); 1 = un singur geam
     fereastra(g, e, H) {
       rect(g, e.x, e.h, e.lat, e.inalt, H, { fill: '#dce9f4', stroke: '#4b4b4b', 'stroke-width': 1.2 });
-      el('line', Object.assign({ x1: e.x + e.lat / 2, y1: H - e.h, x2: e.x + e.lat / 2, y2: H - e.h - e.inalt, stroke: '#4b4b4b', 'stroke-width': .8 }, NSS), g);
+      const n = e.canaturi || 2;
+      for (let i = 1; i < n; i++) el('line', Object.assign({ x1: e.x + e.lat * i / n, y1: H - e.h, x2: e.x + e.lat * i / n, y2: H - e.h - e.inalt, stroke: '#4b4b4b', 'stroke-width': .8 }, NSS), g);
     },
     priza(g, e, H, u) {
       const da = e.pozitie === 'aprox' ? '3 2' : null;
@@ -1369,6 +1376,29 @@
     aseazaMeniu();
   }
 
+  // ---------------------------------------------------------------- tema: Automat (ca sistemul), Luminos sau Întunecat
+  // Alegerea se salvează în „desene:tema”; un script din <head> o pune pe <html> înainte de prima afișare.
+  const TEME = [{ id: 'auto', nume: 'Automat', lung: 'Automat, ca telefonul sau calculatorul', ic: 'automat' },
+    { id: 'luminos', nume: 'Luminos', lung: 'Luminos', ic: 'soare' }, { id: 'intunecat', nume: 'Întunecat', lung: 'Întunecat', ic: 'luna' }];
+  const temaAleasa = () => { const t = document.documentElement.dataset.tema; return t === 'luminos' || t === 'intunecat' ? t : 'auto'; };
+  function comenziTema() {
+    const t = temaAleasa(), x = TEME.find(o => o.id === t);
+    const b = document.getElementById('buton-tema');
+    b.innerHTML = ICON[x.ic];
+    b.title = `Tema: ${x.lung.toLowerCase()}`;
+    b.setAttribute('aria-label', b.title);
+    document.getElementById('meniu-tema').innerHTML = '<div class="meniu-cap">Tema</div>' + TEME.map(o =>
+      `<button type="button" class="meniu-rand" data-act="tema" data-id="${o.id}" role="menuitemradio" aria-checked="${o.id === t}">${ICON[o.ic]}${esc(o.lung)}</button>`).join('');
+    document.getElementById('tema-mai').innerHTML = TEME.map(o =>
+      `<button type="button" class="${o.id === t ? 'on' : ''}" data-act="tema" data-id="${o.id}" aria-pressed="${o.id === t}" title="${esc(o.lung)}">${esc(o.nume)}</button>`).join('');
+  }
+  function aplicaTema(t) {
+    if (t === 'luminos' || t === 'intunecat') document.documentElement.dataset.tema = t;
+    else delete document.documentElement.dataset.tema;
+    try { if (t === 'luminos' || t === 'intunecat') localStorage.setItem(LS + 'tema', t); else localStorage.removeItem(LS + 'tema'); } catch (_) { /* fără localStorage: tema ține până la reîncărcare */ }
+    comenziTema();
+  }
+
   // ---------------------------------------------------------------- meniurile din bară: pereții (telefon), straturile, „mai mult”
   // Un singur meniu e deschis odată și are o intrare în istoric, deci „Înapoi” îl închide. Fundalul de sub meniu
   // prinde atingerea din afară: ea închide meniul și nu ajunge la desen.
@@ -1504,6 +1534,7 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     strat: id => { S.viz[id] = !S.viz[id]; salveaza(); comenziStraturi(); deseneaza(); lista(); tabel(); panou(); },
     'straturi-toate': () => { straturiCamera().forEach(s => { S.viz[s.id] = true; }); salveaza(); comenziStraturi(); deseneaza(); lista(); tabel(); panou(); },
     meniu: deschideMeniu,
+    tema: aplicaTema,
     'inchide-meniu': () => {},
     'v-text': (_, ev) => { const t = ev.target.closest('.v-text'), li = t.closest('li'); li.classList.toggle('deschis'); t.setAttribute('aria-expanded', li.classList.contains('deschis')); },
     'zoom-plus': () => zoomCentru(1.4),
@@ -1542,7 +1573,7 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
       const b = ev.target.closest('[data-act]');
       if (!b || b.disabled || !ACTIUNI[b.dataset.act]) return;
       const act = b.dataset.act, id = b.dataset.id;
-      if (S.meniu && !['meniu', 'strat', 'straturi-toate'].includes(act)) return inchideMeniu(() => ACTIUNI[act](id, ev));
+      if (S.meniu && !['meniu', 'strat', 'straturi-toate', 'tema'].includes(act)) return inchideMeniu(() => ACTIUNI[act](id, ev));
       ACTIUNI[act](id, ev);
     });
     document.addEventListener('keydown', ev => {
@@ -1567,6 +1598,7 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
 
     initZoom(S.svg);
     initHover(S.svg);
+    comenziTema();
     antet(); plan(); comenziVariante(); comenziStraturi(); potrivesteBara(); lista(); listaVerificari(); montaj(); tabel(); stareFoaie('mic'); panou(); potriveste();
     // adresa curată (#PERETE); dacă linkul cere un pas de montaj, fereastra se deschide direct la el
     history.replaceState(null, '', '#' + S.per.id);

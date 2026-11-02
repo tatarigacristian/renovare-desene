@@ -5,9 +5,10 @@ window.CAMERE["living"] = {
  "id": "living",
  "nume": "Living",
  "revizie": {
-  "nr": 2,
+  "nr": 3,
   "data": "2026-11-02",
   "modificari": [
+   "Revizia 3: ușa de balcon U2 desenată cu sticlă, iar fereastra F2 cu un singur geam, fără montant la mijloc (02.11.2026).",
    "Pereții E (cu biroul), S (TV) și V (cu fereastra) și planul tavanului refăcuți din planșe (A.01, A.05–A.07, A.15, A.16, D-09).",
    "Panoul 2 (lângă birou) desenat în ambele poziții până răspunde arhitecta (R10); pozițiile diferă cu ~1 cm.",
    "Adâncimea camerei: 590 cm între zidării (580 pornea de la fața grinzii peretelui cu M12).",
@@ -1448,7 +1449,8 @@ window.CAMERE["living"] = {
      "id": "U2",
      "strat": "structura",
      "tip": "usa",
-     "nume": "Ușa de balcon (89 cm), în aceeași tâmplărie cu F2",
+     "sticla": true,
+     "nume": "Ușa de balcon cu sticlă (89 cm), în aceeași tâmplărie cu F2",
      "x": 395,
      "lat": 89,
      "h": 0,
@@ -1456,13 +1458,14 @@ window.CAMERE["living"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "A.01, A.06, A.31 (golul de 89 cm la 395–484, necotat); înălțimea estimată din fotografia din stare_actuala",
-     "nota": "Tâmplărie PVC existentă, se păstrează. Balamalele pe latura dinspre fereastra F1 (x 395); se deschide spre cameră (~85 cm, A.06) și trece prin planul draperiei: draperia se trage înainte de deschidere. Capul ~202 cm, de măsurat."
+     "nota": "Ușa e cu sticlă (02.11.2026). Tâmplărie PVC existentă, se păstrează. Balamalele pe latura dinspre fereastra F1 (x 395); se deschide spre cameră (~85 cm, A.06) și trece prin planul draperiei: draperia se trage înainte de deschidere. Capul ~202 cm, de măsurat."
     },
     {
      "id": "F2",
      "strat": "structura",
      "tip": "fereastra",
-     "nume": "Fereastra laterală a ușii de balcon (51 cm)",
+     "canaturi": 1,
+     "nume": "Fereastra laterală a ușii de balcon (51 cm, un singur geam)",
      "x": 484,
      "lat": 51,
      "h": 82,
@@ -1470,7 +1473,7 @@ window.CAMERE["living"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "A.01, A.06, A.31 (golul de 51 cm la 484–535, necotat); înălțimile estimate din fotografia din stare_actuala",
-     "nota": "În aceeași tâmplărie cu ușa U2, cu parapet. Pervaz ~82 cm (la nivelul traversei ușii), de măsurat. Sub ea: caloriferul CF2."
+     "nota": "Un singur geam, fără montant la mijloc (02.11.2026). În aceeași tâmplărie cu ușa U2, cu parapet. Pervaz ~82 cm (la nivelul traversei ușii), de măsurat. Sub ea: caloriferul CF2."
     },
     {
      "id": "CF1",

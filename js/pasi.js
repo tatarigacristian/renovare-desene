@@ -419,5 +419,22 @@
     return true;
   }
 
-  window.Pasi = { deschide, progres, dialog: () => P.dlg, numar: id => window.DETALII && window.DETALII[id] ? window.DETALII[id].pasi.length - 1 : 0 };
+  // desenul întreg al detaliului, fără animații: formele care rămân după ultimul pas, fără cote, etichete, texte,
+  // forme „temporar” și ochiul privitorului. Pentru cardurile din pagina camerelor (index.html).
+  function miniatura(id, svg) {
+    const d = window.DETALII && window.DETALII[id];
+    if (!d || !svg) return false;
+    const pus = new Set(d.pasi.flatMap(p => p.apar));
+    svg.setAttribute('viewBox', vb(d.vedere));
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    svg.textContent = '';
+    defs(svg);
+    for (const s of d.forme) {
+      if (!pus.has(s.id) || TEMP.has(s.tip) || s.temporar || ['text', 'ochi'].includes(s.tip) || !FORME[s.tip]) continue;
+      FORME[s.tip](el('g', {}, svg), s, 1);
+    }
+    return true;
+  }
+
+  window.Pasi = { deschide, miniatura, progres, dialog: () => P.dlg, numar: id => window.DETALII && window.DETALII[id] ? window.DETALII[id].pasi.length - 1 : 0 };
 })();

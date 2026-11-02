@@ -1,4 +1,6 @@
-/* Aceleași culori ca paginile din analiza/html (build.py). Desenul rămâne pe hârtie deschisă și în modul întunecat. */
+/* Aceleași culori ca paginile din analiza/html (build.py). Desenul rămâne pe hârtie deschisă și în modul întunecat.
+   Tema: fără data-tema pe <html> urmează sistemul (Automat); data-tema="intunecat" sau "luminos" o fixează
+   (alegerea din bară, salvată în localStorage „desene:tema” și pusă din <head>, înainte de prima afișare). */
 :root {
   --bg:#f7f4ef; --surface:#fffdfa; --surface-2:#f1ece4; --border:#e0d8cb;
   --text:#2b2622; --muted:#6d635a; --heading:#1d1916;
@@ -9,7 +11,7 @@
   color-scheme:light dark;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-tema="luminos"]) {
     --bg:#17150f; --surface:#1f1c16; --surface-2:#272319; --border:#39332a;
     --text:#e8e2d6; --muted:#a49a8c; --heading:#f5f0e6;
     --accent:#d8a76a; --accent-soft:#302819;
@@ -17,6 +19,15 @@
     --umbra:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.35);
   }
 }
+:root[data-tema="intunecat"] {
+  --bg:#17150f; --surface:#1f1c16; --surface-2:#272319; --border:#39332a;
+  --text:#e8e2d6; --muted:#a49a8c; --heading:#f5f0e6;
+  --accent:#d8a76a; --accent-soft:#302819;
+  --hartie:#ebe7df; --sel:#f87171; --intre:#93b4ff; --atentie:#f0b45a; --atentie-soft:#2e2414; --ok:#4ade80;
+  --umbra:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+:root[data-tema="luminos"] { color-scheme:light; }
 * { box-sizing:border-box; }
 [hidden] { display:none !important; }
 html { -webkit-text-size-adjust:100%; }
@@ -33,16 +44,39 @@ header.cap { display:flex; flex-wrap:wrap; gap:4px 16px; align-items:baseline; m
 header.cap .inapoi { font-size:13px; text-decoration:none; }
 header.cap h1 { margin:0; font-size:21px; color:var(--heading); width:100%; }
 header.cap #subtitlu { color:var(--muted); }
-.camere { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:10px; }
-.camere a, .camere div { display:block; padding:12px 14px; border:1px solid var(--border); border-radius:10px; background:var(--surface); text-decoration:none; color:var(--text); }
-.camere a b { color:var(--accent); }
-.camere small { display:block; color:var(--muted); }
-.camere div { opacity:.6; }
-.camere .tag-pasi { margin-left:4px; vertical-align:1px; }
+/* cardurile: imaginea sus (randarea camerei sau desenul detaliului), apoi titlul și subtitlul */
+.carduri { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap:12px; }
+.card { display:flex; flex-direction:column; min-width:0; overflow:hidden; border:1px solid var(--border); border-radius:12px; background:var(--surface); color:var(--text); text-decoration:none; box-shadow:var(--umbra); }
+.card-vizual { position:relative; display:block; aspect-ratio:16 / 10; overflow:hidden; background:var(--surface-2); border-bottom:1px solid var(--border); }
+.card-vizual img { display:block; width:100%; height:100%; object-fit:cover; }
+.card-pasi .card-vizual { background:var(--hartie); }
+.card-pasi .card-vizual > svg { position:absolute; top:12px; left:14px; width:calc(100% - 28px); height:calc(100% - 24px); }
+.card-vizual .tag-pasi { position:absolute; left:8px; top:8px; box-shadow:0 1px 3px rgba(0,0,0,.3); }
+.card-vizual .pp-semn { position:absolute; right:8px; bottom:8px; width:30px; height:30px; box-shadow:0 2px 6px rgba(0,0,0,.3); }
+.card-vizual .pp-semn .ic { width:12px; height:12px; }
+.card-text .badge { margin-right:2px; padding:0 6px; background:var(--heading); color:var(--surface); font-size:11.5px; vertical-align:1px; }
+.card-text { display:flex; flex-direction:column; gap:2px; padding:10px 14px 12px; }
+.card-text b { font-size:15px; line-height:1.3; color:var(--heading); }
+.card-text small { font-size:13px; line-height:1.35; color:var(--muted); }
+.card-rev { margin-top:4px; font-size:12px; line-height:1.3; color:var(--muted); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .card { transition:border-color .15s, transform .15s; }
+  .card-vizual img { transition:transform .3s; }
+  .card:hover { border-color:color-mix(in srgb, var(--accent) 60%, var(--border)); transform:translateY(-2px); }
+  .card:hover .card-vizual img { transform:scale(1.03); }
+}
+@media (hover: hover) and (prefers-reduced-motion: reduce) { .card:hover { border-color:color-mix(in srgb, var(--accent) 60%, var(--border)); } }
+@media (max-width: 559px) {
+  .carduri { grid-template-columns:1fr 1fr; gap:10px; }
+  /* pașii, pe telefon: un rând care se derulează în lateral, ca desenele să rămână destul de mari */
+  .index-pasi .carduri { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding:0 14px; margin:0 -14px; padding:2px 14px 10px; scrollbar-width:none; }
+  .index-pasi .carduri::-webkit-scrollbar { display:none; }
+  .index-pasi .card { flex:0 0 78%; scroll-snap-align:start; }
+  .card-text { padding:8px 10px 10px; }
+  .card-text b { font-size:14px; }
+  .card-text small { font-size:12.5px; }
+}
 .index-pasi h2, .index-titlu { margin:18px 0 8px; font-size:11.5px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
-.index-pasi-lista { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:8px; }
-.index-pasi .pp-card { text-decoration:none; }
-.index-pasi .pp-text b, .index-pasi .pp-text small { white-space:normal; }
 
 /* ---------------------------------------------------------------- aplicația: bară, comenzi, desen, panou */
 .app { height:100vh; height:100dvh; display:flex; flex-direction:column; }
@@ -104,6 +138,12 @@ header.cap #subtitlu { color:var(--muted); }
 .strat-rand .sr-n { color:var(--muted); font-size:12.5px; font-variant-numeric:tabular-nums; }
 .strat-rand .ic { visibility:hidden; color:var(--ok); }
 .strat-rand.on .ic { visibility:visible; }
+.meniu-tema .meniu-rand[aria-checked="true"] { background:var(--accent-soft); color:var(--heading); font-weight:600; }
+.meniu-tema .meniu-rand[aria-checked="true"] .ic { color:var(--accent); }
+.tema-rand { display:flex; align-items:center; gap:10px; padding:6px 6px 6px 10px; margin-top:2px; border-top:1px solid var(--border); }
+.tema-rand > span { flex:1; font-size:14px; color:var(--muted); }
+.tema-rand .segmente { flex:none; }
+.tema-rand .segmente button { min-height:36px; padding:4px 10px; font-size:13px; }
 .meniu-pereti { width:min(500px, calc(100vw - 16px)); padding:8px; }
 .mp-corp { display:grid; grid-template-columns:92px minmax(0, 1fr); gap:10px; align-items:start; }
 .mp-plan { position:sticky; top:0; width:92px; height:100px; }
@@ -570,7 +610,8 @@ dialog.pasi[open] { display:flex; }
 /* ---------------------------------------------------------------- tipar: A3 orizontal, desenul la 1:20 */
 @page { size:A3 landscape; margin:10mm; }
 @media print {
-  :root { --bg:#fff; --surface:#fff; --surface-2:#f2f2f2; --border:#ccc; --text:#000; --muted:#444; --heading:#000; --hartie:#fff; --atentie:#9a4a00; --atentie-soft:#fff; color-scheme:light; }
+  :root[lang] { --bg:#fff; --surface:#fff; --surface-2:#f2f2f2; --border:#ccc; --text:#000; --muted:#444; --heading:#000; --hartie:#fff; --atentie:#9a4a00; --atentie-soft:#fff;
+    --accent:#8a5a2b; --accent-soft:#f0e4d6; --sel:#b42318; --intre:#1d4ed8; --ok:#15803d; --umbra:none; color-scheme:light; }
   body { font-size:11px; }
   .app { display:block; height:auto; }
   .panou, .zoom, .tooltip, .banda-masura, .bara .buton-icon, .bara > .mini-plan, #pereti, .bara-spatiu, .alege-perete, .straturi-btn, .meniu, .meniu-fundal, .variante, .nu-print, dialog { display:none !important; }

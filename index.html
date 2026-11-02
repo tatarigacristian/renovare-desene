@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Desene pentru constructor</title>
 <link rel="stylesheet" href="css/desen.css">
+<script>try { var t = localStorage.getItem('desene:tema'); if (t === 'luminos' || t === 'intunecat') document.documentElement.dataset.tema = t; } catch (e) {}</script>
 </head>
 <body>
 <div class="pagina">
@@ -13,12 +14,27 @@
     <h1>Desene pentru constructor</h1>
     <span id="subtitlu">Pereții fiecărei camere, cu straturi: gips-carton, mobilă, prize și LED-uri.</span>
   </header>
-  <div class="camere">
-    <a href="living.html#N"><b>Living</b><small>Cei 4 pereți și planul tavanului. Revizia 2, 02.11.2026.</small></a>
-    <a href="hol.html#N"><b>Hol</b><small>Cei 5 pereți și planul tavanului. Revizia 3, 02.11.2026.</small></a>
-    <a href="bucatarie.html#N"><b>Bucătărie</b><small>Cei 5 pereți și planul tavanului, după designul din 10/2026. Revizia 2, 02.11.2026.</small></a>
-    <a href="baie.html#N"><b>Baie</b><small>Cei 4 pereți, cu faianța și instalațiile, și planul tavanului. Revizia 1, 02.11.2026.</small></a>
-    <a href="gs.html#N"><b>Grup sanitar</b><small>Cei 4 pereți, cu faianța și instalațiile, și planul tavanului. Revizia 1, 02.11.2026.</small></a>
+  <div class="camere carduri">
+    <a class="card" href="living.html#N">
+      <span class="card-vizual"><img src="img/camere/living.jpg" width="800" height="500" alt="Randarea livingului: peretele televizorului, cu șemineul" loading="lazy" decoding="async"></span>
+      <span class="card-text"><b>Living</b><small>Cei 4 pereți și planul tavanului.</small><span class="card-rev">Revizia 3 · 02.11.2026</span></span>
+    </a>
+    <a class="card" href="hol.html#N">
+      <span class="card-vizual"><img src="img/camere/hol.jpg" width="800" height="500" alt="Randarea holului" loading="lazy" decoding="async"></span>
+      <span class="card-text"><b>Hol</b><small>Cei 5 pereți și planul tavanului.</small><span class="card-rev">Revizia 3 · 02.11.2026</span></span>
+    </a>
+    <a class="card" href="bucatarie.html#N">
+      <span class="card-vizual"><img src="img/camere/bucatarie.jpg" width="800" height="500" alt="Vederea bucătăriei din designul 10/2026" loading="lazy" decoding="async"></span>
+      <span class="card-text"><b>Bucătărie</b><small>Cei 5 pereți și planul tavanului, după designul din 10/2026.</small><span class="card-rev">Revizia 2 · 02.11.2026</span></span>
+    </a>
+    <a class="card" href="baie.html#N">
+      <span class="card-vizual"><img src="img/camere/baie.jpg" width="800" height="500" alt="Randarea băii" loading="lazy" decoding="async"></span>
+      <span class="card-text"><b>Baie</b><small>Cei 4 pereți, cu faianța și instalațiile, și planul tavanului.</small><span class="card-rev">Revizia 1 · 02.11.2026</span></span>
+    </a>
+    <a class="card" href="gs.html#N">
+      <span class="card-vizual"><img src="img/camere/gs.jpg" width="800" height="500" alt="Randarea grupului sanitar" loading="lazy" decoding="async"></span>
+      <span class="card-text"><b>Grup sanitar</b><small>Cei 4 pereți, cu faianța și instalațiile, și planul tavanului.</small><span class="card-rev">Revizia 1 · 02.11.2026</span></span>
+    </a>
   </div>
 </div>
 <script src="data/living.js"></script>
@@ -29,6 +45,7 @@
 <script src="data/detalii/D-06.js"></script>
 <script src="data/detalii/D03p.js"></script>
 <script src="data/detalii/G3.js"></script>
+<script src="js/pasi.js"></script>
 <script src="js/index.js"></script>
 </body>
 </html>
