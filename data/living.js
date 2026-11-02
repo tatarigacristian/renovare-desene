@@ -5,9 +5,10 @@ window.CAMERE["living"] = {
  "id": "living",
  "nume": "Living",
  "revizie": {
-  "nr": 3,
+  "nr": 4,
   "data": "2026-11-02",
   "modificari": [
+   "Revizia 4: pașii de montaj animați pentru scafa draperiei (D-09) și pentru șinele magnetice J și K (J-K) (02.11.2026).",
    "Revizia 3: ușa de balcon U2 desenată cu sticlă, iar fereastra F2 cu un singur geam, fără montant la mijloc (02.11.2026).",
    "Pereții E (cu biroul), S (TV) și V (cu fereastra) și planul tavanului refăcuți din planșe (A.01, A.05–A.07, A.15, A.16, D-09).",
    "Panoul 2 (lângă birou) desenat în ambele poziții până răspunde arhitecta (R10); pozițiile diferă cu ~1 cm.",
@@ -2015,7 +2016,8 @@ window.CAMERE["living"] = {
     "inalt": 5,
     "stare": "proiect",
     "sursa": "A.06 (300; 70 de la scafă; axa la 70 de la fața măștii D03); specs/04 (LedHome, 18.10.2026)",
-    "nota": "Șină magnetică încastrată LedHome Pro Slim, neagră, trimless, 24 V (oferta 6SVNKM3DY): 300 cm = o bară de 2 m + o bară de 1 m, cu conector electric și conector mecanic pentru rigips. Profilul are ~5 × 1,5 cm și se montează în placa de 12,5 mm; golul tavanului fals trebuie să aibă min. 6 cm (aici 7 cm). Unde șina e paralelă cu profilele scheletului se pune un profil suplimentar lângă ea (de verificat cu echipa). Tasta J din grupul JK. Stă deasupra măsuței de cafea, nu deasupra mesei."
+    "nota": "Șină magnetică încastrată LedHome Pro Slim, neagră, trimless, 24 V (oferta 6SVNKM3DY): 300 cm = o bară de 2 m + o bară de 1 m, cu conector electric și conector mecanic pentru rigips. Profilul are ~5 × 1,5 cm și se montează în placa de 12,5 mm; golul tavanului fals trebuie să aibă min. 6 cm (aici 7 cm). Unde șina e paralelă cu profilele scheletului se pune un profil suplimentar lângă ea (de verificat cu echipa). Tasta J din grupul JK. Stă deasupra măsuței de cafea, nu deasupra mesei.",
+    "detaliu": "J-K"
    },
    {
     "id": "J1",
@@ -2028,7 +2030,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (desenat, necotat)",
-    "nota": "Modul magnetic: se mută pe șină, poziția din A.06 e orientativă. Oferta LedHome are acum un singur modul pe șină (spot 9 W 36° sau liniar 15 W), restul se cumpără separat."
+    "nota": "Modul magnetic: se mută pe șină, poziția din A.06 e orientativă. Oferta LedHome are acum un singur modul pe șină (spot 9 W 36° sau liniar 15 W), restul se cumpără separat.",
+    "detaliu": "J-K"
    },
    {
     "id": "J2",
@@ -2041,7 +2044,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (desenat, necotat)",
-    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1."
+    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1.",
+    "detaliu": "J-K"
    },
    {
     "id": "J3",
@@ -2054,7 +2058,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (desenat, necotat)",
-    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1."
+    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1.",
+    "detaliu": "J-K"
    },
    {
     "id": "K",
@@ -2068,7 +2073,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (300; 100 de la fața grinzii peretelui cu M12, h 580; x măsurat pe desen); specs/04 (LedHome, 18.10.2026)",
-    "nota": "Ca J. Tasta K din grupul JK. Axa la ~419 cm, adică ~30 cm de fața grinzii GR2, care coboară ~38 cm sub tavanul fals: spoturile spre panoul de piatră se orientează pe sub ea. Cablul de 24 V de la surse (lângă scafă) are ~4 m: min. 2 × 1,5 mm², ideal 2 × 2,5 mm²."
+    "nota": "Ca J. Tasta K din grupul JK. Axa la ~419 cm, adică ~30 cm de fața grinzii GR2, care coboară ~38 cm sub tavanul fals: spoturile spre panoul de piatră se orientează pe sub ea. Cablul de 24 V de la surse (lângă scafă) are ~4 m: min. 2 × 1,5 mm², ideal 2 × 2,5 mm².",
+    "detaliu": "J-K"
    },
    {
     "id": "K1",
@@ -2081,7 +2087,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (desenat, necotat)",
-    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1."
+    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1.",
+    "detaliu": "J-K"
    },
    {
     "id": "K2",
@@ -2094,7 +2101,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (desenat, necotat)",
-    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1."
+    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1.",
+    "detaliu": "J-K"
    },
    {
     "id": "K3",
@@ -2107,7 +2115,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (desenat, necotat)",
-    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1."
+    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1.",
+    "detaliu": "J-K"
    },
    {
     "id": "N",
@@ -2180,7 +2189,8 @@ window.CAMERE["living"] = {
     "pozitie": "necunoscuta",
     "stare": "propunere",
     "sursa": "specs/04, oferta LedHome 6SVNKM3DY (18.10.2026)",
-    "nota": "Câte o sursă IP67 pe șină (J și K pe taste separate; a treia sursă e cerută în ofertă). Stau în golul tavanului fals, lângă scafă, și se ajung prin fanta de 15 cm (fără trapă). Au nevoie de 230 V de la grupul JK. Sursele din ofertă nu permit reglajul intensității (de decis)."
+    "nota": "Câte o sursă IP67 pe șină (J și K pe taste separate; a treia sursă e cerută în ofertă). Stau în golul tavanului fals, lângă scafă, și se ajung prin fanta de 15 cm (fără trapă). Au nevoie de 230 V de la grupul JK. Sursele din ofertă nu permit reglajul intensității (de decis).",
+    "detaliu": "J-K"
    },
    {
     "id": "AC",

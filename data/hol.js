@@ -14,9 +14,10 @@ window.CAMERE["hol"] = {
   "nota": "Înălțimea liberă sub tavanul fals: 243 cm (placa la 250, tavan fals de 7 cm), după detaliul hol din A.05, singura cotă. A.17 și A.18 desenează fața la 242, iar legenda A.05 scrie 10 cm (fața la 240): de confirmat cu arhitecta (L6). Sub grinda GR1 rămân 205 cm."
  },
  "revizie": {
-  "nr": 5,
+  "nr": 6,
   "data": "2026-11-02",
   "modificari": [
+   "Revizia 6: pașii de montaj animați pentru tavanul fals cu fanta de lumină (TFH) și pentru circuitul cu buton cu revenire (PUSH): I1 de pe peretele spre baie, I2, I3, D8 și D9 (02.11.2026).",
    "Revizia 5: ușile băii (U6) și GS-ului (U5) au foaia de 60 cm, ca ușile cumpărate; foaia e desenată în gol (02.11.2026).",
    "Revizia 4: lamelele RF1 acoperă acum lățimea grinzii GR1 și merg până la oglindă (x 312–360, 48 cm, 10 lamele), în loc de 17,3 cm cu 4 lamele. Sub grindă se opresc la fața ei de jos, la ~205 (02.11.2026).",
    "Masca țevii de gaz M06 (panoul din PAL Nuc Parona de la grindă) scoasă: țeava de gaz trece prin nișa din tavan și nu se mai vede (decizia din 02.11.2026). Plintele G7 și G8 devin o singură plintă, G7, de la ușa bucătăriei la ușa GS.",
@@ -94,7 +95,8 @@ window.CAMERE["hol"] = {
      "punct": true,
      "stare": "de-verificat",
      "sursa": "A.06 (IH, cota 6,5 de la peretele de est); Necesar prize și întrerupătoare (întrerupător dublu, baie); specs/04 (29.10.2026: Push-DIM)",
-     "nota": "Axa la 6,5 cm de colțul cu peretele de est (A.06). Clapa I aprinde spoturile din baie. Clapa H e buton cu revenire pentru sursa Push-DIM a benzilor H (D9, în tavanul fals din hol), cu fir de comandă până la sursă. Înălțimea nu e dată în A.06: 110 cm e presupusă. Placa (~8 cm) ajunge la ~2,5 cm de colț și poate atinge pervazul ușii băii."
+     "nota": "Axa la 6,5 cm de colțul cu peretele de est (A.06). Clapa I aprinde spoturile din baie. Clapa H e buton cu revenire pentru sursa Push-DIM a benzilor H (D9, în tavanul fals din hol), cu fir de comandă până la sursă. Înălțimea nu e dată în A.06: 110 cm e presupusă. Placa (~8 cm) ajunge la ~2,5 cm de colț și poate atinge pervazul ușii băii.",
+     "detaliu": "PUSH"
     },
     {
      "id": "G11",
@@ -137,7 +139,8 @@ window.CAMERE["hol"] = {
      "stare": "proiect",
      "sursa": "A.05 (113 + 15 + 20)",
      "nota": "Aici tavanul fals lipsește până la placă. Profilul benzii C1 se termină la acest perete, pe latura de vest a fantei. Vezi planul tavanului.",
-     "adanc": 312
+     "adanc": 312,
+     "detaliu": "TFH"
     },
     {
      "id": "MG1",
@@ -151,7 +154,8 @@ window.CAMERE["hol"] = {
      "stare": "proiect",
      "sursa": "A.05 (20; detaliul tavanului fals din hol)",
      "nota": "Masca de 20 cm, lipită de peretele de est, ajunge la acest perete. Vezi planul tavanului.",
-     "adanc": 312
+     "adanc": 312,
+     "detaliu": "TFH"
     }
    ],
    "avertismente": [
@@ -418,7 +422,8 @@ window.CAMERE["hol"] = {
      "punct": true,
      "stare": "de-verificat",
      "sursa": "A.06 (15 de la golul ușii bucătăriei); Necesar prize și întrerupătoare, poz. 6; specs/04 (Push-DIM, 29.10.2026)",
-     "nota": "Clapa F: spoturile din bucătărie (clapă obișnuită). Clapa G: banda de sub corpurile suspendate, cu sursă Push-DIM, deci buton cu revenire; din doză se trage un fir de comandă până la sursă (specs/04). x: 15 cm de la marginea golului ușii (pervazul se termină la ~278,5). Înălțimea nu e dată în A.06: 110 cm e presupusă."
+     "nota": "Clapa F: spoturile din bucătărie (clapă obișnuită). Clapa G: banda de sub corpurile suspendate, cu sursă Push-DIM, deci buton cu revenire; din doză se trage un fir de comandă până la sursă (specs/04). x: 15 cm de la marginea golului ușii (pervazul se termină la ~278,5). Înălțimea nu e dată în A.06: 110 cm e presupusă.",
+     "detaliu": "PUSH"
     },
     {
      "id": "I3",
@@ -430,7 +435,8 @@ window.CAMERE["hol"] = {
      "punct": true,
      "stare": "de-verificat",
      "sursa": "A.06 (15 de la golul ușii GS); Necesar prize și întrerupătoare, poz. 6; specs/04 (Push-DIM, 29.10.2026)",
-     "nota": "Clapele D și E: benzile din GS, pe o singură sursă Push-DIM (specs/04), deci buton cu revenire; cu o singură sursă, un buton aprinde ambele benzi. Sursa stă în tavanul fals din hol. x: 15 cm de la marginea golului ușii GS. Înălțimea nu e dată în A.06: 110 cm e presupusă."
+     "nota": "Clapele D și E: benzile din GS, pe o singură sursă Push-DIM (specs/04), deci buton cu revenire; cu o singură sursă, un buton aprinde ambele benzi. Sursa stă în tavanul fals din hol. x: 15 cm de la marginea golului ușii GS. Înălțimea nu e dată în A.06: 110 cm e presupusă.",
+     "detaliu": "PUSH"
     },
     {
      "id": "P2",
@@ -1443,7 +1449,8 @@ window.CAMERE["hol"] = {
      "h": 520
     },
     "nota": "Fața plăcilor la ~243 cm de la pardoseala finită, 7 cm sub placă (detaliul din A.05, singura cotă; A.17 și A.18 o desenează la 242, legenda A.05 scrie 10 cm). Se oprește la fețele grinzii GR1 (y 353,9 și 378,9), la stâlpul ST1 și la marginea fantei de pe latura de est (x = 109,3; spre baie x = 109). Între y = 8,9 și 155, unde nu e fantă, merge până la peretele de est (x = 124 la intrare; între y = 140 și 155 se continuă cu masca MG2 până la x = 144). Spre baie ajunge la peretele de vest, la x = −4. Lângă peretele cu ușa de intrare se oprește la 8,9 cm de perete (FS). Același cod pe pereți.",
-    "adanc": 7
+    "adanc": 7,
+    "detaliu": "TFH"
    },
    {
     "id": "FS",
@@ -1512,7 +1519,8 @@ window.CAMERE["hol"] = {
     "stare": "proiect",
     "sursa": "A.05 (113 + 15 de la peretele de vest din zona de nord; 312); detaliul tavanului fals din hol, A.05 (1:5); A.06",
     "nota": "Fantă deschisă până la placă, între marginea tavanului fals (x = 109, adică 113 cm de la peretele de vest din zona de nord, care e la x = −4) și marginea măștii MG1 (x = 124). Marginea dinspre tavanul fals se închide cu o placă verticală de gips-carton, de la placă până la tavanul fals; pe ea, sus, se prinde profilul benzii C1 (detaliul A.05). Merge de la grinda GR1 până la peretele spre baie (312 cm).",
-    "adanc": 7
+    "adanc": 7,
+    "detaliu": "TFH"
    },
    {
     "id": "SC2",
@@ -1527,7 +1535,8 @@ window.CAMERE["hol"] = {
     "sursa": "A.05 (109,3 + 15; 200 de la grindă; 15 până la colțul de la intrare); detaliul tavanului fals din hol, A.05 (1:5); A.06",
     "nota": "Ca SC1, cu banda C2. De la fața de sud a grinzii (y 353,9) până la y = 155, adică 15 cm înainte de colțul unde holul se îngustează (y = 140, A.01). Pe desen are 198,9 cm; A.05 cotează 200. De măsurat pe șantier înainte de tăierea benzii C2.",
     "adanc": 7,
-    "adancAprox": true
+    "adancAprox": true,
+    "detaliu": "TFH"
    },
    {
     "id": "MG1",
@@ -1541,7 +1550,8 @@ window.CAMERE["hol"] = {
     "stare": "proiect",
     "sursa": "A.05 (20; detaliul tavanului fals din hol, 1:5); specs/08 D; analiza/01 pasul 4.1",
     "nota": "Placă de gips-carton de 20 cm, lipită de peretele de est, la nivelul tavanului fals. În ea trece țeava de gaz: în detaliul A.05 are Ø ~3 cm, e lipită de placă și are axa la ~5 cm de perete. Masca trebuie să fie demontabilă și ventilată (specs/08, analiza/01). Detaliul A.05 arată o placă fixă și nu arată cum se demontează; golul ei e deschis spre fantă deasupra profilului de margine. În golul măștii nu se pun doze, prize sau surse. Traseul țevii îl face numai firma autorizată ANRE, înainte de închiderea măștii.",
-    "adanc": 7
+    "adanc": 7,
+    "detaliu": "TFH"
    },
    {
     "id": "MG2",
@@ -1556,7 +1566,8 @@ window.CAMERE["hol"] = {
     "sursa": "A.05 (109,3 + 15 + 20; detaliul tavanului fals din hol, 1:5); specs/08 D",
     "nota": "Ca MG1. De la fața de sud a grinzii (y 353,9) până la colțul de la y = 140, unde holul se îngustează. Între y = 140 și 155 se continuă, la același nivel, cu tavanul fals (A.05 nu desenează o margine între ele). A.05 cotează aici 109,3 + 15 + 20 = 144,3, cu 0,3 cm peste lățimea holului: masca are ~19,7 cm. Pe unde intră țeava în mască nu e desenat.",
     "adanc": 7,
-    "adancAprox": true
+    "adancAprox": true,
+    "detaliu": "TFH"
    },
    {
     "id": "C1",
@@ -1570,7 +1581,8 @@ window.CAMERE["hol"] = {
     "ascuns": true,
     "stare": "de-verificat",
     "sursa": "A.05 (312; profilul din detaliul tavanului fals din hol); A.06 (marcajul C, „LED tavan - orizontal”); specs/06 G2; specs/04 (29.10.2026: Hue Flux 4 m, profil S3)",
-    "nota": "Hue Flux (kit de 4 m, folosit pe alb) în profil S3 (23,5 × 10 mm, alb, 2 bare de 2 m), prins sus pe placa verticală de la marginea tavanului fals, cu lumina spre mască (detaliul A.05). Buza tavanului fals (~2 cm) ascunde profilul când e privit de jos. Traseul are 312 cm; banda montată are ~299 cm (18 segmente de 16,6 cm, specs/04). Capătul alimentat e lângă grindă (CB-C1). Clapa C din grupurile ABC."
+    "nota": "Hue Flux (kit de 4 m, folosit pe alb) în profil S3 (23,5 × 10 mm, alb, 2 bare de 2 m), prins sus pe placa verticală de la marginea tavanului fals, cu lumina spre mască (detaliul A.05). Buza tavanului fals (~2 cm) ascunde profilul când e privit de jos. Traseul are 312 cm; banda montată are ~299 cm (18 segmente de 16,6 cm, specs/04). Capătul alimentat e lângă grindă (CB-C1). Clapa C din grupurile ABC.",
+    "detaliu": "TFH"
    },
    {
     "id": "C2",
@@ -1584,7 +1596,8 @@ window.CAMERE["hol"] = {
     "ascuns": true,
     "stare": "de-verificat",
     "sursa": "A.05 (200; profilul din detaliul tavanului fals din hol); A.06 (marcajul C); specs/06 G2; specs/04 (29.10.2026: Hue Flux 4 m, profil S3)",
-    "nota": "Ca C1, cu kitul ei (1 bară S3 de 2 m). Traseul are 198,9 cm pe desen (A.05 cotează 200). Planul de tăiere (specs/04) are 12 segmente, ~199 cm: nu rămâne loc pentru capace și pentru conectorul controllerului. Se măsoară fanta pe șantier înainte de tăiere; dacă nu încap 12 segmente, se taie 11 (~183 cm). Capătul alimentat e lângă grindă (CB-C2)."
+    "nota": "Ca C1, cu kitul ei (1 bară S3 de 2 m). Traseul are 198,9 cm pe desen (A.05 cotează 200). Planul de tăiere (specs/04) are 12 segmente, ~199 cm: nu rămâne loc pentru capace și pentru conectorul controllerului. Se măsoară fanta pe șantier înainte de tăiere; dacă nu încap 12 segmente, se taie 11 (~183 cm). Capătul alimentat e lângă grindă (CB-C2).",
+    "detaliu": "TFH"
    },
    {
     "id": "CB-C1",
@@ -1597,7 +1610,8 @@ window.CAMERE["hol"] = {
     "pozitie": "aprox",
     "stare": "proiect",
     "sursa": "A.06 (marcajul C, lângă fața de nord a grinzii); specs/06 G4 și G7",
-    "nota": "Cablul pentru sursa benzii C1, cu alimentare permanentă: întrerupătorul ABC nu taie curentul, în doza lui se pune Hue Wall Switch Module (specs/06 G4). Sursa Hue se bagă într-o priză (specs/06 G7); locul prizei pentru C1 și C2 nu e hotărât (PH)."
+    "nota": "Cablul pentru sursa benzii C1, cu alimentare permanentă: întrerupătorul ABC nu taie curentul, în doza lui se pune Hue Wall Switch Module (specs/06 G4). Sursa Hue se bagă într-o priză (specs/06 G7); locul prizei pentru C1 și C2 nu e hotărât (PH).",
+    "detaliu": "TFH"
    },
    {
     "id": "CB-C2",
@@ -1610,7 +1624,8 @@ window.CAMERE["hol"] = {
     "pozitie": "aprox",
     "stare": "proiect",
     "sursa": "A.06 (marcajul C, lângă fața de sud a grinzii); specs/06 G4 și G7",
-    "nota": "Ca CB-C1, pentru banda C2."
+    "nota": "Ca CB-C1, pentru banda C2.",
+    "detaliu": "TFH"
    },
    {
     "id": "PH",
@@ -1685,7 +1700,8 @@ window.CAMERE["hol"] = {
     "pozitie": "aprox",
     "stare": "propunere",
     "sursa": "specs/04 (29.10.2026: sursele GS și băii în tavanul fals din hol, dozele D8 și D9 din modelul CAD); cad/rooms_spec.py (12.10.2026); analiza/11 L7",
-    "nota": "Sursă 24 V Push-DIM, scoasă din zona umedă a GS-ului. Firul de comandă vine de la butonul DE de pe peretele de est (y ≈ 165). În modelul CAD era la x = 124,6, pe marginea măștii de gaz; aici e mutată la vest de fantă, departe de țeava de gaz. Se ajunge la ea printr-o trapă de vizitare (golul tavanului fals nu se ajunge prin fantă). Întrebarea L7 la arhitectă e deschisă."
+    "nota": "Sursă 24 V Push-DIM, scoasă din zona umedă a GS-ului. Firul de comandă vine de la butonul DE de pe peretele de est (y ≈ 165). În modelul CAD era la x = 124,6, pe marginea măștii de gaz; aici e mutată la vest de fantă, departe de țeava de gaz. Se ajunge la ea printr-o trapă de vizitare (golul tavanului fals nu se ajunge prin fantă). Întrebarea L7 la arhitectă e deschisă.",
+    "detaliu": "PUSH"
    },
    {
     "id": "D9",
@@ -1698,7 +1714,8 @@ window.CAMERE["hol"] = {
     "pozitie": "aprox",
     "stare": "propunere",
     "sursa": "specs/04 (29.10.2026: sursele GS și băii în tavanul fals din hol); cad/rooms_spec.py (12.10.2026); analiza/11 L7",
-    "nota": "Ca D8, pentru benzile H din baie (nișa din duș și oglinda). Firul de comandă vine de la butonul H din întrerupătorul IH (peretele spre baie). Poziția e cea din modelul CAD."
+    "nota": "Ca D8, pentru benzile H din baie (nișa din duș și oglinda). Firul de comandă vine de la butonul H din întrerupătorul IH (peretele spre baie). Poziția e cea din modelul CAD.",
+    "detaliu": "PUSH"
    }
   ],
   "avertismente": [

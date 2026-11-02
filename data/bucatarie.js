@@ -14,9 +14,10 @@ window.CAMERE["bucatarie"] = {
   "nota": "Fără tavan fals: A.05 nu hașurează bucătăria, iar A.22 din 02/2026 desenează placa la 250 (A.01: Hu 2,50). Sub grinzile GR1 și GR2 rămân 205 cm. Deasupra banchetei, cutia M01-SB (203,2–250) îmbracă grinda GR1."
  },
  "revizie": {
-  "nr": 4,
+  "nr": 5,
   "data": "2026-11-02",
   "modificari": [
+   "Revizia 5: pașii de montaj animați pentru circuitul cu buton cu revenire (PUSH): doza D2 și benzile G1, G3 (02.11.2026).",
    "Revizia 4: chiuveta aleasă, Evido Quadro 6 (56,5 × 51 cm, cuva 49,5 × 35,7 × 20 cm, fără picurător), centrată pe corpul de 60. Bateria se mută în spatele cuvei, iar scurgerea sub mijlocul ei (02.11.2026).",
    "Revizia 3: banda LED verticală G2 de pe lateralul coloanei frigiderului scoasă. În zona de lucru rămâne doar lumina de sub corpurile suspendate, G1 și G3 (02.11.2026).",
    "Mobila, electrocasnicele, racordurile și prizele refăcute după A.21 și A.22 din 10/2026: chiuveta și plita pe peretele de nord, bancheta pe peretele de sud, centrala în dulapul de lângă peretele E2.",
@@ -626,7 +627,8 @@ window.CAMERE["bucatarie"] = {
      "pozitie": "aprox",
      "in": "M01-S1",
      "nota": "Sursa stă în corpul suspendat de 40. Are nevoie de 230 V și de firul de comandă de la butonul G din întrerupătorul I2 din hol (BC17).",
-     "sursa": "specs/04 și specs/06 (bandă 24 V, sursă Push-DIM, 29.10.2026)"
+     "sursa": "specs/04 și specs/06 (bandă 24 V, sursă Push-DIM, 29.10.2026)",
+     "detaliu": "PUSH"
     },
     {
      "id": "G1",
@@ -640,7 +642,8 @@ window.CAMERE["bucatarie"] = {
      "stare": "propunere",
      "pozitie": "aprox",
      "nota": "Sub cele trei corpuri din stânga hotei (45 + 60 + 40 = 145 cm), în profil în fundul corpurilor (specs/06: la 2 cm de perete; BU01 din 02/2026: la 15 cm). Sub hotă nu se pune.",
-     "sursa": "specs/06 G și specs/04 (bandă 24 V 3000K CRI90, sursă Push-DIM); așezarea din A.21 din 10/2026"
+     "sursa": "specs/06 G și specs/04 (bandă 24 V 3000K CRI90, sursă Push-DIM); așezarea din A.21 din 10/2026",
+     "detaliu": "PUSH"
     },
     {
      "id": "G3",
@@ -654,7 +657,8 @@ window.CAMERE["bucatarie"] = {
      "stare": "propunere",
      "pozitie": "aprox",
      "nota": "Opțională: lumină pe colțul de lângă fereastră, de la aceeași sursă (BC17).",
-     "sursa": "propunere (continuarea benzii G1)"
+     "sursa": "propunere (continuarea benzii G1)",
+     "detaliu": "PUSH"
     },
     {
      "id": "RF2",

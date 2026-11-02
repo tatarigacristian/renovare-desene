@@ -14,9 +14,10 @@ window.CAMERE["gs"] = {
   "nota": "Fără tavan fals: placa la 250 cm (A.01: Hu 2,50 m în eticheta GS; A.05 nu hașurează GS-ul; A.25 desenează pereții de la pardoseală la placă)."
  },
  "revizie": {
-  "nr": 2,
+  "nr": 3,
   "data": "2026-11-02",
   "modificari": [
+   "Revizia 3: pașii de montaj animați pentru blatul lavoarului (M02-B), masca WC (WC) și circuitul cu buton cu revenire (PUSH: D1, CB-D1, CB-E1); banda E1 e în pașii blatului (02.11.2026).",
    "Revizia 2: vasul WC, clapeta și bateria sunt negre, iar lavoarul e desenat sub blatul placat cu faianță. Ușa (U1) are foaia de 60 cm, ca ușa cumpărată; deschisă, ajunge la ~51 cm de perete (02.11.2026).",
    "Prima versiune: cei 4 pereți și planul tavanului, din A.01, A.03–A.06, A.08, A.10 și A.24–A.26.",
    "Peretele cu WC-ul e într-o singură vedere, ca în A.25 (B06): treapta de 10 cm dintre mască și spalet e explicată în avertismente.",
@@ -192,7 +193,8 @@ window.CAMERE["gs"] = {
      "adanc": 20,
      "stare": "proiect",
      "sursa": "A.01 («Mască WC încastrat»); A.24 și A.08 (20 și 97,9, cotat); A.25 B06 (120, cotat) și B05, B07 (secțiunea); specs/07 F (RU în GS)",
-     "nota": "Masca din fața cadrului încastrat: 20 cm adâncime (de la zidăria de la x = 150 până la fața de la x = 130), 97,9 cm lungime (de la y = 42,1 până la peretele de nord din nișă) și 120 cm înălțime, cu capac la 118–120. Gips-carton RU. În ea stau cadrul S2, țevile WC-ului și ale dușului igienic. Pe față se lipește profilul ORAC (OR1); latura de nord e acoperită de M03."
+     "nota": "Masca din fața cadrului încastrat: 20 cm adâncime (de la zidăria de la x = 150 până la fața de la x = 130), 97,9 cm lungime (de la y = 42,1 până la peretele de nord din nișă) și 120 cm înălțime, cu capac la 118–120. Gips-carton RU. În ea stau cadrul S2, țevile WC-ului și ale dușului igienic. Pe față se lipește profilul ORAC (OR1); latura de nord e acoperită de M03.",
+     "detaliu": "WC"
     },
     {
      "id": "DWC",
@@ -272,7 +274,8 @@ window.CAMERE["gs"] = {
      "stare": "propunere",
      "sursa": "specs/04 și specs/08 A (Laufen INEO NOVA OS39217, 112 × 45 × 13 cm); A.03 (axa WC, cotat); A.25 B06 (masca de 120)",
      "nota": "Centrat pe axa WC (58 cm de colțul N-E). Cu 13 cm adâncime încape în masca de 20 cm. Înălțimea de montaj și racordurile se iau din fișa cadrului.",
-     "adanc": 13
+     "adanc": 13,
+     "detaliu": "WC"
     },
     {
      "id": "S1",
@@ -290,7 +293,8 @@ window.CAMERE["gs"] = {
      "nota": "Axa la 58 cm de colțul N-E, adică 82 cm de peretele lavoarului (A.03: 35 cm de la fața peretelui de nord din zona ușii, y = 117). Marginea de sus la 45 cm (A.25). Vasul iese ~50 cm din mască (A.03).",
      "adanc": 50,
      "adancAprox": true,
-     "finisaj": "negru"
+     "finisaj": "negru",
+     "detaliu": "WC"
     },
     {
      "id": "S3",
@@ -306,7 +310,8 @@ window.CAMERE["gs"] = {
      "stare": "de-verificat",
      "sursa": "A.25 B06 (45 + 70 = 115 până la marginea de sus, cotat; conturul măsurat); specs/04 (Laufen PL NV1 negru mat, OS39220)",
      "nota": "Marginea de sus la 115 cm, pe axa WC. Conturul desenat (~24,6 × 16,4 cm) e blocul din planșă; dimensiunile reale și înălțimea se iau din fișa clapetei și a cadrului (compatibilitatea PL NV1 – INEO NOVA se confirmă la comandă, specs/04).",
-     "finisaj": "negru"
+     "finisaj": "negru",
+     "detaliu": "WC"
     },
     {
      "id": "S6",
@@ -450,7 +455,8 @@ window.CAMERE["gs"] = {
      "sursa": "A.24 (40, 12, 85, cotat); A.25 B06 și B05",
      "nota": "Capătul de est al blatului, lipit de spalet. Detaliile sunt pe peretele lavoarului.",
      "adanc": 118.1,
-     "vedereaPrincipala": "S"
+     "vedereaPrincipala": "S",
+     "detaliu": "M02-B"
     },
     {
      "id": "M02-D",
@@ -549,7 +555,8 @@ window.CAMERE["gs"] = {
      "finisaj": "sand-moon",
      "stare": "proiect",
      "sursa": "A.24 (secțiunea blatului: 8 + 24 + 8 = 40, grosime 12, la 85; profil UW 100 × 40, 2 corniere, placă dublă RU, faianță; nota de ordine); A.25 B05 (120, 12, 85, cotat); A.08 (120 × 40); specs/07 D",
-     "nota": "Blat construit din profil de oțel zincat UW 100 × 40 mm, cu 2 corniere pe care stă lavoarul, închis cu placă dublă de gips-carton RU și placat cu faianță sus și pe față. 120 × 40 cm între spalet și peretele cu ușa, gros de 12 cm, fața de sus la 85 cm. Pe față începe la ~1,9 cm de peretele cu ușa (A.25), cât grosimea pervazului. Decupajul lavoarului: 24 cm pe adâncime, la 8 cm de perete și 8 cm de muchie (A.24); pe lungime, după fișa lavoarului. Se face înaintea peretelui-suport PS1 (nota din A.24)."
+     "nota": "Blat construit din profil de oțel zincat UW 100 × 40 mm, cu 2 corniere pe care stă lavoarul, închis cu placă dublă de gips-carton RU și placat cu faianță sus și pe față. 120 × 40 cm între spalet și peretele cu ușa, gros de 12 cm, fața de sus la 85 cm. Pe față începe la ~1,9 cm de peretele cu ușa (A.25), cât grosimea pervazului. Decupajul lavoarului: 24 cm pe adâncime, la 8 cm de perete și 8 cm de muchie (A.24); pe lungime, după fișa lavoarului. Se face înaintea peretelui-suport PS1 (nota din A.24).",
+     "detaliu": "M02-B"
     },
     {
      "id": "M02-S",
@@ -623,7 +630,8 @@ window.CAMERE["gs"] = {
      "adanc": 2.5,
      "stare": "proiect",
      "sursa": "A.24 (detaliile: placă dublă gips-carton RU; nota: întâi blatul, apoi peretele-suport); A.01 («Mască oglindă nișă LED»); A.25 B05 (85 × 165, cotat)",
-     "nota": "Placare din două plăci de gips-carton RU pe peretele de sud, de pe blat până la placă, pe lățimea oglinzii (85 cm de la peretele cu ușa), ~2,5 cm grosime. Stă pe blat, deci se face după el. Pe ea se lipește oglinda OG1. Pe după ea poate trece cablul benzii E1."
+     "nota": "Placare din două plăci de gips-carton RU pe peretele de sud, de pe blat până la placă, pe lățimea oglinzii (85 cm de la peretele cu ușa), ~2,5 cm grosime. Stă pe blat, deci se face după el. Pe ea se lipește oglinda OG1. Pe după ea poate trece cablul benzii E1.",
+     "detaliu": "M02-B"
     },
     {
      "id": "OG1",
@@ -641,7 +649,8 @@ window.CAMERE["gs"] = {
      ],
      "stare": "proiect",
      "sursa": "A.25 B05 (85 × 165, cotat); A.24 (detaliul plan LED oglindă); A.26",
-     "nota": "De pe blat (85) până la placă (250), de la peretele cu ușa până la banda E1. Lipită pe PS1; fața ei e cu ~1,5 cm în fața planului faianței (A.24). Nu e în specs/04: de pus pe lista de comenzi."
+     "nota": "De pe blat (85) până la placă (250), de la peretele cu ușa până la banda E1. Lipită pe PS1; fața ei e cu ~1,5 cm în fața planului faianței (A.24). Nu e în specs/04: de pus pe lista de comenzi.",
+     "detaliu": "M02-B"
     },
     {
      "id": "E1",
@@ -655,7 +664,8 @@ window.CAMERE["gs"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "A.06 (E, «LED perete – vertical», la ~87 cm de peretele cu ușa, necotat); A.24 (detaliul plan LED oglindă: profil slim cu difuzor, max. 12 mm); A.26 (de pe blat până la placă); specs/04 (29.10.2026: 24 V 3000K CRI90, IP65, profil slim 10,7 × 8,8 mm; o sursă Push-DIM cu D1)",
-     "nota": "Bandă 24 V 3000K CRI90, IP65, în profil slim cu difuzor (max. 12 mm), pe latura de est a oglinzii, între oglindă și profilul ORAC. Lungimea nu e cotată: pe înălțimea oglinzii, ~165 cm (L2). Sursa e D8, în tavanul fals din hol, comună cu D1; butonul e DE (I3 din hol)."
+     "nota": "Bandă 24 V 3000K CRI90, IP65, în profil slim cu difuzor (max. 12 mm), pe latura de est a oglinzii, între oglindă și profilul ORAC. Lungimea nu e cotată: pe înălțimea oglinzii, ~165 cm (L2). Sursa e D8, în tavanul fals din hol, comună cu D1; butonul e DE (I3 din hol).",
+     "detaliu": "M02-B"
     },
     {
      "id": "CB-E1",
@@ -665,7 +675,8 @@ window.CAMERE["gs"] = {
      "pozitie": "necunoscuta",
      "stare": "de-verificat",
      "sursa": "A.06 (marcajul E la ~99 cm de peretele cu ușa, în dreptul profilului ORAC)",
-     "nota": "A.06 nu arată la care capăt al benzii (sus, la placă, sau jos, la blat) ajunge cablul. Propunerea noastră: cablul vine din colțul S-V, pe după peretele-suport PS1, până la capătul de sus. Se hotărăște înainte de PS1."
+     "nota": "A.06 nu arată la care capăt al benzii (sus, la placă, sau jos, la blat) ajunge cablul. Propunerea noastră: cablul vine din colțul S-V, pe după peretele-suport PS1, până la capătul de sus. Se hotărăște înainte de PS1.",
+     "detaliu": "PUSH"
     },
     {
      "id": "OR3",
@@ -700,7 +711,8 @@ window.CAMERE["gs"] = {
      "sursa": "A.03 (axa la 61 cm de peretele cu ușa, cotat); A.24 (38 × 25, axa la 20 cm de perete; fișa: 403 × 281 mm, adânc de 141 mm); specs/04 (SHELL380UPBLV, negru)",
      "nota": "Lavoar oval, negru, 38 × 25 cm la interior, montat sub blat pe cele 2 corniere. Axa la 61 cm de peretele cu ușa (59 cm de colțul S-E) și la 20 cm de perete. Corpul coboară ~14 cm sub fața de sus a placajului, deci ~4–5 cm sub blat, în sertar; scurgerea are Ø 44 mm. Pe desen e cu linie întreruptă: stă sub blatul placat cu faianță, în spatele feței lui.",
      "adanc": 28.1,
-     "finisaj": "negru"
+     "finisaj": "negru",
+     "detaliu": "M02-B"
     },
     {
      "id": "S5",
@@ -716,7 +728,8 @@ window.CAMERE["gs"] = {
      "stare": "proiect",
      "sursa": "A.03 (35 cm de spalet, 20 cm de perete, cotat); specs/04 (Cersanit Zen stativ negru S951-595)",
      "nota": "Pe blat, la stânga lavoarului privind spre perete: 85 cm de peretele cu ușa, 20 cm de perete, chiar în dreptul benzii E1. Înălțimea desenată e orientativă. Furtunurile coboară prin blat, în compartimentul deschis M02-D.",
-     "finisaj": "negru"
+     "finisaj": "negru",
+     "detaliu": "M02-B"
     },
     {
      "id": "R5",
@@ -916,7 +929,8 @@ window.CAMERE["gs"] = {
      "sursa": "A.24 (40, 12, 85, cotat); A.25 B05 (blatul începe la ~1,9 cm de acest perete, măsurat)",
      "nota": "Capătul de vest al blatului. Blatul se oprește la ~1,9 cm de perete, cât iese pervazul ușii (pervazul începe la 36,3 cm de colț, iar blatul are 40 cm adâncime). Detaliile sunt pe peretele lavoarului.",
      "adanc": 118.1,
-     "vedereaPrincipala": "S"
+     "vedereaPrincipala": "S",
+     "detaliu": "M02-B"
     },
     {
      "id": "M02-S",
@@ -987,7 +1001,8 @@ window.CAMERE["gs"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (D: săgeata dublă de tip «LED tavan – orizontal», de la peretele cu ușa până la spalet, la ~41–43 cm de peretele lavoarului; necotat); A.26 (randările 1 și 2); specs/04 (29.10.2026: 24 V 3000K CRI90, profil aplicat ~16,6 × 10,6 mm, o sursă Push-DIM cu E1); specs/06 G2 (~120 cm)",
-    "nota": "Bandă 24 V 3000K CRI90 pe placă, paralelă cu peretele lavoarului, la ~41–43 cm de el (în dreptul muchiei blatului și a feței de nord a spaletului), de la peretele cu ușa până la spalet: ~120 cm. Fără tavan fals, profilul se aplică pe placă (specs/04); randările o arată încastrată. A.06 și randările o pun pe tavan, nu deasupra oglinzii (L4): de confirmat. Sursa e D8, în tavanul fals din hol, comună cu E1; butonul e DE (I3 din hol)."
+    "nota": "Bandă 24 V 3000K CRI90 pe placă, paralelă cu peretele lavoarului, la ~41–43 cm de el (în dreptul muchiei blatului și a feței de nord a spaletului), de la peretele cu ușa până la spalet: ~120 cm. Fără tavan fals, profilul se aplică pe placă (specs/04); randările o arată încastrată. A.06 și randările o pun pe tavan, nu deasupra oglinzii (L4): de confirmat. Sursa e D8, în tavanul fals din hol, comună cu E1; butonul e DE (I3 din hol).",
+    "detaliu": "PUSH"
    },
    {
     "id": "CB-D1",
@@ -1000,7 +1015,8 @@ window.CAMERE["gs"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (marcajul D la capătul de est al benzii, lângă spalet)",
-    "nota": "A.06 pune marcajul la capătul de est, lângă spalet. Sursa D8 e în hol, la vest: alimentat de aici, cablul traversează tavanul GS-ului pe ~120 cm, fără tavan fals care să-l ascundă. Propunerea noastră: alimentarea la capătul de vest, prin peretele cu ușa, chiar sub placă (în hol, între tavanul fals de la 243 și placă)."
+    "nota": "A.06 pune marcajul la capătul de est, lângă spalet. Sursa D8 e în hol, la vest: alimentat de aici, cablul traversează tavanul GS-ului pe ~120 cm, fără tavan fals care să-l ascundă. Propunerea noastră: alimentarea la capătul de vest, prin peretele cu ușa, chiar sub placă (în hol, între tavanul fals de la 243 și placă).",
+    "detaliu": "PUSH"
    },
    {
     "id": "MWC",
@@ -1014,7 +1030,8 @@ window.CAMERE["gs"] = {
     "stare": "proiect",
     "sursa": "A.24 și A.08 (20 și 97,9, cotat)",
     "nota": "Masca de 120 cm înălțime. Deasupra ei, de la 120 la placă, e dulapul DWC (y 42,6–117). Ce e deasupra măștii în spatele lui M03 (y 117–140) nu e desenat.",
-    "adanc": 120
+    "adanc": 120,
+    "detaliu": "WC"
    },
    {
     "id": "DWC",

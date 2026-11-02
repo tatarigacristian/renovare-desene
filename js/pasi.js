@@ -33,7 +33,18 @@
     parchet: { fill: 'url(#ps-parchet)', stroke: '#7a5a3a' },
     glet: { fill: '#f5f5f4', stroke: '#a8a29e' },
     'banda-hartie': { fill: '#fde68a', stroke: '#b45309' },
+    hidroizolatie: { fill: '#7fb0d6', stroke: '#2f5f86' },
+    adeziv: { fill: '#c9c8c2', stroke: '#8a8a84' },
+    faianta: { fill: '#ebe4d6', stroke: '#9c8f7a' },
+    sticla: { fill: 'rgba(147, 197, 253, .35)', stroke: '#1d4ed8' },
+    pvc: { fill: '#d6d3d1', stroke: '#78716c' },
+    cauciuc: { fill: '#3f3f46', stroke: '#18181b' },
+    alb: { fill: '#ffffff', stroke: '#374151' },
+    negru: { fill: '#1f1f1f', stroke: '#000' },
   };
+  // culorile firelor din scheme (forma „fir”)
+  const FIRE = { faza: '#8b5a2b', nul: '#2563eb', pamant: '#65a30d', comanda: '#7c3aed', 'v24-plus': '#dc2626', 'v24-minus': '#111827',
+    apa: '#2563eb', calda: '#dc2626', scurgere: '#78716c', gaz: '#ca8a04' };
   const IC = {
     inapoi: '<path d="M15 18l-6-6 6-6"/>', inainte: '<path d="M9 18l6-6-6-6"/>', inchide: '<path d="M6 6l12 12M18 6L6 18"/>',
     reda: '<path d="M7 5l12 7-12 7z"/>', pauza: '<path d="M8 5v14M16 5v14"/>', reia: '<path d="M4 12a8 8 0 1 0 2.5-5.8M4 4v4h4"/>',
@@ -157,6 +168,21 @@
       el('circle', { cx: s.x, cy: s.y, r: .3, fill: '#1f2937' }, g);
     },
     text(g, s, u) { text(g, s.x, s.y, s.text, 11 * u, { fill: '#57534e', 'text-anchor': s.anc || 'start' }); },
+    // poligon umplut cu un material: șapa cu pantă, membrana pe pantă, piese oblice
+    poligon(g, s) { el('polygon', Object.assign({ points: s.puncte.map(p => p.join(',')).join(' '), 'stroke-width': 1, 'stroke-linejoin': 'round' }, UMPLERE[s.umplere] || UMPLERE.gips, NSS), g); },
+    // fir sau țeavă în schemă: linie frântă colorată; „culoare” e o cheie din FIRE sau un cod #rrggbb
+    fir(g, s) {
+      el('polyline', Object.assign({ points: s.puncte.map(p => p.join(',')).join(' '), fill: 'none', stroke: FIRE[s.culoare] || s.culoare || '#1f2937',
+        'stroke-width': s.gros || 2, 'stroke-dasharray': s.intrerupt ? '6 4' : null, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, NSS), g);
+    },
+    cerc(g, s) { el('circle', Object.assign({ cx: s.x, cy: s.y, r: s.r, 'stroke-width': 1.2 }, UMPLERE[s.umplere] || UMPLERE.alb, NSS), g); },
+    // componentă de schemă: dreptunghi cu numele în mijloc (sursa, butonul, banda, doza)
+    simbol(g, s, u) {
+      el('rect', Object.assign({ x: s.x, y: s.y, width: s.w, height: s.h, rx: Math.min(s.w, s.h) * .12, 'stroke-width': 1.3 }, UMPLERE[s.umplere] || UMPLERE.alb, NSS), g);
+      const fs = 11 * u, rs = (s.text || '').split('\n');
+      const t = el('text', { x: s.x + s.w / 2, y: s.y + s.h / 2 - (rs.length - 1) * fs * .6 + fs * .35, 'font-size': fs, 'text-anchor': 'middle', fill: s.umplere === 'negru' || s.umplere === 'cauciuc' ? '#fff' : '#1f2937', 'font-weight': 600 }, g);
+      rs.forEach((r, i) => el('tspan', { x: s.x + s.w / 2, dy: i ? fs * 1.2 : 0 }, t, r));
+    },
     cota(g, s, u) {
       const c = s.culoare === 'intre' ? '#1d4ed8' : '#b42318', [ax, ay] = s.a, [bx, by] = s.b, fs = 11.5 * u;
       for (const m of s.martori || []) linie(g, m[0], m[1], m[2], m[3], c, .8, '3 3');
@@ -202,7 +228,8 @@
   // ---------------------------------------------------------------- animații (Web Animations API)
   function animeaza(g, s, i) {
     const tip = reducere() ? 'apare' : s.anim || ({ structura: 'din-perete', dreptunghi: 'din-perete', roca: 'creste', linie: 'deseneaza', tub: 'pop', profil: 'din-camera',
-      lumina: 'lumina', ochi: 'apare', contur: 'apare', cota: 'apare', eticheta: 'apare', text: 'apare', focar: 'din-dreapta', flacara: 'lumina' })[s.tip] || 'apare';
+      lumina: 'lumina', ochi: 'apare', contur: 'apare', cota: 'apare', eticheta: 'apare', text: 'apare', focar: 'din-dreapta', flacara: 'lumina',
+      poligon: 'din-perete', fir: 'deseneaza', cerc: 'pop', simbol: 'pop' })[s.tip] || 'apare';
     const o = { duration: 850, delay: 120 + i * 380, easing: 'cubic-bezier(.2, .7, .2, 1)', fill: 'backwards' };
     const b = g.getBBox();
     g.style.transformBox = 'fill-box';
@@ -406,7 +433,7 @@
     dlg.querySelector('#ps-titlu').textContent = d.nume;
     dlg.querySelector('.ps-sub').textContent = `${d.subtitlu}. ${d.nota}`;
     // „orientare”: unde e peretele și unde e camera pe desen; D-06 e văzut de sus
-    dlg.querySelector('figcaption').textContent = `${d.orientare || 'Sus: peretele existent. Jos: camera.'} Cote în cm. Albastru: ce se adaugă acum.`;
+    dlg.querySelector('figcaption').textContent = `${d.orientare || 'Sus: peretele existent. Jos: camera.'}${d.schema ? '' : ' Cote în cm.'} Albastru: ce se adaugă acum.`;
     dlg.querySelector('.ps-puncte-nav').innerHTML = d.pasi.map((p, i) =>
       `<button type="button" data-p="pas" data-k="${i}" title="${i ? i + '. ' : ''}${esc(p.titlu)}" aria-label="${i ? 'Pasul ' + i : 'Pe scurt'}: ${esc(p.titlu)}">${i || '•'}</button>`).join('');
     seteazaReda(false);
@@ -429,9 +456,10 @@
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     svg.textContent = '';
     defs(svg);
+    const u = Math.max((d.vedere.x1 - d.vedere.x0) / 240, (d.vedere.y1 - d.vedere.y0) / 150);   // miniatura are ~240 × 150 px
     for (const s of d.forme) {
       if (!pus.has(s.id) || TEMP.has(s.tip) || s.temporar || ['text', 'ochi'].includes(s.tip) || !FORME[s.tip]) continue;
-      FORME[s.tip](el('g', {}, svg), s, 1);
+      FORME[s.tip](el('g', {}, svg), s, u);
     }
     return true;
   }

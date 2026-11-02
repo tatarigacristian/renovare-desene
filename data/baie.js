@@ -14,9 +14,10 @@ window.CAMERE["baie"] = {
   "nota": "Înălțimea liberă: 250 cm, placa de beton (A.01, Hu 2,50; A.27 B01: 87 + 163 = 250 în dreptul lavoarului). Baia nu are tavan fals decât deasupra dușului: caseta TF1, cu fața la 225 cm (A.27 B02 și B03: 225 și 25)."
  },
  "revizie": {
-  "nr": 2,
+  "nr": 3,
   "data": "2026-11-02",
   "modificari": [
+   "Revizia 3: pașii de montaj animați pentru dușul walk-in cu rigola (DUS), nișa din duș cu banda H1 (NI1), masca WC (WC) și circuitul cu buton cu revenire (PUSH, banda H2) (02.11.2026).",
    "Revizia 2: vasul WC și clapeta sunt negre, iar lavoarul e desenat încorporat în blatul placat cu faianță. Ușa (U1) are foaia de 60 cm, ca ușa cumpărată (02.11.2026).",
    "Prima versiune: pereții și planul tavanului."
   ]
@@ -103,7 +104,8 @@ window.CAMERE["baie"] = {
      "sursa": "A.27 B02 (punctul de pornire în colțul de est, la pardoseală; rostul vertical la 60 cm de colț; rândurile la 60, 120, 180)",
      "nota": "Pornește din colțul cu peretele de est. Fereastra e centrată pe rostul de la 60 cm de colț; rostul de la 120 e la fața de sus a nișei, iar fundul nișei (95) cade în rândul 60–120. Nișa se placează pe toate fețele. Hidroizolație pe tot peretele (zona dușului).",
      "adanc": 1,
-     "adancAprox": true
+     "adancAprox": true,
+     "detaliu": "NI1"
     },
     {
      "id": "NI1",
@@ -117,7 +119,8 @@ window.CAMERE["baie"] = {
      "adanc": 15,
      "stare": "proiect",
      "sursa": "A.27 B02 și B03 (105,6; 95 + 25; 15, cotat); A.01 („Mască raft duș”); specs/06 G2",
-     "nota": "Nișa e în masca dușului MN1 (gips-carton RU, 15 cm, pe toată lățimea, de la pardoseală la tavanul fals) și merge până la zidul exterior. Ajunge la peretele de est. Sus, banda H1."
+     "nota": "Nișa e în masca dușului MN1 (gips-carton RU, 15 cm, pe toată lățimea, de la pardoseală la tavanul fals) și merge până la zidul exterior. Ajunge la peretele de est. Sus, banda H1.",
+     "detaliu": "NI1"
     },
     {
      "id": "FE1",
@@ -145,7 +148,8 @@ window.CAMERE["baie"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "A.06 (H, „LED nișă - orizontal”); A.27 B02 (nișa de 105,6); specs/06 G2 și specs/04 (24 V, IP67, sursă Push-DIM)",
-     "nota": "Bandă 24 V 3000K IP67 în profil, sub fața de sus a nișei, pe toată lungimea (105,6 cm); locul profilului în nișă nu e desenat. Cablul vine de la sursa D9 din tavanul fals al holului. Butonul H e în IH (hol)."
+     "nota": "Bandă 24 V 3000K IP67 în profil, sub fața de sus a nișei, pe toată lungimea (105,6 cm); locul profilului în nișă nu e desenat. Cablul vine de la sursa D9 din tavanul fals al holului. Butonul H e în IH (hol).",
+     "detaliu": "NI1"
     },
     {
      "id": "S6",
@@ -161,7 +165,8 @@ window.CAMERE["baie"] = {
      "sursa": "A.03 (măsurat); A.27 B01 (73, cotat)",
      "nota": "Capătul rigolei, în colțul cu masca WC. Detaliile sunt pe peretele cu WC-ul.",
      "adanc": 73,
-     "vedereaPrincipala": "V"
+     "vedereaPrincipala": "V",
+     "detaliu": "DUS"
     },
     {
      "id": "TF1",
@@ -292,7 +297,8 @@ window.CAMERE["baie"] = {
      "finisaj": "sand-moon",
      "stare": "de-verificat",
      "sursa": "A.27 B03 (10 × 5, desenat)",
-     "nota": "Capătul pragului, la acest perete. Detaliile sunt pe peretele cu WC-ul."
+     "nota": "Capătul pragului, la acest perete. Detaliile sunt pe peretele cu WC-ul.",
+     "detaliu": "DUS"
     },
     {
      "id": "CF1",
@@ -693,7 +699,8 @@ window.CAMERE["baie"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "A.06 (H, „LED perete - vertical”, la ~35 cm de colț, necotat); A.28 (lumina pe latura oglinzii dinspre ușă); specs/04 (24 V, IP65, sursă Push-DIM)",
-     "nota": "Bandă 24 V 3000K IP65, în profil de max. 12 mm, pe latura oglinzii dinspre colț. Lungimea nu e cotată (L2): aici, pe toată înălțimea oglinzii. Sursa Push-DIM e D9, în tavanul fals al holului; butonul H e în întrerupătorul IH din hol."
+     "nota": "Bandă 24 V 3000K IP65, în profil de max. 12 mm, pe latura oglinzii dinspre colț. Lungimea nu e cotată (L2): aici, pe toată înălțimea oglinzii. Sursa Push-DIM e D9, în tavanul fals al holului; butonul H e în întrerupătorul IH din hol.",
+     "detaliu": "PUSH"
     },
     {
      "id": "P1",
@@ -740,7 +747,8 @@ window.CAMERE["baie"] = {
      "adanc": 25,
      "stare": "proiect",
      "sursa": "A.01 („Mască WC încastrat”, 25, cotat); A.03 (fața la 25 cm de zid, de la 90 la 206 cm de colț, măsurat)",
-     "nota": "Structură metalică cu plăci RU, fața la 25 cm de zid. Merge de la 90 la 206 cm de colț; în duș (155–206) e sub faianța F4 și pe desen nu se vede. Înăuntru: cadrul WC S2 jos și dulapul M09-D sus. Pe fața ei se prinde riflajul M09-P. Vezi planul tavanului."
+     "nota": "Structură metalică cu plăci RU, fața la 25 cm de zid. Merge de la 90 la 206 cm de colț; în duș (155–206) e sub faianța F4 și pe desen nu se vede. Înăuntru: cadrul WC S2 jos și dulapul M09-D sus. Pe fața ei se prinde riflajul M09-P. Vezi planul tavanului.",
+     "detaliu": "WC"
     },
     {
      "id": "M09-P",
@@ -802,7 +810,8 @@ window.CAMERE["baie"] = {
      "ascuns": true,
      "stare": "proiect",
      "sursa": "specs/04 și specs/08 (Laufen INEO NOVA OS39217, 1120 × 450 × 130 mm); A.03 (cadrul desenat în mască, ~97–145 cm de colț, măsurat)",
-     "nota": "Centrat pe axa WC (120). Stă în masca MS1, lipit de placa ei; în spate rămân ~10 cm până la zid (A.03). Racordurile de apă rece (R1) și scurgere Ø110 (R2) sunt pe cadru, la cotele din fișa Laufen."
+     "nota": "Centrat pe axa WC (120). Stă în masca MS1, lipit de placa ei; în spate rămân ~10 cm până la zid (A.03). Racordurile de apă rece (R1) și scurgere Ø110 (R2) sunt pe cadru, la cotele din fișa Laufen.",
+     "detaliu": "WC"
     },
     {
      "id": "S1",
@@ -822,7 +831,8 @@ window.CAMERE["baie"] = {
      "nota": "Axa la 120 cm de colț. Marginea de sus la 45 cm de pardoseala finită. Se prinde pe tijele cadrului S2, prin riflaj și mască.",
      "adanc": 50,
      "adancAprox": true,
-     "finisaj": "negru"
+     "finisaj": "negru",
+     "detaliu": "WC"
     },
     {
      "id": "S3",
@@ -837,7 +847,8 @@ window.CAMERE["baie"] = {
      "stare": "proiect",
      "sursa": "A.27 B01 (marginea de sus la 115: 45 + 70, cotat; 24 × 16, măsurat); A.03; specs/04 (OS39220)",
      "nota": "Marginea de sus la 115 cm, în axa WC. Prin deschiderea ei se ajunge la robinetul și la mecanismul rezervorului. Compatibilitatea cu cadrul se confirmă la comandă (specs/04).",
-     "finisaj": "negru"
+     "finisaj": "negru",
+     "detaliu": "WC"
     },
     {
      "id": "F4",
@@ -862,7 +873,8 @@ window.CAMERE["baie"] = {
      "sursa": "A.27 B01 (10 + 73 = 83, cotat; rostul vertical la 41,5 de masca de nord și rândurile la 60, 120, 180, desenate)",
      "nota": "Pe masca WC (155–206) și pe peretele ghenei (206–238), până la tavanul fals (225). Rostul vertical e la 41,5 cm de masca de nord, în axa bateriei S4. A.27 nu marchează punct de pornire pe acest perete. Sub faianță: hidroizolație pe toată suprafața (specs/07 G).",
      "adanc": 1,
-     "adancAprox": true
+     "adancAprox": true,
+     "detaliu": "DUS"
     },
     {
      "id": "TF1",
@@ -895,7 +907,8 @@ window.CAMERE["baie"] = {
      "finisaj": "sand-moon",
      "stare": "de-verificat",
      "sursa": "A.27 B01 și B03 (10 × 5, desenat; 10 cotat); A.03 (fâșia de 10 cm pe toată lățimea); A.04 (fâșia de 10 cm din stereotomie)",
-     "nota": "Fâșie de 10 cm pe toată lățimea băii, de la 155 la 165 cm de colț; peretele de sticlă S8 stă pe ea. A.27 o desenează înaltă de 5 cm."
+     "nota": "Fâșie de 10 cm pe toată lățimea băii, de la 155 la 165 cm de colț; peretele de sticlă S8 stă pe ea. A.27 o desenează înaltă de 5 cm.",
+     "detaliu": "DUS"
     },
     {
      "id": "S8",
@@ -910,7 +923,8 @@ window.CAMERE["baie"] = {
      "stare": "proiect",
      "sursa": "A.03 (70 de la masca WC, trecere liberă 66, cotat); A.27 B01 (pe prag, la ~158 cm de colț, măsurat); specs/04 (STR4P0700607)",
      "nota": "Perpendicular pe acest perete, prins de masca WC la ~158 cm de colț. Are 70 cm spre peretele de est; rămân 66 cm de trecere. Bara de stabilizare nu e desenată: se prinde după fișa produsului.",
-     "adanc": 70
+     "adanc": 70,
+     "detaliu": "DUS"
     },
     {
      "id": "S4",
@@ -955,7 +969,8 @@ window.CAMERE["baie"] = {
      "stare": "proiect",
      "sursa": "A.27 B01 (73, cotat); A.03 („Rigolă duș”, lipită de masca WC, lată de ~7 cm, măsurat)",
      "nota": "În pardoseală, lipită de fața măștii WC (în plan x 25–32), de la prag până la masca de nord. Modelul nu e ales (analiza/07 A9); grosimea lui decide șapa (analiza/07, întrebarea 9). Ieșirea R8 merge la coloana din ghenă.",
-     "adanc": 7
+     "adanc": 7,
+     "detaliu": "DUS"
     },
     {
      "id": "S7",
@@ -1079,7 +1094,8 @@ window.CAMERE["baie"] = {
      "pozitie": "necunoscuta",
      "stare": "de-verificat",
      "sursa": "A.03 (rigola); modelul nu e ales",
-     "nota": "Ieșirea rigolei S6, după modelul ales; spre coloana din ghena GH1, lângă capătul de nord al rigolei."
+     "nota": "Ieșirea rigolei S6, după modelul ales; spre coloana din ghena GH1, lângă capătul de nord al rigolei.",
+     "detaliu": "DUS"
     }
    ],
    "avertismente": [
@@ -1200,7 +1216,8 @@ window.CAMERE["baie"] = {
     "inalt": 15,
     "stare": "proiect",
     "sursa": "A.01 („Mască raft duș”); A.03 (15, măsurat); A.27 B03 (nișa adâncă de 15, cotat)",
-    "nota": "Masca din fața zidului exterior, de la pardoseală până la tavanul fals, cu nișa NI1 și golul ferestrei FE1. Hidroizolație peste ea."
+    "nota": "Masca din fața zidului exterior, de la pardoseală până la tavanul fals, cu nișa NI1 și golul ferestrei FE1. Hidroizolație peste ea.",
+    "detaliu": "NI1"
    },
    {
     "id": "MS1",
@@ -1214,7 +1231,8 @@ window.CAMERE["baie"] = {
     "stare": "proiect",
     "sursa": "A.01 (25, cotat); A.03 (de la 90 la 206 cm de peretele spre hol, măsurat)",
     "nota": "Văzută de sus: 25 cm de la zid, de la 90 la 206 cm de peretele spre hol. Detaliile sunt pe peretele cu WC-ul.",
-    "adanc": 250
+    "adanc": 250,
+    "detaliu": "WC"
    },
    {
     "id": "GH1",
@@ -1230,7 +1248,8 @@ window.CAMERE["baie"] = {
     "sursa": "A.01 și A.03 (pereți de ~10 cm, golul interior ~15 × 37 cm, măsurat); stare_actuala/baie 1 (ghena deschisă, cu țevi verticale)",
     "nota": "Colțul N-V al băii. Fața dinspre duș e în planul măștii WC (x 25) și se placează (F4). În fotografii, ghena are țevi verticale de apă și o coloană de canalizare.",
     "adanc": 250,
-    "adancAprox": true
+    "adancAprox": true,
+    "detaliu": "DUS"
    },
    {
     "id": "M08",
