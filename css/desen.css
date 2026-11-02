@@ -222,6 +222,8 @@ header.cap #subtitlu { color:var(--muted); }
 .cote-grid { display:grid; gap:5px; }
 .cote-rand { display:grid; grid-template-columns:62px repeat(3, minmax(0, 1fr)); gap:5px; }
 .cote-rand.n2 { grid-template-columns:62px repeat(2, minmax(0, 1fr)); }
+.cote-rand.n1 { grid-template-columns:62px minmax(0, 1fr); }
+.c.gol b { color:var(--muted); font-weight:600; }
 .cote-et { align-self:center; font-size:12px; color:var(--muted); }
 .c { display:flex; flex-direction:column; min-width:0; padding:5px 8px; background:var(--surface-2); border-radius:8px; }
 .c b { font-size:16px; line-height:1.25; color:var(--sel); font-variant-numeric:tabular-nums; }
@@ -362,6 +364,9 @@ dialog::backdrop { background:rgba(20,15,10,.45); }
 .fisa-actiuni-rand .buton .ic:last-child:not(:first-child) { margin-left:-2px; }
 .cote-scurte { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:5px; margin-top:10px; }
 .cote-scurte.n2 { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+/* cu toate trei dimensiunile, celula lor e mai lată */
+.cote-scurte.cu3 { grid-template-columns:minmax(0, .8fr) minmax(0, .8fr) minmax(0, 1.4fr); }
+.cote-scurte .el3 b { font-size:14px; white-space:nowrap; }
 .fisa-nota { margin:12px 0 0; padding:8px 10px; border-radius:8px; background:var(--surface-2); font-size:13.5px; }
 .fisa-mai { margin:10px 0 12px; border-top:1px solid var(--border); }
 .fisa-mai summary { display:flex; align-items:center; gap:6px; min-height:40px; font-size:13px; font-weight:600; color:var(--muted); cursor:pointer; list-style:none; }

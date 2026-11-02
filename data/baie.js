@@ -61,7 +61,9 @@ window.CAMERE["baie"] = {
      "finisaj": "sand-moon-str",
      "stare": "proiect",
      "sursa": "A.27 B02 (30, cotat; dungi pe fond alb)",
-     "nota": "De la pardoseală până la tavanul fals, lipită de masca WC. Formatul plăcii STR nu e în listă (60 × 60 presupus)."
+     "nota": "De la pardoseală până la tavanul fals, lipită de masca WC. Formatul plăcii STR nu e în listă (60 × 60 presupus).",
+     "adanc": 1,
+     "adancAprox": true
     },
     {
      "id": "F6",
@@ -98,7 +100,9 @@ window.CAMERE["baie"] = {
      ],
      "stare": "proiect",
      "sursa": "A.27 B02 (punctul de pornire în colțul de est, la pardoseală; rostul vertical la 60 cm de colț; rândurile la 60, 120, 180)",
-     "nota": "Pornește din colțul cu peretele de est. Fereastra e centrată pe rostul de la 60 cm de colț; rostul de la 120 e la fața de sus a nișei, iar fundul nișei (95) cade în rândul 60–120. Nișa se placează pe toate fețele. Hidroizolație pe tot peretele (zona dușului)."
+     "nota": "Pornește din colțul cu peretele de est. Fereastra e centrată pe rostul de la 60 cm de colț; rostul de la 120 e la fața de sus a nișei, iar fundul nișei (95) cade în rândul 60–120. Nișa se placează pe toate fețele. Hidroizolație pe tot peretele (zona dușului).",
+     "adanc": 1,
+     "adancAprox": true
     },
     {
      "id": "NI1",
@@ -154,7 +158,9 @@ window.CAMERE["baie"] = {
      "inalt": 1.5,
      "stare": "proiect",
      "sursa": "A.03 (măsurat); A.27 B01 (73, cotat)",
-     "nota": "Capătul rigolei, în colțul cu masca WC. Detaliile sunt pe peretele cu WC-ul."
+     "nota": "Capătul rigolei, în colțul cu masca WC. Detaliile sunt pe peretele cu WC-ul.",
+     "adanc": 73,
+     "vedereaPrincipala": "V"
     },
     {
      "id": "TF1",
@@ -167,7 +173,8 @@ window.CAMERE["baie"] = {
      "inalt": 25,
      "stare": "proiect",
      "sursa": "A.27 B02 (225, cotat); A.05",
-     "nota": "Fața la 225 cm, 25 cm sub placă. Vezi planul tavanului."
+     "nota": "Fața la 225 cm, 25 cm sub placă. Vezi planul tavanului.",
+     "adanc": 83
     }
    ],
    "avertismente": [
@@ -238,7 +245,9 @@ window.CAMERE["baie"] = {
      "finisaj": "sand-moon",
      "stare": "proiect",
      "sursa": "A.27 B03 (punctul de pornire la 83 cm de masca de nord; rosturi la 23, 83, 143, 203 și la 60, 120, 180, 240, desenate)",
-     "nota": "Zona dușului, până la tavanul fals. În colțul cu nișa rămâne o bucată de 23 cm. Hidroizolație pe toată suprafața (specs/07 G)."
+     "nota": "Zona dușului, până la tavanul fals. În colțul cu nișa rămâne o bucată de 23 cm. Hidroizolație pe toată suprafața (specs/07 G).",
+     "adanc": 1,
+     "adancAprox": true
     },
     {
      "id": "F8",
@@ -261,7 +270,9 @@ window.CAMERE["baie"] = {
      "finisaj": "sand-moon",
      "stare": "proiect",
      "sursa": "A.27 B03 (punctul de pornire la 83; rosturile desenate)",
-     "nota": "De la linia peretelui de sticlă până la peretele spre hol, de la pardoseală la placă: rândul de sus are ~9 cm, ultima bucată de lângă ușă ~35 cm."
+     "nota": "De la linia peretelui de sticlă până la peretele spre hol, de la pardoseală la placă: rândul de sus are ~9 cm, ultima bucată de lângă ușă ~35 cm.",
+     "adanc": 1,
+     "adancAprox": true
     },
     {
      "id": "PD1",
@@ -306,7 +317,8 @@ window.CAMERE["baie"] = {
      "inalt": 25,
      "stare": "proiect",
      "sursa": "A.27 B03 (25 sub placă, cotat)",
-     "nota": "Fața la 225 cm. Vezi planul tavanului."
+     "nota": "Fața la 225 cm. Vezi planul tavanului.",
+     "adanc": 136
     }
    ],
    "avertismente": [
@@ -376,7 +388,9 @@ window.CAMERE["baie"] = {
      ],
      "stare": "proiect",
      "sursa": "A.27 B04 (punctul de pornire în colțul de est, la pardoseală; rostul vertical la 60 cm; rândurile la 60–240)",
-     "nota": "Între colț și golul ușii rămân 23 cm; deasupra ușii, rostul la 60 cm de colț. Faianța ajunge până la toc, iar pervazul o acoperă pe 3,7 cm."
+     "nota": "Între colț și golul ușii rămân 23 cm; deasupra ușii, rostul la 60 cm de colț. Faianța ajunge până la toc, iar pervazul o acoperă pe 3,7 cm.",
+     "adanc": 1,
+     "adancAprox": true
     },
     {
      "id": "F10",
@@ -395,7 +409,9 @@ window.CAMERE["baie"] = {
      "finisaj": "sand-moon-str",
      "stare": "proiect",
      "sursa": "A.27 B04 (60 de la pervaz, cotat; dungi pe fond alb, pe toată înălțimea)",
-     "nota": "De la pervazul ușii până la colț, de la pardoseală la placă, și în spatele mobilierului M08. A.27 cotează 60 cm; cu peretele de 161 cm (A.01) rămân ~62 cm: de măsurat."
+     "nota": "De la pervazul ușii până la colț, de la pardoseală la placă, și în spatele mobilierului M08. A.27 cotează 60 cm; cu peretele de 161 cm (A.01) rămân ~62 cm: de măsurat.",
+     "adanc": 1,
+     "adancAprox": true
     },
     {
      "id": "U1",
@@ -423,7 +439,9 @@ window.CAMERE["baie"] = {
      "finisaj": "p751",
      "stare": "proiect",
      "sursa": "A.27 B04 (adâncimea 54,5, măsurat; 30–75)",
-     "nota": "Latura corpului; deasupra, blatul F3. Detaliile sunt pe peretele cu WC-ul."
+     "nota": "Latura corpului; deasupra, blatul F3. Detaliile sunt pe peretele cu WC-ul.",
+     "adanc": 75,
+     "vedereaPrincipala": "V"
     },
     {
      "id": "F3",
@@ -442,7 +460,9 @@ window.CAMERE["baie"] = {
      "finisaj": "sand-moon",
      "stare": "de-verificat",
      "sursa": "A.27 B04 (75–87, desenat)",
-     "nota": "Latura blatului. Detaliile sunt pe peretele cu WC-ul."
+     "nota": "Latura blatului. Detaliile sunt pe peretele cu WC-ul.",
+     "adanc": 75,
+     "vedereaPrincipala": "V"
     },
     {
      "id": "MO1",
@@ -456,7 +476,9 @@ window.CAMERE["baie"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "A.27 B04 (~5,5 cm, măsurat)",
-     "nota": "Masca și oglinda, în secțiune. Detaliile sunt pe peretele cu WC-ul."
+     "nota": "Masca și oglinda, în secțiune. Detaliile sunt pe peretele cu WC-ul.",
+     "adanc": 55,
+     "vedereaPrincipala": "V"
     }
    ],
    "avertismente": [
@@ -518,7 +540,9 @@ window.CAMERE["baie"] = {
      "finisaj": "sand-moon",
      "stare": "de-verificat",
      "sursa": "A.27 B01 (sub mobilier: rostul vertical în axa lavoarului, la 37,5); specs/07 B",
-     "nota": "Sub mobilierul M08 (0–30 cm) A.27 desenează faianță, cu rostul vertical în axa lavoarului. În spatele corpului (30–87) planșa nu arată nimic; propunem faianță până la blat. Racordurile lavoarului (R3–R5) ies prin ea."
+     "nota": "Sub mobilierul M08 (0–30 cm) A.27 desenează faianță, cu rostul vertical în axa lavoarului. În spatele corpului (30–87) planșa nu arată nimic; propunem faianță până la blat. Racordurile lavoarului (R3–R5) ies prin ea.",
+     "adanc": 1,
+     "adancAprox": true
     },
     {
      "id": "F2",
@@ -537,7 +561,9 @@ window.CAMERE["baie"] = {
      "finisaj": "sand-moon-str",
      "stare": "proiect",
      "sursa": "A.27 B01 (20 × 163, cotat; dungi pe fond alb); specs/07 B (Sand Moon STR)",
-     "nota": "De pe blat până la placă (250). Formatul plăcii STR nu e în lista de achiziții: 60 × 60 e presupus. Pe latura dinspre oglindă e banda H2."
+     "nota": "De pe blat până la placă (250). Formatul plăcii STR nu e în lista de achiziții: 60 × 60 e presupus. Pe latura dinspre oglindă e banda H2.",
+     "adanc": 1,
+     "adancAprox": true
     },
     {
      "id": "F3",
@@ -598,7 +624,8 @@ window.CAMERE["baie"] = {
      "ascuns": true,
      "stare": "proiect",
      "sursa": "A.03 (axa la 37,5 de peretele spre hol, cotat; cuva de 53 cm, măsurat); specs/04 (Lavoar Romeo 53 × 37, montaj îngropat)",
-     "nota": "Axa la 37,5 cm de colț, la mijlocul mobilierului. Cuva e în grosimea blatului; adâncimea ei și prinderea se iau din fișa produsului."
+     "nota": "Axa la 37,5 cm de colț, la mijlocul mobilierului. Cuva e în grosimea blatului; adâncimea ei și prinderea se iau din fișa produsului.",
+     "adanc": 37
     },
     {
      "id": "S10",
@@ -786,7 +813,9 @@ window.CAMERE["baie"] = {
      ],
      "stare": "proiect",
      "sursa": "A.03 (axa la 120 de colț: 37,5 + 82,5, cotat); A.27 B01 (marginea de sus la 45, cotat); specs/04 (NOVELA BM, capac softclose)",
-     "nota": "Axa la 120 cm de colț. Marginea de sus la 45 cm de pardoseala finită. Se prinde pe tijele cadrului S2, prin riflaj și mască."
+     "nota": "Axa la 120 cm de colț. Marginea de sus la 45 cm de pardoseala finită. Se prinde pe tijele cadrului S2, prin riflaj și mască.",
+     "adanc": 50,
+     "adancAprox": true
     },
     {
      "id": "S3",
@@ -823,7 +852,9 @@ window.CAMERE["baie"] = {
      "finisaj": "sand-moon",
      "stare": "proiect",
      "sursa": "A.27 B01 (10 + 73 = 83, cotat; rostul vertical la 41,5 de masca de nord și rândurile la 60, 120, 180, desenate)",
-     "nota": "Pe masca WC (155–206) și pe peretele ghenei (206–238), până la tavanul fals (225). Rostul vertical e la 41,5 cm de masca de nord, în axa bateriei S4. A.27 nu marchează punct de pornire pe acest perete. Sub faianță: hidroizolație pe toată suprafața (specs/07 G)."
+     "nota": "Pe masca WC (155–206) și pe peretele ghenei (206–238), până la tavanul fals (225). Rostul vertical e la 41,5 cm de masca de nord, în axa bateriei S4. A.27 nu marchează punct de pornire pe acest perete. Sub faianță: hidroizolație pe toată suprafața (specs/07 G).",
+     "adanc": 1,
+     "adancAprox": true
     },
     {
      "id": "TF1",
@@ -836,7 +867,8 @@ window.CAMERE["baie"] = {
      "inalt": 25,
      "stare": "proiect",
      "sursa": "A.27 B01, B02, B03 (225 și 25, cotat); A.05 (zona hașurată)",
-     "nota": "Gips-carton RU, cu fața la 225 cm. Același cod pe toți pereții și pe planul tavanului."
+     "nota": "Gips-carton RU, cu fața la 225 cm. Același cod pe toți pereții și pe planul tavanului.",
+     "adanc": 136
     },
     {
      "id": "PD1",
@@ -869,7 +901,8 @@ window.CAMERE["baie"] = {
      "inalt": 200,
      "stare": "proiect",
      "sursa": "A.03 (70 de la masca WC, trecere liberă 66, cotat); A.27 B01 (pe prag, la ~158 cm de colț, măsurat); specs/04 (STR4P0700607)",
-     "nota": "Perpendicular pe acest perete, prins de masca WC la ~158 cm de colț. Are 70 cm spre peretele de est; rămân 66 cm de trecere. Bara de stabilizare nu e desenată: se prinde după fișa produsului."
+     "nota": "Perpendicular pe acest perete, prins de masca WC la ~158 cm de colț. Are 70 cm spre peretele de est; rămân 66 cm de trecere. Bara de stabilizare nu e desenată: se prinde după fișa produsului.",
+     "adanc": 70
     },
     {
      "id": "S4",
@@ -898,7 +931,8 @@ window.CAMERE["baie"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "A.27 B01 (sub tavanul fals, la ~215–220, în axa bateriei, necotat); A.03 (axa la 36,5 de masca de nord, cotat; la ~40 cm de masca WC, măsurat); A.28 (pe braț din perete)",
-     "nota": "Cap de ~24 cm, la ~40 cm de masca WC. Țeava de la baterie urcă prin mască. Vezi planul tavanului."
+     "nota": "Cap de ~24 cm, la ~40 cm de masca WC. Țeava de la baterie urcă prin mască. Vezi planul tavanului.",
+     "adanc": 24
     },
     {
      "id": "S6",
@@ -912,7 +946,8 @@ window.CAMERE["baie"] = {
      "inalt": 1.5,
      "stare": "proiect",
      "sursa": "A.27 B01 (73, cotat); A.03 („Rigolă duș”, lipită de masca WC, lată de ~7 cm, măsurat)",
-     "nota": "În pardoseală, lipită de fața măștii WC (în plan x 25–32), de la prag până la masca de nord. Modelul nu e ales (analiza/07 A9); grosimea lui decide șapa (analiza/07, întrebarea 9). Ieșirea R8 merge la coloana din ghenă."
+     "nota": "În pardoseală, lipită de fața măștii WC (în plan x 25–32), de la prag până la masca de nord. Modelul nu e ales (analiza/07 A9); grosimea lui decide șapa (analiza/07, întrebarea 9). Ieșirea R8 merge la coloana din ghenă.",
+     "adanc": 7
     },
     {
      "id": "S7",
@@ -926,7 +961,8 @@ window.CAMERE["baie"] = {
      "inalt": 1.5,
      "stare": "proiect",
      "sursa": "A.03 (26,8 + 10 de la zid, 65 + 10 de la peretele spre hol, cotat)",
-     "nota": "În pardoseală, la 26,8–36,8 cm de peretele de vest și la 65–75 cm de peretele spre hol, sub mobilierul M08 (care începe la 30 cm). Panta spre el nu e desenată (specs/03: 5 mp de șapă de pantă pentru baie și GS)."
+     "nota": "În pardoseală, la 26,8–36,8 cm de peretele de vest și la 65–75 cm de peretele spre hol, sub mobilierul M08 (care începe la 30 cm). Panta spre el nu e desenată (specs/03: 5 mp de șapă de pantă pentru baie și GS).",
+     "adanc": 10
     },
     {
      "id": "R1",
@@ -1142,7 +1178,8 @@ window.CAMERE["baie"] = {
     "inalt": 83,
     "stare": "proiect",
     "sursa": "A.05 (zona hașurată, 136 cotat, 83 măsurat); A.27 B01, B02, B03 (fața la 225, 25 sub placă, cotat); A.06",
-    "nota": "Gips-carton RU, de la masca dușului (y 238) până la linia peretelui de sticlă (y 155), între masca WC și peretele de est. Fața la 225 cm. Restul băii nu are tavan fals: placa e la 250. A.05 desenează în casetă o linie la 73 cm de masca de nord, deasupra pragului."
+    "nota": "Gips-carton RU, de la masca dușului (y 238) până la linia peretelui de sticlă (y 155), între masca WC și peretele de est. Fața la 225 cm. Restul băii nu are tavan fals: placa e la 250. A.05 desenează în casetă o linie la 73 cm de masca de nord, deasupra pragului.",
+    "adanc": 25
    },
    {
     "id": "MN1",
@@ -1168,7 +1205,8 @@ window.CAMERE["baie"] = {
     "inalt": 116,
     "stare": "proiect",
     "sursa": "A.01 (25, cotat); A.03 (de la 90 la 206 cm de peretele spre hol, măsurat)",
-    "nota": "Văzută de sus: 25 cm de la zid, de la 90 la 206 cm de peretele spre hol. Detaliile sunt pe peretele cu WC-ul."
+    "nota": "Văzută de sus: 25 cm de la zid, de la 90 la 206 cm de peretele spre hol. Detaliile sunt pe peretele cu WC-ul.",
+    "adanc": 250
    },
    {
     "id": "GH1",
@@ -1182,7 +1220,9 @@ window.CAMERE["baie"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.01 și A.03 (pereți de ~10 cm, golul interior ~15 × 37 cm, măsurat); stare_actuala/baie 1 (ghena deschisă, cu țevi verticale)",
-    "nota": "Colțul N-V al băii. Fața dinspre duș e în planul măștii WC (x 25) și se placează (F4). În fotografii, ghena are țevi verticale de apă și o coloană de canalizare."
+    "nota": "Colțul N-V al băii. Fața dinspre duș e în planul măștii WC (x 25) și se placează (F4). În fotografii, ghena are țevi verticale de apă și o coloană de canalizare.",
+    "adanc": 250,
+    "adancAprox": true
    },
    {
     "id": "M08",
@@ -1196,7 +1236,8 @@ window.CAMERE["baie"] = {
     "finisaj": "p751",
     "stare": "proiect",
     "sursa": "A.03 (75 × ~55)",
-    "nota": "Reper pentru spoturi; detaliile sunt pe peretele cu WC-ul."
+    "nota": "Reper pentru spoturi; detaliile sunt pe peretele cu WC-ul.",
+    "adanc": 45
    },
    {
     "id": "I1",
@@ -1237,7 +1278,8 @@ window.CAMERE["baie"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.03 (axa la 36,5 de masca de nord, cotat; la ~40 cm de masca WC, măsurat); A.27 B01 (la 41,5)",
-    "nota": "Centrul la ~65 cm de zidul de vest și la 201,5 cm de peretele spre hol (A.03). Vezi peretele cu WC-ul."
+    "nota": "Centrul la ~65 cm de zidul de vest și la 201,5 cm de peretele spre hol (A.03). Vezi peretele cu WC-ul.",
+    "adanc": 6
    },
    {
     "id": "VE1",

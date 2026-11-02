@@ -67,7 +67,9 @@ window.CAMERE["gs"] = {
      "finisaj": "sand-moon",
      "stare": "proiect",
      "sursa": "A.25 B07 (rost vertical la x 40 și rânduri la 250, 190, 130, 70, 10; «Punct pornire stereotomie» la x 40, sub placă; modul de 60 cm, măsurat); A.04 (rostul pardoselii la x 40); specs/07",
-     "nota": "De la pardoseală la placă, între colțul N-V și dulapul M03 (80 cm). Stereotomia pornește din colțul de sus al plăcii de la x = 40 (A.25): rostul vertical e în dreptul rostului din pardoseală (A.04), iar pe lățime rămân două bucăți de ~40 cm. Rândurile se pun de sus în jos; cu rostul de 3 mm, jos rămâne o fâșie de ~9 cm. Ventilatorul S8 cade pe rostul vertical. Suprafața: 2,0 mp."
+     "nota": "De la pardoseală la placă, între colțul N-V și dulapul M03 (80 cm). Stereotomia pornește din colțul de sus al plăcii de la x = 40 (A.25): rostul vertical e în dreptul rostului din pardoseală (A.04), iar pe lățime rămân două bucăți de ~40 cm. Rândurile se pun de sus în jos; cu rostul de 3 mm, jos rămâne o fâșie de ~9 cm. Ventilatorul S8 cade pe rostul vertical. Suprafața: 2,0 mp.",
+     "adanc": 1,
+     "adancAprox": true
     },
     {
      "id": "S8",
@@ -173,7 +175,9 @@ window.CAMERE["gs"] = {
      ],
      "stare": "proiect",
      "sursa": "A.25 B06 (23; 130 + 120); A.24, A.08",
-     "nota": "Latura dulapului din nișa peretelui de nord, lipită de masca WC. Detaliile sunt pe peretele de nord."
+     "nota": "Latura dulapului din nișa peretelui de nord, lipită de masca WC. Detaliile sunt pe peretele de nord.",
+     "adanc": 50,
+     "vedereaPrincipala": "N"
     },
     {
      "id": "MWC",
@@ -266,7 +270,8 @@ window.CAMERE["gs"] = {
      "pozitie": "aprox",
      "stare": "propunere",
      "sursa": "specs/04 și specs/08 A (Laufen INEO NOVA OS39217, 112 × 45 × 13 cm); A.03 (axa WC, cotat); A.25 B06 (masca de 120)",
-     "nota": "Centrat pe axa WC (58 cm de colțul N-E). Cu 13 cm adâncime încape în masca de 20 cm. Înălțimea de montaj și racordurile se iau din fișa cadrului."
+     "nota": "Centrat pe axa WC (58 cm de colțul N-E). Cu 13 cm adâncime încape în masca de 20 cm. Înălțimea de montaj și racordurile se iau din fișa cadrului.",
+     "adanc": 13
     },
     {
      "id": "S1",
@@ -281,7 +286,9 @@ window.CAMERE["gs"] = {
      "pozitie": "aprox",
      "stare": "proiect",
      "sursa": "A.03 (axa la 35 cm de fața de nord din zona ușii și la 40 cm de capătul măștii, cotat); A.25 B06 (45, cotat; conturul măsurat); specs/04 (NOVELA BM, capac soft-close)",
-     "nota": "Axa la 58 cm de colțul N-E, adică 82 cm de peretele lavoarului (A.03: 35 cm de la fața peretelui de nord din zona ușii, y = 117). Marginea de sus la 45 cm (A.25). Vasul iese ~50 cm din mască (A.03)."
+     "nota": "Axa la 58 cm de colțul N-E, adică 82 cm de peretele lavoarului (A.03: 35 cm de la fața peretelui de nord din zona ușii, y = 117). Marginea de sus la 45 cm (A.25). Vasul iese ~50 cm din mască (A.03).",
+     "adanc": 50,
+     "adancAprox": true
     },
     {
      "id": "S3",
@@ -438,7 +445,9 @@ window.CAMERE["gs"] = {
      "finisaj": "sand-moon",
      "stare": "proiect",
      "sursa": "A.24 (40, 12, 85, cotat); A.25 B06 și B05",
-     "nota": "Capătul de est al blatului, lipit de spalet. Detaliile sunt pe peretele lavoarului."
+     "nota": "Capătul de est al blatului, lipit de spalet. Detaliile sunt pe peretele lavoarului.",
+     "adanc": 118.1,
+     "vedereaPrincipala": "S"
     },
     {
      "id": "M02-D",
@@ -452,7 +461,9 @@ window.CAMERE["gs"] = {
      "finisaj": "nuc",
      "stare": "proiect",
      "sursa": "A.25 B06 (35, 50, 85, cotat) și B05",
-     "nota": "Latura compartimentului deschis de 35 cm, lipită de spalet. Detaliile sunt pe peretele lavoarului."
+     "nota": "Latura compartimentului deschis de 35 cm, lipită de spalet. Detaliile sunt pe peretele lavoarului.",
+     "adanc": 35,
+     "vedereaPrincipala": "S"
     }
    ],
    "avertismente": [
@@ -593,7 +604,9 @@ window.CAMERE["gs"] = {
      "finisaj": "sand-moon",
      "stare": "de-verificat",
      "sursa": "A.25 B05 (zona de sub M02, 35, cotat; rost vertical la ~60,7 cm de peretele cu ușa, măsurat); A.01 (W: faianță)",
-     "nota": "Între pardoseală și fundul lui M02 (35 cm), pe toată lungimea. A.25 pune un rost vertical în axa lavoarului (la ~60,7 cm de peretele cu ușa), la fel ca pe fața blatului; rândul de jos e ca pe peretele de nord (rost la ~9 cm). În spatele sertarului și al compartimentului deschis (35–73) planșele nu arată faianța. Suprafața: ~0,4 mp."
+     "nota": "Între pardoseală și fundul lui M02 (35 cm), pe toată lungimea. A.25 pune un rost vertical în axa lavoarului (la ~60,7 cm de peretele cu ușa), la fel ca pe fața blatului; rândul de jos e ca pe peretele de nord (rost la ~9 cm). În spatele sertarului și al compartimentului deschis (35–73) planșele nu arată faianța. Suprafața: ~0,4 mp.",
+     "adanc": 1,
+     "adancAprox": true
     },
     {
      "id": "PS1",
@@ -682,7 +695,8 @@ window.CAMERE["gs"] = {
      "pozitie": "aprox",
      "stare": "proiect",
      "sursa": "A.03 (axa la 61 cm de peretele cu ușa, cotat); A.24 (38 × 25, axa la 20 cm de perete; fișa: 403 × 281 mm, adânc de 141 mm); specs/04 (SHELL380UPBLV, negru)",
-     "nota": "Lavoar oval, negru, 38 × 25 cm la interior, montat sub blat pe cele 2 corniere. Axa la 61 cm de peretele cu ușa (59 cm de colțul S-E) și la 20 cm de perete. Corpul coboară ~14 cm sub fața de sus a placajului, deci ~4–5 cm sub blat, în sertar; scurgerea are Ø 44 mm."
+     "nota": "Lavoar oval, negru, 38 × 25 cm la interior, montat sub blat pe cele 2 corniere. Axa la 61 cm de peretele cu ușa (59 cm de colțul S-E) și la 20 cm de perete. Corpul coboară ~14 cm sub fața de sus a placajului, deci ~4–5 cm sub blat, în sertar; scurgerea are Ø 44 mm.",
+     "adanc": 28.1
     },
     {
      "id": "S5",
@@ -875,7 +889,9 @@ window.CAMERE["gs"] = {
      "finisaj": "sand-moon",
      "stare": "propunere",
      "sursa": "A.01 (eticheta GS: «W: Faianță»); A.26 (randarea 1: faianță pe acest perete); A.04 (rosturile pardoselii la y ≈ 10,9 și 70,9, modul de 60 cm); A.25 B07 (rândurile pornesc de la placă); specs/07",
-     "nota": "Pe tot peretele, de la pardoseală la placă, mai puțin golul ușii cu pervazul. A.25 nu are vederea acestui perete (B08), deci împărțirea e propunerea noastră: rosturile verticale în dreptul rosturilor din pardoseală (x ≈ 10,9 și 70,9 de la colțul S-V, A.04) și rândurile de sus în jos, ca pe peretele de nord. Peste ușă rămâne o fâșie de ~46 cm. Blatul și sertarul lavoarului încep la ~1,9 cm de acest perete (A.25 B05), deci faianța trece în spatele lor. Suprafața: ~1,3 mp."
+     "nota": "Pe tot peretele, de la pardoseală la placă, mai puțin golul ușii cu pervazul. A.25 nu are vederea acestui perete (B08), deci împărțirea e propunerea noastră: rosturile verticale în dreptul rosturilor din pardoseală (x ≈ 10,9 și 70,9 de la colțul S-V, A.04) și rândurile de sus în jos, ca pe peretele de nord. Peste ușă rămâne o fâșie de ~46 cm. Blatul și sertarul lavoarului încep la ~1,9 cm de acest perete (A.25 B05), deci faianța trece în spatele lor. Suprafața: ~1,3 mp.",
+     "adanc": 1,
+     "adancAprox": true
     },
     {
      "id": "M02-B",
@@ -889,7 +905,9 @@ window.CAMERE["gs"] = {
      "finisaj": "sand-moon",
      "stare": "proiect",
      "sursa": "A.24 (40, 12, 85, cotat); A.25 B05 (blatul începe la ~1,9 cm de acest perete, măsurat)",
-     "nota": "Capătul de vest al blatului. Blatul se oprește la ~1,9 cm de perete, cât iese pervazul ușii (pervazul începe la 36,3 cm de colț, iar blatul are 40 cm adâncime). Detaliile sunt pe peretele lavoarului."
+     "nota": "Capătul de vest al blatului. Blatul se oprește la ~1,9 cm de perete, cât iese pervazul ușii (pervazul începe la 36,3 cm de colț, iar blatul are 40 cm adâncime). Detaliile sunt pe peretele lavoarului.",
+     "adanc": 118.1,
+     "vedereaPrincipala": "S"
     },
     {
      "id": "M02-S",
@@ -903,7 +921,9 @@ window.CAMERE["gs"] = {
      "finisaj": "nuc",
      "stare": "proiect",
      "sursa": "A.25 B05 (38, 35, cotat)",
-     "nota": "Latura sertarului, la ~1,9 cm de perete. Detaliile sunt pe peretele lavoarului."
+     "nota": "Latura sertarului, la ~1,9 cm de perete. Detaliile sunt pe peretele lavoarului.",
+     "adanc": 83.1,
+     "vedereaPrincipala": "S"
     }
    ],
    "avertismente": [
@@ -984,7 +1004,8 @@ window.CAMERE["gs"] = {
     "inalt": 97.9,
     "stare": "proiect",
     "sursa": "A.24 și A.08 (20 și 97,9, cotat)",
-    "nota": "Masca de 120 cm înălțime. Deasupra ei, de la 120 la placă, e dulapul DWC (y 42,6–117). Ce e deasupra măștii în spatele lui M03 (y 117–140) nu e desenat."
+    "nota": "Masca de 120 cm înălțime. Deasupra ei, de la 120 la placă, e dulapul DWC (y 42,6–117). Ce e deasupra măștii în spatele lui M03 (y 117–140) nu e desenat.",
+    "adanc": 120
    },
    {
     "id": "DWC",
@@ -1001,7 +1022,8 @@ window.CAMERE["gs"] = {
     ],
     "stare": "de-verificat",
     "sursa": "A.25 B05, B06, B07",
-    "nota": "Ajunge la placă. Detaliile sunt pe peretele cu WC-ul."
+    "nota": "Ajunge la placă. Detaliile sunt pe peretele cu WC-ul.",
+    "adanc": 130
    },
    {
     "id": "M03",
@@ -1015,7 +1037,8 @@ window.CAMERE["gs"] = {
     "finisaj": "nuc",
     "stare": "proiect",
     "sursa": "A.24, A.08 (23, cotat); A.25 B07 (ajunge la placă)",
-    "nota": "Ajunge la placă. Detaliile sunt pe peretele de nord."
+    "nota": "Ajunge la placă. Detaliile sunt pe peretele de nord.",
+    "adanc": 130
    },
    {
     "id": "Z1",

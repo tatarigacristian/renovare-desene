@@ -894,10 +894,32 @@
     const h = axe().h;
     return e.punct ? `x ${ap}${f(e.x)} · ${h} ${ap}${f(e.h)}` : `x ${ap}${f(e.x)}–${f(e.x + e.lat)} · ${h} ${ap}${f(e.h)}–${f(e.h + e.inalt)}`;
   }
-  function dimText(e) {
+  // Cele trei dimensiuni: lungimea (de-a lungul peretelui), înălțimea și adâncimea (de la perete spre cameră);
+  // pe planul tavanului: lungimea, lățimea și înălțimea. Electrocasnicele încorporate au dimensiunile dulapului
+  // în care stau („nisa”). Benzile LED și șinele au doar lungime.
+  const adancText = d => d.adanc ? (d.adancAprox ? '~' : '') + f(d.adanc) : '';
+  const dimEt = () => eTavan() ? ['lungime', 'lățime', 'înălțime'] : ['lungime', 'înălțime', 'adâncime'];
+  // vederea din lateral a unui obiect („vedereaPrincipala”: peretele pe care e văzut din față): dimensiunile
+  // obiectului se iau de acolo, ca lungimea și adâncimea să nu apară inversate
+  function principala(e) {
+    const p = e.vedereaPrincipala && S.cam.pereti.find(v => v.id === e.vedereaPrincipala);
+    const x = p && p.elemente.find(q => q.id === e.id && q.lat !== undefined);
+    return x ? { e: x, per: p } : null;
+  }
+  // dimensiunile obiectului: ale dulapului, ale vederii din față sau ale acestei vederi
+  function dimObiect(e) {
+    const pr = !e.incorporatIn && principala(e);
+    return e.incorporatIn || (pr ? { lat: pr.e.lat, inalt: e.inalt, adanc: pr.e.adanc || e.lat, adancAprox: pr.e.adancAprox } : e);
+  }
+  function dimText(e, scurt) {
     if (e.punct || !cunoscut(e)) return '';
     if (e.tip === 'banda-led' || e.tip === 'sina') return `lungime ${f(Math.max(e.lat, e.inalt))} cm`;
-    return [e.lat, e.inalt].map(f).join(' × ') + (e.adanc ? ' × ' + f(e.adanc) : '') + ' cm';
+    const n = e.incorporatIn, pr = !n && principala(e), d = dimObiect(e);
+    const ad = adancText(d), et = pr ? ['lungime', 'înălțime', 'adâncime'] : dimEt();
+    if (scurt) return `${f(d.lat)} × ${f(d.inalt)} × ${ad || '?'}${n ? ' (dulapul)' : ''}`;
+    const s = `${et[0]} ${f(d.lat)} cm · ${et[1]} ${f(d.inalt)} cm · ${et[2]} ${ad ? ad + ' cm' : 'nedată'}`;
+    return n ? `${s}, ale dulapului în care e încorporat${n.nume ? ' (' + n.nume + ')' : ''}`
+      : pr ? `${s}, ca pe ${pr.per.nume.replace(/^Peretele/, 'peretele')}, unde se vede din față` : s;
   }
   function linkRaport(e) {
     const msg = `${S.cam.nume} — ${S.per.nume} — ${e.id} (${e.nume}): ${pozitieText(e)}. Corectură: `;
@@ -1003,9 +1025,14 @@
       : [c(ap + f(x0), a.st), c(f(x1 - x0), 'lățime', 'el'), c(ap + f(L - x1), a.dr)];
     const vert = [c(ap + f(b0), a.jos)].concat(e.punct ? [] : [c(f(b1 - b0), eTavan() ? 'adâncime' : 'înălțime', 'el')])
       .concat(b1 <= H + .01 ? [c(apT + f(H - b1), a.sus)] : []);
+    // a treia dimensiune: adâncimea de la perete (pe tavan, înălțimea); la electrocasnicele încorporate, dulapul
+    const ad = e.punct || e.tip === 'banda-led' || e.tip === 'sina' ? null
+      : e.incorporatIn ? c(`${f(e.incorporatIn.lat)} × ${f(e.incorporatIn.inalt)} × ${adancText(e.incorporatIn) || '?'}`, 'dulapul în care e încorporat', 'el')
+      : c(adancText(e) || 'nedată', eTavan() ? 'înălțime' : e.vedereaPrincipala ? 'perpendicular pe perete' : 'de la perete spre cameră', 'el' + (e.adanc ? '' : ' gol'));
     return `<div class="cote-titlu">Cote în cm${e.punct ? ', la axa elementului' : ''}</div><div class="cote-grid">
       <div class="cote-rand n${oriz.length}"><span class="cote-et">${a.o}</span>${oriz.join('')}</div>
-      <div class="cote-rand n${vert.length}"><span class="cote-et">${a.v}</span>${vert.join('')}</div></div>`;
+      <div class="cote-rand n${vert.length}"><span class="cote-et">${a.v}</span>${vert.join('')}</div>
+      ${ad ? `<div class="cote-rand n1"><span class="cote-et">${e.incorporatIn ? 'Dulapul' : eTavan() ? 'Înălțime' : 'Adâncime'}</span>${ad}</div>` : ''}</div>`;
   }
   // Fișa are două forme. Scurtă (foaia de jos pe telefon, după o atingere): codul, numele, trei cote și acțiunile,
   // cu „Detalii” care deschide foaia. Întreagă (panoul, foaia deschisă): toate cele șase cote, acțiunile, nota, iar
@@ -1021,8 +1048,11 @@
     const a = axe(), ap = e.pozitie === 'aprox' ? '~' : '', [x0] = intX(e), [b0] = intH(e);
     const c = (v, et, cls) => `<span class="c${cls ? ' ' + cls : ''}"><b>${v}</b><small>${et}</small></span>`;
     const cote = [c(ap + f(x0), a.st), c(ap + f(b0), a.jos)];
-    if (!e.punct) cote.push(c(`${f(e.lat)} × ${f(e.inalt)}`, eTavan() ? 'lățime × adâncime' : 'lățime × înălțime', 'el'));
-    return `<div class="cote-scurte n${cote.length}">${cote.join('')}</div>`;
+    const liniar = e.tip === 'banda-led' || e.tip === 'sina', d = e.punct ? e : dimObiect(e), ad = adancText(d);
+    if (!e.punct) cote.push(liniar ? c(f(Math.max(e.lat, e.inalt)), 'lungime', 'el')
+      : ad ? c(`${f(d.lat)} × ${f(d.inalt)} × ${ad}`, e.incorporatIn ? 'dulapul: L × Î × A' : eTavan() ? 'L × l × Î' : 'L × Î × A', 'el el3')
+      : c(`${f(e.lat)} × ${f(e.inalt)}`, eTavan() ? 'lungime × lățime' : 'lungime × înălțime', 'el'));
+    return `<div class="cote-scurte n${cote.length}${ad && !liniar && !e.punct ? ' cu3' : ''}">${cote.join('')}</div>`;
   }
   function fisaHtml(e) {
     if (fisaScurta()) {
@@ -1268,14 +1298,14 @@
     const els = elemente().filter(vizibil)
       .sort((a, b) => (cunoscut(a) ? a.x : 1e9) - (cunoscut(b) ? b.x : 1e9));
     const key = cheieBifa;
-    tb.innerHTML = `<table><thead><tr><th title="Bifează ce e făcut pe șantier">✓</th><th>ID</th><th>Ce</th><th>${esc(axe().thX)}</th><th>${esc(axe().thH)}</th><th>Dimensiuni</th><th>Stare</th><th>Sursa</th><th class="nu-print"></th></tr></thead><tbody>${
+    tb.innerHTML = `<table><thead><tr><th title="Bifează ce e făcut pe șantier">✓</th><th>ID</th><th>Ce</th><th>${esc(axe().thX)}</th><th>${esc(axe().thH)}</th><th title="${eTavan() ? 'lungime × lățime × înălțime' : 'lungime × înălțime × adâncime'}, în cm; ? = nedată">Dimensiuni (${eTavan() ? 'L × l × Î' : 'L × Î × A'})</th><th>Stare</th><th>Sursa</th><th class="nu-print"></th></tr></thead><tbody>${
       els.map(e => {
         const st = STARI[e.stare] || STARI.proiect, ap = e.pozitie === 'aprox' ? '~' : '';
         const x = !cunoscut(e) ? 'de măsurat' : e.punct ? ap + f(e.x) : `${ap}${f(e.x)} – ${ap}${f(e.x + e.lat)}`;
         const hh = !cunoscut(e) ? '' : e.punct ? ap + f(e.h) : `${ap}${f(e.h)} – ${ap}${f(e.h + e.inalt)}`;
         return `<tr><td><input type="checkbox" data-k="${key(e)}" aria-label="${esc(e.id)} gata" ${localStorage.getItem(key(e)) ? 'checked' : ''}></td>
           <td>${badgeBtn(e, 'tabel')}</td>
-          <td>${esc(e.nume)}${pasiDetaliu(e) ? semnPasiHtml : ''}</td><td class="num">${x}</td><td class="num">${hh}</td><td class="num">${dimText(e)}</td>
+          <td>${esc(e.nume)}${pasiDetaliu(e) ? semnPasiHtml : ''}</td><td class="num">${x}</td><td class="num">${hh}</td><td class="num">${esc(dimText(e, true))}</td>
           <td style="color:${st.culoare}">${st.nume}</td><td class="sursa">${esc(e.sursa || '')}</td>
           <td class="nu-print"><a href="${linkRaport(e)}" target="_blank" rel="noopener" title="Raportează pe WhatsApp">raportează</a></td></tr>`;
       }).join('')}</tbody></table>`;

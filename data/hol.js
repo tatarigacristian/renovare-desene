@@ -61,7 +61,9 @@ window.CAMERE["hol"] = {
      "stare": "proiect",
      "finisaj": "bej",
      "sursa": "A.17 D05 (240); A.18 M07 (61,8 + 1,8); A.06 (corpurile între y 540,9 și 690,9)",
-     "nota": "Dulapul de pe peretele de vest ajunge până la acest perete; de aici i se vede latura. Adâncimea: 61,8 cm corpul și 1,8 cm fronturile, adică 63,6 cm de la peretele de vest (x ≈ 59,6 în plan), cu 0,6 cm peste golul ușii băii. Detaliile sunt pe peretele de vest."
+     "nota": "Dulapul de pe peretele de vest ajunge până la acest perete; de aici i se vede latura. Adâncimea: 61,8 cm corpul și 1,8 cm fronturile, adică 63,6 cm de la peretele de vest (x ≈ 59,6 în plan), cu 0,6 cm peste golul ușii băii. Detaliile sunt pe peretele de vest.",
+     "adanc": 151.8,
+     "vedereaPrincipala": "V"
     },
     {
      "id": "U6",
@@ -115,7 +117,8 @@ window.CAMERE["hol"] = {
      "inalt": 7,
      "stare": "de-verificat",
      "sursa": "detaliul tavanului fals din hol, A.05 (7 cm); A.17 D04 și D05 (ajunge la acest perete; desenat la 242); A.18 D05",
-     "nota": "Fața la ~243 cm, placa la 250 (detaliul A.05: 7 cm; A.17 și A.18 o desenează la 242). Ajunge până la perete. Același cod pe toți pereții și pe planul tavanului."
+     "nota": "Fața la ~243 cm, placa la 250 (detaliul A.05: 7 cm; A.17 și A.18 o desenează la 242). Ajunge până la perete. Același cod pe toți pereții și pe planul tavanului.",
+     "adanc": 682
     },
     {
      "id": "SC1",
@@ -128,7 +131,8 @@ window.CAMERE["hol"] = {
      "inalt": 7,
      "stare": "proiect",
      "sursa": "A.05 (113 + 15 + 20)",
-     "nota": "Aici tavanul fals lipsește până la placă. Profilul benzii C1 se termină la acest perete, pe latura de vest a fantei. Vezi planul tavanului."
+     "nota": "Aici tavanul fals lipsește până la placă. Profilul benzii C1 se termină la acest perete, pe latura de vest a fantei. Vezi planul tavanului.",
+     "adanc": 312
     },
     {
      "id": "MG1",
@@ -141,7 +145,8 @@ window.CAMERE["hol"] = {
      "inalt": 7,
      "stare": "proiect",
      "sursa": "A.05 (20; detaliul tavanului fals din hol)",
-     "nota": "Masca de 20 cm, lipită de peretele de est, ajunge la acest perete. Vezi planul tavanului."
+     "nota": "Masca de 20 cm, lipită de peretele de est, ajunge la acest perete. Vezi planul tavanului.",
+     "adanc": 312
     }
    ],
    "avertismente": [
@@ -195,7 +200,8 @@ window.CAMERE["hol"] = {
      "pozitie": "aprox",
      "stare": "proiect",
      "sursa": "A.01 și A.05 (140 + 213,9 + 25, cotat); A.17 D05 (205, cotat)",
-     "nota": "Trece de la peretele de vest la acesta. Pe x e cotată: 312–337 de la colțul N-E. Fața de jos la ~205 cm, măsurată pe A.17: de măsurat acum. Tavanul fals TF1 se oprește la fețele ei. Sub ea, pe acest perete, stau primele cinci lamele RF1, până la fața ei de jos. Masca M06 din planșe, centrată pe grindă, nu se mai face: țeava de gaz nu mai coboară pe grindă (decizia din 02.11.2026). Același cod pe peretele de vest și pe planul tavanului."
+     "nota": "Trece de la peretele de vest la acesta. Pe x e cotată: 312–337 de la colțul N-E. Fața de jos la ~205 cm, măsurată pe A.17: de măsurat acum. Tavanul fals TF1 se oprește la fețele ei. Sub ea, pe acest perete, stau primele cinci lamele RF1, până la fața ei de jos. Masca M06 din planșe, centrată pe grindă, nu se mai face: țeava de gaz nu mai coboară pe grindă (decizia din 02.11.2026). Același cod pe peretele de vest și pe planul tavanului.",
+     "adanc": 144
     },
     {
      "id": "U3",
@@ -254,7 +260,8 @@ window.CAMERE["hol"] = {
       "x": 150,
       "h": 252
      },
-     "nota": "Fața la 243 cm: placa de beton la 250 (A.01, Hu 2,50) minus 7 cm (detaliul holului din A.05). A.17 și A.18 o desenează la 242, legenda A.05 scrie 10 cm: de confirmat (L6). Se oprește la fețele grinzii GR1 (x 312 și 337). Pe primii 20 cm de lângă acest perete tavanul fals ascunde țeava de gaz (A.05), apoi urmează fanta de 15 cm cu banda C. Același cod pe toți pereții și pe planul tavanului."
+     "nota": "Fața la 243 cm: placa de beton la 250 (A.01, Hu 2,50) minus 7 cm (detaliul holului din A.05). A.17 și A.18 o desenează la 242, legenda A.05 scrie 10 cm: de confirmat (L6). Se oprește la fețele grinzii GR1 (x 312 și 337). Pe primii 20 cm de lângă acest perete tavanul fals ascunde țeava de gaz (A.05), apoi urmează fanta de 15 cm cu banda C. Același cod pe toți pereții și pe planul tavanului.",
+     "adanc": 124
     },
     {
      "id": "G5",
@@ -550,7 +557,8 @@ window.CAMERE["hol"] = {
       "x": 40,
       "h": 252
      },
-     "nota": "Fața la 243 cm (vezi TF1 pe peretele E). Se oprește la 8,9 cm de peretele ușii de intrare (A.05, cotat; A.17 la fel). Ce închide fâșia de 8,9 cm nu e desenat."
+     "nota": "Fața la 243 cm (vezi TF1 pe peretele E). Se oprește la 8,9 cm de peretele ușii de intrare (A.05, cotat; A.17 la fel). Ce închide fâșia de 8,9 cm nu e desenat.",
+     "adanc": 124
     },
     {
      "id": "G10",
@@ -659,7 +667,8 @@ window.CAMERE["hol"] = {
      "inalt": 7,
      "stare": "de-verificat",
      "sursa": "A.05 (8,9; detaliul tavanului fals din hol: 7 cm); A.17 D04 și D05 (marginea la 8,9 cm de perete)",
-     "nota": "Tavanul fals nu atinge acest perete: marginea lui e la 8,9 cm în fața peretelui, iar fâșia dintre ele rămâne deschisă până la placă (FS pe planul tavanului). Fața la ~243 cm (A.17 o desenează la 242)."
+     "nota": "Tavanul fals nu atinge acest perete: marginea lui e la 8,9 cm în fața peretelui, iar fâșia dintre ele rămâne deschisă până la placă (FS pe planul tavanului). Fața la ~243 cm (A.17 o desenează la 242).",
+     "adanc": 682
     },
     {
      "id": "TE",
@@ -770,7 +779,8 @@ window.CAMERE["hol"] = {
      "inalt": 45,
      "stare": "proiect",
      "sursa": "A.01 și A.05 (140 + 213,9 + 25, cotat); A.17 D05 (205, cotat)",
-     "nota": "Lată 25 cm, fața de jos la 205 cm, placa la 250. Traversează holul de la acest perete la peretele de est și e continuarea grinzii GR1 de pe peretele TV din living (fața ei dinspre living la 378,9). Tavanul fals se oprește pe ambele laturi ale ei; sub ea stă coloana deschisă M04-R (h 0–205)."
+     "nota": "Lată 25 cm, fața de jos la 205 cm, placa la 250. Traversează holul de la acest perete la peretele de est și e continuarea grinzii GR1 de pe peretele TV din living (fața ei dinspre living la 378,9). Tavanul fals se oprește pe ambele laturi ale ei; sub ea stă coloana deschisă M04-R (h 0–205).",
+     "adanc": 144
     },
     {
      "id": "U2",
@@ -801,7 +811,8 @@ window.CAMERE["hol"] = {
       "x": 120,
       "h": 252
      },
-     "nota": "Fața la 242 cm (A.17, A.18), cu 2 cm liber deasupra mobilierului de 240. Începe la 8,9 cm de peretele S (A.05, A.17). Întrerupt de grinda GR1 între 353,9 și 378,9: acolo nu e tavan fals, grinda coboară la 205. Detaliul din A.05 are 7 cm (fața la 243), legenda A.05 scrie 10 cm (întrebarea L6). Același cod pe toți pereții și pe planul tavanului. Fața tavanului fals la 243 cm (7 cm sub placa de la 250), ca în detaliul hol din A.05, singura cotă. A.17 și A.18 îl desenează la 242 (8 cm), iar legenda A.05 scrie 10 cm: de confirmat cu arhitecta (L6)."
+     "nota": "Fața la 242 cm (A.17, A.18), cu 2 cm liber deasupra mobilierului de 240. Începe la 8,9 cm de peretele S (A.05, A.17). Întrerupt de grinda GR1 între 353,9 și 378,9: acolo nu e tavan fals, grinda coboară la 205. Detaliul din A.05 are 7 cm (fața la 243), legenda A.05 scrie 10 cm (întrebarea L6). Același cod pe toți pereții și pe planul tavanului. Fața tavanului fals la 243 cm (7 cm sub placa de la 250), ca în detaliul hol din A.05, singura cotă. A.17 și A.18 îl desenează la 242 (8 cm), iar legenda A.05 scrie 10 cm: de confirmat cu arhitecta (L6).",
+     "adanc": 124
     },
     {
      "id": "G1",
@@ -927,7 +938,9 @@ window.CAMERE["hol"] = {
      ],
      "stare": "proiect",
      "sursa": "A.18 D05 (60,1, cotat); A.17 (grosimea ~5 cm, măsurată)",
-     "nota": "Tapițerie pe stânga băncii, 60,1 cm. Grosimea ~5 cm și materialul nu sunt cotate."
+     "nota": "Tapițerie pe stânga băncii, 60,1 cm. Grosimea ~5 cm și materialul nu sunt cotate.",
+     "adanc": 46,
+     "adancAprox": true
     },
     {
      "id": "BT1",
@@ -1156,7 +1169,9 @@ window.CAMERE["hol"] = {
      "inFata": "M07",
      "stare": "proiect",
      "sursa": "A.17 D05 („Acces robot”, 12; 228)",
-     "nota": "Frontul din mijloc are 228 cm și lasă jos un gol de 12 cm pe toată lățimea lui, pentru robot. Stația robotului stă în compartimentul din mijloc (49,6 cm lățime interioară, A.18), alimentată din priza P2."
+     "nota": "Frontul din mijloc are 228 cm și lasă jos un gol de 12 cm pe toată lățimea lui, pentru robot. Stația robotului stă în compartimentul din mijloc (49,6 cm lățime interioară, A.18), alimentată din priza P2.",
+     "adanc": 63.6,
+     "adancAprox": true
     },
     {
      "id": "I1",
@@ -1418,7 +1433,8 @@ window.CAMERE["hol"] = {
      "x": 50,
      "h": 520
     },
-    "nota": "Fața plăcilor la ~243 cm de la pardoseala finită, 7 cm sub placă (detaliul din A.05, singura cotă; A.17 și A.18 o desenează la 242, legenda A.05 scrie 10 cm). Se oprește la fețele grinzii GR1 (y 353,9 și 378,9), la stâlpul ST1 și la marginea fantei de pe latura de est (x = 109,3; spre baie x = 109). Între y = 8,9 și 155, unde nu e fantă, merge până la peretele de est (x = 124 la intrare; între y = 140 și 155 se continuă cu masca MG2 până la x = 144). Spre baie ajunge la peretele de vest, la x = −4. Lângă peretele cu ușa de intrare se oprește la 8,9 cm de perete (FS). Același cod pe pereți."
+    "nota": "Fața plăcilor la ~243 cm de la pardoseala finită, 7 cm sub placă (detaliul din A.05, singura cotă; A.17 și A.18 o desenează la 242, legenda A.05 scrie 10 cm). Se oprește la fețele grinzii GR1 (y 353,9 și 378,9), la stâlpul ST1 și la marginea fantei de pe latura de est (x = 109,3; spre baie x = 109). Între y = 8,9 și 155, unde nu e fantă, merge până la peretele de est (x = 124 la intrare; între y = 140 și 155 se continuă cu masca MG2 până la x = 144). Spre baie ajunge la peretele de vest, la x = −4. Lângă peretele cu ușa de intrare se oprește la 8,9 cm de perete (FS). Același cod pe pereți.",
+    "adanc": 7
    },
    {
     "id": "FS",
@@ -1444,7 +1460,8 @@ window.CAMERE["hol"] = {
     "inalt": 25,
     "stare": "proiect",
     "sursa": "A.01 (25; 312 de la peretele spre baie; 140 + 213,9 de la intrare); A.05 (liniile întrerupte); A.17 D05 (45 cm sub placă)",
-    "nota": "Grindă existentă de 25 cm, de la peretele de vest la cel de est. E aceeași grindă ca GR1 din living (peretele TV): în A.05 continuă spre vest și spre est. Fața de jos la 205 cm (A.17 D05: 45 cm sub placa de la 250), adică 38 cm sub tavanul fals. Tavanul fals, fanta, banda și masca de gaz se opresc la fețele ei (A.17 D04 și D05; randarea A.20). A.05 hașurează tavanul fals și peste ea. În randarea A.20 rămâne aparentă, albă ca pereții: de confirmat."
+    "nota": "Grindă existentă de 25 cm, de la peretele de vest la cel de est. E aceeași grindă ca GR1 din living (peretele TV): în A.05 continuă spre vest și spre est. Fața de jos la 205 cm (A.17 D05: 45 cm sub placa de la 250), adică 38 cm sub tavanul fals. Tavanul fals, fanta, banda și masca de gaz se opresc la fețele ei (A.17 D04 și D05; randarea A.20). A.05 hașurează tavanul fals și peste ea. În randarea A.20 rămâne aparentă, albă ca pereții: de confirmat.",
+    "adanc": 45
    },
    {
     "id": "ST1",
@@ -1458,7 +1475,8 @@ window.CAMERE["hol"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.05 și A.06 (desenat, necotat: x −5…15, y 353,9–393,9); A.18 M04 (~19 cm din fața peretelui din zona de nord)",
-    "nota": "Stâlp existent de ~20 × 40 cm: iese 15 cm din fața peretelui de vest din zona de mijloc (x = 0) și ~19 cm din fața din zona de nord (x = −4). Se întinde de la fața de sud a grinzii (y 353,9) până la y ≈ 393,9, cu 15 cm la nord de grindă. Tavanul fals se oprește la el. Îmbrăcămintea lui și mobilierul din jur sunt pe peretele de vest."
+    "nota": "Stâlp existent de ~20 × 40 cm: iese 15 cm din fața peretelui de vest din zona de mijloc (x = 0) și ~19 cm din fața din zona de nord (x = −4). Se întinde de la fața de sud a grinzii (y 353,9) până la y ≈ 393,9, cu 15 cm la nord de grindă. Tavanul fals se oprește la el. Îmbrăcămintea lui și mobilierul din jur sunt pe peretele de vest.",
+    "adanc": 242
    },
    {
     "id": "Z1",
@@ -1484,7 +1502,8 @@ window.CAMERE["hol"] = {
     "inalt": 312,
     "stare": "proiect",
     "sursa": "A.05 (113 + 15 de la peretele de vest din zona de nord; 312); detaliul tavanului fals din hol, A.05 (1:5); A.06",
-    "nota": "Fantă deschisă până la placă, între marginea tavanului fals (x = 109, adică 113 cm de la peretele de vest din zona de nord, care e la x = −4) și marginea măștii MG1 (x = 124). Marginea dinspre tavanul fals se închide cu o placă verticală de gips-carton, de la placă până la tavanul fals; pe ea, sus, se prinde profilul benzii C1 (detaliul A.05). Merge de la grinda GR1 până la peretele spre baie (312 cm)."
+    "nota": "Fantă deschisă până la placă, între marginea tavanului fals (x = 109, adică 113 cm de la peretele de vest din zona de nord, care e la x = −4) și marginea măștii MG1 (x = 124). Marginea dinspre tavanul fals se închide cu o placă verticală de gips-carton, de la placă până la tavanul fals; pe ea, sus, se prinde profilul benzii C1 (detaliul A.05). Merge de la grinda GR1 până la peretele spre baie (312 cm).",
+    "adanc": 7
    },
    {
     "id": "SC2",
@@ -1497,7 +1516,9 @@ window.CAMERE["hol"] = {
     "inalt": 198.9,
     "stare": "proiect",
     "sursa": "A.05 (109,3 + 15; 200 de la grindă; 15 până la colțul de la intrare); detaliul tavanului fals din hol, A.05 (1:5); A.06",
-    "nota": "Ca SC1, cu banda C2. De la fața de sud a grinzii (y 353,9) până la y = 155, adică 15 cm înainte de colțul unde holul se îngustează (y = 140, A.01). Pe desen are 198,9 cm; A.05 cotează 200. De măsurat pe șantier înainte de tăierea benzii C2."
+    "nota": "Ca SC1, cu banda C2. De la fața de sud a grinzii (y 353,9) până la y = 155, adică 15 cm înainte de colțul unde holul se îngustează (y = 140, A.01). Pe desen are 198,9 cm; A.05 cotează 200. De măsurat pe șantier înainte de tăierea benzii C2.",
+    "adanc": 7,
+    "adancAprox": true
    },
    {
     "id": "MG1",
@@ -1510,7 +1531,8 @@ window.CAMERE["hol"] = {
     "inalt": 312,
     "stare": "proiect",
     "sursa": "A.05 (20; detaliul tavanului fals din hol, 1:5); specs/08 D; analiza/01 pasul 4.1",
-    "nota": "Placă de gips-carton de 20 cm, lipită de peretele de est, la nivelul tavanului fals. În ea trece țeava de gaz: în detaliul A.05 are Ø ~3 cm, e lipită de placă și are axa la ~5 cm de perete. Masca trebuie să fie demontabilă și ventilată (specs/08, analiza/01). Detaliul A.05 arată o placă fixă și nu arată cum se demontează; golul ei e deschis spre fantă deasupra profilului de margine. În golul măștii nu se pun doze, prize sau surse. Traseul țevii îl face numai firma autorizată ANRE, înainte de închiderea măștii."
+    "nota": "Placă de gips-carton de 20 cm, lipită de peretele de est, la nivelul tavanului fals. În ea trece țeava de gaz: în detaliul A.05 are Ø ~3 cm, e lipită de placă și are axa la ~5 cm de perete. Masca trebuie să fie demontabilă și ventilată (specs/08, analiza/01). Detaliul A.05 arată o placă fixă și nu arată cum se demontează; golul ei e deschis spre fantă deasupra profilului de margine. În golul măștii nu se pun doze, prize sau surse. Traseul țevii îl face numai firma autorizată ANRE, înainte de închiderea măștii.",
+    "adanc": 7
    },
    {
     "id": "MG2",
@@ -1523,7 +1545,9 @@ window.CAMERE["hol"] = {
     "inalt": 213.9,
     "stare": "proiect",
     "sursa": "A.05 (109,3 + 15 + 20; detaliul tavanului fals din hol, 1:5); specs/08 D",
-    "nota": "Ca MG1. De la fața de sud a grinzii (y 353,9) până la colțul de la y = 140, unde holul se îngustează. Între y = 140 și 155 se continuă, la același nivel, cu tavanul fals (A.05 nu desenează o margine între ele). A.05 cotează aici 109,3 + 15 + 20 = 144,3, cu 0,3 cm peste lățimea holului: masca are ~19,7 cm. Pe unde intră țeava în mască nu e desenat."
+    "nota": "Ca MG1. De la fața de sud a grinzii (y 353,9) până la colțul de la y = 140, unde holul se îngustează. Între y = 140 și 155 se continuă, la același nivel, cu tavanul fals (A.05 nu desenează o margine între ele). A.05 cotează aici 109,3 + 15 + 20 = 144,3, cu 0,3 cm peste lățimea holului: masca are ~19,7 cm. Pe unde intră țeava în mască nu e desenat.",
+    "adanc": 7,
+    "adancAprox": true
    },
    {
     "id": "C1",

@@ -61,7 +61,9 @@ window.CAMERE["bucatarie"] = {
      "inalt": 45,
      "stare": "proiect",
      "nota": "Grindă de 50 cm (x 278–328), din care 44 cm în bucătărie. Fața de jos la 205. Sub ea stă corpul suspendat din colț M01-SC (143–203,2); rândul de sus al corpurilor se oprește la x 278.",
-     "sursa": "A.01 și A.05 (x 278–328); A.21 din 10/2026 (liniile întrerupte la x 278 și 328, axa la 303); A.22 din 02/2026 BU03 (205)"
+     "sursa": "A.01 și A.05 (x 278–328); A.21 din 10/2026 (liniile întrerupte la x 278 și 328, axa la 303); A.22 din 02/2026 BU03 (205)",
+     "adanc": 134,
+     "vedereaPrincipala": "E"
     },
     {
      "id": "M01-PC",
@@ -75,7 +77,9 @@ window.CAMERE["bucatarie"] = {
      "stare": "de-verificat",
      "finisaj": "nuc",
      "nota": "Coloana stă la 2 cm de perete. Golul se închide în față cu o fâșie de completare; planșa nu o desenează.",
-     "sursa": "A.21 din 10/2026 (coloana începe la x 2, din vectori și din cota de 60)"
+     "sursa": "A.21 din 10/2026 (coloana începe la x 2, din vectori și din cota de 60)",
+     "adanc": 61.8,
+     "adancAprox": true
     },
     {
      "id": "M01-SI",
@@ -88,7 +92,8 @@ window.CAMERE["bucatarie"] = {
      "inalt": 8,
      "stare": "de-verificat",
      "nota": "Soclu de 8 cm. În randarea nouă soclurile sunt maro închis; culoarea nu e dată.",
-     "sursa": "A.22 din 02/2026, același tip de corp (BU03: 8)"
+     "sursa": "A.22 din 02/2026, același tip de corp (BU03: 8)",
+     "adanc": 61.6
     },
     {
      "id": "M01-C1",
@@ -162,7 +167,8 @@ window.CAMERE["bucatarie"] = {
      "stare": "de-verificat",
      "finisaj": "nuc",
      "nota": "Se croiește la măsura de pe șantier: fără tavan fals, placa poate avea abateri.",
-     "sursa": "A.22 din 02/2026, același tip de corp (BU03: 6,8)"
+     "sursa": "A.22 din 02/2026, același tip de corp (BU03: 6,8)",
+     "adanc": 61.6
     },
     {
      "id": "E1",
@@ -178,7 +184,13 @@ window.CAMERE["bucatarie"] = {
      "aparat": "frigider",
      "finisaj": "incastrat",
      "nota": "Frigider încastrat de 55 × 55. Nișa din coloană are ~56,4 × 191,6; frigiderele încastrabile se fac pentru nișe de 178 sau 194 cm. Modelul se alege înainte de comanda mobilei (BC1).",
-     "sursa": "A.21 din 10/2026 («frigider incastrat 55x55»); înălțimea din A.22 din 02/2026, același tip de corp (nișa 9,8–201,4)"
+     "sursa": "A.21 din 10/2026 («frigider incastrat 55x55»); înălțimea din A.22 din 02/2026, același tip de corp (nișa 9,8–201,4)",
+     "incorporatIn": {
+      "lat": 60,
+      "inalt": 195.2,
+      "adanc": 61.8,
+      "nume": "coloana frigiderului, M01-C1 și M01-C2"
+     }
     },
     {
      "id": "M01-SJ",
@@ -191,7 +203,8 @@ window.CAMERE["bucatarie"] = {
      "inalt": 8,
      "stare": "de-verificat",
      "nota": "De la coloană până la riflajul caloriferului. În dreptul MSV soclul se prinde pe mașină.",
-     "sursa": "A.22 din 02/2026, același tip de corp (BU01: 8)"
+     "sursa": "A.22 din 02/2026, același tip de corp (BU01: 8)",
+     "adanc": 60.1
     },
     {
      "id": "M01-J",
@@ -249,7 +262,13 @@ window.CAMERE["bucatarie"] = {
       "P1"
      ],
      "nota": "Gol de 45 × 88 sub blat, fără corp. Apa: robinet cu două ieșiri pe R1. Scurgerea: în sifonul chiuvetei (R3).",
-     "sursa": "A.21 din 10/2026 («MSV slim», 45, cotat); înălțimea din A.22 din 02/2026, același tip de corp"
+     "sursa": "A.21 din 10/2026 («MSV slim», 45, cotat); înălțimea din A.22 din 02/2026, același tip de corp",
+     "incorporatIn": {
+      "lat": 45,
+      "inalt": 88,
+      "adanc": 59.8,
+      "nume": "golul de sub blat, fără corp, până la fața fronturilor"
+     }
     },
     {
      "id": "E4",
@@ -265,7 +284,13 @@ window.CAMERE["bucatarie"] = {
      "aparat": "cuptor",
      "finisaj": "negru",
      "nota": "Sub plită. Randarea nouă arată o fâșie de ~3,7 cm între cuptor și blat și un sertar de ~16 cm dedesubt; în A.22 din 02/2026 nișa era 28–88. Nișa se face după cuptorul ales (BC3).",
-     "sursa": "A.21 din 10/2026 («hota plita cuptor», modulul de 60, cotat); A.22 din 10/2026 (cuptorul la ~24–84, măsurat)"
+     "sursa": "A.21 din 10/2026 («hota plita cuptor», modulul de 60, cotat); A.22 din 10/2026 (cuptorul la ~24–84, măsurat)",
+     "incorporatIn": {
+      "lat": 60,
+      "inalt": 80,
+      "adanc": 59.8,
+      "nume": "corpul de 60 din M01-J"
+     }
     },
     {
      "id": "E3",
@@ -282,7 +307,13 @@ window.CAMERE["bucatarie"] = {
      "finisaj": "incastrat",
      "in": "M01-BL",
      "nota": "Corpul plitei coboară ~5,5 cm sub fața blatului (~86). Se alimentează din doza D1, pe circuit dedicat de 32 A, cablu 3 × 6 mm² (specs/06).",
-     "sursa": "A.21 din 10/2026 (conturul ~58 × 49 la x 207–265, din vectori); decizia din 12.08.2026: plită cu inducție (specs/08, specs/06)"
+     "sursa": "A.21 din 10/2026 (conturul ~58 × 49 la x 207–265, din vectori); decizia din 12.08.2026: plită cu inducție (specs/08, specs/06)",
+     "incorporatIn": {
+      "lat": 60,
+      "inalt": 80,
+      "adanc": 59.8,
+      "nume": "corpul de 60 din M01-J, de sub plită, cu cuptorul"
+     }
     },
     {
      "id": "M01-BL",
@@ -296,7 +327,8 @@ window.CAMERE["bucatarie"] = {
      "stare": "de-verificat",
      "finisaj": "blat",
      "nota": "Blat de 62 cm, de la coloană până la 1 cm de peretele exterior (x 321). În colț se întoarce spre fereastră, peste nișa caloriferului (vezi peretele cu fereastra). Fața de sus la 91,5. Materialul nu e dat.",
-     "sursa": "A.21 din 10/2026 (62 adâncime, cotat; capătul la x 321); A.22 din 02/2026, același tip de corp (BU01: 3,5, fața la 91,5)"
+     "sursa": "A.21 din 10/2026 (62 adâncime, cotat; capătul la x 321); A.22 din 02/2026, același tip de corp (BU01: 3,5, fața la 91,5)",
+     "adanc": 62
     },
     {
      "id": "S1",
@@ -313,7 +345,8 @@ window.CAMERE["bucatarie"] = {
      "finisaj": "antracit",
      "in": "M01-J",
      "nota": "Chiuveta aleasă (02.11.2026): Evido Quadro 6, compozit granit, antracit, o cuvă, fără picurător. Exteriorul are 56,5 × 51 cm, cuva 49,5 × 35,7 cm și 20 cm adâncime. Cere un corp de cel puțin 60 cm: stă centrată pe corpul chiuvetei (x 107–167), cu exteriorul la x 108,75–165,25 și cuva la x 112,25–161,75 (propunerea noastră). Pe blatul de 62 rămân ~5,5 cm spre perete și ~5,5 cm spre muchie. Desenată doar cuva. Decupajul din blat se face după șablonul din cutie. Montajul se confirmă la comandă: Dedeman o descrie și pe blat, cu cleme, și sub blat. În A.21 chiuveta avea picurător spre stânga, peste MSV (68,2 × 45, la x 92,6–160,8).",
-     "sursa": "Evido Quadro 6 antracit (Dedeman 3037615: 56,5 × 51, cuva 49,5 × 35,7 × 20, ventil 11,4 cm, sifon inclus; olmo.ro: corp minim 60 cm, un orificiu premarcat pentru baterie); A.21 din 10/2026 (corpul chiuvetei de 60)"
+     "sursa": "Evido Quadro 6 antracit (Dedeman 3037615: 56,5 × 51, cuva 49,5 × 35,7 × 20, ventil 11,4 cm, sifon inclus; olmo.ro: corp minim 60 cm, un orificiu premarcat pentru baterie); A.21 din 10/2026 (corpul chiuvetei de 60)",
+     "adanc": 35.7
     },
     {
      "id": "S2",
@@ -486,7 +519,9 @@ window.CAMERE["bucatarie"] = {
       "D2"
      ],
      "nota": "Fără mâner: frontul cu 1 cm mai lung decât corpul (specs/09). Al patrulea (59) e corpul hotei E5. Adâncimea nu e cotată. H1775 ST12 Nuc Parona (legenda A.21).",
-     "sursa": "A.22 din 10/2026 (două rânduri de uși, aliniate cu corpurile de jos, măsurate); A.22 din 02/2026, același tip de corp (BU01: 143–203)"
+     "sursa": "A.22 din 10/2026 (două rânduri de uși, aliniate cu corpurile de jos, măsurate); A.22 din 02/2026, același tip de corp (BU01: 143–203)",
+     "adanc": 35,
+     "adancAprox": true
     },
     {
      "id": "E5",
@@ -502,7 +537,14 @@ window.CAMERE["bucatarie"] = {
      "aparat": "hota",
      "finisaj": "incastrat",
      "nota": "În corpul de 59 de deasupra plitei, la ~51,5 cm de blat. Viziera se vede sub corp ca o bandă de lemn mai închisă decât nucul (randarea). Evacuarea nu e desenată (BC6).",
-     "sursa": "A.21 din 10/2026 («hota plita cuptor»); A.22 din 10/2026 (banda de lemn sub corpul de deasupra plitei); A.22 din 02/2026, același tip de corp (BU01: viziera 143–148,8)"
+     "sursa": "A.21 din 10/2026 («hota plita cuptor»); A.22 din 10/2026 (banda de lemn sub corpul de deasupra plitei); A.22 din 02/2026, același tip de corp (BU01: viziera 143–148,8)",
+     "incorporatIn": {
+      "lat": 59,
+      "inalt": 60.2,
+      "adanc": 35,
+      "adancAprox": true,
+      "nume": "corpul suspendat de 59 din M01-S1, de deasupra plitei"
+     }
     },
     {
      "id": "M01-SC",
@@ -521,7 +563,8 @@ window.CAMERE["bucatarie"] = {
       }
      ],
      "nota": "Sub grinda GR2 (205), deci are doar rândul de jos. Ajunge la colțul cu peretele exterior, lângă fereastră.",
-     "sursa": "A.21 din 10/2026 (55, cotat: x 266–321); A.22 din 10/2026; A.22 din 02/2026, același tip de corp (143–203,2)"
+     "sursa": "A.21 din 10/2026 (55, cotat: x 266–321); A.22 din 10/2026; A.22 din 02/2026, același tip de corp (143–203,2)",
+     "adanc": 35
     },
     {
      "id": "M01-S2",
@@ -552,7 +595,9 @@ window.CAMERE["bucatarie"] = {
       }
      ],
      "nota": "Până la grinda GR2 (x 278). Ultima bucată (12) e o completare fixă lângă grindă.",
-     "sursa": "A.22 din 10/2026 (măsurat); A.22 din 02/2026, același tip de corp (BU03: 203,2–243,2)"
+     "sursa": "A.22 din 10/2026 (măsurat); A.22 din 02/2026, același tip de corp (BU03: 203,2–243,2)",
+     "adanc": 35,
+     "adancAprox": true
     },
     {
      "id": "M01-PT2",
@@ -566,7 +611,8 @@ window.CAMERE["bucatarie"] = {
      "stare": "de-verificat",
      "finisaj": "nuc",
      "nota": "Se croiește la măsura de pe șantier, ca M01-PT1.",
-     "sursa": "A.22 din 02/2026, același tip de corp (BU03: 6,8); A.22 din 10/2026"
+     "sursa": "A.22 din 02/2026, același tip de corp (BU03: 6,8); A.22 din 10/2026",
+     "adanc": 35
     },
     {
      "id": "D2",
@@ -624,7 +670,9 @@ window.CAMERE["bucatarie"] = {
      "lamela": 1.8,
      "rost": 2.6,
      "nota": "Capătul riflajului de pe întoarcerea blatului, în secțiune. Vezi peretele cu fereastra.",
-     "sursa": "A.21 din 10/2026 (1,8, cotat)"
+     "sursa": "A.21 din 10/2026 (1,8, cotat)",
+     "adanc": 78,
+     "vedereaPrincipala": "E"
     }
    ],
    "avertismente": [
@@ -721,7 +769,8 @@ window.CAMERE["bucatarie"] = {
      "inalt": 45,
      "stare": "proiect",
      "nota": "Merge de-a lungul peretelui (x 278–322), de la treaptă până la peretele cu chiuveta. Fața de jos la 205, la ~1 cm deasupra golului ferestrei. Pe fața ei dinspre cameră propunem detectorul de gaz (P2).",
-     "sursa": "A.01 și A.05 (x 278–328); A.21 din 10/2026; A.22 din 02/2026 BU02 și BU03 (205)"
+     "sursa": "A.01 și A.05 (x 278–328); A.21 din 10/2026; A.22 din 02/2026 BU02 și BU03 (205)",
+     "adanc": 44
     },
     {
      "id": "FE1",
@@ -755,7 +804,9 @@ window.CAMERE["bucatarie"] = {
       }
      ],
      "nota": "Văzut din capăt. Adâncimea nu e cotată (desenată 35). Se oprește la ~5 cm de golul ferestrei (y 224,9).",
-     "sursa": "A.21 din 10/2026; A.22 din 10/2026"
+     "sursa": "A.21 din 10/2026; A.22 din 10/2026",
+     "adanc": 55,
+     "vedereaPrincipala": "N"
     },
     {
      "id": "M01-SJ",
@@ -768,7 +819,9 @@ window.CAMERE["bucatarie"] = {
      "inalt": 8,
      "stare": "de-verificat",
      "nota": "În secțiune.",
-     "sursa": "A.22 din 02/2026, același tip de corp"
+     "sursa": "A.22 din 02/2026, același tip de corp",
+     "adanc": 235,
+     "vedereaPrincipala": "N"
     },
     {
      "id": "M01-J",
@@ -787,7 +840,9 @@ window.CAMERE["bucatarie"] = {
       }
      ],
      "nota": "Corpul de colț de 30 și colțul închis de lângă peretele exterior (x 298,8–321), deschis spre nișa caloriferului.",
-     "sursa": "A.21 din 10/2026; A.22 din 02/2026, același tip de corp"
+     "sursa": "A.21 din 10/2026; A.22 din 02/2026, același tip de corp",
+     "adanc": 235,
+     "vedereaPrincipala": "N"
     },
     {
      "id": "M01-BL",
@@ -837,7 +892,8 @@ window.CAMERE["bucatarie"] = {
       "R11"
      ],
      "nota": "Sub întoarcerea blatului. specs/08 cere ca șipcile să pornească de la 8–10 cm de pardoseală, ca să intre aer rece pe jos; randarea le duce până la pardoseală. Trebuie să se demonteze, pentru robinetele caloriferului.",
-     "sursa": "A.21 din 10/2026 (1,8 la x 297–298,8, de la y 131 la ~209; lamele de ~2,4 la pas de 5, din vectori); A.22 din 10/2026 (de la pardoseală până sub blat); specs/08, tabelul caloriferelor, rândul 3 («mascat cu șipci verticale»)"
+     "sursa": "A.21 din 10/2026 (1,8 la x 297–298,8, de la y 131 la ~209; lamele de ~2,4 la pas de 5, din vectori); A.22 din 10/2026 (de la pardoseală până sub blat); specs/08, tabelul caloriferelor, rândul 3 («mascat cu șipci verticale»)",
+     "adanc": 1.8
     },
     {
      "id": "R10",
@@ -955,7 +1011,8 @@ window.CAMERE["bucatarie"] = {
      "inalt": 250,
      "stare": "proiect",
      "nota": "Iese 19 cm din perete. A.01 și A.21 din 02/2026 îl dau de 28 cm (y 55–83); planșa nouă, de 25, în dreptul grinzii. Spre perete are o fantă de ~5 cm (y 67,9–72,9), desenată în ambele planșe. În fața lui stă corpul M01-CM.",
-     "sursa": "A.21 din 10/2026 (x 259–278, y 57,9–82,9, din vectori; cotele 58 și 25)"
+     "sursa": "A.21 din 10/2026 (x 259–278, y 57,9–82,9, din vectori; cotele 58 și 25)",
+     "adanc": 19
     },
     {
      "id": "GR1",
@@ -968,7 +1025,9 @@ window.CAMERE["bucatarie"] = {
      "inalt": 45,
      "stare": "proiect",
      "nota": "Capătul de est al grinzii, pe stâlpul ST1. Deasupra corpului M01-CM rămân 1,8 cm.",
-     "sursa": "A.01 și A.05 (y 58–83); A.21 din 10/2026 (liniile întrerupte y 57,9–82,9); A.22 din 02/2026 BU02 (205)"
+     "sursa": "A.01 și A.05 (y 58–83); A.21 din 10/2026 (liniile întrerupte y 57,9–82,9); A.22 din 02/2026 BU02 (205)",
+     "adanc": 259,
+     "vedereaPrincipala": "S"
     },
     {
      "id": "M01-SE",
@@ -981,7 +1040,9 @@ window.CAMERE["bucatarie"] = {
      "inalt": 8,
      "stare": "de-verificat",
      "nota": "Prin soclu pot trece țevile caloriferului spre nișa de sub blat (R10, R11).",
-     "sursa": "A.22 din 02/2026, același tip de corp (8)"
+     "sursa": "A.22 din 02/2026, același tip de corp (8)",
+     "adanc": 41.8,
+     "adancAprox": true
     },
     {
      "id": "M01-CN1",
@@ -1137,7 +1198,8 @@ window.CAMERE["bucatarie"] = {
      "lamela": 2.4,
      "rost": 2.6,
      "nota": "Lamele verticale de la 203,2 la placă, pe fața dinspre cameră și pe latura de nord. Ce e în spatele lor și deasupra corpurilor M01-CM și M01-CC (203,2–250) nu se vede în randări (BC9).",
-     "sursa": "A.22 din 10/2026 (vederile din dreapta sus și din dreapta jos, măsurat); nu apare în A.21 din 10/2026"
+     "sursa": "A.22 din 10/2026 (vederile din dreapta sus și din dreapta jos, măsurat); nu apare în A.21 din 10/2026",
+     "adanc": 40
     },
     {
      "id": "S3",
@@ -1255,7 +1317,8 @@ window.CAMERE["bucatarie"] = {
      "fluid": "gaz",
      "ascuns": true,
      "nota": "Vine de sus, din cutia M01-SB de deasupra băncii, și coboară pe latura de sud a centralei până la robinetul R4. Traseul îl proiectează firma ANRE (BC13).",
-     "sursa": "propunere; specs/08 D (traseu nou, firmă ANRE); HL4"
+     "sursa": "propunere; specs/08 D (traseu nou, firmă ANRE); HL4",
+     "adanc": 4
     },
     {
      "id": "EV1",
@@ -1364,7 +1427,8 @@ window.CAMERE["bucatarie"] = {
      "inalt": 250,
      "stare": "proiect",
      "nota": "Bloc din zidărie cu un gol de ~23,5 × 20 (ghenă de ventilație?). În fața lui stă corpul cu rafturi M01-R1…R3.",
-     "sursa": "A.01 (33,5, cotat); A.21 din 02/2026 și din 10/2026 (y 0–30, pereți de 10 cm, gol de 23,5 × 20, din vectori)"
+     "sursa": "A.01 (33,5, cotat); A.21 din 02/2026 și din 10/2026 (y 0–30, pereți de 10 cm, gol de 23,5 × 20, din vectori)",
+     "adanc": 30
     },
     {
      "id": "GR1",
@@ -1377,7 +1441,8 @@ window.CAMERE["bucatarie"] = {
      "inalt": 45,
      "stare": "proiect",
      "nota": "Ascunsă în cutia M01-SB: fața cutiei e în dreptul feței de nord a grinzii. E aceeași grindă ca GR1 din hol.",
-     "sursa": "A.01 și A.05 (y 58–83); A.21 din 10/2026 (liniile întrerupte y 57,9–82,9); A.22 din 02/2026 BU02 (205)"
+     "sursa": "A.01 și A.05 (y 58–83); A.21 din 10/2026 (liniile întrerupte y 57,9–82,9); A.22 din 02/2026 BU02 (205)",
+     "adanc": 25
     },
     {
      "id": "RF1",
@@ -1393,7 +1458,8 @@ window.CAMERE["bucatarie"] = {
      "lamela": 2.4,
      "rost": 2.6,
      "nota": "De la ghenă până la dulapul centralei: în spatele banchetei și pe porțiunea liberă de 62,7. Sus la nivelul blatului (91,5), cu o șipcă orizontală. H1775 ST12 Nuc Parona (randarea).",
-     "sursa": "A.21 din 10/2026 (x 33,5–236, adânc 2,9; lamele de 2,4 la pas de 5, din vectori); A.22 din 10/2026; A.22 din 02/2026, același tip de corp (BU03: sus la 91,5)"
+     "sursa": "A.21 din 10/2026 (x 33,5–236, adânc 2,9; lamele de 2,4 la pas de 5, din vectori); A.22 din 10/2026; A.22 din 02/2026, același tip de corp (BU03: sus la 91,5)",
+     "adanc": 2.9
     },
     {
      "id": "M01-BN",
@@ -1438,7 +1504,8 @@ window.CAMERE["bucatarie"] = {
       "RF1"
      ],
      "nota": "Trei perne (48,6, 50, 41,4); materialul nu e dat (albe în randare).",
-     "sursa": "A.21 din 10/2026; A.22 din 02/2026, același tip de corp (BU03: 4)"
+     "sursa": "A.21 din 10/2026; A.22 din 02/2026, același tip de corp (BU03: 4)",
+     "adanc": 38.8
     },
     {
      "id": "M01-BV",
@@ -1462,7 +1529,8 @@ window.CAMERE["bucatarie"] = {
       "RF1"
      ],
      "nota": "Bancă de 41,3 × 59,4, în fața corpului cu rafturi. Vezi peretele cu ușa.",
-     "sursa": "A.21 din 10/2026 (x 33,1–74,4, y 40,6–100, din vectori); A.22 din 02/2026, același tip de corp"
+     "sursa": "A.21 din 10/2026 (x 33,1–74,4, y 40,6–100, din vectori); A.22 din 02/2026, același tip de corp",
+     "adanc": 59.4
     },
     {
      "id": "M01-PE2",
@@ -1479,7 +1547,8 @@ window.CAMERE["bucatarie"] = {
       "RF1"
      ],
      "nota": "O pernă de ~40 × 57,5.",
-     "sursa": "A.21 din 10/2026; A.22 din 02/2026, același tip de corp"
+     "sursa": "A.21 din 10/2026; A.22 din 02/2026, același tip de corp",
+     "adanc": 59.4
     },
     {
      "id": "M01-SB",
@@ -1536,7 +1605,9 @@ window.CAMERE["bucatarie"] = {
       "T1"
      ],
      "nota": "Continuarea riflajului de pe fața dinspre cameră (vezi peretele cu centrala).",
-     "sursa": "A.22 din 10/2026 (măsurat)"
+     "sursa": "A.22 din 10/2026 (măsurat)",
+     "adanc": 48,
+     "vedereaPrincipala": "E2"
     },
     {
      "id": "M01-R1",
@@ -1560,7 +1631,9 @@ window.CAMERE["bucatarie"] = {
       "RF1"
      ],
      "nota": "Văzut din nord. Vezi peretele cu ușa.",
-     "sursa": "A.21 din 10/2026 (x 0–35,3, y 29,9–100, din vectori); A.22 din 10/2026 (măsurat)"
+     "sursa": "A.21 din 10/2026 (x 0–35,3, y 29,9–100, din vectori); A.22 din 10/2026 (măsurat)",
+     "adanc": 70.1,
+     "vedereaPrincipala": "V"
     },
     {
      "id": "M01-R2",
@@ -1582,7 +1655,9 @@ window.CAMERE["bucatarie"] = {
       "GH1"
      ],
      "nota": "Văzut din nord.",
-     "sursa": "A.21 din 10/2026; A.22 din 10/2026 (măsurat)"
+     "sursa": "A.21 din 10/2026; A.22 din 10/2026 (măsurat)",
+     "adanc": 70.1,
+     "vedereaPrincipala": "V"
     },
     {
      "id": "M01-R3",
@@ -1606,7 +1681,9 @@ window.CAMERE["bucatarie"] = {
       "T1"
      ],
      "nota": "Văzut din nord: în randare, sus, rafturile deschise.",
-     "sursa": "A.21 din 10/2026; A.22 din 10/2026 (măsurat)"
+     "sursa": "A.21 din 10/2026; A.22 din 10/2026 (măsurat)",
+     "adanc": 70.1,
+     "vedereaPrincipala": "V"
     },
     {
      "id": "T1",
@@ -1622,7 +1699,8 @@ window.CAMERE["bucatarie"] = {
      "fluid": "gaz",
      "ascuns": true,
      "nota": "Intră din hol prin peretele cu ușa la y ≈ 44 (între ghenă și grindă), la ~245, și merge spre est prin partea de sus a corpului M01-R3 și prin cutia M01-SB, până deasupra dulapului centralei. Planșele nu desenează traseul; îl proiectează firma ANRE (BC13).",
-     "sursa": "propunere; specs/08 D; HL4"
+     "sursa": "propunere; specs/08 D; HL4",
+     "adanc": 4
     },
     {
      "id": "P1",
@@ -1697,7 +1775,9 @@ window.CAMERE["bucatarie"] = {
      "inalt": 250,
      "stare": "proiect",
      "nota": "Blocul ghenei iese 33,5 cm din acest perete, pe primii 30 cm de la colț.",
-     "sursa": "A.01; A.21 din 10/2026 (y 0–30)"
+     "sursa": "A.01; A.21 din 10/2026 (y 0–30)",
+     "adanc": 33.5,
+     "vedereaPrincipala": "S"
     },
     {
      "id": "RF1",
@@ -1716,7 +1796,9 @@ window.CAMERE["bucatarie"] = {
       "GH1"
      ],
      "nota": "În secțiune.",
-     "sursa": "A.21 din 10/2026 (2,9 adâncime)"
+     "sursa": "A.21 din 10/2026 (2,9 adâncime)",
+     "adanc": 202.5,
+     "vedereaPrincipala": "S"
     },
     {
      "id": "M01-BN",
@@ -1738,7 +1820,9 @@ window.CAMERE["bucatarie"] = {
       "GH1"
      ],
      "nota": "Capătul banchetei, lipit de ghenă.",
-     "sursa": "A.21 din 10/2026 (38,8, cotat); A.22 din 02/2026, același tip de corp"
+     "sursa": "A.21 din 10/2026 (38,8, cotat); A.22 din 02/2026, același tip de corp",
+     "adanc": 140,
+     "vedereaPrincipala": "S"
     },
     {
      "id": "M01-PE1",
@@ -1754,7 +1838,9 @@ window.CAMERE["bucatarie"] = {
       "GH1"
      ],
      "nota": "În secțiune.",
-     "sursa": "A.21 din 10/2026; A.22 din 02/2026, același tip de corp"
+     "sursa": "A.21 din 10/2026; A.22 din 02/2026, același tip de corp",
+     "adanc": 140,
+     "vedereaPrincipala": "S"
     },
     {
      "id": "M01-R1",
@@ -1773,7 +1859,8 @@ window.CAMERE["bucatarie"] = {
       }
      ],
      "nota": "Corp de 33,5 + 1,8 cm adâncime, de la ghenă până la y 100, de la pardoseală la placă. Partea de jos stă în spatele băncii M01-BV; în randare are un front bej, cu ramă.",
-     "sursa": "A.21 din 10/2026 (x 0–35,3, y 29,9–100, din vectori); A.22 din 10/2026 (vederile din dreapta sus și din stânga jos, măsurate)"
+     "sursa": "A.21 din 10/2026 (x 0–35,3, y 29,9–100, din vectori); A.22 din 10/2026 (vederile din dreapta sus și din stânga jos, măsurate)",
+     "adanc": 35.3
     },
     {
      "id": "M01-R2",
@@ -1798,7 +1885,8 @@ window.CAMERE["bucatarie"] = {
       "P1"
      ],
      "nota": "Spre sud o nișă deschisă (~25), spre nord o ușă (~45), măsurate pe randare. În nișă cade priza P1.",
-     "sursa": "A.22 din 10/2026 (măsurat)"
+     "sursa": "A.22 din 10/2026 (măsurat)",
+     "adanc": 35.3
     },
     {
      "id": "M01-R3",
@@ -1824,7 +1912,8 @@ window.CAMERE["bucatarie"] = {
       "T1"
      ],
      "nota": "Spre sud un dulap cu două uși, spre nord rafturi deschise (două rafturi), până la placă. Grinda GR1 (y 58–83, 205–250) trece prin partea de sus: corpul se decupează în jurul ei (BC16).",
-     "sursa": "A.22 din 10/2026 (măsurat)"
+     "sursa": "A.22 din 10/2026 (măsurat)",
+     "adanc": 35.3
     },
     {
      "id": "M01-BV",
@@ -1846,7 +1935,8 @@ window.CAMERE["bucatarie"] = {
       "M01-R1"
      ],
      "nota": "Bancă de 41,3 × 59,4, cu fața spre masă. Face un L cu bancheta de pe peretele cu riflaj. Cum se deschide nu e desenat.",
-     "sursa": "A.21 din 10/2026 (x 33,1–74,4, y 40,6–100, perna ~40 × 57,5, din vectori); A.22 din 10/2026; A.22 din 02/2026, același tip de corp (3–41 + perna 41–45)"
+     "sursa": "A.21 din 10/2026 (x 33,1–74,4, y 40,6–100, perna ~40 × 57,5, din vectori); A.22 din 10/2026; A.22 din 02/2026, același tip de corp (3–41 + perna 41–45)",
+     "adanc": 41.3
     },
     {
      "id": "M01-PE2",
@@ -1862,7 +1952,8 @@ window.CAMERE["bucatarie"] = {
       "M01-R1"
      ],
      "nota": "Materialul nu e dat.",
-     "sursa": "A.21 din 10/2026; A.22 din 02/2026, același tip de corp"
+     "sursa": "A.21 din 10/2026; A.22 din 02/2026, același tip de corp",
+     "adanc": 41.3
     },
     {
      "id": "M01-SB",
@@ -1882,7 +1973,9 @@ window.CAMERE["bucatarie"] = {
       "T1"
      ],
      "nota": "De la peretele cu riflaj până la fața de nord a grinzii GR1.",
-     "sursa": "A.21 din 10/2026; A.22 din 10/2026"
+     "sursa": "A.21 din 10/2026; A.22 din 10/2026",
+     "adanc": 202.4,
+     "vedereaPrincipala": "S"
     },
     {
      "id": "GR1",
@@ -1895,7 +1988,9 @@ window.CAMERE["bucatarie"] = {
      "inalt": 45,
      "stare": "proiect",
      "nota": "Trece prin perete în hol, unde e tot GR1 (y 59,8–84,8 aici, cu 1,8 cm decalaj în A.01).",
-     "sursa": "A.01 și A.05 (y 58–83); A.21 din 10/2026; A.22 din 02/2026 BU02 (205)"
+     "sursa": "A.01 și A.05 (y 58–83); A.21 din 10/2026; A.22 din 02/2026 BU02 (205)",
+     "adanc": 259,
+     "vedereaPrincipala": "S"
     },
     {
      "id": "T1",
@@ -1911,7 +2006,8 @@ window.CAMERE["bucatarie"] = {
      "fluid": "gaz",
      "ascuns": true,
      "nota": "Trecerea prin perete, la ~245, din masca MG2 din hol (y ≈ 338 în planul holului). Vezi peretele cu bancheta.",
-     "sursa": "propunere; HL4"
+     "sursa": "propunere; HL4",
+     "adanc": 4
     },
     {
      "id": "U1",
@@ -1938,7 +2034,9 @@ window.CAMERE["bucatarie"] = {
      "inalt": 8,
      "stare": "de-verificat",
      "nota": "În secțiune.",
-     "sursa": "A.22 din 02/2026, același tip de corp"
+     "sursa": "A.22 din 02/2026, același tip de corp",
+     "adanc": 60,
+     "vedereaPrincipala": "N"
     },
     {
      "id": "M01-C1",
@@ -1957,7 +2055,9 @@ window.CAMERE["bucatarie"] = {
       }
      ],
      "nota": "Lateralul coloanei, la 4,7 cm de pervazul ușii (198,6).",
-     "sursa": "A.21 din 10/2026 (62, cotat); A.22 din 02/2026, același tip de corp"
+     "sursa": "A.21 din 10/2026 (62, cotat); A.22 din 02/2026, același tip de corp",
+     "adanc": 60,
+     "vedereaPrincipala": "N"
     },
     {
      "id": "M01-C2",
@@ -1976,7 +2076,9 @@ window.CAMERE["bucatarie"] = {
       }
      ],
      "nota": "Lateralul coloanei.",
-     "sursa": "A.22 din 02/2026, același tip de corp"
+     "sursa": "A.22 din 02/2026, același tip de corp",
+     "adanc": 60,
+     "vedereaPrincipala": "N"
     },
     {
      "id": "M01-C3",
@@ -1995,7 +2097,9 @@ window.CAMERE["bucatarie"] = {
       }
      ],
      "nota": "Lateralul coloanei.",
-     "sursa": "A.22 din 02/2026, același tip de corp"
+     "sursa": "A.22 din 02/2026, același tip de corp",
+     "adanc": 60,
+     "vedereaPrincipala": "N"
     },
     {
      "id": "M01-PT1",
@@ -2009,7 +2113,9 @@ window.CAMERE["bucatarie"] = {
      "stare": "de-verificat",
      "finisaj": "nuc",
      "nota": "Până la placă.",
-     "sursa": "A.22 din 02/2026, același tip de corp"
+     "sursa": "A.22 din 02/2026, același tip de corp",
+     "adanc": 60,
+     "vedereaPrincipala": "N"
     },
     {
      "id": "P1",
@@ -2078,7 +2184,8 @@ window.CAMERE["bucatarie"] = {
     "inalt": 30,
     "stare": "proiect",
     "nota": "Bloc de zidărie de 33,5 × 30 până la placă, cu un gol de ~23,5 × 20.",
-    "sursa": "A.01 (33,5); A.21 din 10/2026 (30)"
+    "sursa": "A.01 (33,5); A.21 din 10/2026 (30)",
+    "adanc": 250
    },
    {
     "id": "M01-SB",
@@ -2092,7 +2199,8 @@ window.CAMERE["bucatarie"] = {
     "stare": "de-verificat",
     "finisaj": "nuc",
     "nota": "Cutie de mobilier din PAL Nuc Parona, desenată transparent ca să se vadă grinda GR1 pe care o îmbracă. Prin ea propunem țeava de gaz T1.",
-    "sursa": "A.21 din 10/2026 (conturul de sus, linie plină)"
+    "sursa": "A.21 din 10/2026 (conturul de sus, linie plină)",
+    "adanc": 46.8
    },
    {
     "id": "GR1",
@@ -2105,7 +2213,8 @@ window.CAMERE["bucatarie"] = {
     "inalt": 25,
     "stare": "proiect",
     "nota": "Grindă de 25 cm, fața de jos la 205, de la peretele cu ușa până la stâlpul ST1. Continuă în hol.",
-    "sursa": "A.01 și A.05 (y 58–83); A.21 din 10/2026 (y 57,9–82,9); A.22 din 02/2026 BU02 (205)"
+    "sursa": "A.01 și A.05 (y 58–83); A.21 din 10/2026 (y 57,9–82,9); A.22 din 02/2026 BU02 (205)",
+    "adanc": 45
    },
    {
     "id": "ST1",
@@ -2118,7 +2227,8 @@ window.CAMERE["bucatarie"] = {
     "inalt": 25,
     "stare": "proiect",
     "nota": "Iese 19 cm din peretele E2. A.01 îl dă de 28 cm (y 55–83). În fața lui, corpul M01-CM.",
-    "sursa": "A.21 din 10/2026 (x 259–278, y 57,9–82,9)"
+    "sursa": "A.21 din 10/2026 (x 259–278, y 57,9–82,9)",
+    "adanc": 250
    },
    {
     "id": "GR2",
@@ -2131,7 +2241,8 @@ window.CAMERE["bucatarie"] = {
     "inalt": 134,
     "stare": "proiect",
     "nota": "50 cm lățime (x 278–328), 44 în bucătărie. Fața de jos la 205.",
-    "sursa": "A.01 și A.05 (x 278–328); A.21 din 10/2026 (axa la x 303); A.22 din 02/2026 BU03 (205)"
+    "sursa": "A.01 și A.05 (x 278–328); A.21 din 10/2026 (axa la x 303); A.22 din 02/2026 BU03 (205)",
+    "adanc": 45
    },
    {
     "id": "Z1",
@@ -2162,7 +2273,8 @@ window.CAMERE["bucatarie"] = {
      "GR1"
     ],
     "nota": "Grinda GR1 trece prin partea lui de sus.",
-    "sursa": "A.21 din 10/2026 (x 0–35,3, y 29,9–100)"
+    "sursa": "A.21 din 10/2026 (x 0–35,3, y 29,9–100)",
+    "adanc": 102
    },
    {
     "id": "RF3",
@@ -2176,7 +2288,8 @@ window.CAMERE["bucatarie"] = {
     "stare": "de-verificat",
     "finisaj": "nuc",
     "nota": "Lamele pe fața dinspre cameră și pe latura de nord.",
-    "sursa": "A.22 din 10/2026"
+    "sursa": "A.22 din 10/2026",
+    "adanc": 46.8
    },
    {
     "id": "M01-PT1",
@@ -2190,7 +2303,8 @@ window.CAMERE["bucatarie"] = {
     "stare": "de-verificat",
     "finisaj": "nuc",
     "nota": "Coloană de 60 × 61,8, la 2 cm de peretele cu ușa.",
-    "sursa": "A.21 din 10/2026 (60 × 62)"
+    "sursa": "A.21 din 10/2026 (60 × 62)",
+    "adanc": 6.8
    },
    {
     "id": "M01-PT2",
@@ -2205,7 +2319,8 @@ window.CAMERE["bucatarie"] = {
     "pozitie": "aprox",
     "finisaj": "nuc",
     "nota": "Adâncimea nu e cotată (desenată 35).",
-    "sursa": "A.22 din 10/2026"
+    "sursa": "A.22 din 10/2026",
+    "adanc": 6.8
    },
    {
     "id": "T1",
@@ -2221,7 +2336,8 @@ window.CAMERE["bucatarie"] = {
     "fluid": "gaz",
     "ascuns": true,
     "nota": "La ~245, între ghenă și grindă, în cutia M01-SB; deasupra dulapului centralei cotește spre sud și coboară.",
-    "sursa": "propunere; HL4"
+    "sursa": "propunere; HL4",
+    "adanc": 4
    },
    {
     "id": "F1",

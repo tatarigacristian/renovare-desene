@@ -136,7 +136,8 @@ window.CAMERE["living"] = {
       "x": 160,
       "h": 252
      },
-     "nota": "Fața tavanului fals la 243 cm, placa la 250 cm (A.15, A.16, D-09). Legenda A.05 scrie 10 cm: de confirmat. Același cod pe toți pereții și pe planul tavanului."
+     "nota": "Fața tavanului fals la 243 cm, placa la 250 cm (A.15, A.16, D-09). Legenda A.05 scrie 10 cm: de confirmat. Același cod pe toți pereții și pe planul tavanului.",
+     "adanc": 565
     },
     {
      "id": "GR3",
@@ -234,7 +235,9 @@ window.CAMERE["living"] = {
      "stare": "proiect",
      "sursa": "A.15 D01 (51,8 × 20, la 52 cm, de la fața măștii de la 454,1)",
      "inFata": "M12",
-     "nota": "Biroul (205,9 cm, cu riflaj și sertar) stă pe peretele de est, în fața părții din dreapta a lui M12."
+     "nota": "Biroul (205,9 cm, cu riflaj și sertar) stă pe peretele de est, în fața părții din dreapta a lui M12.",
+     "adanc": 205.9,
+     "vedereaPrincipala": "E"
     },
     {
      "id": "P1",
@@ -568,7 +571,8 @@ window.CAMERE["living"] = {
       "x": 160,
       "h": 252
      },
-     "nota": "Fața tavanului fals la 243 cm, placa la 250 cm (A.15, A.16, D-09). Legenda A.05 scrie 10 cm: de confirmat. Același cod pe toți pereții și pe planul tavanului."
+     "nota": "Fața tavanului fals la 243 cm, placa la 250 cm (A.15, A.16, D-09). Legenda A.05 scrie 10 cm: de confirmat. Același cod pe toți pereții și pe planul tavanului.",
+     "adanc": 434
     },
     {
      "id": "M12",
@@ -588,7 +592,8 @@ window.CAMERE["living"] = {
        "tip": "lateral"
       }
      ],
-     "nota": "Fața lui M12 e aliniată cu fața stâlpului ST1 (x = 55). Spatele e la ~13 cm de zidăria peretelui cu M12 (necotat): în spate e grinda de ~10 cm a acelui perete, plus ~3 cm. Lateralul din dreapta e lipit de stâlpul ST1, la 18 cm de zidăria acestui perete."
+     "nota": "Fața lui M12 e aliniată cu fața stâlpului ST1 (x = 55). Spatele e la ~13 cm de zidăria peretelui cu M12 (necotat): în spate e grinda de ~10 cm a acelui perete, plus ~3 cm. Lateralul din dreapta e lipit de stâlpul ST1, la 18 cm de zidăria acestui perete.",
+     "vedereaPrincipala": "N"
     },
     {
      "id": "B1",
@@ -641,7 +646,8 @@ window.CAMERE["living"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "A.15 D02 (eticheta; 40 de la M12; lanțul de cote 45 + 70 + 10)",
-     "nota": "Planșa nu desenează canalul, doar săgeata și cotele. Citirea noastră: vertical, la 40 cm de M12 (x = 95), de la h 45 la 115, adică de la nivelul prizei P1 până la 10 cm sub P2. De confirmat cu arhitecta ce este și cum trece pe lângă bancă."
+     "nota": "Planșa nu desenează canalul, doar săgeata și cotele. Citirea noastră: vertical, la 40 cm de M12 (x = 95), de la h 45 la 115, adică de la nivelul prizei P1 până la 10 cm sub P2. De confirmat cu arhitecta ce este și cum trece pe lângă bancă.",
+     "adanc": 2
     },
     {
      "id": "I1",
@@ -951,7 +957,8 @@ window.CAMERE["living"] = {
      "inalt": 7,
      "stare": "de-verificat",
      "sursa": "A.16 D03 și A.29 D03' (măsurat pe desen); A.05",
-     "nota": "În desfășurarea D03 fața tavanului fals e la ~243 cm, iar placa la 250 cm (A.01: Hu 2,50 m). A.05 scrie grosime 10 cm. Înălțimea liberă nu e cotată (întrebarea L6). Grinda GR1 coboară sub tavan până la 205 cm. Tavanul se oprește la scafa draperiei; în dreptul ei masca D03 (placată cu M11) urcă până la placă. Tavanul fals se oprește la fața grinzii GR1. Pe planul tavanului are același cod (TF1)."
+     "nota": "În desfășurarea D03 fața tavanului fals e la ~243 cm, iar placa la 250 cm (A.01: Hu 2,50 m). A.05 scrie grosime 10 cm. Înălțimea liberă nu e cotată (întrebarea L6). Grinda GR1 coboară sub tavan până la 205 cm. Tavanul se oprește la scafa draperiei; în dreptul ei masca D03 (placată cu M11) urcă până la placă. Tavanul fals se oprește la fața grinzii GR1. Pe planul tavanului are același cod (TF1).",
+     "adanc": 565
     },
     {
      "id": "RF",
@@ -1185,7 +1192,8 @@ window.CAMERE["living"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "A.16 D03 („tub încastrat cablaj”, măsurat pe desen)",
-     "nota": "În perete, vertical, între dozele D1 și D2. Pe desen are ~4 cm lățime; diametrul nu e cotat. Propunere: min. Ø 40 mm, fără coturi, ca să treacă mufele HDMI. Se pozează înainte de tencuială."
+     "nota": "În perete, vertical, între dozele D1 și D2. Pe desen are ~4 cm lățime; diametrul nu e cotat. Propunere: min. Ø 40 mm, fără coturi, ca să treacă mufele HDMI. Se pozează înainte de tencuială.",
+     "adanc": 4
     },
     {
      "id": "D2",
@@ -1531,7 +1539,8 @@ window.CAMERE["living"] = {
       "x": 300,
       "h": 238
      },
-     "nota": "Marginea e o bucată verticală de gips-carton de la placă până la fața tavanului fals (243). Planul ei e la 15 cm în fața grinzii GR-V. Merge de la fața grinzii peretelui TV (15) până la fața grinzii peretelui N (580), ca în A.05. Legenda A.05 scrie «grosime 10 cm»; D-09 și secțiunile dau 7 cm."
+     "nota": "Marginea e o bucată verticală de gips-carton de la placă până la fața tavanului fals (243). Planul ei e la 15 cm în fața grinzii GR-V. Merge de la fața grinzii peretelui TV (15) până la fața grinzii peretelui N (580), ca în A.05. Legenda A.05 scrie «grosime 10 cm»; D-09 și secțiunile dau 7 cm.",
+     "adanc": 434
     },
     {
      "id": "SC",
@@ -1561,7 +1570,9 @@ window.CAMERE["living"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "living.js peretele N (G1, 19,25 cm); A.31 și A.05 (zidăria N la 590, masca veche de 23 cm cu fața la 567); A.08 (lanțul de cote 35 + 80 + 180 + 87 + 100 + 70 până la 567)",
-     "nota": "Fața la 590 − 19,25 = ~570,75 de colț (cu masca veche din A.05/A.08: 567). Între 580 și 590 îmbracă grinda peretelui N (10 cm). În dreptul stâlpului ST-NV o vedem în secțiune, până la zidăria N (590). La capăt urcă până la placă, ca să închidă scafa (de confirmat). Aici se opresc draperia și banda M1."
+     "nota": "Fața la 590 − 19,25 = ~570,75 de colț (cu masca veche din A.05/A.08: 567). Între 580 și 590 îmbracă grinda peretelui N (10 cm). În dreptul stâlpului ST-NV o vedem în secțiune, până la zidăria N (590). La capăt urcă până la placă, ca să închidă scafa (de confirmat). Aici se opresc draperia și banda M1.",
+     "adanc": 310,
+     "vedereaPrincipala": "N"
     },
     {
      "id": "G10",
@@ -1604,7 +1615,8 @@ window.CAMERE["living"] = {
      "stare": "proiect",
      "sursa": "A.29 D03' (vederea acestei laturi); A.16 (205,2 + 36,8); A.01 și A.08 (50 de la peretele TV)",
      "nota": "Vedem latura de 50 cm a măștii de pe peretele TV (adâncă de 100 cm pe acel perete). PAL H1775 Nuc Parona pe gips-carton RF și silicat de calciu 30 mm. Pe această latură: golul lateral al șemineului, ~39 × 48 cm, la x ~11–50 și h 65–113 (A.29 D03'). Detaliile sunt pe peretele TV.",
-     "finisaj": "nuc"
+     "finisaj": "nuc",
+     "vedereaPrincipala": "S"
     },
     {
      "id": "SD",
@@ -1635,7 +1647,8 @@ window.CAMERE["living"] = {
      "stare": "de-verificat",
      "detaliu": "D-09",
      "sursa": "A.06 (marcajul M, de la x ≈ 50 până la colțul N); A.02/A.05 D-09 (profilul pe placă, lângă marginea tavanului fals); Hue Flux (decizia din 29.10.2026)",
-     "nota": "Profil S3 (23,5 × 10 mm) lipit de placa de beton la 12,6–15 cm de grindă, ascuns după marginea tavanului fals; lumina cade pe draperie. Lungime utilă ~520,75 cm, nu 580: ~31 de segmente de 16,6 cm = kitul de 4 m (24) + 7 segmente din restul de la M2. Se măsoară după ce se fac măștile M11 și G1. D-09 scrie LED 3000K; decizia e Hue Flux color."
+     "nota": "Profil S3 (23,5 × 10 mm) lipit de placa de beton la 12,6–15 cm de grindă, ascuns după marginea tavanului fals; lumina cade pe draperie. Lungime utilă ~520,75 cm, nu 580: ~31 de segmente de 16,6 cm = kitul de 4 m (24) + 7 segmente din restul de la M2. Se măsoară după ce se fac măștile M11 și G1. D-09 scrie LED 3000K; decizia e Hue Flux color.",
+     "adanc": 2.4
     },
     {
      "id": "P1",
@@ -1866,7 +1879,8 @@ window.CAMERE["living"] = {
      "x": 230,
      "h": 300
     },
-    "nota": "Fața de jos a plăcilor la 7 cm sub placa de beton (D-09, A.15, A.16), adică la ~243 cm de la pardoseala finită (A.16: 250 cm până la placă). Se oprește la scafă (x = 15, cotat) și la fețele grinzilor: peretele TV (h = 15), peretele cu biroul (x = 449, A.01), peretele cu M12 (h = 580). Între grinzi sunt 565 cm (A.15 D02). A.05 hașurează până la pereți și scrie «grosime 10 cm»; secțiunile arată 7 cm."
+    "nota": "Fața de jos a plăcilor la 7 cm sub placa de beton (D-09, A.15, A.16), adică la ~243 cm de la pardoseala finită (A.16: 250 cm până la placă). Se oprește la scafă (x = 15, cotat) și la fețele grinzilor: peretele TV (h = 15), peretele cu biroul (x = 449, A.01), peretele cu M12 (h = 580). Între grinzi sunt 565 cm (A.15 D02). A.05 hașurează până la pereți și scrie «grosime 10 cm»; secțiunile arată 7 cm.",
+    "adanc": 7
    },
    {
     "id": "SC",
@@ -1880,7 +1894,8 @@ window.CAMERE["living"] = {
     "stare": "proiect",
     "detaliu": "D-09",
     "sursa": "A.05 (cota 15); A.02 și A.05, detaliul D-09 (1:5)",
-    "nota": "Fanta dintre fața grinzii de deasupra ferestrelor (x = 0) și marginea tavanului fals (x = 15). Marginea e o bucată verticală de gips-carton (~1,2 cm) de la placă până la fața tavanului fals. În fantă, prinse de placa de beton: șina de draperie la 4 cm de grindă (4–10 cm, D-09) și banda M1 lipită de marginea tavanului fals. Lungimea utilă pentru draperie și bandă: de la masca D03 (h = 50) până la masca G1 (h ≈ 567), ~517 cm."
+    "nota": "Fanta dintre fața grinzii de deasupra ferestrelor (x = 0) și marginea tavanului fals (x = 15). Marginea e o bucată verticală de gips-carton (~1,2 cm) de la placă până la fața tavanului fals. În fantă, prinse de placa de beton: șina de draperie la 4 cm de grindă (4–10 cm, D-09) și banda M1 lipită de marginea tavanului fals. Lungimea utilă pentru draperie și bandă: de la masca D03 (h = 50) până la masca G1 (h ≈ 567), ~517 cm.",
+    "adanc": 7
    },
    {
     "id": "GR1",
@@ -1894,7 +1909,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.05 (linia întreruptă la 15 cm de perete); A.15 D02 (secțiune 25 × 45 cm); A.16",
-    "nota": "Grindă existentă, lată ~25 cm, din care ~15 cm în cameră; coboară ~45 cm sub placă, cu fața de jos la ~205 cm de la pardoseală (măsurat pe A.15 și A.16, 1:20). Tavanul fals se oprește la fața ei. Sub grindă, peretele TV e retras între x = 50 și 399; la 0–50 și 399–449 zidăria e la fața grinzii (A.05). Unitatea AC se prinde pe fața ei (A.07)."
+    "nota": "Grindă existentă, lată ~25 cm, din care ~15 cm în cameră; coboară ~45 cm sub placă, cu fața de jos la ~205 cm de la pardoseală (măsurat pe A.15 și A.16, 1:20). Tavanul fals se oprește la fața ei. Sub grindă, peretele TV e retras între x = 50 și 399; la 0–50 și 399–449 zidăria e la fața grinzii (A.05). Unitatea AC se prinde pe fața ei (A.07).",
+    "adanc": 45
    },
    {
     "id": "GR2",
@@ -1908,7 +1924,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.01 (cota 449 de la grinda ferestrelor); A.05 (linia întreruptă); A.16 (secțiune 25 × 45 cm)",
-    "nota": "Grindă existentă, lată ~25 cm (449–474), din care ~18 cm în cameră; fața de jos la ~205 cm (A.16). Între stâlpii ST2 și ST1. Panoul de piatră de pe acest perete (205 cm, A.15 D02) și ușa spre hol se opresc sub ea. Masca peretelui are fața la ~454 (A.01: 449 + 5), deci grinda iese ~5 cm în fața măștii."
+    "nota": "Grindă existentă, lată ~25 cm (449–474), din care ~18 cm în cameră; fața de jos la ~205 cm (A.16). Între stâlpii ST2 și ST1. Panoul de piatră de pe acest perete (205 cm, A.15 D02) și ușa spre hol se opresc sub ea. Masca peretelui are fața la ~454 (A.01: 449 + 5), deci grinda iese ~5 cm în fața măștii.",
+    "adanc": 38
    },
    {
     "id": "GR3",
@@ -1923,7 +1940,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.05 (fața la h 580, zidăria la 590); A.01 (23 + 517 + 50 = 590); A.15 D02 (secțiune 25 × 45 cm, zidăria la 10 cm de fața grinzii)",
-    "nota": "Grindă existentă, lată ~25 cm, din care 10 cm în cameră; fața de jos la ~205 cm. Între x = 50 și 399 zidăria e retrasă la 590; la 0–50 și 399–449 zidăria e la fața grinzii (A.05). Acoperită de masca G1 (0–310) și ascunsă în spatele lui M12 (310–448,6). Tavanul fals se oprește la fața ei."
+    "nota": "Grindă existentă, lată ~25 cm, din care 10 cm în cameră; fața de jos la ~205 cm. Între x = 50 și 399 zidăria e retrasă la 590; la 0–50 și 399–449 zidăria e la fața grinzii (A.05). Acoperită de masca G1 (0–310) și ascunsă în spatele lui M12 (310–448,6). Tavanul fals se oprește la fața ei.",
+    "adanc": 38
    },
    {
     "id": "ST1",
@@ -1937,7 +1955,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.05 și A.06 (zid secționat, necotat); A.01 și A.15 D02 (55 de la zidăria peretelui cu M12)",
-    "nota": "Stâlp existent, ~18 × 55 cm în cameră (535–590). M12 se termină la 448,6 cm (A.15), lângă fața stâlpului: cei ~18,5 cm din A.15 până la zidăria peretelui cu biroul sunt acest stâlp (R14)."
+    "nota": "Stâlp existent, ~18 × 55 cm în cameră (535–590). M12 se termină la 448,6 cm (A.15), lângă fața stâlpului: cei ~18,5 cm din A.15 până la zidăria peretelui cu biroul sunt acest stâlp (R14).",
+    "adanc": 243
    },
    {
     "id": "ST2",
@@ -1951,7 +1970,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.05 și A.06 (zid secționat, necotat)",
-    "nota": "Stâlp existent, ~18 × 60 cm în cameră, lângă ușa spre hol (ușa la h ~60–150)."
+    "nota": "Stâlp existent, ~18 × 60 cm în cameră, lângă ușa spre hol (ușa la h ~60–150).",
+    "adanc": 243
    },
    {
     "id": "D03",
@@ -1965,7 +1985,8 @@ window.CAMERE["living"] = {
     "ascuns": true,
     "stare": "proiect",
     "sursa": "A.01 (100 și 50); A.16 și A.29, detaliul D03",
-    "nota": "Merge până la 242 cm, la 1 cm sub tavanul fals (A.16). Aici se opresc draperia și banda M1 la sud. Între grinda TV (h = 15) și fața măștii (h = 50) fanta scafei trece deasupra măștii; planșele nu arată cum se închide. Detaliile sunt pe peretele TV."
+    "nota": "Merge până la 242 cm, la 1 cm sub tavanul fals (A.16). Aici se opresc draperia și banda M1 la sud. Între grinda TV (h = 15) și fața măștii (h = 50) fanta scafei trece deasupra măștii; planșele nu arată cum se închide. Detaliile sunt pe peretele TV.",
+    "adanc": 242.2
    },
    {
     "id": "G1",
@@ -1980,7 +2001,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.15 D01 (0–310); A.01 (23 de la zidărie); A.05 (fața la h ≈ 567, măsurat)",
-    "nota": "Aceeași mască e G1 pe peretele cu M12. A.01 și A.05 o desenează cu fața la ~567, adică 23 cm de zidăria peretelui (h = 590); acoperă grinda GR3. Cu adâncimea nouă din D-06 (~19,25 cm de la zidărie) fața poate ajunge la ~571. Aici se opresc draperia și banda M1 la nord."
+    "nota": "Aceeași mască e G1 pe peretele cu M12. A.01 și A.05 o desenează cu fața la ~567, adică 23 cm de zidăria peretelui (h = 590); acoperă grinda GR3. Cu adâncimea nouă din D-06 (~19,25 cm de la zidărie) fața poate ajunge la ~571. Aici se opresc draperia și banda M1 la nord.",
+    "adanc": 243
    },
    {
     "id": "J",
@@ -2124,7 +2146,8 @@ window.CAMERE["living"] = {
     "stare": "de-verificat",
     "detaliu": "D-09",
     "sursa": "A.02/A.05 D-09 (profilul la marginea tavanului fals); A.06 (marcajul M, ~55–565); specs/04 (29.10.2026); specs/06 G7",
-    "nota": "Hue Flux în profil S3 (23,5 × 10 mm, alb, bare de 2 m), lipit de placa de beton, lângă marginea tavanului fals; lumina cade pe draperie. Lungime utilă ~517 cm (de la D03 la G1): ~31 de segmente (~515 cm) = kitul de 4 m (24) + 7 segmente din restul de la M2. Se măsoară după ce se fac măștile. Sursa se bagă în priza dublă de după perdea (G7); cablul vine prin tub (TB-M1)."
+    "nota": "Hue Flux în profil S3 (23,5 × 10 mm, alb, bare de 2 m), lipit de placa de beton, lângă marginea tavanului fals; lumina cade pe draperie. Lungime utilă ~517 cm (de la D03 la G1): ~31 de segmente (~515 cm) = kitul de 4 m (24) + 7 segmente din restul de la M2. Se măsoară după ce se fac măștile. Sursa se bagă în priza dublă de după perdea (G7); cablul vine prin tub (TB-M1).",
+    "adanc": 1
    },
    {
     "id": "CB-M1",
@@ -2172,7 +2195,8 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.07 (poziția, măsurat pe desen); A.16 și A.29, D03 (zona de 36,8 cm din capul măștii)",
-    "nota": "Între ~205 și 242 cm de la pardoseală, prinsă pe fața grinzii GR1. Aerul trece prin rândul de găuri Ø3 cm din fața măștii D03 (A.16, A.29). Se leagă direct la doză (A.07). Doza, traseul țevilor și scurgerea condensului până la unitatea exterioară (pe fațadă, lângă colțul cu peretele TV, A.07) nu sunt desenate."
+    "nota": "Între ~205 și 242 cm de la pardoseală, prinsă pe fața grinzii GR1. Aerul trece prin rândul de găuri Ø3 cm din fața măștii D03 (A.16, A.29). Se leagă direct la doză (A.07). Doza, traseul țevilor și scurgerea condensului până la unitatea exterioară (pe fațadă, lângă colțul cu peretele TV, A.07) nu sunt desenate.",
+    "adanc": 37
    }
   ],
   "avertismente": [
