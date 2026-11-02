@@ -273,10 +273,13 @@
       else [e.h, e.h + e.inalt].forEach(hh => linie(g, e.x, H - hh, e.x + e.lat, H - hh, a.stroke, a['stroke-width']).setAttribute('stroke-dasharray', a['stroke-dasharray']));
     },
     // "sticla": true = ușă cu geam (ușa de balcon): rama de ~6 cm, cu geamul în interior
+    // „foaie”: { lat, inalt } = foaia ușii, centrată în dreptunghi; restul e tocul și pervazul
     usa(g, e, H) {
       rect(g, e.x, 0, e.lat, e.inalt, H, { fill: '#f3f0ea', stroke: '#4b4b4b', 'stroke-width': 1.2 });
+      const fo = e.foaie, fx = fo ? e.x + (e.lat - fo.lat) / 2 : e.x, fl = fo ? fo.lat : e.lat, fi = fo ? fo.inalt : e.inalt;
+      if (fo) rect(g, fx, 0, fl, fi, H, { fill: '#faf8f4', stroke: '#4b4b4b', 'stroke-width': 1 });
       if (e.sticla) { const r = Math.min(6, e.lat / 8); rect(g, e.x + r, r, e.lat - 2 * r, e.inalt - 2 * r, H, { fill: '#dce9f4', stroke: '#4b4b4b', 'stroke-width': .8 }); }
-      el('path', Object.assign({ d: `M${e.x},${H} L${e.x + e.lat / 2},${H - e.inalt} L${e.x + e.lat},${H}`, fill: 'none', stroke: '#777', 'stroke-width': .8, 'stroke-dasharray': '6 4' }, NSS), g);
+      el('path', Object.assign({ d: `M${fx},${H} L${fx + fl / 2},${H - fi} L${fx + fl},${H}`, fill: 'none', stroke: '#777', 'stroke-width': .8, 'stroke-dasharray': '6 4' }, NSS), g);
     },
     // "canaturi": câte geamuri are fereastra (implicit 2, cu montantul la mijloc); 1 = un singur geam
     fereastra(g, e, H) {

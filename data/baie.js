@@ -14,9 +14,10 @@ window.CAMERE["baie"] = {
   "nota": "Înălțimea liberă: 250 cm, placa de beton (A.01, Hu 2,50; A.27 B01: 87 + 163 = 250 în dreptul lavoarului). Baia nu are tavan fals decât deasupra dușului: caseta TF1, cu fața la 225 cm (A.27 B02 și B03: 225 și 25)."
  },
  "revizie": {
-  "nr": 1,
+  "nr": 2,
   "data": "2026-11-02",
   "modificari": [
+   "Revizia 2: vasul WC și clapeta sunt negre, iar lavoarul e desenat încorporat în blatul placat cu faianță. Ușa (U1) are foaia de 60 cm, ca ușa cumpărată (02.11.2026).",
    "Prima versiune: pereții și planul tavanului."
   ]
  },
@@ -424,8 +425,12 @@ window.CAMERE["baie"] = {
      "inalt": 203.7,
      "pozitie": "aprox",
      "stare": "de-verificat",
-     "sursa": "A.27 B04 (22,5 de la fața faianței, adică 23 de la zid, cotat; pervazul 79,4 × 203,7 și foaia 66,4 × 197,2, măsurat); A.03 (golul la 66–138 cm de zidul de vest, măsurat); desene/data/hol.js (U6)",
-     "nota": "Golul din zidărie: 72 × 200 cm, de la 23 la 95 cm de colț. Tocul de 4 cm e în gol, pe ambele laturi; pervazul de 3,7 cm urcă până la 203,7. Se deschide spre baie, cu balamalele spre colțul de est (A.03, A.05, A.06, A.28)."
+     "sursa": "A.27 B04 (22,5 de la fața faianței, adică 23 de la zid, cotat; pervazul 79,4 × 203,7 și foaia 66,4 × 197,2, măsurat); A.03 (golul la 66–138 cm de zidul de vest, măsurat); desene/data/hol.js (U6); foaia de 60: ușile cumpărate (02.11.2026)",
+     "nota": "Golul din zidărie: 72 × 200 cm, de la 23 la 95 cm de colț. Tocul de 4 cm e în gol, pe ambele laturi; pervazul de 3,7 cm urcă până la 203,7. Se deschide spre baie, cu balamalele spre colțul de est (A.03, A.05, A.06, A.28). Foaia are 60 cm: ușile cumpărate pentru băi (02.11.2026). Cu tocul de 4 cm pe fiecare parte, ușa are ~68 cm la exterior; golul de ~72 din planșe lasă ~2 cm pe fiecare parte pentru montaj. Releveul din 2021 dă 65: dacă golul real e de 65, ușa nu încape și golul trebuie lărgit cu ~3–5 cm. Se măsoară golul înainte de montaj.",
+     "foaie": {
+      "lat": 60,
+      "inalt": 196
+     }
     },
     {
      "id": "M08",

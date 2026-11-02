@@ -14,9 +14,10 @@ window.CAMERE["gs"] = {
   "nota": "Fără tavan fals: placa la 250 cm (A.01: Hu 2,50 m în eticheta GS; A.05 nu hașurează GS-ul; A.25 desenează pereții de la pardoseală la placă)."
  },
  "revizie": {
-  "nr": 1,
+  "nr": 2,
   "data": "2026-11-02",
   "modificari": [
+   "Revizia 2: vasul WC, clapeta și bateria sunt negre, iar lavoarul e desenat sub blatul placat cu faianță. Ușa (U1) are foaia de 60 cm, ca ușa cumpărată; deschisă, ajunge la ~51 cm de perete (02.11.2026).",
    "Prima versiune: cei 4 pereți și planul tavanului, din A.01, A.03–A.06, A.08, A.10 și A.24–A.26.",
    "Peretele cu WC-ul e într-o singură vedere, ca în A.25 (B06): treapta de 10 cm dintre mască și spalet e explicată în avertismente.",
    "Peretele cu ușa (B08) nu are vedere în A.25: faianța de pe el e propunerea noastră."
@@ -849,8 +850,12 @@ window.CAMERE["gs"] = {
      "inalt": 203.7,
      "pozitie": "aprox",
      "stare": "de-verificat",
-     "sursa": "A.24 (golul 40–112 de la peretele lavoarului, tocul 4 cm, foaia 64, pervazul 3,7 cm de fiecare parte; măsurat la 1:10); A.25 B07 și B05 (golul până la 200, pervazul până la 203,7); A.01, A.06; hol.js U5",
-     "nota": "Aceeași ușă cu U5 din hol. Golul din zidărie: 72 cm (40–112 de la colțul S-V), 200 cm înălțime. Tocul de 4 cm e în gol, foaia are 64 × ~196 cm. Se deschide spre GS, cu balamalele pe latura de nord (la 108 cm de colț); deschisă, foaia stă paralel cu peretele de nord, la ~9 cm de el, și ajunge la ~55 cm de acest perete. Pervazul are 3,7 cm de fiecare parte a golului și ~1,9 cm grosime."
+     "sursa": "A.24 (golul 40–112 de la peretele lavoarului, tocul 4 cm, foaia 64, pervazul 3,7 cm de fiecare parte; măsurat la 1:10); A.25 B07 și B05 (golul până la 200, pervazul până la 203,7); A.01, A.06; hol.js U5; foaia de 60: ușile cumpărate (02.11.2026)",
+     "nota": "Aceeași ușă cu U5 din hol. Golul din zidărie: 72 cm (40–112 de la colțul S-V), 200 cm înălțime. Tocul de 4 cm e în gol, foaia are 60 × ~196 cm. Se deschide spre GS, cu balamalele pe latura de nord (la 108 cm de colț); deschisă, foaia stă paralel cu peretele de nord, la ~9 cm de el, și ajunge la ~51 cm de acest perete. Pervazul are 3,7 cm de fiecare parte a golului și ~1,9 cm grosime. Foaia are 60 cm: ușile cumpărate pentru băi (02.11.2026). Cu tocul de 4 cm pe fiecare parte, ușa are ~68 cm la exterior; golul de ~72 din planșe lasă ~2 cm pe fiecare parte pentru montaj. Releveul din 2021 dă 65: dacă golul real e de 65, ușa nu încape și golul trebuie lărgit cu ~3–5 cm. Se măsoară golul înainte de montaj.",
+     "foaie": {
+      "lat": 60,
+      "inalt": 196
+     }
     },
     {
      "id": "P1",
@@ -950,7 +955,7 @@ window.CAMERE["gs"] = {
     },
     {
      "nivel": "info",
-     "text": "Golul ușii: ~72 cm în A.01, A.06 și A.24 (necotat), cu foaia de 64 cm; releveul din 2021 dă 65 cm (HL20). Ușa se deschide spre GS: deschisă, foaia ajunge la ~55 cm de acest perete, iar vasul WC începe la ~80 cm (A.03), deci între ele rămân ~25 cm.",
+     "text": "Golul ușii: ~72 cm în A.01, A.06 și A.24 (necotat), iar ușa cumpărată are foaia de 60 cm (02.11.2026); releveul din 2021 dă 65 cm (HL20). Ușa se deschide spre GS: deschisă, foaia ajunge la ~51 cm de acest perete, iar vasul WC începe la ~80 cm (A.03), deci între ele rămân ~29 cm.",
      "sursa": "A.01, A.03, A.24; releveul; analiza/11 HL20",
      "ids": [
       "U1"

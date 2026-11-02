@@ -14,9 +14,10 @@ window.CAMERE["hol"] = {
   "nota": "Înălțimea liberă sub tavanul fals: 243 cm (placa la 250, tavan fals de 7 cm), după detaliul hol din A.05, singura cotă. A.17 și A.18 desenează fața la 242, iar legenda A.05 scrie 10 cm (fața la 240): de confirmat cu arhitecta (L6). Sub grinda GR1 rămân 205 cm."
  },
  "revizie": {
-  "nr": 4,
+  "nr": 5,
   "data": "2026-11-02",
   "modificari": [
+   "Revizia 5: ușile băii (U6) și GS-ului (U5) au foaia de 60 cm, ca ușile cumpărate; foaia e desenată în gol (02.11.2026).",
    "Revizia 4: lamelele RF1 acoperă acum lățimea grinzii GR1 și merg până la oglindă (x 312–360, 48 cm, 10 lamele), în loc de 17,3 cm cu 4 lamele. Sub grindă se opresc la fața ei de jos, la ~205 (02.11.2026).",
    "Masca țevii de gaz M06 (panoul din PAL Nuc Parona de la grindă) scoasă: țeava de gaz trece prin nișa din tavan și nu se mai vede (decizia din 02.11.2026). Plintele G7 și G8 devin o singură plintă, G7, de la ușa bucătăriei la ușa GS.",
    "Atenționare nouă la ușa spre bucătărie (U4): planul bucătăriei din 10/2026 mută golul cu 7,1 cm spre intrare (BC2).",
@@ -76,8 +77,12 @@ window.CAMERE["hol"] = {
      "inalt": 203.7,
      "pozitie": "aprox",
      "stare": "de-verificat",
-     "sursa": "A.05 și A.06 (golul x 59–131 în plan, tocul de 4 cm, foaia ~64 cm; necotat); A.17 D04 și D05 (golul până la 200 cm, pervazul până la 203,7); releveul (ușa existentă 65 × 205)",
-     "nota": "Golul din zidărie: 72 cm (de la 63 la 135 cm de colț) și 200 cm înălțime de la pardoseala finită (A.17). Tocul de 4 cm e în gol, pe ambele laturi. Pervazul e desenat ca la ușile din A.17 D04: ~3,7 cm de fiecare parte a golului, până la 203,7 cm. Se deschide spre baie, cu balamalele pe latura de est (A.06). Pe latura de vest dulapul M07 ajunge până la gol; pe latura de est întrerupătorul IH e la 6,5 cm de colț."
+     "sursa": "A.05 și A.06 (golul x 59–131 în plan, tocul de 4 cm, foaia ~64 cm; necotat); A.17 D04 și D05 (golul până la 200 cm, pervazul până la 203,7); releveul (ușa existentă 65 × 205); foaia de 60: ușile cumpărate (02.11.2026)",
+     "nota": "Golul din zidărie: 72 cm (de la 63 la 135 cm de colț) și 200 cm înălțime de la pardoseala finită (A.17). Tocul de 4 cm e în gol, pe ambele laturi. Pervazul e desenat ca la ușile din A.17 D04: ~3,7 cm de fiecare parte a golului, până la 203,7 cm. Se deschide spre baie, cu balamalele pe latura de est (A.06). Pe latura de vest dulapul M07 ajunge până la gol; pe latura de est întrerupătorul IH e la 6,5 cm de colț. Foaia are 60 cm: ușile cumpărate pentru băi (02.11.2026). Cu tocul de 4 cm pe fiecare parte, ușa are ~68 cm la exterior; golul de ~72 din planșe lasă ~2 cm pe fiecare parte pentru montaj. Releveul din 2021 dă 65: dacă golul real e de 65, ușa nu încape și golul trebuie lărgit cu ~3–5 cm. Se măsoară golul înainte de montaj.",
+     "foaie": {
+      "lat": 60,
+      "inalt": 196
+     }
     },
     {
      "id": "I1",
@@ -242,8 +247,12 @@ window.CAMERE["hol"] = {
      "inalt": 203.7,
      "pozitie": "aprox",
      "stare": "de-verificat",
-     "sursa": "A.17 D04 (pervazul 435,2–514,6 și 203,7; foaia 64 × 196; necotat); A.01 și A.06 (golul 438,9–510,9, măsurat; sensul de deschidere); releveul din 2021 (65 × 205)",
-     "nota": "Golul din zidărie ~438,9–510,9 (72 cm) în A.01; releveul scrie 65 × 205. Foaia ~64 cm. Se deschide spre GS, cu balamalele în stânga (spre oglindă). Între lamela RF2 și pervaz rămân ~2,8 cm: un pervaz mai lat de 5 cm atinge lamela."
+     "sursa": "A.17 D04 (pervazul 435,2–514,6 și 203,7; foaia 64 × 196; necotat); A.01 și A.06 (golul 438,9–510,9, măsurat; sensul de deschidere); releveul din 2021 (65 × 205); foaia de 60: ușile cumpărate (02.11.2026)",
+     "nota": "Golul din zidărie ~438,9–510,9 (72 cm) în A.01; releveul scrie 65 × 205. În A.17 foaia are ~64 cm. Se deschide spre GS, cu balamalele în stânga (spre oglindă). Între lamela RF2 și pervaz rămân ~2,8 cm: un pervaz mai lat de 5 cm atinge lamela. Foaia are 60 cm: ușile cumpărate pentru băi (02.11.2026). Cu tocul de 4 cm pe fiecare parte, ușa are ~68 cm la exterior; golul de ~72 din planșe lasă ~2 cm pe fiecare parte pentru montaj. Releveul din 2021 dă 65: dacă golul real e de 65, ușa nu încape și golul trebuie lărgit cu ~3–5 cm. Se măsoară golul înainte de montaj.",
+     "foaie": {
+      "lat": 60,
+      "inalt": 196
+     }
     },
     {
      "id": "TF1",
