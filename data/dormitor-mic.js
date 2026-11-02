@@ -14,9 +14,10 @@ window.CAMERE["dormitor-mic"] = {
   "nota": "Sub tavanul fals de 7 cm (decizia D26, 02.11.2026): ~243 cm, ca în living; placa la ~250 cm. Arhitecta nu a proiectat camera: cotele sunt din releveul din 2021 și din analiza/06 v3. Înălțimea se măsoară în 4 puncte."
  },
  "revizie": {
-  "nr": 1,
+  "nr": 2,
   "data": "2026-11-02",
   "modificari": [
+   "Revizia 2: dulapul M13 are 120 cm (avea 80), cu unitatea AC în compartimentul de sus, în spatele capacului perforat M13-C; consola M14 are 260 cm (avea 280), iar televizorul e centrat pe ea. Traseul AC spre unitatea exterioară de pe fațadă (02.11.2026).",
    "Prima versiune: cei 4 pereți și planul tavanului, din releveul din 2021 (495 × 256), din cele două randări din 02.11.2026 și din propunerea din analiza/06 v3, acceptată pe 02.11.2026 (D26).",
    "Camera nu are proiect de la arhitectă. Tot ce nu e în releveu e propunere: mobilierul M13, M14, M15, riflajul RF1, tavanul fals, scafa, șina SM, benzile L1–L3 și prizele.",
    "Față de randări: consola începe la 105 cm de colțul ușii, ca ușa să se deschidă la 90°; tăblia patului se sprijină pe stâlpul din colț, care lipsește din randări."
@@ -403,7 +404,7 @@ window.CAMERE["dormitor-mic"] = {
   {
    "id": "S",
    "nume": "Peretele TV",
-   "subtitlu": "consola suspendată M14 cu banda L3, televizorul, dulapul M13 · locul liber pentru foaia ușii",
+   "subtitlu": "consola suspendată M14 cu banda L3, televizorul, dulapul M13 cu aerul condiționat în capul lui · locul liber pentru foaia ușii",
    "lungime": 495,
    "origine": "colțul S-E, cu peretele cu ușa (fața zidăriei)",
    "etapa": 1,
@@ -438,7 +439,7 @@ window.CAMERE["dormitor-mic"] = {
      "tip": "plinta",
      "nume": "Plintă duropolimer 8 cm",
      "x": 0,
-     "lat": 415,
+     "lat": 375,
      "h": 0,
      "inalt": 8,
      "stare": "propunere",
@@ -451,23 +452,23 @@ window.CAMERE["dormitor-mic"] = {
      "tip": "corp",
      "nume": "Consola TV suspendată M14",
      "x": 105,
-     "lat": 280,
+     "lat": 260,
      "h": 20,
      "inalt": 35,
      "adanc": 40,
      "finisaj": "bej",
      "fronturi": [
       {
-       "lat": 70
+       "lat": 65
       },
       {
-       "lat": 70
+       "lat": 65
       },
       {
-       "lat": 70
+       "lat": 65
       },
       {
-       "lat": 70
+       "lat": 65
       }
      ],
      "inFata": [
@@ -477,8 +478,8 @@ window.CAMERE["dormitor-mic"] = {
      ],
      "pozitie": "aprox",
      "stare": "propunere",
-     "sursa": "randările din 02.11.2026 (design/dormitor_mic.jpeg, dormitor_mic2.jpeg); analiza/06 v3 și decizia D26 (02.11.2026) (D-DM2, D-DM8)",
-     "nota": "U156 Bej nisip mat, ca M10-C din living. Patru fronturi push de ~70 cm, fără mâner. Suspendată la h ~20 (35 cm înălțime, 40 cm adâncime). Începe la 105 cm de colțul S-E: pe primii ~90 cm stă foaia ușii U1, deschisă."
+     "sursa": "randările din 02.11.2026 (design/dormitor_mic.jpeg, dormitor_mic2.jpeg); analiza/06 v3 și decizia D26 (02.11.2026) (D-DM2, D-DM8); M13 lărgit la 120 cm (02.11.2026)",
+     "nota": "U156 Bej nisip mat, ca M10-C din living. Patru fronturi push de 65 cm, fără mâner. Suspendată la h ~20 (35 cm înălțime, 40 cm adâncime). Începe la 105 cm de colțul S-E (pe primii ~90 cm stă foaia ușii U1, deschisă) și se oprește la 10 cm de dulapul M13. Avea 280 cm; are 260, ca M13 să fie mai lat."
     },
     {
      "id": "L3",
@@ -486,20 +487,20 @@ window.CAMERE["dormitor-mic"] = {
      "tip": "banda-led",
      "nume": "Banda LED de sub consolă",
      "x": 107,
-     "lat": 276,
+     "lat": 256,
      "h": 18.5,
      "inalt": 1.5,
      "ascuns": true,
      "stare": "propunere",
      "sursa": "randările din 02.11.2026 (design/dormitor_mic.jpeg, dormitor_mic2.jpeg); analiza/06 v3 și decizia D26 (02.11.2026)",
-     "nota": "COB 24 V 3000K CRI90 în profil, ~276 cm, sub consolă. Cablul de 24 V vine prin tavanul fals și printr-un tub pe perete, de la sursa Push-DIM de lângă scafă."
+     "nota": "COB 24 V 3000K CRI90 în profil, ~256 cm, sub consolă. Cablul de 24 V vine prin tavanul fals și printr-un tub pe perete, de la sursa Push-DIM de lângă scafă."
     },
     {
      "id": "P5",
      "strat": "electric",
      "tip": "priza",
      "nume": "Priză triplă în spatele consolei (aparate)",
-     "x": 330,
+     "x": 310,
      "h": 40,
      "punct": true,
      "pozitie": "aprox",
@@ -512,7 +513,7 @@ window.CAMERE["dormitor-mic"] = {
      "strat": "mobila",
      "tip": "tv",
      "nume": "Televizorul (55\", dimensiunile propuse)",
-     "x": 133.5,
+     "x": 173.5,
      "lat": 123,
      "h": 80,
      "inalt": 71,
@@ -531,7 +532,7 @@ window.CAMERE["dormitor-mic"] = {
      "strat": "electric",
      "tip": "priza",
      "nume": "2 prize + priză TV + priză de date, în spatele televizorului",
-     "x": 195,
+     "x": 235,
      "h": 115,
      "punct": true,
      "pozitie": "aprox",
@@ -544,7 +545,7 @@ window.CAMERE["dormitor-mic"] = {
      "strat": "electric",
      "tip": "tub",
      "nume": "Tub pentru cablurile televizorului, până în spatele consolei",
-     "x": 193,
+     "x": 233,
      "lat": 4,
      "h": 45,
      "inalt": 65,
@@ -556,11 +557,11 @@ window.CAMERE["dormitor-mic"] = {
      "id": "M13",
      "strat": "mobila",
      "tip": "dulap",
-     "nume": "Dulapul înalt M13",
-     "x": 415,
-     "lat": 80,
+     "nume": "Dulapul înalt M13: corpul cu două uși",
+     "x": 375,
+     "lat": 120,
      "h": 0,
-     "inalt": 243,
+     "inalt": 198,
      "adanc": 60,
      "fronturi": [
       {
@@ -568,11 +569,11 @@ window.CAMERE["dormitor-mic"] = {
        "tip": "lateral"
       },
       {
-       "lat": 38.2,
+       "lat": 58.2,
        "tip": "lemn"
       },
       {
-       "lat": 38.2,
+       "lat": 58.2,
        "tip": "lemn"
       },
       {
@@ -582,8 +583,115 @@ window.CAMERE["dormitor-mic"] = {
      ],
      "pozitie": "aprox",
      "stare": "propunere",
-     "sursa": "randările din 02.11.2026 (design/dormitor_mic.jpeg, dormitor_mic2.jpeg); analiza/06 v3 și decizia D26 (02.11.2026) (D-DM2, D-DM4)",
-     "nota": "Două uși, până la tavanul fals (243). PAL H1775 ST12 Nuc Parona, ca M10 din living. Adâncime 60 cm; 55 dacă ușa de balcon U2 are balamalele spre S (se verifică pe teren)."
+     "sursa": "randările din 02.11.2026 (design/dormitor_mic.jpeg, dormitor_mic2.jpeg); analiza/06 v3 și decizia D26 (02.11.2026) (D-DM2, D-DM4); lărgit la 120 cm (02.11.2026)",
+     "nota": "Două uși de ~58 cm, până la h 198; deasupra e compartimentul aerului condiționat (M13-C). PAL H1775 ST12 Nuc Parona, ca M10 din living. Adâncime 60 cm; 55 dacă ușa de balcon U2 are balamalele spre S (se verifică pe teren). Avea 80 cm lățime."
+    },
+    {
+     "id": "M13-C",
+     "strat": "mobila",
+     "tip": "mobilier",
+     "nume": "Capacul perforat al compartimentului AC, în capul dulapului M13",
+     "x": 375,
+     "lat": 120,
+     "h": 198,
+     "inalt": 45,
+     "adanc": 60,
+     "finisaj": "nuc",
+     "inFata": [
+      "AC",
+      "D2",
+      "TB2",
+      "BL"
+     ],
+     "pozitie": "aprox",
+     "stare": "propunere",
+     "sursa": "cererea din 02.11.2026 (AC în capul dulapului, cu front perforat)",
+     "nota": "Panoul de sus al dulapului, între h 198 și 243, pe toată lățimea. Se demontează (clipsuri, sau rabatabil cu balamalele jos), ca să se ajungă la filtrele unității AC și la racorduri. Același PAL ca M13."
+    },
+    {
+     "id": "PF",
+     "strat": "mobila",
+     "tip": "perforatii",
+     "nume": "Perforațiile din capacul M13-C: Ø 3 cm la ~4 cm",
+     "x": 379,
+     "lat": 112,
+     "h": 202,
+     "inalt": 37,
+     "n": 28,
+     "randuri": 9,
+     "diam": 3,
+     "inFata": [
+      "AC",
+      "D2",
+      "TB2",
+      "BL"
+     ],
+     "pozitie": "aprox",
+     "stare": "propunere",
+     "sursa": "cererea din 02.11.2026; calculul suprafeței libere",
+     "nota": "9 rânduri × 28 de găuri Ø 3 cm, la ~4 cm între axe, pe 112 × 37 cm: ~43% din zona perforată e gol (~1.780 cm²). Suprafața liberă minimă se ia din manualul unității alese; dacă nu ajunge, găurile se pun mai des sau se fac fante. În living (M11-C) sunt doar 9 găuri: aceeași întrebare."
+    },
+    {
+     "id": "AC",
+     "strat": "electric",
+     "tip": "ac",
+     "nume": "Unitatea interioară AC, în compartimentul de sus al dulapului M13",
+     "x": 385,
+     "lat": 80,
+     "h": 205,
+     "inalt": 29,
+     "adanc": 20,
+     "ascuns": true,
+     "pozitie": "aprox",
+     "in": "M13-C",
+     "stare": "propunere",
+     "sursa": "cererea din 02.11.2026; dimensiuni de split tipic de 2,5 kW (9.000 BTU)",
+     "nota": "Modelul nu e ales: desenat ca un split tipic de 2,5 kW pentru 12,4 mp, ~80 × 29 × 20 cm, prins pe peretele TV, în spatele capacului perforat. E lăsat la ~30 cm de peretele cu fereastra, ca să nu cadă pe o eventuală grindă GR-V. Deasupra rămân ~9 cm pentru aspirație. Aerul iese spre birou, nu spre pat."
+    },
+    {
+     "id": "D2",
+     "strat": "electric",
+     "tip": "doza",
+     "nume": "Doza AC-ului, pe circuit separat",
+     "x": 472,
+     "h": 236,
+     "punct": true,
+     "pozitie": "aprox",
+     "in": "M13-C",
+     "stare": "propunere",
+     "sursa": "A.07 din living („unitățile se vor conecta direct la doză”); cererea din 02.11.2026",
+     "nota": "Doză cu capac în compartimentul de sus, lângă unitate, accesibilă prin capacul M13-C. Circuit separat din tabloul nou."
+    },
+    {
+     "id": "TB2",
+     "strat": "electric",
+     "tip": "tub",
+     "nume": "Traseul de freon, condens și cablu spre unitatea exterioară",
+     "x": 465,
+     "lat": 30,
+     "h": 212,
+     "inalt": 4,
+     "pozitie": "aprox",
+     "stare": "propunere",
+     "sursa": "cererea din 02.11.2026; specs/08 E",
+     "nota": "Din capătul unității spre colțul cu peretele cu fereastra și prin zidăria fațadei, spre unitatea exterioară UE. Condensul curge gravitațional, cu pantă spre exterior. Se pozează înainte de tavanul fals."
+    },
+    {
+     "id": "BL",
+     "strat": "mobila",
+     "tip": "mobilier",
+     "nume": "Placa despărțitoare din compartimentul AC (deflector)",
+     "x": 379,
+     "lat": 112,
+     "h": 215,
+     "inalt": 1.5,
+     "adanc": 40,
+     "ascuns": true,
+     "pozitie": "aprox",
+     "in": "M13-C",
+     "stare": "propunere",
+     "sursa": "practica pentru unitățile AC mascate; de confirmat cu firma de AC",
+     "nota": "O placă orizontală subțire în spatele capacului, între ieșirea aerului (jos, în fața unității) și aspirația de sus, ca aerul rece să nu fie aspirat înapoi în unitate. Poziția exactă după modelul ales."
     }
    ],
    "avertismente": [
@@ -604,7 +712,18 @@ window.CAMERE["dormitor-mic"] = {
       "P4",
       "TB1"
      ],
-     "text": "Televizorul e desenat de 55\" (123 × 71 cm). P4 și tubul TB1 se fixează după televizorul cumpărat și suportul lui, înainte de tencuială."
+     "text": "Televizorul e desenat de 55\" (123 × 71 cm), centrat pe consola de 260 cm. P4 și tubul TB1 se fixează după televizorul cumpărat și suportul lui, înainte de tencuială."
+    },
+    {
+     "nivel": "atentie",
+     "sursa": "cererea din 02.11.2026; specs/08 E; living.js AC",
+     "ids": [
+      "AC",
+      "M13-C",
+      "PF",
+      "BL"
+     ],
+     "text": "Unitatea AC din capul dulapului: modelul se alege înainte de comanda lui M13. Din manualul ei se iau spațiile libere din jur, suprafața liberă a capacului perforat (acum ~43%) și locul racordurilor. Capacul M13-C se demontează pentru filtre. Placa BL desparte aerul rece de cel aspirat."
     }
    ]
   },
@@ -649,7 +768,7 @@ window.CAMERE["dormitor-mic"] = {
      "lat": 60,
      "h": 0,
      "inalt": 243,
-     "adanc": 80,
+     "adanc": 120,
      "vedereaPrincipala": "S",
      "fronturi": [
       {
@@ -660,7 +779,7 @@ window.CAMERE["dormitor-mic"] = {
      "pozitie": "aprox",
      "stare": "propunere",
      "sursa": "randările din 02.11.2026 (design/dormitor_mic.jpeg, dormitor_mic2.jpeg); analiza/06 v3 și decizia D26 (02.11.2026)",
-     "nota": "Latura dulapului, lipită de zidărie. Se vede din față pe peretele TV."
+     "nota": "Latura dulapului (60 cm adâncime, 120 cm lățime), lipită de zidărie. În capul lui e unitatea AC; traseul de freon și condens trece prin zidăria de aici spre unitatea exterioară. Se vede din față pe peretele TV."
     },
     {
      "id": "U2",
@@ -718,6 +837,16 @@ window.CAMERE["dormitor-mic"] = {
      "inalt": 8,
      "stare": "propunere",
      "sursa": "analiza/06 v3 și decizia D26 (02.11.2026)"
+    },
+    {
+     "id": "UE",
+     "strat": "structura",
+     "tip": "ac",
+     "nume": "Unitatea exterioară AC, pe fațadă (în spatele acestui perete)",
+     "pozitie": "necunoscuta",
+     "stare": "de-verificat",
+     "sursa": "cererea din 02.11.2026; specs/08 E",
+     "nota": "Nu se vede din cameră. Balconul 9 e închis cu tâmplărie, deci unitatea nu stă în balcon: pe fațadă, lângă colțul cu peretele TV, unde ajunge traseul TB2 din dulapul M13. Montajul pe fațadă poate cere acordul asociației (D24)."
     },
     {
      "id": "GR-V",
@@ -797,6 +926,15 @@ window.CAMERE["dormitor-mic"] = {
       "M13"
      ],
      "text": "Grinda GR-V e dedusă din living. Dacă merge până la peretele TV, dulapul M13 are în spate o treaptă la h 205 (27 cm adâncime), ca masca din living. Se verifică pe teren înainte de comanda dulapului."
+    },
+    {
+     "nivel": "atentie",
+     "sursa": "cererea din 02.11.2026; analiza/08 D24; analiza/10",
+     "ids": [
+      "UE",
+      "M13"
+     ],
+     "text": "Unitatea exterioară AC nu poate sta în balconul 9, care e închis: aerul cald nu are pe unde ieși. Locul ei pe fațadă și acordul asociației se stabilesc odată cu unitatea livingului (D24). Gaura prin zidărie se face înainte de glet; dacă traseul atinge grinda GR-V sau un stâlp, doar cu acordul unui inginer de structură."
     },
     {
      "nivel": "info",

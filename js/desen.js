@@ -258,10 +258,14 @@
       el('path', { d, fill: 'url(#g-flacara)', opacity: .9 }, g);
       el('rect', Object.assign({ x: x0 + w * .1, y: jos - 1.2, width: w * .8, height: 1.2, fill: '#5b5b5b' }, NSS), g);
     },
+    // găuri pe un rând (n) sau pe mai multe (randuri), distribuite egal pe lățime și pe înălțime
     perforatii(g, e, H) {
-      const n = e.n || 1, r = (e.diam || 3) / 2, pas = n > 1 ? (e.lat - 2 * r) / (n - 1) : 0, cy = H - e.h - e.inalt / 2;
+      const n = e.n || 1, m = e.randuri || 1, r = (e.diam || 3) / 2, pas = n > 1 ? (e.lat - 2 * r) / (n - 1) : 0, pasV = m > 1 ? (e.inalt - 2 * r) / (m - 1) : 0;
       rect(g, e.x, e.h, e.lat, e.inalt, H, { fill: 'transparent' });
-      for (let i = 0; i < n; i++) el('circle', { cx: e.x + r + i * pas, cy, r, fill: '#2a2119' }, g);
+      for (let j = 0; j < m; j++) {
+        const cy = m > 1 ? H - e.h - r - j * pasV : H - e.h - e.inalt / 2;
+        for (let i = 0; i < n; i++) el('circle', { cx: e.x + r + i * pas, cy, r, fill: '#2a2119' }, g);
+      }
     },
     // cutie încastrată în perete (de exemplu suportul TV): se vede și peste televizor
     cutie(g, e, H) { rect(g, e.x, e.h, e.lat, e.inalt, H, { fill: '#fff', 'fill-opacity': .06, stroke: '#a1a1aa', 'stroke-width': 1.1, 'stroke-dasharray': '4 3' }); },
