@@ -41,37 +41,84 @@ header.cap #subtitlu { color:var(--muted); }
 /* ---------------------------------------------------------------- aplicația: bară, comenzi, desen, panou */
 .app { height:100vh; height:100dvh; display:flex; flex-direction:column; }
 
-.bara { display:flex; align-items:center; gap:8px; padding:7px 10px 7px 6px; min-height:52px; background:var(--surface); border-bottom:1px solid var(--border); }
-.titluri { flex:1; min-width:0; display:flex; flex-direction:column; }
-.titluri h1 { margin:0; font-size:16px; line-height:1.3; color:var(--heading); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+/* o singură bară sus. Pe calculator: înapoi, planul, camera, filele pereților, straturile, revizia, ajutorul și tiparul.
+   Pe telefon: înapoi, butonul cu peretele ales (deschide lista pereților), straturile și meniul „mai mult”. */
+.bara { display:flex; align-items:center; gap:8px; min-height:52px; padding:5px 10px 5px 6px; background:var(--surface); border-bottom:1px solid var(--border); }
+.titluri { flex:none; min-width:0; display:flex; flex-direction:column; }
+.titluri h1 { margin:0; font-size:16px; line-height:1.3; color:var(--heading); white-space:nowrap; }
 .titluri h1 .sep { color:var(--muted); font-weight:400; margin:0 2px; }
-.titluri #subtitlu { font-size:12.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.titluri #subtitlu, .h1-perete { display:none; }
+.bara-spatiu { flex:1 1 0; min-width:0; }
 .chip-meta { font-size:12px; color:var(--muted); background:var(--surface-2); border:1px solid var(--border); border-radius:999px; padding:3px 10px; white-space:nowrap; }
 .buton-icon { display:inline-grid; place-items:center; width:36px; height:36px; flex:none; border-radius:9px; border:1px solid transparent; background:transparent; color:var(--text); cursor:pointer; text-decoration:none; }
 .buton-icon:hover { background:var(--surface-2); border-color:var(--border); }
+.doar-ingust, .alege-perete, .sb-scurt { display:none; }
 
-.comenzi { display:flex; align-items:center; gap:8px 14px; padding:7px 12px; background:var(--surface); border-bottom:1px solid var(--border); }
-.mini-plan { width:52px; height:58px; flex:none; border-radius:6px; overflow:hidden; }
-.mini-plan svg { width:100%; height:100%; display:block; }
-.mini-plan .activ { cursor:pointer; }
+.mini-plan { width:40px; height:44px; flex:none; border-radius:6px; overflow:hidden; }
+.mini-plan svg, .ap-plan svg, .mp-plan svg { width:100%; height:100%; display:block; }
+.mini-plan .activ, .mp-plan .activ { cursor:pointer; }
 .segmente { display:flex; gap:2px; padding:3px; min-width:0; overflow-x:auto; scrollbar-width:none; background:var(--surface-2); border:1px solid var(--border); border-radius:10px; }
-.segmente::-webkit-scrollbar, .chips::-webkit-scrollbar { display:none; }
-.segmente button { border:0; background:transparent; border-radius:7px; padding:6px 12px; font-size:13.5px; font-weight:600; color:var(--muted); cursor:pointer; white-space:nowrap; }
+.segmente::-webkit-scrollbar { display:none; }
+.segmente button { display:inline-flex; align-items:center; flex:none; border:0; background:transparent; border-radius:7px; padding:6px 12px; font-size:13.5px; font-weight:600; color:var(--muted); cursor:pointer; white-space:nowrap; }
 .segmente button:hover:not(:disabled):not(.on) { color:var(--text); }
 .segmente button.on { background:var(--surface); color:var(--heading); box-shadow:0 1px 2px rgba(0,0,0,.14); }
 .segmente button:disabled { cursor:default; opacity:.6; font-weight:500; }
 .segmente small { font-size:11px; font-weight:400; margin-left:5px; }
-.variante { display:flex; align-items:center; gap:8px; min-width:0; }
+#pereti { flex:0 1 auto; }
+.tab-pasi { display:inline-grid; place-items:center; width:15px; height:15px; margin-left:6px; border-radius:50%; background:var(--accent); color:var(--surface); }
+.tab-pasi .ic { width:7px; height:7px; margin-left:1px; fill:currentColor; stroke:none; }
+.straturi-btn { flex:none; padding:6px 10px; white-space:nowrap; }
+.straturi-btn .ic { width:16px; height:16px; }
+.straturi-btn.partial { border-color:color-mix(in srgb, var(--atentie) 55%, var(--border)); color:var(--atentie); background:var(--atentie-soft); }
+
+/* butonul „Alege peretele” (telefon): planul mic, numele peretelui și camera, cu poziția în listă */
+.alege-perete { flex:0 1 auto; margin-right:auto; min-width:0; align-items:center; gap:8px; min-height:44px; padding:3px 6px; border:0; border-radius:10px; background:transparent; text-align:left; cursor:pointer; }
+.alege-perete:hover { background:var(--surface-2); }
+.ap-plan { flex:none; width:32px; height:36px; border-radius:5px; overflow:hidden; pointer-events:none; }
+.ap-text { flex:1; min-width:0; display:flex; flex-direction:column; }
+.ap-text b { font-size:15px; line-height:1.25; color:var(--heading); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.ap-text small { font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.alege-perete > .ic { flex:none; width:16px; height:16px; color:var(--muted); }
+
+/* meniurile din bară */
+.meniu-fundal { position:fixed; inset:0; z-index:29; background:transparent; }
+.meniu-fundal.intunecat { background:rgba(20,15,10,.3); }
+.meniu-fundal[hidden], .meniu[hidden] { display:none; }
+.meniu { position:fixed; z-index:30; min-width:250px; max-width:calc(100vw - 16px); overflow-y:auto; overscroll-behavior:contain; padding:6px; background:var(--surface); border:1px solid var(--border); border-radius:12px; box-shadow:0 12px 36px rgba(0,0,0,.2); }
+.meniu-cap { display:flex; align-items:baseline; gap:8px; padding:6px 10px 6px; font-size:11.5px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.meniu-cap small { font-size:11.5px; font-weight:400; text-transform:none; letter-spacing:0; }
+.meniu-rand, .strat-rand { display:flex; align-items:center; gap:10px; width:100%; min-height:44px; padding:8px 10px; border:0; border-radius:8px; background:transparent; color:var(--text); text-align:left; font-size:14px; cursor:pointer; }
+.meniu-rand:hover, .strat-rand:hover { background:var(--surface-2); }
+.meniu-rand .ic { color:var(--muted); }
+.meniu-rand.toate { justify-content:center; margin-top:2px; border-top:1px solid var(--border); border-radius:0 0 8px 8px; color:var(--accent); font-weight:600; }
+.strat-rand i { flex:none; width:14px; height:14px; border-radius:4px; border:2px solid var(--c); }
+.strat-rand.on i { background:var(--c); }
+.strat-rand .sr-nume { flex:1; }
+.strat-rand:not(.on) .sr-nume { color:var(--muted); }
+.strat-rand .sr-n { color:var(--muted); font-size:12.5px; font-variant-numeric:tabular-nums; }
+.strat-rand .ic { visibility:hidden; color:var(--ok); }
+.strat-rand.on .ic { visibility:visible; }
+.meniu-pereti { width:min(500px, calc(100vw - 16px)); padding:8px; }
+.mp-corp { display:grid; grid-template-columns:92px minmax(0, 1fr); gap:10px; align-items:start; }
+.mp-plan { position:sticky; top:0; width:92px; height:100px; }
+.mp-lista { list-style:none; margin:0; padding:0; display:grid; gap:2px; }
+.mp-rand { display:flex; flex-direction:column; align-items:flex-start; gap:1px; width:100%; min-height:48px; padding:7px 10px; border:0; border-radius:9px; background:transparent; color:var(--text); text-align:left; cursor:pointer; }
+.mp-rand:hover:not(:disabled) { background:var(--surface-2); }
+.mp-rand.on { background:var(--accent-soft); box-shadow:inset 3px 0 0 var(--accent); }
+.mp-rand:disabled { opacity:.55; cursor:default; }
+.mp-nume { font-weight:600; color:var(--heading); }
+.mp-sub { font-size:12.5px; line-height:1.35; color:var(--muted); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.mp-pasi { display:flex; flex-wrap:wrap; gap:4px; margin-top:4px; }
+.tag-pasi { display:inline-flex; align-items:center; gap:3px; padding:0 8px 0 6px; border-radius:999px; background:var(--accent); color:var(--surface); font-size:11.5px; font-weight:700; line-height:20px; white-space:nowrap; }
+.tag-pasi .ic { width:9px; height:9px; fill:currentColor; stroke:none; }
+
+/* variantele (de ex. poziția panoului 2) stau pe desen, jos în stânga; peste hârtie, deci cu culori deschise */
+.variante { position:absolute; left:12px; bottom:12px; z-index:2; display:flex; align-items:center; gap:8px; max-width:calc(100% - 84px); padding:4px 4px 4px 10px; background:#fffdfa; border:1px solid #d8d2c7; border-radius:12px; box-shadow:var(--umbra); }
 .variante[hidden] { display:none; }
-.var-et { font-size:12px; font-weight:600; color:var(--atentie); white-space:nowrap; }
-.variante .segmente button { padding:5px 10px; font-size:12.5px; }
-.variante .segmente button.on { color:var(--atentie); box-shadow:0 0 0 1px color-mix(in srgb, var(--atentie) 50%, transparent), 0 1px 2px rgba(0,0,0,.14); }
-.chips { display:flex; gap:6px; margin-left:auto; min-width:0; overflow-x:auto; scrollbar-width:none; }
-.chip { display:inline-flex; align-items:center; gap:6px; flex:none; border:1px dashed var(--border); background:transparent; border-radius:999px; padding:5px 11px 5px 9px; font-size:13px; color:var(--muted); cursor:pointer; white-space:nowrap; }
-.chip i { width:10px; height:10px; border-radius:3px; border:1.5px solid var(--c); }
-.chip .n { font-size:11.5px; color:var(--muted); font-variant-numeric:tabular-nums; }
-.chip.on { border-style:solid; border-color:color-mix(in srgb, var(--c) 45%, var(--border)); background:color-mix(in srgb, var(--c) 10%, var(--surface)); color:var(--text); font-weight:600; }
-.chip.on i { background:var(--c); }
+.var-et { min-width:0; overflow:hidden; text-overflow:ellipsis; font-size:12px; font-weight:600; color:#b45309; white-space:nowrap; }
+.variante .segmente { flex:none; background:#f1ece4; border-color:#e0d8cb; }
+.variante .segmente button { padding:5px 10px; font-size:12.5px; color:#6d635a; }
+.variante .segmente button.on { background:#fff; color:#b45309; box-shadow:0 0 0 1px rgba(180,83,9,.5), 0 1px 2px rgba(0,0,0,.14); }
 
 .lucru { flex:1; min-height:0; display:grid; grid-template-columns:minmax(0, 1fr) 380px; background:var(--hartie); }
 .desen-cutie { position:relative; min-width:0; min-height:0; overflow:hidden; background:var(--hartie); }
@@ -110,7 +157,10 @@ header.cap #subtitlu { color:var(--muted); }
 
 /* ---------------------------------------------------------------- fișa elementului și distanțele */
 .selectie { margin-bottom:16px; }
-.selectie.gol p { margin:0; padding:10px 12px; border:1px dashed var(--border); border-radius:10px; color:var(--muted); font-size:13px; }
+.selectie.gol { padding:10px 12px; border:1px dashed var(--border); border-radius:10px; font-size:13px; color:var(--muted); }
+.selectie.gol p { margin:0; }
+.selectie.gol p b { color:var(--heading); }
+.selectie.gol .indiciu { margin-top:6px; }
 .fisa { padding:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; box-shadow:var(--umbra); }
 .fisa-cap { display:flex; align-items:flex-start; gap:10px; }
 .fisa-cap > .badge { margin-top:2px; }
@@ -223,6 +273,19 @@ dialog::backdrop { background:rgba(20,15,10,.45); }
 .t-sel { color:var(--sel); font-weight:600; }
 .t-intre { color:var(--intre); font-weight:600; }
 
+/* ---------------------------------------------------------------- pașii de montaj ai peretelui (în panou și în foaia închisă) */
+.pasi-perete:empty, .pasi-foaie { display:none; }
+#pasi-lista { margin:2px 0 12px; }
+.pp-titlu { margin:0 0 6px; font-size:11.5px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.pp-carduri { display:flex; flex-direction:column; gap:6px; }
+.pp-card { flex:1 1 0; min-width:0; display:flex; align-items:center; gap:10px; min-height:52px; padding:7px 12px 7px 8px; border:1px solid color-mix(in srgb, var(--accent) 45%, var(--border)); border-radius:12px; background:var(--accent-soft); color:var(--text); text-align:left; cursor:pointer; }
+.pp-card:hover { border-color:var(--accent); }
+.pp-semn { display:grid; place-items:center; flex:none; width:34px; height:34px; border-radius:50%; background:var(--accent); color:var(--surface); }
+.pp-semn .ic { width:14px; height:14px; margin-left:2px; fill:currentColor; stroke:none; }
+.pp-text { display:flex; flex-direction:column; min-width:0; }
+.pp-text b { font-size:13.5px; line-height:1.3; color:var(--heading); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.pp-text small { font-size:12px; line-height:1.3; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
 /* ---------------------------------------------------------------- acțiunile fișei, banda de măsurare, fila Șantier */
 .fisa-actiuni { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 4px; }
 .fisa-actiuni .buton { flex:1 1 auto; justify-content:center; min-height:40px; }
@@ -324,6 +387,10 @@ dialog.pasi[open] { display:flex; }
   .rz-sageata .ic { transition:transform .2s; }
   .panou[data-stare="mare"] .rz-sageata .ic { transform:rotate(180deg); }
   .selectie.gol { display:none; }
+  .pasi-foaie { display:block; padding:0 12px 10px; }
+  .panou[data-stare="mare"] .pasi-foaie, .panou.cu-selectie .pasi-foaie { display:none; }
+  .pasi-foaie .pp-carduri { flex-direction:row; }
+  .pasi-foaie .pp-titlu { margin-bottom:5px; }
 }
 @media screen and (max-width: 760px) {
   dialog.pasi { width:100vw; height:100dvh; border:0; border-radius:0; }
@@ -344,18 +411,42 @@ dialog.pasi[open] { display:flex; }
   .ps-link { padding:7px 9px; }
 }
 @media screen and (max-width: 640px) {
-  .bara { padding:6px 6px 6px 2px; min-height:48px; gap:4px; }
-  .titluri h1 { font-size:15px; }
-  .titluri #subtitlu, .chip-meta { display:none; }
-  .comenzi { flex-wrap:wrap; gap:6px 8px; padding:6px 10px; }
-  .mini-plan { width:36px; height:42px; }
-  .segmente { flex:1; }
-  .segmente button { padding:6px 9px; font-size:13px; }
-  .chips { margin-left:0; width:100%; }
-  .variante { width:100%; }
-  .variante .segmente { flex:none; }
-  .chip { padding:4px 10px 4px 8px; }
   .zoom { right:8px; bottom:8px; }
+  .variante { left:8px; bottom:8px; }
+}
+
+/* ---------------------------------------------------------------- bara compactă: ecran îngust sau telefon pe orizontală */
+.bara.strans > .mini-plan, .bara.strans .titluri, .bara.strans #pereti, .bara.strans .bara-spatiu { display:none; }
+.bara.strans .alege-perete { display:flex; }
+@media screen and (max-width: 1199px) { .chip-meta { display:none; } }
+@media screen and (max-width: 899px), screen and (orientation: landscape) and (max-height: 500px) {
+  .bara { gap:2px; min-height:52px; padding:4px 4px 4px 2px; }
+  .bara > .mini-plan, .bara .titluri, #pereti, .bara-spatiu, .chip-meta, .doar-lat, .sb-lung, .straturi-btn > .ic:last-child { display:none; }
+  .alege-perete { display:flex; }
+  .doar-ingust { display:inline-grid; }
+  .sb-scurt { display:inline; font-variant-numeric:tabular-nums; }
+  .bara .buton-icon { width:44px; height:44px; }
+  .straturi-btn { gap:5px; min-height:44px; padding:0 10px; border-radius:12px; }
+  .straturi-btn .ic { width:18px; height:18px; }
+}
+@media screen and (max-width: 380px) {
+  .mp-corp { grid-template-columns:64px minmax(0, 1fr); gap:6px; }
+  .mp-plan { width:64px; height:72px; }
+}
+
+/* ---------------------------------------------------------------- telefon pe orizontală: panoul trece în dreapta
+   Foaia de jos ar lăsa desenului prea puțin pe înălțime; în dreapta, desenul ia toată înălțimea de sub bară. */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .app { padding-left:env(safe-area-inset-left); padding-right:env(safe-area-inset-right); }
+  .lucru { display:grid; grid-template-columns:minmax(0, 1fr) min(340px, 42vw); }
+  .panou { flex:none; border-top:0; border-left:1px solid var(--border); border-radius:0; box-shadow:none; padding-bottom:env(safe-area-inset-bottom); }
+  .panou[data-stare] .panou-corp { display:block; padding:10px 12px 20px; }
+  .rezumat-bara, .pasi-foaie { display:none !important; }
+  .selectie.gol { display:block; }
+  .meniu-pereti { width:min(620px, calc(100vw - 16px)); }
+  .file { gap:0; padding:0 8px; }
+  .file button { gap:4px; padding:9px 5px; }
+  .mp-lista { grid-template-columns:repeat(2, minmax(0, 1fr)); }
 }
 
 /* ---------------------------------------------------------------- pagina aplicației nu derulează
@@ -380,7 +471,9 @@ dialog.pasi[open] { display:flex; }
   :root { --bg:#fff; --surface:#fff; --surface-2:#f2f2f2; --border:#ccc; --text:#000; --muted:#444; --heading:#000; --hartie:#fff; --atentie:#9a4a00; --atentie-soft:#fff; color-scheme:light; }
   body { font-size:11px; }
   .app { display:block; height:auto; }
-  .comenzi, .panou, .zoom, .tooltip, .banda-masura, .bara .buton-icon, .nu-print, dialog { display:none !important; }
+  .panou, .zoom, .tooltip, .banda-masura, .bara .buton-icon, .bara > .mini-plan, #pereti, .bara-spatiu, .alege-perete, .straturi-btn, .meniu, .meniu-fundal, .variante, .nu-print, dialog { display:none !important; }
+  .titluri, .titluri #subtitlu, .h1-perete { display:revert; }
+  .titluri { display:flex; flex:1; }
   .doar-print { display:revert; }
   .bara { min-height:0; padding:4px 8px; border:1px solid #000; }
   .titluri { flex-direction:row; flex-wrap:wrap; align-items:baseline; gap:2px 12px; }

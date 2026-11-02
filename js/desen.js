@@ -59,13 +59,19 @@
     sus: ic('<path d="M6 15l6-6 6 6"/>'),
     mesaj: ic('<path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12z"/>'),
     reda: ic('<path d="M7 5l12 7-12 7z"/>'),
+    mai: ic('<circle cx="5.5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18.5" cy="12" r="1.3"/>'),
+    straturi: ic('<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/>'),
+    jos: ic('<path d="M6 9l6 6 6-6"/>'),
+    bifa: ic('<path d="M5 12.5l4.5 4.5L19 7.5"/>'),
+    revizie: ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
   };
 
   const f = n => (Math.round(n * 100) / 100).toString().replace('.', ',');
   // vedere: 'tot' (tot peretele), 'sel' (încadrat pe selecție) sau 'liber' (mutat de utilizator); contează la redimensionare
   // masura: modul „Măsoară”: primul element ales e punctul de pornire, următorul ales dă distanța
+  // meniu: meniul deschis din bară ('pereti', 'straturi', 'mai') sau null
   const S = { cam: null, per: null, viz: {}, sel: [], masura: false, view: null, vedere: 'tot', dim: null, print: false, svg: null, fitS: 1, raf: 0,
-    panou: 'mic', cauta: '', selPanou: '', var: {} };
+    panou: 'mic', cauta: '', selPanou: '', var: {}, meniu: null };
   // adresa publică a desenelor, pentru linkurile trimise echipei
   const SITE = 'https://tatarigacristian.github.io/renovare-desene/';
 
@@ -1044,7 +1050,12 @@
     const box = document.getElementById('selectie'), sel = S.sel.map(gaseste).filter(Boolean);
     box.className = 'selectie' + (sel.length ? '' : ' gol');
     box.innerHTML = sel.length === 1 ? fisaHtml(sel[0]) : sel.length === 2 ? intreHtml(sel[0], sel[1])
-      : '<p>Alege un element pe desen sau din listă: apar cotele lui. „Măsoară” din fișa lui dă distanța până la alt element.</p>';
+      : `<p><b>${esc(S.per.nume)}</b> · ${esc(S.per.subtitlu)}</p>
+         <p class="indiciu">Alege un element pe desen sau din listă: apar cotele lui. „Măsoară” din fișa lui dă distanța până la alt element.</p>`;
+    const pp = pasiPereteHtml();
+    document.getElementById('pasi-foaie').innerHTML = pp;
+    document.getElementById('pasi-lista').innerHTML = pp;
+    document.getElementById('panou').classList.toggle('cu-selectie', sel.length > 0);
     rezumat();
     banda();
     sincIstoric();
@@ -1053,6 +1064,20 @@
     const cheie = S.sel.join(',');
     if (cheie && cheie !== S.selPanou) document.getElementById('panou-corp').scrollTo({ top: 0, behavior: 'smooth' });
     S.selPanou = cheie;
+  }
+
+  // echipele care lucrează la un detaliu, din „cine” al pașilor („echipa de gips-carton, după…” → „gips-carton”)
+  const echipe = d => [...new Set(d.pasi.map(p => p.cine.split(/,| sau /)[0].trim().replace(/^echipa de /, ''))
+    .filter(c => !/^(toată echipa|noi|beneficiarul)$/.test(c)))];
+  // detaliile cu pași de pe peretele ales: în foaia închisă (telefon) și sus în fila Elemente
+  function pasiPereteHtml() {
+    const els = elemente().filter(pasiDetaliu), ids = [...new Set(els.map(e => e.detaliu))];
+    if (!ids.length) return '';
+    return `<div class="pp-titlu">Pași de montaj ${eTavan() ? 'pe tavan' : 'pe acest perete'}</div><div class="pp-carduri">${ids.map(id => {
+      const d = window.DETALII[id], n = window.Pasi.numar(id), cod = els.filter(e => e.detaliu === id).map(e => e.id);
+      return `<button type="button" class="pp-card" data-act="pasi" data-id="${esc(id)}" title="${esc(id)} — ${esc(d.nume)}: ${n} pași (${esc(cod.join(', '))})">
+        <span class="pp-semn">${ICON.reda}</span><span class="pp-text"><b>${esc(id)} · ${esc(d.nume)}</b><small>${n} pași · ${esc(echipe(d).join(', '))} · ${esc(cod.join(', '))}</small></span></button>`;
+    }).join('')}</div>`;
   }
 
   // ---------------------------------------------------------------- lista elementelor și verificările
@@ -1169,42 +1194,112 @@
   }
 
   // ---------------------------------------------------------------- planul mic al camerei și pereții
-  function plan() {
-    const box = document.getElementById('plan'), cam = S.cam, W = cam.plan.latime, D = cam.plan.adancime, m = 50;
+  // Planul apare în trei locuri: în bară (calculator), în butonul „Alege peretele” (telefon) și în lista pereților.
+  // „activ”: pereții se aleg cu click pe plan. Fiecare plan are săgeata lui (id-urile din SVG trebuie să difere).
+  function desenPlan(box, activ) {
+    const cam = S.cam, W = cam.plan.latime, D = cam.plan.adancime, m = 50, sag = 'sag-' + box.id;
     box.textContent = '';
     const svg = el('svg', { viewBox: `${-m} ${-m} ${W + 2 * m} ${D + 2 * m}`, role: 'img', 'aria-label': `Planul camerei, peretele ales: ${S.per.nume}` }, box);
-    const mk = el('marker', { id: 'sag', viewBox: '0 0 10 10', refX: 5, refY: 5, markerWidth: 2.6, markerHeight: 2.6, orient: 'auto' }, el('defs', {}, svg));
+    const mk = el('marker', { id: sag, viewBox: '0 0 10 10', refX: 5, refY: 5, markerWidth: 2.6, markerHeight: 2.6, orient: 'auto' }, el('defs', {}, svg));
     el('path', { d: 'M0,0 L10,5 L0,10 z', fill: '#8a5a2b' }, mk);
-    const tav = vederi().find(v => v.tip === 'tavan');
+    const tav = activ && vederi().find(v => v.tip === 'tavan');
     const camera = el('rect', { x: 0, y: 0, width: W, height: D, fill: eTavan() ? '#e7d3bb' : '#fbfaf7', 'data-act': tav ? 'perete' : null, 'data-id': tav ? tav.id : null, class: tav ? 'activ' : null }, svg);
     if (tav) el('title', {}, camera, tav.nume);
     const Y = y => D - y;
     for (const p of cam.pereti) {
-      const [[ax, ay], [bx, by]] = p.plan, activ = p.etapa <= ETAPA, ales = p.id === S.per.id;
-      const g = el('g', { class: activ ? 'activ' : null, 'data-act': activ ? 'perete' : null, 'data-id': activ ? p.id : null }, svg);
-      el('title', {}, g, p.nume + (activ ? '' : ` (în lucru, etapa ${p.etapa})`));
-      el('line', { x1: ax, y1: Y(ay), x2: bx, y2: Y(by), stroke: ales ? '#8a5a2b' : activ ? '#6d635a' : '#a8a092', 'stroke-width': ales ? 64 : 34, 'stroke-linecap': 'square' }, g);
-      el('line', { x1: ax, y1: Y(ay), x2: bx, y2: Y(by), stroke: 'transparent', 'stroke-width': 120 }, g);
+      const [[ax, ay], [bx, by]] = p.plan, poate = activ && p.etapa <= ETAPA, ales = p.id === S.per.id;
+      const g = el('g', { class: poate ? 'activ' : null, 'data-act': poate ? 'perete' : null, 'data-id': poate ? p.id : null }, svg);
+      if (activ) el('title', {}, g, p.nume + (p.etapa <= ETAPA ? '' : ` (în lucru, etapa ${p.etapa})`));
+      el('line', { x1: ax, y1: Y(ay), x2: bx, y2: Y(by), stroke: ales ? '#8a5a2b' : p.etapa <= ETAPA ? '#6d635a' : '#a8a092', 'stroke-width': ales ? 64 : 34, 'stroke-linecap': 'square' }, g);
+      if (poate) el('line', { x1: ax, y1: Y(ay), x2: bx, y2: Y(by), stroke: 'transparent', 'stroke-width': 120 }, g);
     }
     // privitorul: din mijlocul camerei spre peretele ales; la tavan, un cerc cu punct (privirea în sus)
     const cx = W / 2, cy = D / 2;
     if (S.per.plan) {
       const [[ax, ay], [bx, by]] = S.per.plan, mx = (ax + bx) / 2, my = (ay + by) / 2, k = .55;
-      el('line', { x1: cx, y1: Y(cy), x2: cx + (mx - cx) * k, y2: Y(cy + (my - cy) * k), stroke: '#8a5a2b', 'stroke-width': 26, 'marker-end': 'url(#sag)' }, svg);
+      el('line', { x1: cx, y1: Y(cy), x2: cx + (mx - cx) * k, y2: Y(cy + (my - cy) * k), stroke: '#8a5a2b', 'stroke-width': 26, 'marker-end': `url(#${sag})` }, svg);
     }
     el('circle', { cx, cy: Y(cy), r: eTavan() ? 70 : 40, fill: '#fff', stroke: '#8a5a2b', 'stroke-width': 18 }, svg);
     if (eTavan()) el('circle', { cx, cy: Y(cy), r: 18, fill: '#8a5a2b' }, svg);
+  }
 
+  // codurile detaliilor cu pași de montaj de pe o vedere (toate variantele), pentru file și lista pereților
+  const detaliiVedere = p => [...new Set(p.elemente.filter(pasiDetaliu).map(e => e.detaliu))];
+  const tagPasi = id => `<span class="tag-pasi">${ICON.reda}${esc(id)}</span>`;
+
+  function plan() {
+    const v = vederi(), i = v.indexOf(S.per) + 1;
+    desenPlan(document.getElementById('plan'), true);
+
+    // pe calculator: filele pereților, cu ▶ la pereții care au pași de montaj
     const scurt = p => { const n = p.nume.replace(/^Peretele /, ''); return n[0].toUpperCase() + n.slice(1); };
-    document.getElementById('pereti').innerHTML = vederi().map(p => {
-      const activ = p.etapa <= ETAPA, ales = p.id === S.per.id;
+    document.getElementById('pereti').innerHTML = v.map(p => {
+      const activ = p.etapa <= ETAPA, ales = p.id === S.per.id, det = detaliiVedere(p);
       return `<button type="button" role="tab" aria-selected="${ales}" class="${ales ? 'on' : ''}" data-act="perete" data-id="${p.id}" ${activ ? '' : 'disabled'}
-        title="${esc(p.nume)} — ${activ ? esc(p.subtitlu) : 'în lucru (etapa ' + p.etapa + ')'}">${esc(scurt(p))}${activ ? '' : `<small>etapa ${p.etapa}</small>`}</button>`;
+        title="${esc(p.nume)} — ${activ ? esc(p.subtitlu) : 'în lucru (etapa ' + p.etapa + ')'}${det.length ? ' · pași de montaj: ' + esc(det.join(', ')) : ''}">${esc(scurt(p))}${det.length ? `<span class="tab-pasi" aria-label="are pași de montaj">${ICON.reda}</span>` : ''}${activ ? '' : `<small>etapa ${p.etapa}</small>`}</button>`;
     }).join('');
-    // pe telefon filele nu încap toate: banda se derulează până la fila aleasă
-    const on = document.querySelector('#pereti .on'), bara = on && on.parentElement;
-    if (bara && bara.scrollWidth > bara.clientWidth)
-      bara.scrollLeft += on.getBoundingClientRect().left - bara.getBoundingClientRect().left - (bara.clientWidth - on.offsetWidth) / 2;
+
+    // pe telefon: butonul cu peretele ales, care deschide lista pereților
+    document.getElementById('alege-perete').innerHTML = `<span id="plan-buton" class="ap-plan" aria-hidden="true"></span>
+      <span class="ap-text"><b>${esc(S.per.nume)}</b><small>${esc(S.cam.nume)} · ${i} din ${v.length}</small></span>${ICON.jos}`;
+    document.getElementById('alege-perete').title = `Alege peretele (${S.per.nume}, ${i} din ${v.length})`;
+    desenPlan(document.getElementById('plan-buton'), false);
+    document.getElementById('meniu-pereti').innerHTML = `<div class="meniu-cap">Alege peretele <small>${esc(S.cam.nume)} · ${v.length} vederi</small></div>
+      <div class="mp-corp"><div id="plan-meniu" class="mp-plan"></div><ul class="mp-lista">${v.map(p => {
+        const activ = p.etapa <= ETAPA, ales = p.id === S.per.id, det = detaliiVedere(p);
+        return `<li><button type="button" class="mp-rand${ales ? ' on' : ''}" data-act="perete" data-id="${p.id}" ${activ ? '' : 'disabled'} aria-current="${ales}">
+          <span class="mp-nume">${esc(p.nume)}</span><span class="mp-sub">${esc(activ ? p.subtitlu : 'în lucru, etapa ' + p.etapa)}</span>
+          ${det.length ? `<span class="mp-pasi">${det.map(tagPasi).join('')}</span>` : ''}</button></li>`;
+      }).join('')}</ul></div>`;
+    desenPlan(document.getElementById('plan-meniu'), true);
+  }
+
+  // Pe calculator, dacă filele pereților nu încap în bară (holul are 6 vederi), bara folosește butonul „Alege peretele”,
+  // ca pe telefon. Se verifică după ce bara are tot conținutul și la fiecare redimensionare.
+  function potrivesteBara() {
+    const bara = document.querySelector('.bara'), file = document.getElementById('pereti');
+    bara.classList.remove('strans');
+    if (file.offsetParent && file.scrollWidth > file.clientWidth + 1) bara.classList.add('strans');
+    aseazaMeniu();
+  }
+
+  // ---------------------------------------------------------------- meniurile din bară: pereții (telefon), straturile, „mai mult”
+  // Un singur meniu e deschis odată și are o intrare în istoric, deci „Înapoi” îl închide. Fundalul de sub meniu
+  // prinde atingerea din afară: ea închide meniul și nu ajunge la desen.
+  const butonMeniu = id => [...document.querySelectorAll(`[data-act="meniu"][data-id="${id}"]`)].find(b => b.offsetParent);
+  function deschideMeniu(id) {
+    const era = S.meniu;
+    if (era) ascundeMeniu();
+    if (era === id) return iesi('meniu');
+    const m = document.getElementById('meniu-' + id), b = butonMeniu(id), fundal = document.querySelector('.meniu-fundal');
+    if (!m || !b) return;
+    S.meniu = id;
+    m.hidden = false; fundal.hidden = false;
+    fundal.classList.toggle('intunecat', id === 'pereti');
+    b.setAttribute('aria-expanded', 'true');
+    aseazaMeniu();
+    intra('meniu', ascundeMeniu);
+    const prim = m.querySelector('button.on, button[aria-checked="true"], button:not(:disabled)');
+    if (prim) prim.focus({ preventScroll: true });
+  }
+  function ascundeMeniu() {
+    if (!S.meniu) return;
+    document.getElementById('meniu-' + S.meniu).hidden = true;
+    document.querySelector('.meniu-fundal').hidden = true;
+    document.querySelectorAll('[data-act="meniu"]').forEach(b => b.setAttribute('aria-expanded', 'false'));
+    S.meniu = null;
+  }
+  function inchideMeniu(apoi) { ascundeMeniu(); iesi('meniu', apoi); }
+  // meniul stă sub butonul lui: lista pereților la stânga, celelalte aliniate la dreapta butonului
+  function aseazaMeniu() {
+    if (!S.meniu) return;
+    const m = document.getElementById('meniu-' + S.meniu), b = butonMeniu(S.meniu);
+    if (!b) return ascundeMeniu();
+    const r = b.getBoundingClientRect(), bara = document.querySelector('.bara').getBoundingClientRect();
+    m.style.top = Math.round(bara.bottom + 6) + 'px';
+    if (S.meniu === 'pereti') { m.style.right = 'auto'; m.style.left = Math.max(8, Math.min(Math.round(r.left), innerWidth - m.offsetWidth - 8)) + 'px'; }
+    else { m.style.right = Math.max(8, Math.round(innerWidth - r.right)) + 'px'; m.style.left = 'auto'; }
+    m.style.maxHeight = Math.round(innerHeight - bara.bottom - 14) + 'px';
   }
 
   // ---------------------------------------------------------------- variantele (de ex. poziția panoului 2, R10)
@@ -1218,12 +1313,20 @@
   }
 
   // ---------------------------------------------------------------- straturi, legendă, antet
+  // meniul straturilor: fiecare rând arată sau ascunde un strat; numărul e câte elemente are stratul pe acest perete
   function comenziStraturi() {
-    document.getElementById('straturi').innerHTML = straturiCamera().map(s => {
-      const n = elemente().filter(e => e.strat === s.id).length;
-      return `<button type="button" class="chip${S.viz[s.id] ? ' on' : ''}" style="--c:${s.culoare}" data-act="strat" data-id="${s.id}" aria-pressed="${!!S.viz[s.id]}"
-        title="${esc(s.nume)}: ${S.viz[s.id] ? 'ascunde' : 'arată'}"><i></i>${esc(s.scurt)}<span class="n">${n}</span></button>`;
-    }).join('');
+    const st = straturiCamera(), vazute = st.filter(s => S.viz[s.id]).length;
+    document.getElementById('straturi').innerHTML = st.map(s => {
+      const n = elemente().filter(e => e.strat === s.id).length, on = !!S.viz[s.id];
+      return `<button type="button" class="strat-rand${on ? ' on' : ''}" style="--c:${s.culoare}" data-act="strat" data-id="${s.id}" role="menuitemcheckbox" aria-checked="${on}"
+        title="${esc(s.nume)}: ${on ? 'ascunde' : 'arată'}"><i></i><span class="sr-nume">${esc(s.nume)}</span><span class="sr-n">${n}</span>${ICON.bifa}</button>`;
+    }).join('') + (vazute < st.length ? '<button type="button" class="meniu-rand toate" data-act="straturi-toate">Arată toate straturile</button>' : '');
+    const b = document.getElementById('buton-straturi');
+    b.classList.toggle('partial', vazute < st.length);
+    b.title = `Straturile de pe desen: ${vazute} din ${st.length} arătate`;
+    b.setAttribute('aria-label', b.title);
+    b.innerHTML = `${ICON.straturi}<span class="sb-lung">Straturi · ${vazute} din ${st.length}</span><span class="sb-scurt">${vazute < st.length ? vazute + '/' + st.length : vazute}</span>${ICON.jos}`;
+    if (S.per) potrivesteBara();
   }
   function salveaza() { localStorage.setItem(LS + 'straturi', JSON.stringify({ viz: S.viz, var: S.var })); }
 
@@ -1243,7 +1346,7 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     const cam = S.cam, p = S.per, r = cam.revizie, data = r.data.split('-').reverse().join('.');
     document.title = `${cam.nume} — ${p.nume}`;
     document.body.classList.toggle('vedere-tavan', eTavan());
-    document.getElementById('titlu').innerHTML = `${esc(cam.nume)}<span class="sep"> / </span>${esc(p.nume)}`;
+    document.getElementById('titlu').innerHTML = `${esc(cam.nume)}<span class="sep"> / </span><span class="h1-perete">${esc(p.nume)}</span>`;
     const v = p.variante, opt = v && v.optiuni.find(o => o.id === varAleasa());
     document.getElementById('subtitlu').textContent = p.subtitlu + (opt ? ` · ${v.nume}: ${opt.nume}` : '');
     document.getElementById('meta').innerHTML = `Revizia ${r.nr} · ${data}<span class="doar-print"> · cote în cm · scara 1:${scara()} (A3 orizontal)</span>`;
@@ -1253,6 +1356,7 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     document.querySelectorAll('.referinte').forEach(d => { d.innerHTML = ref; });
     document.querySelectorAll('.legenda').forEach(d => { d.innerHTML = legendaHtml(); });
     document.getElementById('modificari').innerHTML = `<b>Ce s-a schimbat în revizia ${r.nr}:</b> ${r.modificari.map(esc).join(' ')}`;
+    document.getElementById('meta-meniu').textContent = `Revizia ${r.nr} · ${data}: ce s-a schimbat`;
     const ma = document.getElementById('modificari-ajutor');
     if (ma) ma.innerHTML = `<b>Revizia ${r.nr}, ${data}.</b> ${r.modificari.map(esc).join(' ')}`;
   }
@@ -1266,7 +1370,7 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     history.replaceState(history.state, '', '#' + id);
     S.sel = []; S.masura = false; S.cauta = '';
     document.getElementById('cauta').value = '';
-    antet(); plan(); comenziVariante(); comenziStraturi(); lista(); listaVerificari(); tabel(); panou(); potriveste();
+    antet(); plan(); comenziVariante(); comenziStraturi(); potrivesteBara(); lista(); listaVerificari(); tabel(); panou(); potriveste();
   }
 
   function tipar(da) {
@@ -1289,10 +1393,20 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     panou: () => seteazaPanou(S.panou === 'mic' ? 'mare' : 'mic'),
     perete: alegePerete,
     strat: id => { S.viz[id] = !S.viz[id]; salveaza(); comenziStraturi(); deseneaza(); lista(); tabel(); panou(); },
+    'straturi-toate': () => { straturiCamera().forEach(s => { S.viz[s.id] = true; }); salveaza(); comenziStraturi(); deseneaza(); lista(); tabel(); panou(); },
+    meniu: deschideMeniu,
+    'inchide-meniu': () => {},
     'zoom-plus': () => zoomCentru(1.4),
     'zoom-minus': () => zoomCentru(1 / 1.4),
     'zoom-tot': potriveste,
-    ajutor: () => { document.getElementById('dialog-ajutor').showModal(); intra('ajutor', () => document.getElementById('dialog-ajutor').close()); },
+    ajutor: unde => {
+      const dlg = document.getElementById('dialog-ajutor');
+      dlg.showModal();
+      intra('ajutor', () => dlg.close());
+      const t = unde === 'modificari' && document.getElementById('modificari-ajutor');
+      dlg.scrollTop = 0;
+      if (t) t.previousElementSibling.scrollIntoView({ block: 'start' });
+    },
     'inchide-dialog': () => document.getElementById('dialog-ajutor').close(),
     tipareste: () => { tipar(true); setTimeout(() => window.print(), 50); },
     pasi: id => deschidePasi(id),
@@ -1316,10 +1430,13 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     document.addEventListener('click', ev => {
       const b = ev.target.closest('[data-act]');
       if (!b || b.disabled || !ACTIUNI[b.dataset.act]) return;
-      ACTIUNI[b.dataset.act](b.dataset.id, ev);
+      const act = b.dataset.act, id = b.dataset.id;
+      if (S.meniu && !['meniu', 'strat', 'straturi-toate'].includes(act)) return inchideMeniu(() => ACTIUNI[act](id, ev));
+      ACTIUNI[act](id, ev);
     });
     document.addEventListener('keydown', ev => {
       if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.matches('[data-act][role="button"]')) { ev.preventDefault(); ev.target.click(); return; }
+      if (ev.key === 'Escape' && S.meniu) { const b = butonMeniu(S.meniu); inchideMeniu(); if (b) b.focus(); return; }
       if (ev.key === 'Escape' && !document.querySelector('dialog[open]')) {
         if (document.body.classList.contains('tabel-deschis')) inchideTabel();
         else if (S.masura && S.sel.length === 1) anuleazaMasura();
@@ -1330,11 +1447,12 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     dlg.addEventListener('click', ev => { if (ev.target === dlg) dlg.close(); });
     dlg.addEventListener('close', () => iesi('ajutor'));
     window.addEventListener('popstate', laPop);
+    window.addEventListener('resize', potrivesteBara);
     document.getElementById('cauta').addEventListener('input', ev => { S.cauta = ev.target.value; lista(); });
 
     initZoom(S.svg);
     initHover(S.svg);
-    antet(); plan(); comenziVariante(); comenziStraturi(); lista(); listaVerificari(); tabel(); seteazaPanou('mic'); panou(); potriveste();
+    antet(); plan(); comenziVariante(); comenziStraturi(); potrivesteBara(); lista(); listaVerificari(); tabel(); seteazaPanou('mic'); panou(); potriveste();
     // adresa curată (#PERETE); dacă linkul cere un pas de montaj, fereastra se deschide direct la el
     history.replaceState(null, '', '#' + S.per.id);
     if (cer.get('pasi')) deschidePasi(cer.get('pasi'), null, +cer.get('pas') || 0);

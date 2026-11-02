@@ -11,27 +11,36 @@
 <div class="app">
   <header class="bara">
     <a class="buton-icon" href="index.html" title="Toate camerele" aria-label="Toate camerele" data-icon="inapoi"></a>
+    <div id="plan" class="mini-plan"></div>
     <div class="titluri">
-      <h1 id="titlu">Hol</h1>
+      <h1 id="titlu">Bucătărie</h1>
       <span id="subtitlu"></span>
     </div>
+    <button type="button" id="alege-perete" class="alege-perete" data-act="meniu" data-id="pereti" aria-haspopup="dialog" aria-expanded="false" aria-controls="meniu-pereti"></button>
+    <div id="pereti" class="segmente" role="tablist" aria-label="Pereții camerei"></div>
+    <span class="bara-spatiu"></span>
+    <button type="button" id="buton-straturi" class="buton straturi-btn" data-act="meniu" data-id="straturi" aria-haspopup="true" aria-expanded="false" aria-controls="meniu-straturi"></button>
     <span id="meta" class="chip-meta"></span>
-    <button class="buton-icon" data-act="ajutor" data-icon="ajutor" title="Cum se folosește și legenda" aria-label="Cum se folosește"></button>
-    <button class="buton-icon" data-act="tipareste" data-icon="tipar" title="Tipărește pe A3, scara 1:20" aria-label="Tipărește"></button>
+    <button class="buton-icon doar-lat" data-act="ajutor" data-icon="ajutor" title="Cum se folosește și legenda" aria-label="Cum se folosește"></button>
+    <button class="buton-icon doar-lat" data-act="tipareste" data-icon="tipar" title="Tipărește pe A3, scara 1:20" aria-label="Tipărește"></button>
+    <button class="buton-icon doar-ingust" data-act="meniu" data-id="mai" data-icon="mai" title="Ajutorul, tiparul și revizia" aria-label="Mai mult" aria-haspopup="true" aria-expanded="false" aria-controls="meniu-mai"></button>
   </header>
 
-  <nav class="comenzi" aria-label="Peretele și straturile">
-    <div id="plan" class="mini-plan"></div>
-    <div id="pereti" class="segmente" role="tablist" aria-label="Pereții camerei"></div>
-    <div id="variante" class="variante" hidden></div>
-    <div id="straturi" class="chips" role="group" aria-label="Straturi afișate"></div>
-  </nav>
+  <div class="meniu-fundal" data-act="inchide-meniu" hidden></div>
+  <div id="meniu-pereti" class="meniu meniu-pereti" role="dialog" aria-label="Alege peretele" hidden></div>
+  <div id="meniu-straturi" class="meniu meniu-straturi" role="group" aria-label="Straturi afișate" hidden><div class="meniu-cap">Ce se vede pe desen</div><div id="straturi"></div></div>
+  <div id="meniu-mai" class="meniu meniu-mai" role="menu" aria-label="Mai mult" hidden>
+    <button type="button" class="meniu-rand" data-act="ajutor" role="menuitem" data-icon="ajutor">Cum se folosește și legenda</button>
+    <button type="button" class="meniu-rand" data-act="tipareste" role="menuitem" data-icon="tipar">Tipărește pe A3</button>
+    <button type="button" class="meniu-rand" data-act="ajutor" data-id="modificari" role="menuitem" data-icon="revizie"><span id="meta-meniu"></span></button>
+  </div>
 
   <main class="lucru">
     <div class="desen-cutie">
       <svg id="desen" xmlns="http://www.w3.org/2000/svg" aria-label="Desenul peretelui"></svg>
       <div id="eticheta-hover" class="tooltip" hidden></div>
       <div id="banda-masura" class="banda-masura" hidden aria-live="polite"></div>
+      <div id="variante" class="variante" hidden></div>
       <div class="zoom">
         <button data-act="zoom-plus" data-icon="plus" title="Mărește" aria-label="Mărește"></button>
         <button data-act="zoom-minus" data-icon="minus" title="Micșorează" aria-label="Micșorează"></button>
@@ -41,6 +50,7 @@
 
     <aside id="panou" class="panou" data-stare="mic">
       <div class="rezumat-bara"><button id="panou-rezumat" class="rezumat" data-act="panou" aria-expanded="false" aria-controls="panou-corp"></button><div id="rezumat-actiuni" class="rezumat-actiuni"></div></div>
+      <div id="pasi-foaie" class="pasi-perete pasi-foaie"></div>
       <div id="panou-corp" class="panou-corp">
         <section id="selectie" class="selectie gol" aria-live="polite"></section>
         <div class="file" role="tablist">
@@ -49,6 +59,7 @@
           <button role="tab" data-act="fila" data-id="santier" aria-selected="false">Șantier <span id="nr-santier" class="nr"></span></button>
         </div>
         <div id="fila-elemente" class="fila">
+          <div id="pasi-lista" class="pasi-perete"></div>
           <label class="cauta"><span data-icon="cauta"></span><input id="cauta" type="search" placeholder="Caută după cod sau nume" autocomplete="off"></label>
           <div id="lista"></div>
           <button type="button" class="link-tabel" data-act="fila" data-id="santier">Bifele pentru șantier →</button>
@@ -85,7 +96,9 @@
       <li><b>Anulare:</b> ✕, „Gata”, butonul Înapoi al telefonului sau al browserului, tasta Esc sau un clic pe un loc gol.</li>
       <li><b>Pași de montaj:</b> semnul ▶ de lângă un cod deschide pașii animați. În fereastra lor, „Trimite linkul” trimite pe WhatsApp linkul spre pasul de acum.</li>
       <li><b>Bife pentru șantier:</b> fila Șantier din panou. Tabelul complet, cu sursa și starea, se deschide din ea.</li>
-      <li><b>Straturi:</b> butoanele Gips, Mobilă, Electric și LED ascund sau arată elementele. Alegerea rămâne salvată în browser.</li>
+      <li><b>Pereții:</b> pe calculator, filele din bara de sus; pe telefon, butonul cu numele peretelui, care deschide lista pereților. Semnul ▶ arată pereții cu pași de montaj.</li>
+      <li><b>Straturi:</b> butonul Straturi din bară (pe telefon, cel cu foi suprapuse și un număr) deschide lista straturilor. Fiecare rând ascunde sau arată elementele lui. Alegerea rămâne salvată în browser.</li>
+      <li><b>Telefon pe orizontală:</b> fișa și listele trec în dreapta, iar desenul ia toată înălțimea.</li>
     </ul>
     <h3>Ce s-a schimbat</h3><p id="modificari-ajutor"></p>
     <h3>De unde se măsoară</h3><div class="referinte"></div>
