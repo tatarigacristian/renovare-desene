@@ -42,7 +42,23 @@
   const ic = n => `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${IC[n]}</svg>`;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-  const P = { det: null, k: 0, dlg: null, svg: null, reda: false, timer: 0, ro: null };
+  // numere: pe ecran îngust etichetele devin numere, cu textul lor în lista „Pe desen” (legenda)
+  const P = { det: null, k: 0, dlg: null, svg: null, reda: false, timer: 0, ro: null, numere: false, legenda: [], elemente: [], arata: null, reluat: false };
+
+  // pașii văzuți, în acest browser: „desene:pasi:D03'” = { vazute: [1, 2, 4], ultim: 4 }
+  const LSP = 'desene:pasi:';
+  const citeste = id => { try { return JSON.parse(localStorage.getItem(LSP + id)) || { vazute: [], ultim: 0 }; } catch (_) { return { vazute: [], ultim: 0 }; } };
+  function noteaza(id, k) {
+    const st = citeste(id);
+    if (!st.vazute.includes(k)) st.vazute.push(k);
+    st.ultim = k;
+    try { localStorage.setItem(LSP + id, JSON.stringify(st)); } catch (_) { /* fără spațiu: nu se ține minte */ }
+  }
+  // câți pași (fără „Pe scurt”) s-au văzut și unde s-a rămas
+  function progres(id) {
+    const st = citeste(id);
+    return { vazute: st.vazute.filter(k => k > 0).length, ultim: st.ultim };
+  }
   const reducere = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function el(tag, a, parent, text) {
@@ -159,6 +175,18 @@
     },
     eticheta(g, s, u) {
       const v = P.vedere || P.det.vedere, fs = 12 * u, anc = s.anc || 'start';
+      if (P.numere) {
+        // pe ecran îngust: un număr în cerc, cu linia spre punct; textul apare în lista „Pe desen”
+        const nr = P.legenda.push(s.text), r = 8.5 * u, cx = anc === 'end' ? s.x - r : s.x + r, cy = s.y - fs * .35;
+        if (s.spre) {
+          const [px, py] = s.spre;
+          el('path', Object.assign({ d: `M${cx},${cy} L${px},${py}`, fill: 'none', stroke: '#1f2937', 'stroke-width': 1 }, NSS), g);
+          el('circle', { cx: px, cy: py, r: 2.6 * u, fill: '#1f2937', stroke: '#fff', 'stroke-width': .8 * u }, g);
+        }
+        el('circle', { cx, cy, r, fill: '#1f2937', stroke: '#fff', 'stroke-width': 1.4 * u }, g);
+        el('text', { x: cx, y: cy + fs * .36, 'font-size': fs * .95, 'text-anchor': 'middle', fill: '#fff', 'font-weight': 700 }, g, String(nr));
+        return;
+      }
       const lat = s.lat || (anc === 'end' ? s.x - v.x0 : v.x1 - s.x) - .5;
       const rs = randuri(s.text, fs, lat);
       if (s.spre) {
@@ -221,6 +249,8 @@
     svg.setAttribute('viewBox', vb(muta ? inainte : v));
     if (muta) mutaVederea(inainte, v);
     const u = Math.max((v.x1 - v.x0) / r.width, (v.y1 - v.y0) / r.height);   // cm pe pixel
+    P.numere = r.width < 520;
+    P.legenda = [];
     svg.textContent = '';
     defs(svg);
     const prima = {};
@@ -243,24 +273,31 @@
       const c = el('rect', Object.assign({ x: b.x - p, y: b.y - p, width: b.width + 2 * p, height: b.height + 2 * p, rx: 4 * u, fill: 'none', stroke: '#2563eb', 'stroke-width': 1.6, 'stroke-dasharray': '5 3', class: 'ps-nou' }, NSS), gF);
       if (cuAnimatie && !reducere()) c.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: 120 + i * 380 + 700, fill: 'backwards' });
     }
+    const leg = P.dlg.querySelector('.ps-legenda');
+    if (leg) leg.innerHTML = P.numere && P.legenda.length ? `<h4>Pe desen</h4><ol>${P.legenda.map(t => `<li>${esc(t)}</li>`).join('')}</ol>` : '';
     return sfarsit;
   }
 
   function textPas() {
     const d = P.det, k = P.k, p = d.pasi[k], st = STARE[p.stare] || STARE.proiect, n = d.pasi.length - 1;
     const lista = (a, cls) => a && a.length ? `<ul class="${cls}">${a.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : '';
+    const aplica = P.elemente.length ? `<div class="ps-aplica"><h4>Se aplică la</h4><div class="ps-els">${P.elemente.map(e =>
+      `<button type="button" class="badge" data-p="arata" data-per="${esc(e.perete)}" data-el="${esc(e.id)}" style="background:${e.culoare}" title="${esc(e.id)}: ${esc(e.nume)} (${esc(e.unde)}). Arată pe perete">${esc(e.et || e.id)}</button>`).join('')}</div>
+      <small>Un cod închide fereastra și arată elementul pe peretele lui.</small></div>` : '';
     P.dlg.querySelector('.ps-text').innerHTML = `
       <div class="ps-meta"><span class="ps-nr">${k ? `Pasul ${k} din ${n}` : 'Pe scurt'}</span>
-        <span class="ps-cine">${esc(p.cine)}</span></div>
+        <span class="ps-cine">${esc(p.cine)}</span>${P.reluat ? '<span class="ps-reluat">aici ai rămas data trecută</span>' : ''}</div>
       <h3>${esc(p.titlu)}</h3>
       <p>${esc(p.text)}</p>
       ${lista(p.puncte, 'ps-puncte')}
+      <div class="ps-legenda"></div>
       ${p.atentie ? `<p class="ps-atentie">${esc(p.atentie)}</p>` : ''}
       ${p.verifica ? `<h4>${k ? 'De verificat' : 'Înainte de început'}</h4>${lista(p.verifica, 'ps-verifica')}` : ''}
-      <p class="ps-sursa"><span class="ps-stare" style="--c:${st.culoare}"><i></i>${st.nume}</span> Sursa: ${esc(p.sursa)}</p>`;
-    const nav = P.dlg.querySelector('.ps-puncte-nav');
+      <p class="ps-sursa"><span class="ps-stare" style="--c:${st.culoare}"><i></i>${st.nume}</span> Sursa: ${esc(p.sursa)}</p>
+      ${aplica}`;
+    const nav = P.dlg.querySelector('.ps-puncte-nav'), vazute = citeste(d.id).vazute;
     nav.querySelectorAll('button').forEach((b, i) => {
-      b.classList.toggle('on', i === k); b.classList.toggle('vazut', i < k); b.setAttribute('aria-current', i === k ? 'step' : 'false');
+      b.classList.toggle('on', i === k); b.classList.toggle('vazut', i !== k && vazute.includes(i)); b.setAttribute('aria-current', i === k ? 'step' : 'false');
       if (i === k && nav.scrollWidth > nav.clientWidth) nav.scrollTo({ left: b.offsetLeft - nav.clientWidth / 2, behavior: 'smooth' });
     });
     P.dlg.querySelector('[data-p="inapoi"]').disabled = k === 0;
@@ -269,7 +306,9 @@
 
   function mergiLa(k, cuAnimatie = true) {
     P.k = Math.max(0, Math.min(P.det.pasi.length - 1, k));
+    noteaza(P.det.id, P.k);
     textPas();
+    P.reluat = false;
     P.dlg.querySelector('.ps-text').scrollTop = 0;
     const t = deseneaza(cuAnimatie);
     clearTimeout(P.timer);
@@ -321,6 +360,7 @@
       else if (a === 'inainte') mergiLa(P.k + 1);
       else if (a === 'reia') mergiLa(P.k);
       else if (a === 'pas') mergiLa(+b.dataset.k);
+      else if (a === 'arata' && P.arata) { P.arata(b.dataset.per, b.dataset.el); dlg.close(); }
       else if (a === 'link' && P.link) {
         const d = P.det, n = d.pasi.length - 1, unde = P.k ? `pasul ${P.k} din ${n}` : 'pe scurt';
         window.open('https://wa.me/?text=' + encodeURIComponent(`${d.id} — ${d.nume}, ${unde}: ${P.link(P.k)}`), '_blank', 'noopener');
@@ -332,6 +372,16 @@
       if (ev.key === 'ArrowRight') { ev.preventDefault(); mergiLa(P.k + 1); }
       else if (ev.key === 'ArrowLeft') { ev.preventDefault(); mergiLa(P.k - 1); }
     });
+    const corp = dlg.querySelector('.ps-corp');
+    let g0 = null;
+    corp.addEventListener('pointerdown', ev => { g0 = ev.pointerType === 'mouse' ? null : { x: ev.clientX, y: ev.clientY, t: ev.timeStamp }; });
+    corp.addEventListener('pointerup', ev => {
+      if (!g0) return;
+      const dx = ev.clientX - g0.x, dy = ev.clientY - g0.y, dt = ev.timeStamp - g0.t;
+      g0 = null;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > 1.6 * Math.abs(dy) && dt < 900) { seteazaReda(false); mergiLa(P.k + (dx < 0 ? 1 : -1)); }
+    });
+    corp.addEventListener('pointercancel', () => { g0 = null; });
     dlg.addEventListener('close', () => { seteazaReda(false); P.vedere = null; cancelAnimationFrame(P.rafV); P.svg.getAnimations({ subtree: true }).forEach(a => a.cancel()); });
     P.dlg = dlg;
     P.svg = dlg.querySelector('.ps-scena svg');
@@ -347,6 +397,8 @@
     if (!P.dlg) construieste();
     P.det = d;
     P.link = opt.link || null;
+    P.elemente = opt.elemente || [];
+    P.arata = opt.arata || null;
     P.dlg.querySelector('[data-p="link"]').hidden = !P.link;
     const dlg = P.dlg;
     dlg.querySelector('.ps-cod').textContent = d.id;
@@ -358,9 +410,13 @@
       `<button type="button" data-p="pas" data-k="${i}" title="${i ? i + '. ' : ''}${esc(p.titlu)}" aria-label="${i ? 'Pasul ' + i : 'Pe scurt'}: ${esc(p.titlu)}">${i || '•'}</button>`).join('');
     seteazaReda(false);
     dlg.showModal();
-    mergiLa(+opt.pas || 0);
+    // fără pas cerut (din link): de unde s-a rămas, dacă pașii nu s-au terminat
+    const st = citeste(id), n = d.pasi.length - 1, cerut = opt.pas !== undefined && opt.pas !== null;
+    const start = cerut ? +opt.pas || 0 : st.ultim > 0 && st.ultim < n ? st.ultim : 0;
+    P.reluat = !cerut && start > 0;
+    mergiLa(start);
     return true;
   }
 
-  window.Pasi = { deschide, dialog: () => P.dlg, numar: id => window.DETALII && window.DETALII[id] ? window.DETALII[id].pasi.length - 1 : 0 };
+  window.Pasi = { deschide, progres, dialog: () => P.dlg, numar: id => window.DETALII && window.DETALII[id] ? window.DETALII[id].pasi.length - 1 : 0 };
 })();

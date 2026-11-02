@@ -41,6 +41,7 @@
       <div id="eticheta-hover" class="tooltip" hidden></div>
       <div id="banda-masura" class="banda-masura" hidden aria-live="polite"></div>
       <div id="variante" class="variante" hidden></div>
+      <button type="button" id="coduri-ascunse" class="coduri-ascunse nu-print" data-act="zoom-coduri" hidden></button>
       <div class="zoom">
         <button data-act="zoom-plus" data-icon="plus" title="Mărește" aria-label="Mărește"></button>
         <button data-act="zoom-minus" data-icon="minus" title="Micșorează" aria-label="Micșorează"></button>
@@ -56,6 +57,7 @@
         <div class="file" role="tablist">
           <button role="tab" data-act="fila" data-id="elemente" class="on" aria-selected="true">Elemente <span id="nr-elemente" class="nr"></span></button>
           <button role="tab" data-act="fila" data-id="verificari" aria-selected="false">Verificări <span id="nr-verificari"></span></button>
+          <button role="tab" data-act="fila" data-id="montaj" aria-selected="false" hidden>Montaj <span id="nr-montaj" class="nr"></span></button>
           <button role="tab" data-act="fila" data-id="santier" aria-selected="false">Șantier <span id="nr-santier" class="nr"></span></button>
         </div>
         <div id="fila-elemente" class="fila">
@@ -64,7 +66,8 @@
           <div id="lista"></div>
           <button type="button" class="link-tabel" data-act="fila" data-id="santier">Bifele pentru șantier →</button>
         </div>
-        <div id="fila-verificari" class="fila" hidden><ul id="verificari" class="verif"></ul></div>
+        <div id="fila-verificari" class="fila" hidden><div id="verificari"></div></div>
+        <div id="fila-montaj" class="fila" hidden><div id="montaj"></div></div>
         <div id="fila-santier" class="fila" hidden><div id="santier"></div><button type="button" class="buton tabel-btn" data-act="tabel-complet">Tabelul complet, cu sursa și starea ↗</button></div>
       </div>
     </aside>
@@ -90,15 +93,16 @@
   <div class="dialog-corp">
     <h3>Pe desen</h3>
     <ul>
-      <li><b>Click sau atingere pe un element:</b> celelalte se estompează și apar cotele lui, cu roșu, față de colțuri, pardoseală și tavan.</li>
-      <li><b>Distanța dintre două elemente:</b> în fișa primului element apeși „Măsoară până la…”, apoi alegi al doilea, pe desen sau în listă. Cotele dintre ele apar cu albastru, iar banda de sus arată distanța. Pe calculator merge și Shift + clic pe al doilea element.</li>
-      <li><b>Zoom:</b> rotița mouse-ului sau două degete. Butonul cu patru colțuri arată tot peretele.</li>
+      <li><b>Click sau atingere pe un element:</b> celelalte se estompează și apar cotele lui, cu roșu, față de colțuri, pardoseală și tavan. Pe telefon apare fișa scurtă, cu trei cote; „Detalii” deschide fișa întreagă, cu toate cotele, nota și sursa.</li>
+      <li><b>Distanța dintre două elemente:</b> în fișa primului element apeși „Măsoară”, apoi alegi al doilea, pe desen sau în listă. Cotele dintre ele apar cu albastru, iar banda de sus arată distanța. Pe calculator merge și Shift + clic pe al doilea element.</li>
+      <li><b>Zoom:</b> rotița mouse-ului sau două degete. Butonul cu patru colțuri arată tot peretele. Pe telefon, cât se vede tot peretele, apar doar codurile elementelor mari; butonul „coduri ascunse” mărește desenul și le arată pe toate.</li>
       <li><b>Anulare:</b> ✕, „Gata”, butonul Înapoi al telefonului sau al browserului, tasta Esc sau un clic pe un loc gol.</li>
-      <li><b>Pași de montaj:</b> semnul ▶ de lângă un cod deschide pașii animați. În fereastra lor, „Trimite linkul” trimite pe WhatsApp linkul spre pasul de acum.</li>
-      <li><b>Bife pentru șantier:</b> fila Șantier din panou. Tabelul complet, cu sursa și starea, se deschide din ea.</li>
       <li><b>Pereții:</b> pe calculator, filele din bara de sus; pe telefon, butonul cu numele peretelui, care deschide lista pereților. Semnul ▶ arată pereții cu pași de montaj.</li>
       <li><b>Straturi:</b> butonul Straturi din bară (pe telefon, cel cu foi suprapuse și un număr) deschide lista straturilor. Fiecare rând ascunde sau arată elementele lui. Alegerea rămâne salvată în browser.</li>
-      <li><b>Telefon pe orizontală:</b> fișa și listele trec în dreapta, iar desenul ia toată înălțimea.</li>
+      <li><b>Pași de montaj:</b> semnul ▶ de lângă un cod, butonul „Cum se montează” din fișă sau fila Montaj deschid pașii animați. Treci între pași cu săgețile, cu tastatura sau glisând stânga-dreapta. Pașii văzuți rămân marcați, iar fereastra se redeschide de unde ai rămas. „Se aplică la” te duce la element, pe peretele lui. „Trimite linkul” trimite pe WhatsApp linkul spre pasul de acum.</li>
+      <li><b>Verificări:</b> „De rezolvat” are atenționările; „Note și informații” se deschide la cerere. O atingere pe un text îl arată întreg, cu sursa.</li>
+      <li><b>Bife pentru șantier:</b> fila Șantier din panou. Tabelul complet, cu sursa și starea, se deschide din ea.</li>
+      <li><b>Telefon pe orizontală:</b> fișa și listele trec în dreapta, iar desenul ia toată înălțimea. Pașii de montaj ocupă tot ecranul, cu desenul în stânga.</li>
     </ul>
     <h3>Ce s-a schimbat</h3><p id="modificari-ajutor"></p>
     <h3>De unde se măsoară</h3><div class="referinte"></div>

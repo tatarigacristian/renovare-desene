@@ -437,9 +437,16 @@
 
   // Codurile primesc loc în ordinea: selectate, electric, LED, mobilă, gips, structură. Un cod care s-ar suprapune
   // peste altul încearcă locurile următoare; dacă nu încape nicăieri, nu se desenează (apare când se mărește desenul).
+  // Pe ecran îngust, cât desenul e aproape de „tot peretele”, rămân doar codurile elementelor mari, ale celor alese
+  // și ale celor cu pași de montaj; celelalte apar la mărire (S.ascunse = câte au rămas pe dinafară). La măsurare
+  // apar toate, ca al doilea element să se poată găsi.
   function etichete(g, els, H, u, cls) {
     const puse = [], pr = e => (S.sel.includes(e.id) ? 10 : 0) + (PRIORITATE[e.strat] || 0);
+    const rar = !S.print && !S.masura && ingust() && S.view && S.view.s < S.fitS * 1.6;
+    const mare = e => !e.punct && Math.max(e.lat, e.inalt) / u >= 44 && e.lat * e.inalt / (u * u) >= 900;
+    S.ascunse = 0;
     for (const e of els.slice().sort((a, b) => pr(b) - pr(a))) {
+      if (rar && !S.sel.includes(e.id) && !pasiDetaliu(e) && !mare(e)) { S.ascunse++; continue; }
       const locuri = locuriEticheta(e, H, u, (e.id.length * 6.6 + 8 + (pasiDetaliu(e) ? SEMN_PASI : 0)) * u, 15 * u);
       const r = locuri.find(c => !puse.some(q => seSuprapun(c, q, 1.5 * u))) || (S.sel.includes(e.id) ? locuri[0] : null);
       if (!r) continue;
@@ -544,7 +551,8 @@
   // ---------------------------------------------------------------- desenul peretelui
   const MARG_LAT = { st: 64, dr: 52, sus: 40, jos: 70 }, MARG_INGUST = { st: 34, dr: 20, sus: 30, jos: 56 };
   const ingust = () => S.svg.getBoundingClientRect().width < 640;
-  const foaie = () => matchMedia('(max-width: 899px)').matches;     // panoul e foaie de jos
+  // panoul e foaie de jos: ecran îngust, dar nu telefonul ținut orizontal (acolo panoul stă în dreapta)
+  const foaie = () => matchMedia('(max-width: 899px)').matches && !matchMedia('(orientation: landscape) and (max-height: 500px)').matches;
   let MARG = MARG_LAT;
   const vizibil = e => e.strat === 'structura' || S.viz[e.strat];
   // varianta aleasă (de ex. poziția panoului 2 până la răspunsul R10); elementele fără „varianta” apar mereu
@@ -622,6 +630,8 @@
       }
     }
     etichete(el('g', {}, root), vizibile, H, u, stins);
+    const ca = document.getElementById('coduri-ascunse');
+    if (ca) { ca.hidden = S.print || !S.ascunse; ca.textContent = `${S.ascunse} coduri ascunse · mărește`; }
 
     const gC = el('g', { class: 'cote' }, root);
     if (sel.length === 0) {
@@ -925,14 +935,23 @@
 
   // pașii de montaj: se deschid peste desen; elementul de pe care s-au deschis rămâne ales
   function linkPasi(id, k) {
-    const pag = (location.pathname.split('/').pop() || 'index.html');
-    return `${SITE}${pag}#${encodeURIComponent(S.per.id)}?pasi=${encodeURIComponent(id).replace(/'/g, '%27')}&pas=${k}`;
+    const pag = (location.pathname.split('/').pop() || 'index.html'), are = v => v.elemente.some(e => e.detaliu === id);
+    const v = are(S.per) ? S.per : vederi().find(are) || S.per;
+    return `${SITE}${pag}#${encodeURIComponent(v.id)}?pasi=${encodeURIComponent(id).replace(/'/g, '%27')}&pas=${k}`;
   }
+  // „Se aplică la”: elementele detaliului din toată camera. Un cod închide fereastra și arată elementul pe peretele
+  // lui; mutarea se face după ce fereastra și-a scos intrarea din istoric (S.dupaPasi).
   function deschidePasi(id, elId, pas) {
     if (elId && !S.sel.includes(elId)) { S.masura = false; S.sel = [elId]; deseneaza(); panou(); }
-    if (!window.Pasi || !window.Pasi.deschide(id, { pas, link: k => linkPasi(id, k) })) return;
+    const d = detaliiCamera().find(x => x.id === id);
+    const elemente = d ? d.els.map(({ e, v, et }) => ({ id: e.id, et, perete: v.id, nume: e.nume, unde: v.nume, culoare: culoareStare(e) })) : [];
+    const arata = (perete, elId2) => { S.dupaPasi = () => laElement(perete, elId2); };
+    if (!window.Pasi || !window.Pasi.deschide(id, { pas, link: k => linkPasi(id, k), elemente, arata })) return;
     const dlg = window.Pasi.dialog();
-    if (!dlg.dataset.istoric) { dlg.dataset.istoric = '1'; dlg.addEventListener('close', () => iesi('pasi')); }
+    if (!dlg.dataset.istoric) {
+      dlg.dataset.istoric = '1';
+      dlg.addEventListener('close', () => iesi('pasi', () => { montaj(); const f = S.dupaPasi; S.dupaPasi = null; if (f) f(); }));
+    }
     intra('pasi', () => dlg.close());
   }
 
@@ -949,8 +968,29 @@
       <div class="cote-rand n${oriz.length}"><span class="cote-et">${a.o}</span>${oriz.join('')}</div>
       <div class="cote-rand n${vert.length}"><span class="cote-et">${a.v}</span>${vert.join('')}</div></div>`;
   }
+  // Fișa are două forme. Scurtă (foaia de jos pe telefon, după o atingere): codul, numele, trei cote și acțiunile,
+  // cu „Detalii” care deschide foaia. Întreagă (panoul, foaia deschisă): toate cele șase cote, acțiunile, nota, iar
+  // ce este, stratul, dimensiunile, finisajul și sursa într-o secțiune care se deschide la cerere.
+  const fisaScurta = () => foaie() && S.panou === 'scurt';
+  const capFisa = (e, sub) => {
+    const st = STARI[e.stare] || STARI.proiect;
+    return `<div class="fisa-cap">${badge(e)}<div class="fisa-titlu"><b>${esc(e.nume)}</b>
+        <span class="stare-text" style="--c:${st.culoare}"><i></i>${sub || st.nume + (e.pozitie === 'aprox' ? ' · poziție aproximativă' : '')}</span></div>
+        <button type="button" class="buton-icon" data-act="inchide" title="Anulează selecția (Esc)" aria-label="Anulează selecția">${ICON.inchide}</button></div>`;
+  };
+  function coteScurte(e) {
+    const a = axe(), ap = e.pozitie === 'aprox' ? '~' : '', [x0] = intX(e), [b0] = intH(e);
+    const c = (v, et, cls) => `<span class="c${cls ? ' ' + cls : ''}"><b>${v}</b><small>${et}</small></span>`;
+    const cote = [c(ap + f(x0), a.st), c(ap + f(b0), a.jos)];
+    if (!e.punct) cote.push(c(`${f(e.lat)} × ${f(e.inalt)}`, eTavan() ? 'lățime × adâncime' : 'lățime × înălțime', 'el'));
+    return `<div class="cote-scurte n${cote.length}">${cote.join('')}</div>`;
+  }
   function fisaHtml(e) {
-    const st = STARI[e.stare] || STARI.proiect, sr = strat(e.strat), gazda = e.in && gaseste(e.in);
+    if (fisaScurta()) {
+      if (S.masura) return `<div class="fisa scurta">${capFisa(e, 'punctul de pornire al măsurătorii')}<p class="indiciu">Alege al doilea element, pe desen sau în listă.</p></div>`;
+      return `<div class="fisa scurta">${capFisa(e)}${cunoscut(e) ? coteScurte(e) : '<p class="fara-poz">Poziția nu e cunoscută încă: se măsoară pe șantier.</p>'}${actiuniFisa(e, true)}</div>`;
+    }
+    const sr = strat(e.strat), gazda = e.in && gaseste(e.in);
     const rows = [
       ['Ce este', esc(TIPURI[e.tip] || e.tip)],
       ['Strat', esc(sr ? sr.nume : 'structură')],
@@ -958,25 +998,26 @@
       ['Finisaj', esc(e.finisaj ? (FINISAJE[e.finisaj] || { nume: e.finisaj }).nume : '')],
       ['Montat în', gazda ? `${badgeBtn(gazda, 'arata')} ${esc(gazda.nume)}` : esc(e.in || '')],
       ['Sursa', esc(e.sursa || '—')],
-      ['Notă', esc(e.nota || '')],
       ['Detaliu', detaliuHtml(e)],
     ].filter(r => r[1]);
-    return `<div class="fisa">
-      <div class="fisa-cap">${badge(e)}<div class="fisa-titlu"><b>${esc(e.nume)}</b>
-        <span class="stare-text" style="--c:${st.culoare}"><i></i>${st.nume}${e.pozitie === 'aprox' ? ' · poziție aproximativă' : ''}</span></div>
-        <button type="button" class="buton-icon" data-act="inchide" title="Anulează selecția (Esc)" aria-label="Anulează selecția">${ICON.inchide}</button></div>
+    return `<div class="fisa">${capFisa(e)}
       ${cunoscut(e) ? coteGrid(e) : '<p class="fara-poz">Poziția nu e cunoscută încă: se măsoară pe șantier și se trece în date.</p>'}
       ${actiuniFisa(e)}
-      <dl class="detalii">${rows.map(r => `<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join('')}</dl>
+      ${e.nota ? `<p class="fisa-nota">${esc(e.nota)}</p>` : ''}
+      <details class="fisa-mai"${S.fisaMai ? ' open' : ''}><summary>Sursa, stratul, dimensiunile</summary>
+        <dl class="detalii">${rows.map(r => `<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join('')}</dl></details>
       <div class="actiuni"><a class="buton whatsapp" href="${linkRaport(e)}" target="_blank" rel="noopener">${ICON.mesaj}Raportează o corectură</a></div></div>`;
   }
-  // cele două acțiuni ale fișei: pașii de montaj (dacă are) și măsurarea până la alt element
-  function actiuniFisa(e) {
+  // acțiunile fișei: pașii de montaj (dacă are), măsurarea până la alt element și, la fișa scurtă, „Detalii”
+  function actiuniFisa(e, scurta) {
     const b = [];
     if (pasiDetaliu(e)) b.push(`<button type="button" class="buton pasi-btn" data-act="pasi" data-id="${esc(e.detaliu)}">${ICON.reda}Cum se montează · ${window.Pasi.numar(e.detaliu)} pași</button>`);
-    if (cunoscut(e)) b.push(S.masura
+    const al = [];
+    if (cunoscut(e)) al.push(S.masura
       ? `<button type="button" class="buton activ" data-act="anuleaza-masura">${ICON.rigla}Anulează măsurarea</button>`
-      : `<button type="button" class="buton" data-act="masoara" title="Sau Shift + clic pe al doilea element">${ICON.rigla}Măsoară până la…</button>`);
+      : `<button type="button" class="buton" data-act="masoara" title="Sau Shift + clic pe al doilea element">${ICON.rigla}${scurta ? 'Măsoară' : 'Măsoară până la…'}</button>`);
+    if (scurta) al.push(`<button type="button" class="buton" data-act="detalii" aria-label="Toate cotele, nota și sursa">Detalii${ICON.sus}</button>`);
+    if (al.length) b.push(`<div class="fisa-actiuni-rand">${al.join('')}</div>`);
     return b.length ? `<div class="fisa-actiuni">${b.join('')}</div>` : '';
   }
   function muchie(E, v, dir) {
@@ -991,10 +1032,10 @@
     return `<div class="fisa">
       <div class="fisa-cap"><span class="pereche">${badgeBtn(A, 'doar')}↔${badgeBtn(B, 'doar')}</span><div class="fisa-titlu"><b>Distanța dintre ele</b></div>
         <button type="button" class="buton-icon" data-act="inchide" title="Anulează selecția (Esc)" aria-label="Anulează selecția">${ICON.inchide}</button></div>
-      <p class="intre">${esc(A.id)}: ${esc(A.nume)}<br>${esc(B.id)}: ${esc(B.nume)}</p>
+      ${fisaScurta() ? '' : `<p class="intre">${esc(A.id)}: ${esc(A.nume)}<br>${esc(B.id)}: ${esc(B.nume)}</p>`}
       <div class="masuri"><h4>Pe orizontală</h4><ul>${linii(m.oriz.seg, 'x') || '<li>aceeași poziție</li>'}</ul>
         <h4>Pe verticală</h4><ul>${linii(m.vert.seg, 'h') || '<li>aceeași înălțime</li>'}</ul></div>
-      <p class="indiciu">Alege alt element: măsori de la ${esc(A.id)} până la el. ✕, „Gata” sau Esc închide măsurarea. Un cod de mai sus îl lasă ales doar pe el.</p></div>`;
+      ${fisaScurta() ? '' : `<p class="indiciu">Alege alt element: măsori de la ${esc(A.id)} până la el. ✕, „Gata” sau Esc închide măsurarea. Un cod de mai sus îl lasă ales doar pe el.</p>`}</div>`;
   }
   // distanța principală dintre două elemente, pentru rezumat și pentru banda de sus
   function distantaPrincipala(A, B) {
@@ -1041,13 +1082,25 @@
     if (sel.length) a.push(`<button type="button" class="rz-buton" data-act="inchide" title="Anulează selecția" aria-label="Anulează selecția">${ICON.inchide}</button>`);
     document.getElementById('rezumat-actiuni').innerHTML = a.join('');
   }
-  function seteazaPanou(stare) {
+  // Foaia de jos (telefon ținut vertical) are trei stări: „mic” (rândul de rezumat și pașii peretelui), „scurt” (fișa
+  // scurtă a elementului ales) și „mare” (fișa întreagă și filele). O selecție nouă trece foaia din „mic” în „scurt”;
+  // fără selecție, „scurt” revine la „mic”. Foaia deschisă („mare”) are o intrare în istoric: „Înapoi” o strânge.
+  function stareFoaie(stare) {
     S.panou = stare;
     document.getElementById('panou').dataset.stare = stare;
     document.getElementById('panou-rezumat').setAttribute('aria-expanded', stare === 'mare');
   }
+  function seteazaPanou(stare) {
+    const era = S.panou;
+    stareFoaie(stare);
+    if (stare === 'mare' && era !== 'mare') intra('foaie', () => { stareFoaie(S.sel.length ? 'scurt' : 'mic'); panou(); });
+    else if (stare !== 'mare' && era === 'mare') iesi('foaie');
+    panou();
+  }
   function panou() {
     const box = document.getElementById('selectie'), sel = S.sel.map(gaseste).filter(Boolean);
+    if (foaie() && sel.length && S.panou === 'mic') stareFoaie('scurt');
+    else if (!sel.length && S.panou === 'scurt') stareFoaie('mic');
     box.className = 'selectie' + (sel.length ? '' : ' gol');
     box.innerHTML = sel.length === 1 ? fisaHtml(sel[0]) : sel.length === 2 ? intreHtml(sel[0], sel[1])
       : `<p><b>${esc(S.per.nume)}</b> · ${esc(S.per.subtitlu)}</p>
@@ -1099,22 +1152,74 @@
     document.getElementById('nr-elemente').textContent = elemente().length;
   }
 
+  // Verificările, în două grupuri: „De rezolvat” (atenționările, deschis) și „Note și informații” (închis).
+  // Fiecare text se vede pe 3 rânduri; o atingere pe el îl arată întreg, cu sursa.
   function listaVerificari() {
-    const v = verificari().sort((a, b) => (a.nivel === 'atentie' ? 0 : 1) - (b.nivel === 'atentie' ? 0 : 1));
-    const at = v.filter(x => x.nivel === 'atentie').length;
-    document.getElementById('nr-verificari').outerHTML = `<span id="nr-verificari">${at ? `<span class="nr atentie" title="atenționări">${at}</span> ` : ''}<span class="nr" title="în total">${v.length}</span></span>`;
-    document.getElementById('verificari').innerHTML = v.map(x => {
+    const v = verificari(), at = v.filter(x => x.nivel === 'atentie'), inf = v.filter(x => x.nivel !== 'atentie');
+    document.getElementById('nr-verificari').outerHTML = `<span id="nr-verificari">${at.length ? `<span class="nr atentie" title="atenționări">${at.length}</span>` : ''}<span class="nr nr-total" title="în total">${v.length}</span></span>`;
+    const item = x => {
       const ids = (x.ids || []).filter(gaseste), clic = ids.length && ids.length <= 2;
-      return `<li class="${x.nivel}"${clic ? ` data-act="arata" data-id="${ids.join(',')}" role="button" tabindex="0"` : ''}>
-        <i class="v-ic">${x.nivel === 'atentie' ? '!' : 'i'}</i>
-        <div><p>${esc(x.text)}</p>${ids.length > 2 ? `<div class="v-ids">${ids.map(id => badgeBtn(gaseste(id), 'arata')).join('')}</div>` : ''}
-        ${x.sursa ? `<small>Sursa: ${esc(x.sursa)}</small>` : ''}${clic ? `<span class="v-arata">Arată pe desen${ids.length === 2 ? ', cu distanța dintre ele' : ''} →</span>` : ''}</div></li>`;
-    }).join('') || '<li>Nicio problemă găsită.</li>';
-    document.getElementById('verificari-tipar').innerHTML = v.map(x => `<li>${x.nivel === 'atentie' ? '⚠️ ' : ''}${esc(x.text)}${x.ids && x.ids.length > 2 ? ` (${x.ids.map(esc).join(', ')})` : ''}${x.sursa ? ` <span class="sursa">(${esc(x.sursa)})</span>` : ''}</li>`).join('');
+      return `<li class="${x.nivel}"><i class="v-ic">${x.nivel === 'atentie' ? '!' : 'i'}</i>
+        <div class="v-corp"><p class="v-text" role="button" tabindex="0" aria-expanded="false" data-act="v-text">${esc(x.text)}</p>
+        ${x.sursa ? `<small class="v-sursa">Sursa: ${esc(x.sursa)}</small>` : ''}
+        ${ids.length > 2 ? `<div class="v-ids">${ids.map(id => badgeBtn(gaseste(id), 'arata')).join('')}</div>` : ''}
+        ${clic ? `<button type="button" class="v-arata" data-act="arata" data-id="${ids.join(',')}">Arată pe desen${ids.length === 2 ? ', cu distanța' : ''} →</button>` : ''}</div></li>`;
+    };
+    const grup = (titlu, lista, deschis, cls) => lista.length ? `<details class="v-grup ${cls}"${deschis ? ' open' : ''}><summary>${titlu} <span class="nr">${lista.length}</span></summary><ul class="verif">${lista.map(item).join('')}</ul></details>` : '';
+    document.getElementById('verificari').innerHTML = (grup('De rezolvat', at, true, 'v-atentie') + grup('Note și informații', inf, !at.length, 'v-info')) || '<p class="gol-lista">Nicio problemă găsită.</p>';
+    document.getElementById('verificari-tipar').innerHTML = at.concat(inf).map(x => `<li>${x.nivel === 'atentie' ? '⚠️ ' : ''}${esc(x.text)}${x.ids && x.ids.length > 2 ? ` (${x.ids.map(esc).join(', ')})` : ''}${x.sursa ? ` <span class="sursa">(${esc(x.sursa)})</span>` : ''}</li>`).join('');
   }
+  // ---------------------------------------------------------------- fila „Montaj”: toate detaliile din cameră
+  // numele pereților unui detaliu: „Pereții cu dulapul M12 și cu biroul”, „Peretele cu fereastra și tavanul”
+  function numePereti(ps) {
+    const lista = a => a.length > 1 ? a.slice(0, -1).join(', ') + ' și ' + a[a.length - 1] : a[0];
+    const pe = ps.filter(p => /^Peretele /.test(p.nume)).map(p => p.nume.replace(/^Peretele /, ''));
+    const alt = ps.filter(p => !/^Peretele /.test(p.nume)).map(p => p.nume.toLowerCase());
+    let t = pe.length > 1 ? 'Pereții ' + lista(pe) : pe.length ? 'Peretele ' + pe[0] : '';
+    if (alt.length) t = t ? t + ' și ' + lista(alt) : lista(alt)[0].toUpperCase() + lista(alt).slice(1);
+    return t;
+  }
+  const arePasi = id => !!(window.Pasi && window.DETALII && window.DETALII[id]);
+  // detaliile din toată camera, cu elementele și pereții lor: întâi cele cu pași de pe peretele ales, apoi
+  // celelalte cu pași, apoi cele fără pași
+  function detaliiCamera() {
+    const m = new Map();
+    for (const v of vederi()) for (const e of v.elemente) {
+      if (!e.detaliu) continue;
+      if (!m.has(e.detaliu)) m.set(e.detaliu, { id: e.detaliu, els: [], pereti: [] });
+      const d = m.get(e.detaliu);
+      if (!d.els.some(x => x.e.id === e.id && x.v === v)) d.els.push({ e, v });
+      if (!d.pereti.includes(v)) d.pereti.push(v);
+    }
+    const rang = d => arePasi(d.id) ? (d.pereti.includes(S.per) ? 0 : 1) : 2;
+    // același cod pe mai mulți pereți (plinta G3 pe N și pe E): eticheta are și litera peretelui
+    for (const d of m.values()) for (const x of d.els) x.et = d.els.filter(y => y.e.id === x.e.id).length > 1 ? `${x.e.id} · ${x.v.id}` : x.e.id;
+    return [...m.values()].sort((a, b) => rang(a) - rang(b));
+  }
+  function montaj() {
+    const L = detaliiCamera(), tab = document.querySelector('.file [data-id="montaj"]'), box = document.getElementById('montaj');
+    tab.hidden = !L.length;
+    document.getElementById('nr-montaj').textContent = L.filter(d => arePasi(d.id)).length || '';
+    if (!L.length) { box.innerHTML = ''; if (tab.classList.contains('on')) arataFila('elemente'); return; }
+    box.innerHTML = `<p class="nota">Detaliile din ${esc(S.cam.nume.toLowerCase())}, întâi cele de pe ${eTavan() ? 'tavan' : 'peretele ales'}. Un cod te duce la elementul lui, pe peretele lui.</p>` + L.map(d => {
+      const det = arePasi(d.id) && window.DETALII[d.id], n = det ? window.Pasi.numar(d.id) : 0, pr = det && window.Pasi.progres(d.id);
+      const vazut = pr && pr.vazute ? ` · ${pr.vazute >= n ? 'le-ai văzut pe toate' : `ai văzut ${pr.vazute} din ${n}`}` : '';
+      const els = d.els.map(({ e, v, et }) => `<button type="button" class="badge" style="background:${culoareStare(e)}" data-act="la-element" data-id="${esc(v.id)}|${esc(e.id)}" title="${esc(e.id)}: ${esc(e.nume)} (${esc(v.nume)})">${esc(et)}</button>`).join('');
+      const cap = `<span class="pp-semn${det ? '' : ' gol'}">${det ? ICON.reda : ''}</span><span class="pp-text"><b>${esc(d.id)}${det ? ' · ' + esc(det.nume) : ''}</b>
+        <small>${det ? n + ' pași' : 'pașii urmează'} · ${esc(numePereti(d.pereti))}${vazut}</small></span>`;
+      return `<div class="mj-card${det ? '' : ' fara'}">${det ? `<button type="button" class="pp-card" data-act="pasi" data-id="${esc(d.id)}">${cap}</button>` : `<div class="pp-card">${cap}</div>`}
+        <div class="mj-els">${els}</div></div>`;
+    }).join('');
+  }
+  // un cod din fila Montaj: elementul se alege pe peretele lui (peretele se schimbă dacă e nevoie)
+  function laElement(perId, id) {
+    if (perId === S.per.id) return selecteaza([id], true);
+    alegePerete(perId, () => selecteaza([id], true));
+  }
+
   function arataFila(id) {
     document.querySelectorAll('.file button').forEach(b => { const on = b.dataset.id === id; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
-    ['elemente', 'verificari', 'santier'].forEach(f => { const x = document.getElementById('fila-' + f); if (x) x.hidden = id !== f; });
+    ['elemente', 'verificari', 'montaj', 'santier'].forEach(f => { const x = document.getElementById('fila-' + f); if (x) x.hidden = id !== f; });
   }
 
   // ---------------------------------------------------------------- tabelul complet (și pentru tipar)
@@ -1361,16 +1466,17 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     if (ma) ma.innerHTML = `<b>Revizia ${r.nr}, ${data}.</b> ${r.modificari.map(esc).join(' ')}`;
   }
 
-  function alegePerete(id) {
+  function alegePerete(id, apoi) {
     const p = vederi().find(x => x.id === id);
     if (!p || p.etapa > ETAPA) return;
     // intrarea selecției din istoric se scoate înainte de schimbarea adresei, ca „Înapoi” să nu ducă la peretele vechi
-    if (inIstoric('sel')) { S.sel = []; S.masura = false; return iesi('sel', () => alegePerete(id)); }
+    if (inIstoric('sel')) { S.sel = []; S.masura = false; return iesi('sel', () => alegePerete(id, apoi)); }
     S.per = p;
     history.replaceState(history.state, '', '#' + id);
     S.sel = []; S.masura = false; S.cauta = '';
     document.getElementById('cauta').value = '';
-    antet(); plan(); comenziVariante(); comenziStraturi(); potrivesteBara(); lista(); listaVerificari(); tabel(); panou(); potriveste();
+    antet(); plan(); comenziVariante(); comenziStraturi(); potrivesteBara(); lista(); listaVerificari(); montaj(); tabel(); panou(); potriveste();
+    if (typeof apoi === 'function') apoi();
   }
 
   function tipar(da) {
@@ -1385,20 +1491,24 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     arata: ids => selecteaza(ids.split(','), true),
     rand: id => dinLista(id),
     tabel: id => inchideTabel(() => selecteaza([id], true)),
+    'la-element': v => { const [per, id] = v.split('|'); laElement(per, id); },
     'tabel-complet': deschideTabel,
     'inchide-tabel': () => inchideTabel(),
     masoara: incepeMasura,
     'anuleaza-masura': anuleazaMasura,
     fila: arataFila,
-    panou: () => seteazaPanou(S.panou === 'mic' ? 'mare' : 'mic'),
+    panou: () => seteazaPanou(S.panou === 'mare' ? (S.sel.length ? 'scurt' : 'mic') : 'mare'),
+    detalii: () => seteazaPanou('mare'),
     perete: alegePerete,
     strat: id => { S.viz[id] = !S.viz[id]; salveaza(); comenziStraturi(); deseneaza(); lista(); tabel(); panou(); },
     'straturi-toate': () => { straturiCamera().forEach(s => { S.viz[s.id] = true; }); salveaza(); comenziStraturi(); deseneaza(); lista(); tabel(); panou(); },
     meniu: deschideMeniu,
     'inchide-meniu': () => {},
+    'v-text': (_, ev) => { const t = ev.target.closest('.v-text'), li = t.closest('li'); li.classList.toggle('deschis'); t.setAttribute('aria-expanded', li.classList.contains('deschis')); },
     'zoom-plus': () => zoomCentru(1.4),
     'zoom-minus': () => zoomCentru(1 / 1.4),
     'zoom-tot': potriveste,
+    'zoom-coduri': () => zoomCentru(1.8),
     ajutor: unde => {
       const dlg = document.getElementById('dialog-ajutor');
       dlg.showModal();
@@ -1448,14 +1558,19 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     dlg.addEventListener('close', () => iesi('ajutor'));
     window.addEventListener('popstate', laPop);
     window.addEventListener('resize', potrivesteBara);
+    // secțiunea „Sursa, stratul, dimensiunile” rămâne deschisă sau închisă de la un element la altul
+    document.addEventListener('toggle', ev => { if (ev.target.classList && ev.target.classList.contains('fisa-mai')) S.fisaMai = ev.target.open; }, true);
+    // fișa scurtă există doar în foaia de jos: la rotirea telefonului sau la redimensionare, panoul se reface
+    ['(max-width: 899px)', '(orientation: landscape) and (max-height: 500px)'].forEach(q => matchMedia(q).addEventListener('change', () => panou()));
     document.getElementById('cauta').addEventListener('input', ev => { S.cauta = ev.target.value; lista(); });
 
     initZoom(S.svg);
     initHover(S.svg);
-    antet(); plan(); comenziVariante(); comenziStraturi(); potrivesteBara(); lista(); listaVerificari(); tabel(); seteazaPanou('mic'); panou(); potriveste();
+    antet(); plan(); comenziVariante(); comenziStraturi(); potrivesteBara(); lista(); listaVerificari(); montaj(); tabel(); stareFoaie('mic'); panou(); potriveste();
     // adresa curată (#PERETE); dacă linkul cere un pas de montaj, fereastra se deschide direct la el
     history.replaceState(null, '', '#' + S.per.id);
-    if (cer.get('pasi')) deschidePasi(cer.get('pasi'), null, +cer.get('pas') || 0);
+    // fără „pas” în adresă (linkurile din pagina camerelor), fereastra se deschide de unde s-a rămas
+    if (cer.get('pasi')) deschidePasi(cer.get('pasi'), null, cer.has('pas') ? +cer.get('pas') || 0 : undefined);
 
     window.addEventListener('beforeprint', () => tipar(true));
     window.addEventListener('afterprint', () => tipar(false));

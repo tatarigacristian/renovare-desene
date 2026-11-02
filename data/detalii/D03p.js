@@ -590,7 +590,7 @@ window.DETALII["D03'"] = {
    "id": "e4-gol",
    "tip": "eticheta",
    "x": 64,
-   "y": -60,
+   "y": -76,
    "text": "golul focarului: 70 × 48 cm; PAL-ul nu intră în nișă",
    "spre": [
     49,
