@@ -1156,7 +1156,8 @@
   // Fiecare text se vede pe 3 rânduri; o atingere pe el îl arată întreg, cu sursa.
   function listaVerificari() {
     const v = verificari(), at = v.filter(x => x.nivel === 'atentie'), inf = v.filter(x => x.nivel !== 'atentie');
-    document.getElementById('nr-verificari').outerHTML = `<span id="nr-verificari">${at.length ? `<span class="nr atentie" title="atenționări">${at.length}</span>` : ''}<span class="nr nr-total" title="în total">${v.length}</span></span>`;
+    // pe filă: numărul atenționărilor sau, dacă nu sunt, totalul (patru file trebuie să încapă pe 320 px)
+    document.getElementById('nr-verificari').outerHTML = `<span id="nr-verificari">${at.length ? `<span class="nr atentie" title="${at.length} atenționări din ${v.length} verificări">${at.length}</span>` : `<span class="nr" title="verificări">${v.length}</span>`}</span>`;
     const item = x => {
       const ids = (x.ids || []).filter(gaseste), clic = ids.length && ids.length <= 2;
       return `<li class="${x.nivel}"><i class="v-ic">${x.nivel === 'atentie' ? '!' : 'i'}</i>

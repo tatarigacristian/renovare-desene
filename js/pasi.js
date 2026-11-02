@@ -288,6 +288,7 @@
       <div class="ps-meta"><span class="ps-nr">${k ? `Pasul ${k} din ${n}` : 'Pe scurt'}</span>
         <span class="ps-cine">${esc(p.cine)}</span>${P.reluat ? '<span class="ps-reluat">aici ai rămas data trecută</span>' : ''}</div>
       <h3>${esc(p.titlu)}</h3>
+      ${k ? '' : `<p class="ps-despre">${esc(d.subtitlu)}. ${esc(d.nota)}</p>`}
       <p>${esc(p.text)}</p>
       ${lista(p.puncte, 'ps-puncte')}
       <div class="ps-legenda"></div>
@@ -320,7 +321,7 @@
   function seteazaReda(da) {
     P.reda = da;
     const b = P.dlg.querySelector('[data-p="reda"]');
-    b.innerHTML = da ? `${ic('pauza')}Oprește` : `${ic('reda')}Redă toți pașii`;
+    b.innerHTML = da ? `${ic('pauza')}Oprește` : `${ic('reda')}<span class="ps-et">Redă<span class="ps-lung"> toți pașii</span></span>`;
     b.setAttribute('aria-pressed', da);
     if (!da) clearTimeout(P.timer);
   }
