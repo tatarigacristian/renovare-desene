@@ -109,6 +109,7 @@
     });
     const grad = (id, a, stops) => { const gr = el('linearGradient', Object.assign({ id }, a), d); stops.forEach(([o, c, op]) => el('stop', { offset: o, 'stop-color': c, 'stop-opacity': op === undefined ? 1 : op }, gr)); };
     grad('g-ecran', { x1: 0, y1: 0, x2: 1, y2: 1 }, [[0, '#2b3038'], [.55, '#0e1013'], [1, '#050607']]);
+    grad('g-oglinda', { x1: 0, y1: 0, x2: 1, y2: 1 }, [[0, '#eef3f6'], [.5, '#cfd9df'], [1, '#e3eaee']]);
     grad('g-flacara', { x1: 0, y1: 1, x2: 0, y2: 0 }, [[0, '#ff6a00'], [.45, '#ffb347'], [1, '#ffe08a', 0]]);
     const fl = el('filter', { id: 'f-glow', x: '-200%', y: '-10%', width: '500%', height: '120%' }, d);
     el('feGaussianBlur', { stdDeviation: 2.4 }, fl);
@@ -121,6 +122,7 @@
     bej: { nume: 'U156 Bej nisip, mat', fill: '#ebe2d3', stroke: '#a8987f' },
     alb: { nume: 'alb', fill: '#f4f2ee', stroke: '#a39d93' },
     negru: { nume: 'negru', fill: '#1f1f1f', stroke: '#000' },
+    oglinda: { nume: 'oglindă', fill: 'url(#g-oglinda)', stroke: '#7d8a93' },
   };
   function finisaj(e, lat) {
     const fz = FINISAJE[e.finisaj] || FINISAJE.alb;
@@ -156,7 +158,14 @@
     },
     'birou-capat'(g, e, H) { rect(g, e.x, e.h, e.lat, e.inalt, H, { fill: 'url(#p-riflaj)', stroke: '#5f4a3c', 'stroke-width': 1 }); },
     birou(g, e, H) { DESEN['birou-capat'](g, e, H); },
-    mobilier(g, e, H) { rect(g, e.x, e.h, e.lat, e.inalt, H, e.finisaj ? finisaj(e) : { fill: '#cdb79c', stroke: '#6b5440', 'stroke-width': 1 }); },
+    mobilier(g, e, H) {
+      rect(g, e.x, e.h, e.lat, e.inalt, H, e.finisaj ? finisaj(e) : { fill: '#cdb79c', stroke: '#6b5440', 'stroke-width': 1 });
+      if (e.finisaj !== 'oglinda') return;
+      // reflexii: două linii oblice paralele, în treimea de sus
+      const y0 = H - e.h - e.inalt, k = Math.min(e.lat, e.inalt) * .5;
+      [[.3, 1], [.42, .55]].forEach(([f, op]) => el('line', { x1: e.x + e.lat * f, y1: y0 + e.inalt * .12, x2: e.x + e.lat * f + k * .5, y2: y0 + e.inalt * .12 + k * .5,
+        stroke: '#fff', 'stroke-width': 1.6, opacity: op, 'vector-effect': 'non-scaling-stroke', 'pointer-events': 'none' }, g));
+    },
     // corp de mobilier cu fronturi fără mâner, de la stânga
     corp(g, e, H) {
       let x = e.x;
@@ -426,15 +435,23 @@
   const aproxH = () => !eTavan() && S.cam.inaltime.stare === 'de-verificat' ? '~' : '';
   // ce cuprinde desenul în afară de elemente: zidăria de la capete și pardoseala; la tavan, zidăria de pe toate laturile
   const cadru = (L, H) => eTavan() ? { x0: -12, x1: L + 12, y0: -12, y1: H + 12 } : { x0: -12, x1: L + 12, y0: -14, y1: H + 3 };
-  const scara = () => eTavan() ? 30 : 20;
+  // tavanul la 1:30; dacă nu încape pe înălțimea foii A3 (planul are ~27 mm de cote și scară grafică), la 1:40
+  const scara = () => {
+    if (!eTavan()) return 20;
+    const c = cadru(S.per.lungime, S.per.adancime);
+    return (c.y1 - c.y0) / 3 + 27 > 262 ? 40 : 30;
+  };
   const vederi = () => S.cam.pereti.concat(S.cam.tavan && S.cam.tavan.tip === 'tavan' ? [S.cam.tavan] : []);
   // numele pereților după latura planului: st = x 0, dr = x lățimea, jos = y 0, sus = y adâncimea
   function laturi() {
     const W = S.cam.plan.latime, D = S.cam.plan.adancime, n = {};
     for (const p of S.cam.pereti) {
       const [[ax, ay], [bx, by]] = p.plan, nume = p.nume.replace(/^Peretele/, 'peretele');
-      if (ax === bx) n[ax < W / 2 ? 'st' : 'dr'] = nume; else n[ay < D / 2 ? 'jos' : 'sus'] = nume;
+      // pe o latură cu mai multe vederi (de ex. peretele de est al holului, în trepte) dă numele cea mai lungă
+      const k = ax === bx ? (ax < W / 2 ? 'st' : 'dr') : (ay < D / 2 ? 'jos' : 'sus');
+      if (!n[k] || p.lungime > n[k].L) n[k] = { L: p.lungime, nume };
     }
+    for (const k in n) n[k] = n[k].nume;
     return n;
   }
   // cum se numesc direcțiile în fișă, în tabel și în cote
@@ -929,6 +946,10 @@
       return `<button type="button" role="tab" aria-selected="${ales}" class="${ales ? 'on' : ''}" data-act="perete" data-id="${p.id}" ${activ ? '' : 'disabled'}
         title="${esc(p.nume)} — ${activ ? esc(p.subtitlu) : 'în lucru (etapa ' + p.etapa + ')'}">${esc(scurt(p))}${activ ? '' : `<small>etapa ${p.etapa}</small>`}</button>`;
     }).join('');
+    // pe telefon filele nu încap toate: banda se derulează până la fila aleasă
+    const on = document.querySelector('#pereti .on'), bara = on && on.parentElement;
+    if (bara && bara.scrollWidth > bara.clientWidth)
+      bara.scrollLeft += on.getBoundingClientRect().left - bara.getBoundingClientRect().left - (bara.clientWidth - on.offsetWidth) / 2;
   }
 
   // ---------------------------------------------------------------- variantele (de ex. poziția panoului 2, R10)
