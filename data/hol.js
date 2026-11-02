@@ -17,7 +17,7 @@ window.CAMERE["hol"] = {
   "nr": 4,
   "data": "2026-11-02",
   "modificari": [
-   "Revizia 4: lamelele RF1 de lângă oglindă merg acum de la grinda GR1 până la oglindă, 23 cm cu 5 lamele, în loc de 17,3 cm cu 4 lamele (02.11.2026).",
+   "Revizia 4: lamelele RF1 acoperă acum lățimea grinzii GR1 și merg până la oglindă (x 312–360, 48 cm, 10 lamele), în loc de 17,3 cm cu 4 lamele. Sub grindă se opresc la fața ei de jos, la ~205 (02.11.2026).",
    "Masca țevii de gaz M06 (panoul din PAL Nuc Parona de la grindă) scoasă: țeava de gaz trece prin nișa din tavan și nu se mai vede (decizia din 02.11.2026). Plintele G7 și G8 devin o singură plintă, G7, de la ușa bucătăriei la ușa GS.",
    "Atenționare nouă la ușa spre bucătărie (U4): planul bucătăriei din 10/2026 mută golul cu 7,1 cm spre intrare (BC2).",
    "Prima versiune: peretele cu banca (vest, D05) și peretele cu oglinda (est, D04), din A.01, A.05–A.09 și A.17–A.20.",
@@ -195,7 +195,7 @@ window.CAMERE["hol"] = {
      "pozitie": "aprox",
      "stare": "proiect",
      "sursa": "A.01 și A.05 (140 + 213,9 + 25, cotat); A.17 D05 (205, cotat)",
-     "nota": "Trece de la peretele de vest la acesta. Pe x e cotată: 312–337 de la colțul N-E. Fața de jos la ~205 cm, măsurată pe A.17: de măsurat acum. Tavanul fals TF1 se oprește la fețele ei. Masca M06 din planșe, centrată pe grindă, nu se mai face: țeava de gaz nu mai coboară pe grindă (decizia din 02.11.2026). Același cod pe peretele de vest și pe planul tavanului."
+     "nota": "Trece de la peretele de vest la acesta. Pe x e cotată: 312–337 de la colțul N-E. Fața de jos la ~205 cm, măsurată pe A.17: de măsurat acum. Tavanul fals TF1 se oprește la fețele ei. Sub ea, pe acest perete, stau primele cinci lamele RF1, până la fața ei de jos. Masca M06 din planșe, centrată pe grindă, nu se mai face: țeava de gaz nu mai coboară pe grindă (decizia din 02.11.2026). Același cod pe peretele de vest și pe planul tavanului."
     },
     {
      "id": "U3",
@@ -316,18 +316,25 @@ window.CAMERE["hol"] = {
      "id": "RF1",
      "strat": "mobila",
      "tip": "riflaj",
-     "nume": "Lamele verticale de la grinda GR1 până la oglindă (5 × 2,4 cm)",
-     "x": 337,
-     "lat": 23,
+     "nume": "Lamele verticale de sub grinda GR1 până la oglindă (10 × 2,4 cm)",
+     "x": 312,
+     "lat": 48,
      "h": 8,
      "inalt": 235,
+     "decupaje": [
+      {
+       "x": 312,
+       "lat": 25,
+       "sus": 205
+      }
+     ],
      "adanc": 3,
      "lamela": 2.4,
      "rost": 2.6,
      "stare": "de-verificat",
      "finisaj": "bej",
      "sursa": "A.17 D04 (17,3 și 2,4, cotat; pasul de 5 cm, măsurat); A.06 și A.08 (secțiunea 2,4 × 3 cm, măsurat)",
-     "nota": "Lamelele încep de la fața grinzii GR1 (x 337) și se termină la oglindă (x 360): 23 cm în loc de 17,3 din A.17 (decizia din 02.11.2026). Cinci lamele de 2,4 cm, cu rosturi de ~2,75 cm (pas ~5,15 cm; în A.17 erau patru lamele la pas de 5 cm), adânci de ~3 cm, de pe plintă până la tavanul fals (A.17: 8–242; cu tavanul la 243, 235 cm). Culoarea din A.17 e ca fronturile U156 Bej nisip. Nu sunt benzi LED: A.06 nu are marcaj de LED aici, iar specs/06 G nu are bandă la oglinda holului. Materialul și prinderea: de confirmat cu arhitecta."
+     "nota": "Lamelele acoperă lățimea grinzii GR1 și merg până la oglindă: de la x 312 (fața stângă a grinzii) la x 360, 48 cm (decizia din 02.11.2026; în A.17 erau patru lamele pe 17,3 cm, la x 342,7). Zece lamele de 2,4 cm, cu rosturi de ~2,67 cm (pas ~5,07 cm), adânci de ~3 cm, toate de pe plintă (8). Primele cinci, sub grindă (x 312–337), se opresc la fața ei de jos (~205, de măsurat): 197 cm. Celelalte cinci, între grindă și oglindă, merg până la tavanul fals (A.17: 8–242; cu tavanul la 243, 235 cm). Culoarea din A.17 e ca fronturile U156 Bej nisip. Nu sunt benzi LED: A.06 nu are marcaj de LED aici, iar specs/06 G nu are bandă la oglinda holului. Materialul și prinderea: de confirmat cu arhitecta."
     },
     {
      "id": "M05",

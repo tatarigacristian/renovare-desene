@@ -164,6 +164,29 @@
   function rect(g, x, h0, w, hh, H, a) {
     return el('rect', Object.assign({ x, y: H - h0 - hh, width: w, height: hh }, NSS, a), g);
   }
+  // „decupaje”: zone în care elementul se oprește mai jos, de exemplu lamelele de sub o grindă: [{ x, lat, sus }].
+  // segmente(e, p): muchia de sus, de la stânga la dreapta, ca [{ a, b, t }] (de la x = a la x = b, la înălțimea t),
+  // lărgită cu p pe toate laturile (pentru conturul selecției)
+  function segmente(e, p = 0) {
+    const S0 = e.h + e.inalt, x1 = e.x + e.lat, seg = [];
+    let x = e.x;
+    for (const d of (e.decupaje || []).slice().sort((a, b) => a.x - b.x)) {
+      const a = Math.max(x, d.x), b = Math.min(x1, d.x + d.lat);
+      if (b <= a) continue;
+      if (a > x) seg.push({ a: x, b: a, t: S0 });
+      seg.push({ a, b, t: d.sus });
+      x = b;
+    }
+    if (x < x1) seg.push({ a: x, b: x1, t: S0 });
+    seg.forEach(q => { q.t += p; });
+    seg[0].a -= p; seg[seg.length - 1].b += p;
+    // treapta dintre două niveluri ține de partea mai înaltă; se mută spre partea mai joasă
+    for (let i = 0; i + 1 < seg.length; i++) { const l = seg[i], r = seg[i + 1], m = l.t > r.t ? p : l.t < r.t ? -p : 0; l.b += m; r.a += m; }
+    return seg;
+  }
+  const poligon = (e, H, p = 0) => [[e.x - p, e.h - p], ...segmente(e, p).flatMap(q => [[q.a, q.t], [q.b, q.t]]), [e.x + e.lat + p, e.h - p]]
+    .map(([x, h]) => `${x},${H - h}`).join(' ');
+  const susLa = (e, a, b) => Math.min(e.h + e.inalt, ...(e.decupaje || []).filter(d => d.x < b && d.x + d.lat > a).map(d => d.sus));
   const DESEN = {
     masca(g, e, H) { rect(g, e.x, e.h, e.lat, e.inalt, H, { fill: '#ebe7e0', stroke: '#a39d93', 'stroke-width': 1 }); },
     placare(g, e, H) { rect(g, e.x, e.h, e.lat, e.inalt, H, { fill: 'url(#p-zid)', 'fill-opacity': .6, stroke: '#8f8a82', 'stroke-width': 1, 'stroke-dasharray': '5 3' }); },
@@ -212,9 +235,10 @@
       const n = Math.max(1, Math.round((e.lat + rost) / (lam + rost))), pas = n > 1 ? (e.lat - lam) / (n - 1) : 0;
       // cu finisaj: lamelele în culoarea lui, rosturile în culoarea mai închisă a conturului
       const fz = e.finisaj && FINISAJE[e.finisaj], lamA = fz ? finisaj(e, lam) : { fill: '#ddd0bc', stroke: '#bfae95' };
-      rect(g, e.x, e.h, e.lat, e.inalt, H, { fill: fz ? fz.stroke : '#a8967d' });
-      for (let i = 0; i < n; i++) rect(g, e.x + i * pas, e.h, lam, e.inalt, H, Object.assign({}, lamA, { 'stroke-width': .5 }));
-      rect(g, e.x, e.h, e.lat, e.inalt, H, { fill: 'none', stroke: '#8a7861', 'stroke-width': 1 });
+      const pol = poligon(e, H);
+      el('polygon', Object.assign({ points: pol, fill: fz ? fz.stroke : '#a8967d' }, NSS), g);
+      for (let i = 0; i < n; i++) { const x = e.x + i * pas; rect(g, x, e.h, lam, susLa(e, x, x + lam) - e.h, H, Object.assign({}, lamA, { 'stroke-width': .5 })); }
+      el('polygon', Object.assign({ points: pol, fill: 'none', stroke: '#8a7861', 'stroke-width': 1 }, NSS), g);
     },
     tv(g, e, H) {
       const b = Math.min(1.2, e.lat / 20), y = H - e.h - e.inalt;
@@ -409,6 +433,10 @@
     } else if ((e.tip === 'banda-led' || e.tip === 'sina') && e.inalt >= e.lat) {
       const xd = e.x + e.lat + 3 * u, xs = e.x - 3 * u - w, ys = H - e.h - e.inalt + 2 * u, yj = H - e.h - 2 * u - hh;
       L.push([xd, ys], [xs, ys], [xd, yj], [xs, yj]);
+    } else if (e.decupaje) {
+      // în colțul de sus-stânga al fiecărei părți, întâi la partea cea mai înaltă
+      for (const q of segmente(e).sort((a, b) => b.t - a.t)) L.push([q.a + 3 * u, H - q.t + 3 * u]);
+      L.push([e.x + 3 * u, H - e.h - 3 * u - hh]);
     } else {
       const sus = H - e.h - e.inalt, jos = H - e.h;
       L.push([e.x + 3 * u, sus + 3 * u], [e.x + e.lat - 3 * u - w, sus + 3 * u], [e.x + 3 * u, jos - 3 * u - hh],
@@ -551,6 +579,7 @@
   function contur(g, e, H, u, c) {
     const [x0, x1] = intX(e), [b0, b1] = intH(e), p = 4 * u;
     if (e.punct) el('circle', Object.assign({ cx: e.x, cy: H - e.h, r: 6 + 3 * u, fill: 'none', stroke: c, 'stroke-width': 2 }, NSS), g);
+    else if (e.decupaje) el('polygon', Object.assign({ points: poligon(e, H, p), fill: 'none', stroke: c, 'stroke-width': 2, 'stroke-dasharray': '6 3' }, NSS), g);
     else el('rect', Object.assign({ x: x0 - p, y: H - b1 - p, width: x1 - x0 + 2 * p, height: b1 - b0 + 2 * p, fill: 'none', stroke: c, 'stroke-width': 2, 'stroke-dasharray': '6 3' }, NSS), g);
   }
 
