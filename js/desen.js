@@ -204,7 +204,8 @@
     dulap(g, e, H) {
       let x = e.x;
       for (const fr of e.fronturi || [{ lat: e.lat, tip: 'lemn' }]) {
-        const a = fr.tip === 'sticla' ? { fill: '#2b1d24', 'fill-opacity': .92 } : fr.tip === 'lateral' ? { fill: '#7d5e3b' } : { fill: 'url(#p-lemn)' };
+        // cu finisaj (de exemplu bej), ușile și lateralele iau culoarea lui; fără finisaj, lemnul din planșele arhitectei
+        const a = fr.tip === 'sticla' ? { fill: '#2b1d24', 'fill-opacity': .92 } : e.finisaj ? finisaj(e, fr.lat) : fr.tip === 'lateral' ? { fill: '#7d5e3b' } : { fill: 'url(#p-lemn)' };
         rect(g, x, e.h, fr.lat, e.inalt, H, Object.assign({ stroke: '#5c4630', 'stroke-width': .8 }, a));
         if (fr.tip === 'lemn') {   // semnul de ușă, ca în planșele arhitectei
           el('path', Object.assign({ d: `M${x},${H - e.h} L${x + fr.lat},${H - e.h - e.inalt / 2} L${x},${H - e.h - e.inalt}`, fill: 'none', stroke: '#7a3b2e', 'stroke-width': .7, 'stroke-dasharray': '6 4', opacity: .6 }, NSS), g);

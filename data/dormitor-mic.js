@@ -14,10 +14,11 @@ window.CAMERE["dormitor-mic"] = {
   "nota": "Sub tavanul fals de 7 cm, montat deja (03.11.2026): desenat la ~243 cm, ca în living; placa la ~250 cm. Arhitecta nu a proiectat camera: cotele sunt din releveul din 2021 și din analiza/06 v3. Înălțimea se măsoară în 4 puncte."
  },
  "revizie": {
-  "nr": 3,
+  "nr": 4,
   "data": "2026-11-03",
   "modificari": [
-   "Revizia 3: coloana M16 (60 × 40 cm, nuc), din care iese consola M14, acum de 210 cm; televizorul, P4 și TB1 se mută ~25 cm spre ușă, centrate pe consolă, iar P5 la 290. Compartimentul AC crește în jos (ușile lui M13 până la h 190): unitatea vine în față, cu capac fix perforat sus și cu clapa CL, care vara intră sub unitate; tubul TB2 coboară sub scurgerea unității. Tavanul fals e deja montat (03.11.2026).",
+   "Revizia 4: coloana M16 e bej, în culoarea consolei M14, nu în nuc; nucul rămâne doar pe M13 (03.11.2026).",
+   "Revizia 3: coloana M16 (60 × 40 cm), din care iese consola M14, acum de 210 cm; televizorul, P4 și TB1 se mută ~25 cm spre ușă, centrate pe consolă, iar P5 la 290. Compartimentul AC crește în jos (ușile lui M13 până la h 190): unitatea vine în față, cu capac fix perforat sus și cu clapa CL, care vara intră sub unitate; tubul TB2 coboară sub scurgerea unității. Tavanul fals e deja montat (03.11.2026).",
    "Revizia 2: dulapul M13 are 120 cm (avea 80), cu unitatea AC în compartimentul de sus, în spatele capacului perforat M13-C; consola M14 are 260 cm (avea 280), iar televizorul e centrat pe ea. Traseul AC spre unitatea exterioară de pe fațadă (02.11.2026).",
    "Prima versiune: cei 4 pereți și planul tavanului, din releveul din 2021 (495 × 256), din cele două randări din 02.11.2026 și din propunerea din analiza/06 v3, acceptată pe 02.11.2026 (D26).",
    "Camera nu are proiect de la arhitectă. Tot ce nu e în releveu e propunere: mobilierul M13–M16, riflajul RF1, scafa, șina SM, benzile L1–L3 și prizele. Tavanul fals e montat deja.",
@@ -564,6 +565,7 @@ window.CAMERE["dormitor-mic"] = {
      "h": 0,
      "inalt": 190,
      "adanc": 40,
+     "finisaj": "bej",
      "fronturi": [
       {
        "lat": 1.8,
@@ -580,8 +582,8 @@ window.CAMERE["dormitor-mic"] = {
      ],
      "pozitie": "aprox",
      "stare": "propunere",
-     "sursa": "cererea din 03.11.2026 (varianta B, coloana în nuc)",
-     "nota": "O ușă de ~56 cm, până la h 190, ca M13. Adâncime 40 cm, cât consola: fața consolei continuă în fața coloanei. Față de M13 (60 cm) rămâne o treaptă de 20 cm, ca între masca M11 (50) și corpul M10 (40) din living. PAL H1775 ST12 Nuc Parona, ca M13. În 40 cm nu încap umerașe pe o bară paralelă cu peretele: rafturi, pantofi, cutii sau o bară extensibilă scoasă spre față."
+     "sursa": "cererea din 03.11.2026 (varianta B, coloana în culoarea consolei)",
+     "nota": "O ușă de ~56 cm, până la h 190, ca M13. Adâncime 40 cm, cât consola: fața consolei continuă în fața coloanei. Față de M13 (60 cm) rămâne o treaptă de 20 cm, chiar la schimbarea de culoare. U156 Bej nisip mat, ca consola: coloana și consola se văd ca o singură piesă, iar nucul rămâne doar pe M13. În 40 cm nu încap umerașe pe o bară paralelă cu peretele: rafturi, pantofi, cutii sau o bară extensibilă scoasă spre față."
     },
     {
      "id": "M16-S",
@@ -593,7 +595,7 @@ window.CAMERE["dormitor-mic"] = {
      "h": 190,
      "inalt": 53,
      "adanc": 40,
-     "finisaj": "nuc",
+     "finisaj": "bej",
      "pozitie": "aprox",
      "stare": "propunere",
      "sursa": "cererea din 03.11.2026",
@@ -800,7 +802,7 @@ window.CAMERE["dormitor-mic"] = {
       "M14",
       "M13"
      ],
-     "text": "Consola M14 iese din coloana M16: amândouă au 40 cm adâncime, deci fețele lor sunt în același plan. Treapta de 20 cm până la fața lui M13 e voită, ca între masca M11 și corpul M10 din living. Coloana și M13 sunt din nuc, cu rostul la aceeași înălțime (h 190); consola rămâne bej."
+     "text": "Consola M14 iese din coloana M16: amândouă au 40 cm adâncime și aceeași culoare (bej), deci se văd ca o singură piesă în L. Treapta de 20 cm până la fața lui M13 cade pe schimbarea de culoare: nucul rămâne doar pe M13, ca în randare. Rostul coloanei e la aceeași înălțime ca pe M13 (h 190)."
     }
    ]
   },
