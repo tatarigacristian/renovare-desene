@@ -355,23 +355,28 @@
       const alb = { fill: '#fdfdfc', stroke: '#5f6b75', 'stroke-width': 1.1 }, metal = { fill: 'url(#g-inox)', stroke: '#5f6b75', 'stroke-width': 1 };
       // chiuveta și bateria iau culoarea din „finisaj”, dacă au; altfel sunt de inox
       const fz = e.finisaj && FINISAJE[e.finisaj], metalSau = fz ? { fill: fz.fill, stroke: fz.stroke, 'stroke-width': 1 } : metal;
+      // vasul WC și lavoarul: albe, dacă nu au „finisaj” (de exemplu negru); lavoarul „ascuns” (sub blat sau îngropat
+      // în blat) e în spatele feței blatului, deci se desenează cu linie întreruptă
+      const albSau = fz ? { fill: fz.fill, stroke: fz.stroke, 'stroke-width': 1.1 } : alb;
+      const ascuns = a => e.ascuns ? Object.assign({}, a, { 'fill-opacity': .35, stroke: fz ? '#111' : '#5f6b75', 'stroke-width': 1.3, 'stroke-dasharray': '5 3' }) : a;
+      const linieInt = fz ? '#6b6b6b' : '#5f6b75';
       const P = (d, a) => el('path', Object.assign({ d }, a, NSS), g);
       const T = t => { if (w > 14 && hh > 6) el('text', { x: x0 + w / 2, y: sus + hh / 2 + 2.2, 'font-size': Math.min(6.5, hh * .45), 'text-anchor': 'middle', fill: '#4b5563', 'font-weight': 600, 'pointer-events': 'none' }, g, t); };
       switch (e.obiect) {
         case 'wc':        // vas suspendat: capacul sus, vasul rotunjit spre perete
-          P(`M${x0},${sus} H${x1} V${sus + hh * .35} C${x1},${jos} ${x0 + w * .75},${jos} ${x0 + w * .5},${jos} C${x0 + w * .25},${jos} ${x0},${jos} ${x0},${sus + hh * .35} Z`, alb);
-          P(`M${x0},${sus + hh * .14} H${x1}`, { stroke: '#5f6b75', 'stroke-width': .8 }); break;
+          P(`M${x0},${sus} H${x1} V${sus + hh * .35} C${x1},${jos} ${x0 + w * .75},${jos} ${x0 + w * .5},${jos} C${x0 + w * .25},${jos} ${x0},${jos} ${x0},${sus + hh * .35} Z`, albSau);
+          P(`M${x0},${sus + hh * .14} H${x1}`, { stroke: linieInt, 'stroke-width': .8 }); break;
         case 'lavoar':
-          P(`M${x0},${sus} H${x1} V${sus + hh * .3} C${x1},${jos} ${x0 + w * .8},${jos} ${x0 + w * .5},${jos} C${x0 + w * .2},${jos} ${x0},${jos} ${x0},${sus + hh * .3} Z`, alb); break;
+          P(`M${x0},${sus} H${x1} V${sus + hh * .3} C${x1},${jos} ${x0 + w * .8},${jos} ${x0 + w * .5},${jos} C${x0 + w * .2},${jos} ${x0},${jos} ${x0},${sus + hh * .3} Z`, ascuns(albSau)); break;
         case 'chiuveta': rect(g, x0, e.h, w, hh, H, metalSau); break;
         case 'cada': rect(g, x0, e.h, w, hh, H, alb); P(`M${x0 + 3},${sus + 3} H${x1 - 3}`, { stroke: '#9aa5ae', 'stroke-width': .8 }); T('cadă'); break;
         case 'dus': rect(g, x0, e.h, w, hh, H, { fill: '#e3eef6', 'fill-opacity': .55, stroke: '#5f8bb0', 'stroke-width': 1, 'stroke-dasharray': '6 4' }); T('duș'); break;
         case 'rigola': rect(g, x0, e.h, w, Math.max(hh, 1.5), H, { fill: '#4b5563', stroke: '#1f2937', 'stroke-width': .8 }); break;
         case 'rezervor': rect(g, x0, e.h, w, hh, H, { fill: '#fff', 'fill-opacity': .15, stroke: '#5f6b75', 'stroke-width': 1.1, 'stroke-dasharray': '6 4' }); break;
         case 'clapeta':
-          rect(g, x0, e.h, w, hh, H, metal);
-          rect(g, x0 + w * .12, e.h + hh * .2, w * .34, hh * .6, H, { fill: '#fff', stroke: '#5f6b75', 'stroke-width': .7 });
-          rect(g, x0 + w * .54, e.h + hh * .2, w * .34, hh * .6, H, { fill: '#fff', stroke: '#5f6b75', 'stroke-width': .7 }); break;
+          rect(g, x0, e.h, w, hh, H, metalSau);
+          rect(g, x0 + w * .12, e.h + hh * .2, w * .34, hh * .6, H, fz ? { fill: '#2b2b2b', stroke: '#6b6b6b', 'stroke-width': .7 } : { fill: '#fff', stroke: '#5f6b75', 'stroke-width': .7 });
+          rect(g, x0 + w * .54, e.h + hh * .2, w * .34, hh * .6, H, fz ? { fill: '#2b2b2b', stroke: '#6b6b6b', 'stroke-width': .7 } : { fill: '#fff', stroke: '#5f6b75', 'stroke-width': .7 }); break;
         case 'para-dus': { const r = Math.min(w, hh) / 2; el('circle', Object.assign({ cx: x0 + w / 2, cy: sus + hh / 2, r }, metal, NSS), g); break; }
         case 'ventilator': {
           const r = Math.min(w, hh) / 2, cx = x0 + w / 2, cy = sus + hh / 2;

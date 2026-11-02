@@ -624,8 +624,9 @@ window.CAMERE["baie"] = {
      "ascuns": true,
      "stare": "proiect",
      "sursa": "A.03 (axa la 37,5 de peretele spre hol, cotat; cuva de 53 cm, măsurat); specs/04 (Lavoar Romeo 53 × 37, montaj îngropat)",
-     "nota": "Axa la 37,5 cm de colț, la mijlocul mobilierului. Cuva e în grosimea blatului; adâncimea ei și prinderea se iau din fișa produsului.",
-     "adanc": 37
+     "nota": "Axa la 37,5 cm de colț, la mijlocul mobilierului. Cuva e în grosimea blatului; adâncimea ei și prinderea se iau din fișa produsului. Pe desen e cu linie întreruptă: e îngropat în blatul placat cu faianță, în spatele feței lui.",
+     "adanc": 37,
+     "finisaj": "negru"
     },
     {
      "id": "S10",
@@ -815,7 +816,8 @@ window.CAMERE["baie"] = {
      "sursa": "A.03 (axa la 120 de colț: 37,5 + 82,5, cotat); A.27 B01 (marginea de sus la 45, cotat); specs/04 (NOVELA BM, capac softclose)",
      "nota": "Axa la 120 cm de colț. Marginea de sus la 45 cm de pardoseala finită. Se prinde pe tijele cadrului S2, prin riflaj și mască.",
      "adanc": 50,
-     "adancAprox": true
+     "adancAprox": true,
+     "finisaj": "negru"
     },
     {
      "id": "S3",
@@ -829,7 +831,8 @@ window.CAMERE["baie"] = {
      "inalt": 16.4,
      "stare": "proiect",
      "sursa": "A.27 B01 (marginea de sus la 115: 45 + 70, cotat; 24 × 16, măsurat); A.03; specs/04 (OS39220)",
-     "nota": "Marginea de sus la 115 cm, în axa WC. Prin deschiderea ei se ajunge la robinetul și la mecanismul rezervorului. Compatibilitatea cu cadrul se confirmă la comandă (specs/04)."
+     "nota": "Marginea de sus la 115 cm, în axa WC. Prin deschiderea ei se ajunge la robinetul și la mecanismul rezervorului. Compatibilitatea cu cadrul se confirmă la comandă (specs/04).",
+     "finisaj": "negru"
     },
     {
      "id": "F4",

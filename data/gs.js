@@ -278,7 +278,7 @@ window.CAMERE["gs"] = {
      "strat": "sanitare",
      "tip": "sanitar",
      "obiect": "wc",
-     "nume": "Vasul WC suspendat NOVELA BM",
+     "nume": "Vasul WC suspendat NOVELA BM, negru",
      "x": 40.8,
      "lat": 34.2,
      "h": 12,
@@ -288,7 +288,8 @@ window.CAMERE["gs"] = {
      "sursa": "A.03 (axa la 35 cm de fața de nord din zona ușii și la 40 cm de capătul măștii, cotat); A.25 B06 (45, cotat; conturul măsurat); specs/04 (NOVELA BM, capac soft-close)",
      "nota": "Axa la 58 cm de colțul N-E, adică 82 cm de peretele lavoarului (A.03: 35 cm de la fața peretelui de nord din zona ușii, y = 117). Marginea de sus la 45 cm (A.25). Vasul iese ~50 cm din mască (A.03).",
      "adanc": 50,
-     "adancAprox": true
+     "adancAprox": true,
+     "finisaj": "negru"
     },
     {
      "id": "S3",
@@ -303,7 +304,8 @@ window.CAMERE["gs"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "A.25 B06 (45 + 70 = 115 până la marginea de sus, cotat; conturul măsurat); specs/04 (Laufen PL NV1 negru mat, OS39220)",
-     "nota": "Marginea de sus la 115 cm, pe axa WC. Conturul desenat (~24,6 × 16,4 cm) e blocul din planșă; dimensiunile reale și înălțimea se iau din fișa clapetei și a cadrului (compatibilitatea PL NV1 – INEO NOVA se confirmă la comandă, specs/04)."
+     "nota": "Marginea de sus la 115 cm, pe axa WC. Conturul desenat (~24,6 × 16,4 cm) e blocul din planșă; dimensiunile reale și înălțimea se iau din fișa clapetei și a cadrului (compatibilitatea PL NV1 – INEO NOVA se confirmă la comandă, specs/04).",
+     "finisaj": "negru"
     },
     {
      "id": "S6",
@@ -695,8 +697,9 @@ window.CAMERE["gs"] = {
      "pozitie": "aprox",
      "stare": "proiect",
      "sursa": "A.03 (axa la 61 cm de peretele cu ușa, cotat); A.24 (38 × 25, axa la 20 cm de perete; fișa: 403 × 281 mm, adânc de 141 mm); specs/04 (SHELL380UPBLV, negru)",
-     "nota": "Lavoar oval, negru, 38 × 25 cm la interior, montat sub blat pe cele 2 corniere. Axa la 61 cm de peretele cu ușa (59 cm de colțul S-E) și la 20 cm de perete. Corpul coboară ~14 cm sub fața de sus a placajului, deci ~4–5 cm sub blat, în sertar; scurgerea are Ø 44 mm.",
-     "adanc": 28.1
+     "nota": "Lavoar oval, negru, 38 × 25 cm la interior, montat sub blat pe cele 2 corniere. Axa la 61 cm de peretele cu ușa (59 cm de colțul S-E) și la 20 cm de perete. Corpul coboară ~14 cm sub fața de sus a placajului, deci ~4–5 cm sub blat, în sertar; scurgerea are Ø 44 mm. Pe desen e cu linie întreruptă: stă sub blatul placat cu faianță, în spatele feței lui.",
+     "adanc": 28.1,
+     "finisaj": "negru"
     },
     {
      "id": "S5",
@@ -711,7 +714,8 @@ window.CAMERE["gs"] = {
      "pozitie": "aprox",
      "stare": "proiect",
      "sursa": "A.03 (35 cm de spalet, 20 cm de perete, cotat); specs/04 (Cersanit Zen stativ negru S951-595)",
-     "nota": "Pe blat, la stânga lavoarului privind spre perete: 85 cm de peretele cu ușa, 20 cm de perete, chiar în dreptul benzii E1. Înălțimea desenată e orientativă. Furtunurile coboară prin blat, în compartimentul deschis M02-D."
+     "nota": "Pe blat, la stânga lavoarului privind spre perete: 85 cm de peretele cu ușa, 20 cm de perete, chiar în dreptul benzii E1. Înălțimea desenată e orientativă. Furtunurile coboară prin blat, în compartimentul deschis M02-D.",
+     "finisaj": "negru"
     },
     {
      "id": "R5",
