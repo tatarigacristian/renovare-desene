@@ -14,9 +14,10 @@ window.CAMERE["hol"] = {
   "nota": "Înălțimea liberă sub tavanul fals: 243 cm (placa la 250, tavan fals de 7 cm), după detaliul hol din A.05, singura cotă. A.17 și A.18 desenează fața la 242, iar legenda A.05 scrie 10 cm (fața la 240): de confirmat cu arhitecta (L6). Sub grinda GR1 rămân 205 cm."
  },
  "revizie": {
-  "nr": 3,
+  "nr": 4,
   "data": "2026-11-02",
   "modificari": [
+   "Revizia 4: lamelele RF1 de lângă oglindă merg acum de la grinda GR1 până la oglindă, 23 cm cu 5 lamele, în loc de 17,3 cm cu 4 lamele (02.11.2026).",
    "Masca țevii de gaz M06 (panoul din PAL Nuc Parona de la grindă) scoasă: țeava de gaz trece prin nișa din tavan și nu se mai vede (decizia din 02.11.2026). Plintele G7 și G8 devin o singură plintă, G7, de la ușa bucătăriei la ușa GS.",
    "Atenționare nouă la ușa spre bucătărie (U4): planul bucătăriei din 10/2026 mută golul cu 7,1 cm spre intrare (BC2).",
    "Prima versiune: peretele cu banca (vest, D05) și peretele cu oglinda (est, D04), din A.01, A.05–A.09 și A.17–A.20.",
@@ -315,9 +316,9 @@ window.CAMERE["hol"] = {
      "id": "RF1",
      "strat": "mobila",
      "tip": "riflaj",
-     "nume": "Lamele verticale din stânga oglinzii (4 × 2,4 cm)",
-     "x": 342.7,
-     "lat": 17.3,
+     "nume": "Lamele verticale de la grinda GR1 până la oglindă (5 × 2,4 cm)",
+     "x": 337,
+     "lat": 23,
      "h": 8,
      "inalt": 235,
      "adanc": 3,
@@ -326,7 +327,7 @@ window.CAMERE["hol"] = {
      "stare": "de-verificat",
      "finisaj": "bej",
      "sursa": "A.17 D04 (17,3 și 2,4, cotat; pasul de 5 cm, măsurat); A.06 și A.08 (secțiunea 2,4 × 3 cm, măsurat)",
-     "nota": "Patru lamele de 2,4 cm la pas de 5 cm (rost 2,6), adânci de ~3 cm, de pe plintă până la tavanul fals (A.17: 8–242; cu tavanul la 243, 235 cm). Culoarea din A.17 e ca fronturile U156 Bej nisip. Nu sunt benzi LED: A.06 nu are marcaj de LED aici, iar specs/06 G nu are bandă la oglinda holului. Materialul și prinderea: de confirmat cu arhitecta."
+     "nota": "Lamelele încep de la fața grinzii GR1 (x 337) și se termină la oglindă (x 360): 23 cm în loc de 17,3 din A.17 (decizia din 02.11.2026). Cinci lamele de 2,4 cm, cu rosturi de ~2,75 cm (pas ~5,15 cm; în A.17 erau patru lamele la pas de 5 cm), adânci de ~3 cm, de pe plintă până la tavanul fals (A.17: 8–242; cu tavanul la 243, 235 cm). Culoarea din A.17 e ca fronturile U156 Bej nisip. Nu sunt benzi LED: A.06 nu are marcaj de LED aici, iar specs/06 G nu are bandă la oglinda holului. Materialul și prinderea: de confirmat cu arhitecta."
     },
     {
      "id": "M05",
