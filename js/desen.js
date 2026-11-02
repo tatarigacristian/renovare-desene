@@ -151,6 +151,7 @@
     negru: { nume: 'negru', fill: '#1f1f1f', stroke: '#000' },
     oglinda: { nume: 'oglindă', fill: 'url(#g-oglinda)', stroke: '#7d8a93' },
     inox: { nume: 'inox', fill: 'url(#g-inox)', stroke: '#6b7280' },
+    antracit: { nume: 'compozit granit, antracit', fill: '#3a3b3e', stroke: '#111214' },
     p751: { nume: 'MDF vopsit San Marco P751 Paris', fill: '#8a7b75', stroke: '#5e524d' },
     p722: { nume: 'vopsit San Marco P722 Alloro (profil ORAC W109 Valley)', fill: '#929f8e', stroke: '#6b7768' },
     'sand-moon': { nume: 'NOVABELL Sand Moon', fill: '#e9e3d8', stroke: '#a89c88' },
@@ -352,6 +353,8 @@
     sanitar(g, e, H) {
       const x0 = e.x, x1 = e.x + e.lat, jos = H - e.h, sus = H - e.h - e.inalt, w = e.lat, hh = e.inalt;
       const alb = { fill: '#fdfdfc', stroke: '#5f6b75', 'stroke-width': 1.1 }, metal = { fill: 'url(#g-inox)', stroke: '#5f6b75', 'stroke-width': 1 };
+      // chiuveta și bateria iau culoarea din „finisaj”, dacă au; altfel sunt de inox
+      const fz = e.finisaj && FINISAJE[e.finisaj], metalSau = fz ? { fill: fz.fill, stroke: fz.stroke, 'stroke-width': 1 } : metal;
       const P = (d, a) => el('path', Object.assign({ d }, a, NSS), g);
       const T = t => { if (w > 14 && hh > 6) el('text', { x: x0 + w / 2, y: sus + hh / 2 + 2.2, 'font-size': Math.min(6.5, hh * .45), 'text-anchor': 'middle', fill: '#4b5563', 'font-weight': 600, 'pointer-events': 'none' }, g, t); };
       switch (e.obiect) {
@@ -360,7 +363,7 @@
           P(`M${x0},${sus + hh * .14} H${x1}`, { stroke: '#5f6b75', 'stroke-width': .8 }); break;
         case 'lavoar':
           P(`M${x0},${sus} H${x1} V${sus + hh * .3} C${x1},${jos} ${x0 + w * .8},${jos} ${x0 + w * .5},${jos} C${x0 + w * .2},${jos} ${x0},${jos} ${x0},${sus + hh * .3} Z`, alb); break;
-        case 'chiuveta': rect(g, x0, e.h, w, hh, H, metal); break;
+        case 'chiuveta': rect(g, x0, e.h, w, hh, H, metalSau); break;
         case 'cada': rect(g, x0, e.h, w, hh, H, alb); P(`M${x0 + 3},${sus + 3} H${x1 - 3}`, { stroke: '#9aa5ae', 'stroke-width': .8 }); T('cadă'); break;
         case 'dus': rect(g, x0, e.h, w, hh, H, { fill: '#e3eef6', 'fill-opacity': .55, stroke: '#5f8bb0', 'stroke-width': 1, 'stroke-dasharray': '6 4' }); T('duș'); break;
         case 'rigola': rect(g, x0, e.h, w, Math.max(hh, 1.5), H, { fill: '#4b5563', stroke: '#1f2937', 'stroke-width': .8 }); break;
@@ -379,7 +382,7 @@
         case 'apometru': rect(g, x0, e.h, w, hh, H, { fill: '#f6f5f2', stroke: '#5f6b75', 'stroke-width': 1.1, 'stroke-dasharray': '4 3' }); T('vizitare'); break;
         case 'centrala': rect(g, x0, e.h, w, hh, H, alb); T('centrală'); break;
         case 'boiler': rect(g, x0, e.h, w, hh, H, Object.assign({}, alb, { rx: Math.min(w, hh) * .2 })); T('boiler'); break;
-        default: rect(g, x0, e.h, w, hh, H, metal);
+        default: rect(g, x0, e.h, w, hh, H, metalSau);
       }
     },
     // racord: capătul țevii în perete; cerc în culoarea fluidului
