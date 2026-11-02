@@ -14,11 +14,12 @@ window.CAMERE["dormitor-mic"] = {
   "nota": "Sub tavanul fals de 7 cm, montat deja (03.11.2026): desenat la ~243 cm, ca în living; placa la ~250 cm. Arhitecta nu a proiectat camera: cotele sunt din releveul din 2021 și din analiza/06 v3. Înălțimea se măsoară în 4 puncte."
  },
  "revizie": {
-  "nr": 4,
+  "nr": 5,
   "data": "2026-11-03",
   "modificari": [
+   "Revizia 5: capacul de sus al compartimentului AC are lamele verticale (LM) în loc de ~250 de găuri, cu aceeași suprafață liberă (~40%), și se rabatează în jos pentru filtre; clapa CL nu mai are găuri (03.11.2026).",
    "Revizia 4: coloana M16 e bej, în culoarea consolei M14, nu în nuc; nucul rămâne doar pe M13 (03.11.2026).",
-   "Revizia 3: coloana M16 (60 × 40 cm), din care iese consola M14, acum de 210 cm; televizorul, P4 și TB1 se mută ~25 cm spre ușă, centrate pe consolă, iar P5 la 290. Compartimentul AC crește în jos (ușile lui M13 până la h 190): unitatea vine în față, cu capac fix perforat sus și cu clapa CL, care vara intră sub unitate; tubul TB2 coboară sub scurgerea unității. Tavanul fals e deja montat (03.11.2026).",
+   "Revizia 3: coloana M16 (60 × 40 cm), din care iese consola M14, acum de 210 cm; televizorul, P4 și TB1 se mută ~25 cm spre ușă, centrate pe consolă, iar P5 la 290. Compartimentul AC crește în jos (ușile lui M13 până la h 190): unitatea vine în față, cu capac rabatabil perforat sus și cu clapa CL, care vara intră sub unitate; tubul TB2 coboară sub scurgerea unității. Tavanul fals e deja montat (03.11.2026).",
    "Revizia 2: dulapul M13 are 120 cm (avea 80), cu unitatea AC în compartimentul de sus, în spatele capacului perforat M13-C; consola M14 are 260 cm (avea 280), iar televizorul e centrat pe ea. Traseul AC spre unitatea exterioară de pe fațadă (02.11.2026).",
    "Prima versiune: cei 4 pereți și planul tavanului, din releveul din 2021 (495 × 256), din cele două randări din 02.11.2026 și din propunerea din analiza/06 v3, acceptată pe 02.11.2026 (D26).",
    "Camera nu are proiect de la arhitectă. Tot ce nu e în releveu e propunere: mobilierul M13–M16, riflajul RF1, scafa, șina SM, benzile L1–L3 și prizele. Tavanul fals e montat deja.",
@@ -638,7 +639,7 @@ window.CAMERE["dormitor-mic"] = {
      "id": "M13-C",
      "strat": "mobila",
      "tip": "mobilier",
-     "nume": "Capacul fix, perforat, al compartimentului AC",
+     "nume": "Capacul de sus cu lamele al compartimentului AC",
      "x": 375,
      "lat": 120,
      "h": 208,
@@ -653,7 +654,7 @@ window.CAMERE["dormitor-mic"] = {
      "pozitie": "aprox",
      "stare": "propunere",
      "sursa": "cererea din 02.11.2026 (AC în capul dulapului, cu front perforat); 03.11.2026",
-     "nota": "Partea de sus a frontului, între h 208 și 243, pe toată lățimea. Pe aici intră aerul cald spre grila de sus a unității. Se demontează (clipsuri) pentru filtre și racorduri. Același PAL ca M13."
+     "nota": "Partea de sus a frontului, între h 208 și 243, pe toată lățimea: o ramă cu lamelele LM. Pe aici intră aerul cald spre grila de sus a unității. Se rabatează în jos, cu balamale la marginea de jos și un opritor, ca să ajungi la filtre fără să-l dai jos; pentru service se poate și demonta. Același PAL ca M13."
     },
     {
      "id": "CL",
@@ -673,30 +674,29 @@ window.CAMERE["dormitor-mic"] = {
      "pozitie": "aprox",
      "stare": "propunere",
      "sursa": "cererea din 03.11.2026",
-     "nota": "Între h 190 și 208, pe toată lățimea, perforată ca M13-C: iarna, închisă, se vede o singură bandă perforată. Vara se rabatează în jos și se împinge ~18 cm sub unitate, pe două glisiere cu extragere totală, iar aerul rece iese liber prin fantă. Se deschide cu push, de la marginea de sus. Înainte de pornirea AC-ului clapa trebuie deschisă; opțional, un contact pe clapă taie alimentarea de pe D2 cât timp e închisă."
+     "nota": "Între h 190 și 208, pe toată lățimea, fără găuri: vara e deschisă, iar iarna aerul condiționat e oprit. Vara se rabatează în jos și se împinge ~18 cm sub unitate, pe două glisiere cu extragere totală, iar aerul rece iese liber prin fantă. Se deschide cu push, de la marginea de sus. Înainte de pornirea AC-ului clapa trebuie deschisă; opțional, un contact pe clapă taie alimentarea de pe D2 cât timp e închisă."
     },
     {
-     "id": "PF",
+     "id": "LM",
      "strat": "mobila",
-     "tip": "perforatii",
-     "nume": "Perforațiile din capacul M13-C și din clapa CL: Ø 3 cm la ~4,4 cm",
-     "x": 379,
-     "lat": 112,
-     "h": 193,
-     "inalt": 47,
-     "n": 28,
-     "randuri": 11,
-     "diam": 3,
+     "tip": "riflaj",
+     "nume": "Lamelele capacului de sus: 3 cm, la ~2,3 cm",
+     "x": 378,
+     "lat": 114,
+     "h": 209,
+     "inalt": 33,
+     "lamela": 3,
+     "rost": 2.3,
+     "finisaj": "nuc",
      "inFata": [
       "AC",
       "D2",
-      "TB2",
       "BL"
      ],
      "pozitie": "aprox",
      "stare": "propunere",
-     "sursa": "cererea din 02.11.2026; calculul suprafeței libere (03.11.2026)",
-     "nota": "11 rânduri × 28 de găuri Ø 3 cm, pe 112 × 47 cm: ~41% din zona perforată e gol. Pentru aspirație contează capacul fix (h 208–243): ~0,15 m² gol, prin care aerul trece cu ~1,1–1,3 m/s la 600–700 m³/h, viteza maximă a unei unități de 2,5 kW. Golurile rămân la ≥ 40% din suprafață; o perforație fină (găuri sub 1 cm) nu ajunge. Suprafața minimă se verifică în manualul unității alese."
+     "sursa": "cererea din 03.11.2026 (lamele în loc de găuri); calculul suprafeței libere",
+     "nota": "22 de lamele verticale de 3 cm din PAL nuc, pe 114 × 33 cm, cu ~2,3 cm între ele: ~42% din capac e gol, cât aveau găurile, dar cu ~22 de lamele în loc de ~250 de găuri. Prin goluri (~0,16 m²) aerul trece cu ~1,0–1,2 m/s la 600–700 m³/h. În spatele lamelelor, fundul compartimentului se vopsește negru, ca unitatea să nu se vadă. Suprafața minimă se verifică în manualul unității alese."
     },
     {
      "id": "AC",
@@ -713,7 +713,7 @@ window.CAMERE["dormitor-mic"] = {
      "in": "M13-C",
      "stare": "propunere",
      "sursa": "cererea din 02.11.2026; dimensiuni de split tipic de 2,5 kW (9.000 BTU); spațiul de deasupra după manualele LG și Pioneer (15–20 cm)",
-     "nota": "Modelul nu e ales: desenat ca un split tipic de 2,5 kW pentru 12,4 mp, ~80 × 29 × 20 cm. Prins pe un panou-suport la ~34 cm de perete, cu fața la ~6 cm în spatele frontului, ca să aibă loc clapeta lui. Deasupra rămân ~15 cm până sub capacul dulapului; manualele cer de obicei 15–20 cm. Aerul cald intră prin capacul fix M13-C, cel rece iese prin fanta de jos, cu clapa CL deschisă. E lăsat la ~30 cm de peretele cu fereastra, ca să nu cadă pe o eventuală grindă GR-V. Aerul iese spre birou, nu spre pat."
+     "nota": "Modelul nu e ales: desenat ca un split tipic de 2,5 kW pentru 12,4 mp, ~80 × 29 × 20 cm. Prins pe un panou-suport la ~34 cm de perete, cu fața la ~6 cm în spatele frontului, ca să aibă loc clapeta lui. Deasupra rămân ~15 cm până sub capacul dulapului; manualele cer de obicei 15–20 cm. Aerul cald intră prin capacul de sus M13-C, cel rece iese prin fanta de jos, cu clapa CL deschisă. E lăsat la ~30 cm de peretele cu fereastra, ca să nu cadă pe o eventuală grindă GR-V. Aerul iese spre birou, nu spre pat."
     },
     {
      "id": "D2",
@@ -747,7 +747,7 @@ window.CAMERE["dormitor-mic"] = {
      "id": "BL",
      "strat": "mobila",
      "tip": "mobilier",
-     "nume": "Placa scurtă cu garnitură, la marginea de jos a capacului fix",
+     "nume": "Placa scurtă cu garnitură, la marginea de jos a capacului de sus",
      "x": 379,
      "lat": 112,
      "h": 208,
@@ -758,7 +758,7 @@ window.CAMERE["dormitor-mic"] = {
      "in": "M13-C",
      "stare": "propunere",
      "sursa": "practica pentru unitățile AC mascate; de confirmat cu firma de AC",
-     "nota": "Între fața unității și capacul fix, la h 208, pe ~6 cm adâncime, cu garnitură: aerul rece care iese prin fantă nu se întoarce în spatele capacului, spre aspirație."
+     "nota": "Între fața unității și capacul de sus, la h 208, pe ~6 cm adâncime, cu garnitură: aerul rece care iese prin fantă nu se întoarce în spatele capacului, spre aspirație."
     }
    ],
    "avertismente": [
@@ -789,10 +789,10 @@ window.CAMERE["dormitor-mic"] = {
       "M13",
       "M13-C",
       "CL",
-      "PF",
+      "LM",
       "BL"
      ],
-     "text": "Unitatea AC din capul dulapului: modelul se alege înainte de comanda lui M13. Din manualul ei se iau spațiul liber de deasupra (desenat ~15 cm, cu ușile lui M13 până la h 190), suprafața liberă a capacului fix (acum ~40%) și locul scurgerii. Tavanul fals e deja montat, deci compartimentul crește doar în jos: dacă manualul cere mai mult, ușile coboară; dacă cere mai puțin, urcă. Vara clapa CL se rabatează sub unitate; cu clapa închisă, aerul rece ar sufla în capac."
+     "text": "Unitatea AC din capul dulapului: modelul se alege înainte de comanda lui M13. Din manualul ei se iau spațiul liber de deasupra (desenat ~15 cm, cu ușile lui M13 până la h 190), suprafața liberă a capacului de sus (acum ~40%) și locul scurgerii. Tavanul fals e deja montat, deci compartimentul crește doar în jos: dacă manualul cere mai mult, ușile coboară; dacă cere mai puțin, urcă. Vara clapa CL se rabatează sub unitate; cu clapa închisă, aerul rece ar sufla în capac."
     },
     {
      "nivel": "info",

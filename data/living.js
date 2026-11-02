@@ -5,9 +5,10 @@ window.CAMERE["living"] = {
  "id": "living",
  "nume": "Living",
  "revizie": {
-  "nr": 5,
+  "nr": 6,
   "data": "2026-11-03",
   "modificari": [
+   "Revizia 6: compartimentul AC din masca M11 desenat ca în dormitorul mic: coboară la 189,2 cm, unitatea vine în față, aerul cald intră prin capacul de sus cu lamele verticale (în loc de 9 găuri), cel rece iese prin fanta de jos, cu clapa CL; pașii de montaj D03' actualizați. De confirmat cu arhitecta (03.11.2026).",
    "Revizia 5: compartimentul AC din masca M11: aerul rece iese liber printr-o fantă jos, iar compartimentul coboară dacă manualul unității cere mai mult spațiu deasupra (decizia din 03.11.2026, de confirmat cu arhitecta).",
    "Revizia 4: pașii de montaj animați pentru scafa draperiei (D-09) și pentru șinele magnetice J și K (J-K) (02.11.2026).",
    "Revizia 3: ușa de balcon U2 desenată cu sticlă, iar fereastra F2 cu un singur geam, fără montant la mijloc (02.11.2026).",
@@ -903,7 +904,7 @@ window.CAMERE["living"] = {
      "adanc": 15,
      "stare": "de-verificat",
      "sursa": "A.16 D03 (h 205 = 33 + 172 = 58 + 102,7 + 44,3); A.29 D03' (iese 15 cm, măsurat); A.01 (placa la 2,50 m)",
-     "nota": "Grindă existentă, lată ~25 cm, din care ~15 cm ies din peretele dintre pilaștri; coboară 45 cm sub placă, cu fața de jos la 205 cm. Același cod (GR1) pe planul tavanului; tavanul fals se oprește la fața ei. Riflajul și spațiul de deasupra televizorului se opresc sub ea. Peste capătul dinspre fereastră e masca M11; unitatea AC stă cu spatele pe ea."
+     "nota": "Grindă existentă, lată ~25 cm, din care ~15 cm ies din peretele dintre pilaștri; coboară 45 cm sub placă, cu fața de jos la 205 cm. Același cod (GR1) pe planul tavanului; tavanul fals se oprește la fața ei. Riflajul și spațiul de deasupra televizorului se opresc sub ea. Peste capătul dinspre fereastră e masca M11; unitatea AC se prinde de ea printr-un panou-suport."
     },
     {
      "id": "D03",
@@ -1044,40 +1045,64 @@ window.CAMERE["living"] = {
      "stare": "proiect",
      "detaliu": "D03'",
      "sursa": "A.16 D03 (100; 65 + 48 + 92,2 + 36,8); A.29; A.08 (M11)",
-     "nota": "PAL H1775 ST12 Nuc Parona pe masca de gips-carton D03. Focarul SEM e lipit de marginea dinspre TV. Panoul de sus (M11-C) se deschide pentru unitatea AC.",
+     "nota": "PAL H1775 ST12 Nuc Parona pe masca de gips-carton D03. Focarul SEM e lipit de marginea dinspre TV. Sus e compartimentul AC: capacul de sus M11-C și, sub el, clapa CL.",
      "finisaj": "nuc"
     },
     {
      "id": "M11-C",
      "strat": "mobila",
      "tip": "mobilier",
-     "nume": "Capacul de vizitare al AC-ului, în masca M11",
+     "nume": "Capacul de sus cu lamele al compartimentului AC",
      "x": 367.1,
      "lat": 100,
-     "h": 205.2,
-     "inalt": 37,
+     "h": 207.2,
+     "inalt": 35,
      "inFata": "D03",
-     "stare": "proiect",
-     "sursa": "A.16 D03 (36,8; simbolul de deschidere)",
-     "nota": "Panoul de sus al măștii, între 205,2 și 242,2 cm. A.16 îl desenează cu simbol de deschidere cu vârful jos, adică rabatabil, cu balamalele jos (de confirmat). Are perforațiile PF. Prin el se ajunge la filtrele și la racordurile unității AC.",
+     "stare": "propunere",
+     "sursa": "A.16 D03 (capac de 36,8 cm, rabatabil); propunerea din 03.11.2026, ca în dormitorul mic (de confirmat cu arhitecta, LV2)",
+     "nota": "Partea de sus a frontului, între 207,2 și 242,2 cm, pe toată lățimea măștii: o ramă cu lamelele LM. Pe aici intră aerul cald spre grila de sus a unității. Se rabatează în jos, cu balamale la marginea de jos și un opritor (ca în A.16), ca să ajungi la filtre fără să-l dai jos; pentru service se poate și demonta. În A.16 capacul era între 205,2 și 242,2, rabatabil, cu 9 găuri.",
      "finisaj": "nuc"
     },
     {
-     "id": "PF",
+     "id": "CL",
      "strat": "mobila",
-     "tip": "perforatii",
-     "nume": "Perforații Ø 3 cm în capacul M11-C (9 găuri)",
-     "x": 385.6,
-     "lat": 63,
-     "h": 210.1,
-     "inalt": 3,
+     "tip": "mobilier",
+     "nume": "Clapa fantei AC: vara se rabatează și intră sub unitate",
+     "x": 367.1,
+     "lat": 100,
+     "h": 189.2,
+     "inalt": 18,
+     "adanc": 50,
+     "inFata": [
+      "D03",
+      "AC"
+     ],
+     "stare": "propunere",
+     "sursa": "propunerea din 03.11.2026, ca în dormitorul mic (de confirmat cu arhitecta, LV2)",
+     "finisaj": "nuc",
      "pozitie": "aprox",
-     "inFata": "D03",
-     "stare": "proiect",
-     "sursa": "A.16 D03 (20 + 8 × 7,5; Ø 3 cm)",
-     "nota": "9 găuri Ø 3 cm într-un rând. Axele la 20; 27,5; … 80 cm de la marginea din stânga a măștii, adică x = 387,1 … 447,1, din 7,5 în 7,5 cm. Înălțimea axelor ~211,6 cm, măsurată pe desen (necotată). Sunt singurele deschideri desenate pentru aerul unității AC.",
-     "n": 9,
-     "diam": 3
+     "nota": "Între 189,2 și 207,2 cm, pe toată lățimea măștii, fără găuri: vara e deschisă, iar iarna aerul condiționat e oprit. Vara se rabatează în jos și se împinge ~18 cm sub unitate, pe două glisiere, iar aerul rece iese liber prin fantă. Înainte de pornirea AC-ului clapa trebuie deschisă."
+    },
+    {
+     "id": "LM",
+     "strat": "mobila",
+     "tip": "riflaj",
+     "nume": "Lamelele capacului de sus: 3 cm, la ~2,2 cm",
+     "x": 369.1,
+     "lat": 96,
+     "h": 208.2,
+     "inalt": 33,
+     "lamela": 3,
+     "rost": 2.3,
+     "finisaj": "nuc",
+     "inFata": [
+      "D03",
+      "AC"
+     ],
+     "stare": "propunere",
+     "sursa": "A.16 D03 (9 găuri Ø 3 cm); propunerea din 03.11.2026, ca în dormitorul mic (de confirmat cu arhitecta, LV2)",
+     "pozitie": "aprox",
+     "nota": "19 lamele verticale de 3 cm din PAL nuc, pe 96 × 33 cm, cu ~2,2 cm între ele: ~41% din capac e gol (~0,13 m²). În spatele lamelelor, fundul compartimentului se vopsește negru, ca unitatea să nu se vadă. În A.16 erau doar 9 găuri Ø 3 cm, într-un rând."
     },
     {
      "id": "SEM",
@@ -1231,15 +1256,33 @@ window.CAMERE["living"] = {
      "nume": "Unitatea interioară AC, în masca M11",
      "x": 380.2,
      "lat": 78,
-     "h": 205.2,
-     "inalt": 37,
+     "h": 196.2,
+     "inalt": 29,
      "adanc": 19,
      "pozitie": "aprox",
      "in": "M11",
-     "stare": "de-verificat",
-     "sursa": "A.07 (unitatea interioară, ~78 × 19 cm în plan, măsurat); A.29 (în masca M11)",
-     "nota": "Unitate split în compartimentul de sus al măștii, cu spatele pe grinda GR1. A.07: „cât mai aproape de tavan”. Modelul nu e ales, deci înălțimea lui nu se știe; compartimentul are 37 cm (205,2–242,2). Unitatea exterioară e pe fațada cu fereastra, lângă acest colț (A.07).",
+     "stare": "propunere",
+     "sursa": "A.07 („cât mai aproape de tavan”); propunerea din 03.11.2026, ca în dormitorul mic (de confirmat cu arhitecta, LV2); spațiul de deasupra după manualele LG și Pioneer (15–20 cm)",
+     "nota": "Modelul nu e ales: desenat ca un split tipic, ~78 × 29 × 19 cm. Stă în față, pe un panou-suport prins în grinda GR1, cu fața la ~6 cm în spatele capacului, ca să aibă loc clapeta lui. Deasupra rămân ~15 cm. Aerul cald intră prin capacul de sus M11-C, cel rece iese prin fanta de jos, cu clapa CL deschisă. Scurgerea e la ~h 197, deci gaura spre fațadă trebuie să fie mai jos (traseul: LV3). În A.16 unitatea stătea cu spatele pe grindă, în compartimentul de 37 cm (205,2–242,2).",
      "ascuns": true
+    },
+    {
+     "id": "BL",
+     "strat": "mobila",
+     "tip": "mobilier",
+     "nume": "Placa scurtă cu garnitură, la marginea de jos a capacului de sus",
+     "x": 369.1,
+     "lat": 96,
+     "h": 207.2,
+     "inalt": 1.5,
+     "adanc": 6,
+     "ascuns": true,
+     "in": "M11",
+     "stare": "propunere",
+     "sursa": "propunerea din 03.11.2026, ca în dormitorul mic (de confirmat cu arhitecta, LV2)",
+     "pozitie": "aprox",
+     "nota": "Între fața unității și capacul de sus, pe ~6 cm adâncime, cu garnitură: aerul rece care iese prin fantă nu se întoarce în spatele capacului, spre aspirație.",
+     "inFata": "D03"
     },
     {
      "id": "CB-AC",
@@ -1299,10 +1342,12 @@ window.CAMERE["living"] = {
      "sursa": "A.07, A.16 D03, A.29; decizia din 03.11.2026; manualele LG și Pioneer; analiza/11",
      "ids": [
       "AC",
-      "PF",
-      "M11-C"
+      "M11-C",
+      "CL",
+      "LM",
+      "BL"
      ],
-     "text": "Unitatea AC e închisă în mască, iar pentru aer sunt desenate doar 9 găuri Ø 3 cm (~64 cm² în total). Compartimentul are 37 cm (h 205,2–242,2): cu o unitate de ~29 cm rămân ≤ 8 cm deasupra, iar manualele cer de obicei 15–20 cm. Decizia din 03.11.2026, ca în dormitorul mic: aerul rece iese liber, printr-o fantă jos, iar compartimentul coboară dacă manualul modelului ales o cere. De confirmat cu arhitecta (unitatea e desenată cu spatele pe grinda GR1, cu fața de jos la 205) și cu firma de AC. Capacul M11-C trebuie să se deschidă pentru filtre și service."
+     "text": "Compartimentul AC e desenat după propunerea din 03.11.2026, ca în dormitorul mic: coboară la 189,2 cm (53 cm în loc de 37), unitatea vine în față, cu ~15 cm liberi deasupra (manualele cer de obicei 15–20 cm). Aerul cald intră prin capacul de sus cu lamele, cel rece iese prin fanta de jos, cu o clapă care vara intră sub unitate. În A.16 compartimentul avea 37 cm și doar 9 găuri. De confirmat cu arhitecta (LV2) și cu firma de AC; înălțimea finală după manualul modelului ales."
     },
     {
      "nivel": "atentie",
@@ -1329,7 +1374,7 @@ window.CAMERE["living"] = {
       "TV",
       "AC"
      ],
-     "text": "Focarul cu bioetanol e la 46 cm de televizor, cu latura deschisă spre el, iar unitatea AC e la ~92 cm deasupra lui, în aceeași mască placată cu PAL. De verificat distanțele minime din manualul șemineului față de materiale combustibile și aparate electrice."
+     "text": "Focarul cu bioetanol e la 46 cm de televizor, cu latura deschisă spre el, iar unitatea AC e la ~83 cm deasupra lui (cu compartimentul coborât; în A.16, ~92), în aceeași mască placată cu PAL. De verificat distanțele minime din manualul șemineului față de materiale combustibile și aparate electrice."
     },
     {
      "nivel": "info",

@@ -9,8 +9,8 @@ window.DETALII["D03'"] = {
  "orientare": "Stânga: peretele dintre pilaștri. Dreapta: camera.",
  "sursa": "A.29 (D03, D03', vederea 3D); specs/04, specs/07, specs/09; analiza/01",
  "revizie": {
-  "nr": 1,
-  "data": "2026-11-02"
+  "nr": 2,
+  "data": "2026-11-03"
  },
  "nota": "Ordinea pașilor e propunerea noastră, după A.29 și analiza/01. Se confirmă cu arhitecta, cu echipa de gips-carton și cu manualul șemineului.",
  "vedere": {
@@ -68,11 +68,20 @@ window.DETALII["D03'"] = {
   {
    "id": "ac",
    "tip": "dreptunghi",
-   "x": 15.5,
-   "y": -240,
+   "x": 25,
+   "y": -225.2,
    "w": 19,
-   "h": 30,
+   "h": 29,
    "umplere": "ac"
+  },
+  {
+   "id": "ac-suport",
+   "tip": "dreptunghi",
+   "x": 23,
+   "y": -240.4,
+   "w": 2,
+   "h": 44.2,
+   "umplere": "pal"
   },
   {
    "id": "fantoma",
@@ -115,9 +124,9 @@ window.DETALII["D03'"] = {
    "id": "str-sus",
    "tip": "structura",
    "x": 0,
-   "y": -205,
+   "y": -189.2,
    "w": 46.95,
-   "h": 87.75,
+   "h": 71.95,
    "profile": []
   },
   {
@@ -133,9 +142,9 @@ window.DETALII["D03'"] = {
    "id": "m-fata-sus",
    "tip": "dreptunghi",
    "x": 41.95,
-   "y": -205,
+   "y": -189.2,
    "w": 5,
-   "h": 87.75,
+   "h": 71.95,
    "umplere": "otel"
   },
   {
@@ -178,9 +187,9 @@ window.DETALII["D03'"] = {
    "id": "g-fata-sus",
    "tip": "dreptunghi",
    "x": 46.95,
-   "y": -205.2,
+   "y": -189.2,
    "w": 1.25,
-   "h": 87.95,
+   "h": 71.95,
    "umplere": "gips-rf"
   },
   {
@@ -250,9 +259,9 @@ window.DETALII["D03'"] = {
    "id": "p-sus",
    "tip": "dreptunghi",
    "x": 48.2,
-   "y": -205.2,
+   "y": -189.2,
    "w": 1.8,
-   "h": 92.2,
+   "h": 76.2,
    "umplere": "pal"
   },
   {
@@ -261,7 +270,16 @@ window.DETALII["D03'"] = {
    "x": 48.2,
    "y": -242.2,
    "w": 1.8,
-   "h": 37,
+   "h": 35,
+   "umplere": "pal"
+  },
+  {
+   "id": "p-clapa",
+   "tip": "dreptunghi",
+   "x": 48.2,
+   "y": -207.2,
+   "w": 1.8,
+   "h": 18,
    "umplere": "pal"
   },
   {
@@ -354,9 +372,9 @@ window.DETALII["D03'"] = {
    ],
    "b": [
     58,
-    -205.2
+    -189.2
    ],
-   "text": "92,2"
+   "text": "76,2"
   },
   {
    "id": "c-2422",
@@ -457,13 +475,13 @@ window.DETALII["D03'"] = {
    "tip": "cota",
    "a": [
     58,
-    -205.2
+    -189.2
    ],
    "b": [
     58,
     -242.2
    ],
-   "text": "36,8"
+   "text": "53"
   },
   {
    "id": "e0-masca",
@@ -494,8 +512,8 @@ window.DETALII["D03'"] = {
    "y": -228,
    "text": "unitatea AC, în compartimentul de sus",
    "spre": [
-    30,
-    -225
+    34,
+    -212
    ]
   },
   {
@@ -580,7 +598,7 @@ window.DETALII["D03'"] = {
    "tip": "eticheta",
    "x": 64,
    "y": -232,
-   "text": "capacul de vizitare al AC-ului, cu 9 găuri Ø 3 cm",
+   "text": "capacul de sus al AC-ului, cu lamele (~40% gol); sub el, clapa fantei",
    "spre": [
     49,
     -224
@@ -660,6 +678,7 @@ window.DETALII["D03'"] = {
     "grinda",
     "tavan-fals",
     "ac",
+    "ac-suport",
     "fantoma",
     "t-zid",
     "t-camera",
@@ -708,7 +727,7 @@ window.DETALII["D03'"] = {
    ],
    "verifica": [
     "Fundul nișei brute e la 9,75 cm de perete, iar rama e în plan (dreptar).",
-    "Unitatea AC are loc în compartimentul de sus (205,2–242,2)."
+    "Unitatea AC are loc în compartimentul de sus (189,2–242,2), cu ~15 cm liberi deasupra."
    ],
    "atentie": "Focarul trece ~20 cm prin dreptul pilastrului PI2, care iese 15 cm din perete. Acolo fundul nișei ar intra în pilastru. Adâncimea reală se stabilește cu arhitecta înainte de structură (LV5).",
    "sursa": "A.29 (vederea 3D: „Structura de prindere”); calculul nostru pentru nișa brută"
@@ -774,21 +793,22 @@ window.DETALII["D03'"] = {
     "p-jos",
     "p-sus",
     "p-capac",
+    "p-clapa",
     "c-368",
     "e4-pal",
     "e4-capac",
     "e4-gol"
    ],
-   "text": "Plăcile PAL H1775 ST12 Nuc Parona pe fața de gips-carton, cu golul focarului de 70 × 48 cm. Sus, capacul de vizitare al AC-ului (36,8 cm), cu 9 găuri de Ø 3 cm.",
+   "text": "Plăcile PAL H1775 ST12 Nuc Parona pe fața de gips-carton, cu golul focarului de 70 × 48 cm. Sus, compartimentul AC-ului (53 cm): capacul de sus cu lamele verticale (35 cm) și, sub el, clapa fantei (18 cm), fără găuri, care vara intră sub unitate.",
    "puncte": [
     "PAL-ul se oprește la marginea nișei. În nișă sunt doar plăcile de silicat.",
-    "Capacul se deschide, pentru filtrele și racordurile AC-ului."
+    "Capacul de sus se rabatează în jos pentru filtre (balamale jos, opritor); vara clapa de jos se rabatează și intră sub unitate, ca aerul rece să iasă liber."
    ],
    "verifica": [
     "Distanța dintre PAL și flacără respectă manualul șemineului (LV6).",
-    "Aerul AC-ului intră și iese prin cele 9 găuri? (LV2)"
+    "Aerul cald intră printre lamelele capacului (≥ 40% gol), cel rece iese prin fantă (LV2)."
    ],
-   "sursa": "A.29 (D03 și D03'); A.16 (legenda); specs/09 M11; analiza/01 pasul 11.6"
+   "sursa": "A.29 (D03 și D03'); A.16 (legenda); specs/09 M11; analiza/01 pasul 11.6; compartimentul AC: propunerea din 03.11.2026, ca în dormitorul mic (de confirmat cu arhitecta, LV2)"
   },
   {
    "titlu": "Montajul focarului",
@@ -830,7 +850,7 @@ window.DETALII["D03'"] = {
     "Camera se aerisește: arderea consumă aer."
    ],
    "verifica": [
-    "Distanțele față de televizor (46 cm, cu latura deschisă spre el) și față de unitatea AC (~92 cm deasupra), din manual (LV6)."
+    "Distanțele față de televizor (46 cm, cu latura deschisă spre el) și față de unitatea AC (~83 cm deasupra), din manual (LV6)."
    ],
    "sursa": "propunerea noastră; manualul șemineului DELTA (de citit înainte de montaj)"
   }
