@@ -14,9 +14,10 @@ window.CAMERE["bucatarie"] = {
   "nota": "Fără tavan fals: A.05 nu hașurează bucătăria, iar A.22 din 02/2026 desenează placa la 250 (A.01: Hu 2,50). Sub grinzile GR1 și GR2 rămân 205 cm. Deasupra banchetei, cutia M01-SB (203,2–250) îmbracă grinda GR1."
  },
  "revizie": {
-  "nr": 2,
+  "nr": 3,
   "data": "2026-11-02",
   "modificari": [
+   "Revizia 3: banda LED verticală G2 de pe lateralul coloanei frigiderului scoasă. În zona de lucru rămâne doar lumina de sub corpurile suspendate, G1 și G3 (02.11.2026).",
    "Mobila, electrocasnicele, racordurile și prizele refăcute după A.21 și A.22 din 10/2026: chiuveta și plita pe peretele de nord, bancheta pe peretele de sud, centrala în dulapul de lângă peretele E2.",
    "Ușa spre hol în poziția din A.21 din 10/2026: golul 114,9–194,9, cu 7 cm spre sud față de A.01.",
    "Prizele: locul din simbolurile din A.21 din 10/2026, înălțimile propuse de noi; A.06 e pentru vechea așezare.",
@@ -606,20 +607,6 @@ window.CAMERE["bucatarie"] = {
      "sursa": "propunere (continuarea benzii G1)"
     },
     {
-     "id": "G2",
-     "strat": "led",
-     "tip": "banda-led",
-     "nume": "Banda LED G verticală, pe lateralul coloanei",
-     "x": 62,
-     "lat": 1.2,
-     "h": 91.5,
-     "inalt": 51.5,
-     "stare": "propunere",
-     "pozitie": "aprox",
-     "nota": "Pe lateralul coloanei frigiderului, între blat (91,5) și corpurile suspendate (143): ~51,5 cm.",
-     "sursa": "specs/06 G («G vertical … lângă coloane», necotată); L2"
-    },
-    {
      "id": "RF2",
      "strat": "mobila",
      "tip": "riflaj",
@@ -691,11 +678,10 @@ window.CAMERE["bucatarie"] = {
     },
     {
      "nivel": "info",
-     "text": "Banda G se mută pe acest perete: ~145 cm sub corpuri (G1), plus G3 (55, opțională) și verticala G2 (~51,5). specs/06 avea ~215 cm sub corpurile vechi (L3); lungimea verticalei e L2.",
-     "sursa": "specs/06 G; L2, L3",
+     "text": "Banda G se mută pe acest perete: ~145 cm sub corpuri (G1), plus G3 (55, opțională). Banda verticală G2 de pe lateralul coloanei frigiderului nu se mai face (decizia din 02.11.2026): în zona de lucru rămâne doar lumina de sus, de sub corpurile suspendate. specs/06 avea ~215 cm sub corpurile vechi (L3).",
+     "sursa": "specs/06 G; L3; decizia din 02.11.2026",
      "ids": [
       "G1",
-      "G2",
       "G3",
       "D2"
      ]
