@@ -1,0 +1,354 @@
+/* Aceleași culori ca paginile din analiza/html (build.py). Desenul rămâne pe hârtie deschisă și în modul întunecat. */
+:root {
+  --bg:#f7f4ef; --surface:#fffdfa; --surface-2:#f1ece4; --border:#e0d8cb;
+  --text:#2b2622; --muted:#6d635a; --heading:#1d1916;
+  --accent:#8a5a2b; --accent-soft:#f0e4d6;
+  --hartie:#ffffff; --sel:#b42318; --intre:#1d4ed8; --atentie:#b45309; --atentie-soft:#fdf3e1; --ok:#15803d;
+  --umbra:0 1px 2px rgba(40,30,20,.08), 0 4px 16px rgba(40,30,20,.08);
+  --font:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#17150f; --surface:#1f1c16; --surface-2:#272319; --border:#39332a;
+    --text:#e8e2d6; --muted:#a49a8c; --heading:#f5f0e6;
+    --accent:#d8a76a; --accent-soft:#302819;
+    --hartie:#ebe7df; --sel:#f87171; --intre:#93b4ff; --atentie:#f0b45a; --atentie-soft:#2e2414; --ok:#4ade80;
+    --umbra:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.35);
+  }
+}
+* { box-sizing:border-box; }
+html { -webkit-text-size-adjust:100%; }
+body { margin:0; background:var(--bg); color:var(--text); font-family:var(--font); font-size:14px; line-height:1.45; }
+a { color:var(--accent); }
+button { font:inherit; color:inherit; }
+:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.ic { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex:none; }
+.doar-print { display:none; }
+
+/* ---------------------------------------------------------------- index.html */
+.pagina { max-width:1280px; margin:0 auto; padding:12px 14px 40px; }
+header.cap { display:flex; flex-wrap:wrap; gap:4px 16px; align-items:baseline; margin-bottom:10px; }
+header.cap .inapoi { font-size:13px; text-decoration:none; }
+header.cap h1 { margin:0; font-size:21px; color:var(--heading); width:100%; }
+header.cap #subtitlu { color:var(--muted); }
+.camere { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:10px; }
+.camere a, .camere div { display:block; padding:12px 14px; border:1px solid var(--border); border-radius:10px; background:var(--surface); text-decoration:none; color:var(--text); }
+.camere a b { color:var(--accent); }
+.camere small { display:block; color:var(--muted); }
+.camere div { opacity:.6; }
+
+/* ---------------------------------------------------------------- aplicația: bară, comenzi, desen, panou */
+.app { height:100vh; height:100dvh; display:flex; flex-direction:column; }
+
+.bara { display:flex; align-items:center; gap:8px; padding:7px 10px 7px 6px; min-height:52px; background:var(--surface); border-bottom:1px solid var(--border); }
+.titluri { flex:1; min-width:0; display:flex; flex-direction:column; }
+.titluri h1 { margin:0; font-size:16px; line-height:1.3; color:var(--heading); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.titluri h1 .sep { color:var(--muted); font-weight:400; margin:0 2px; }
+.titluri #subtitlu { font-size:12.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.chip-meta { font-size:12px; color:var(--muted); background:var(--surface-2); border:1px solid var(--border); border-radius:999px; padding:3px 10px; white-space:nowrap; }
+.buton-icon { display:inline-grid; place-items:center; width:36px; height:36px; flex:none; border-radius:9px; border:1px solid transparent; background:transparent; color:var(--text); cursor:pointer; text-decoration:none; }
+.buton-icon:hover { background:var(--surface-2); border-color:var(--border); }
+
+.comenzi { display:flex; align-items:center; gap:8px 14px; padding:7px 12px; background:var(--surface); border-bottom:1px solid var(--border); }
+.mini-plan { width:52px; height:58px; flex:none; border-radius:6px; overflow:hidden; }
+.mini-plan svg { width:100%; height:100%; display:block; }
+.mini-plan .activ { cursor:pointer; }
+.segmente { display:flex; gap:2px; padding:3px; min-width:0; overflow-x:auto; scrollbar-width:none; background:var(--surface-2); border:1px solid var(--border); border-radius:10px; }
+.segmente::-webkit-scrollbar, .chips::-webkit-scrollbar { display:none; }
+.segmente button { border:0; background:transparent; border-radius:7px; padding:6px 12px; font-size:13.5px; font-weight:600; color:var(--muted); cursor:pointer; white-space:nowrap; }
+.segmente button:hover:not(:disabled):not(.on) { color:var(--text); }
+.segmente button.on { background:var(--surface); color:var(--heading); box-shadow:0 1px 2px rgba(0,0,0,.14); }
+.segmente button:disabled { cursor:default; opacity:.6; font-weight:500; }
+.segmente small { font-size:11px; font-weight:400; margin-left:5px; }
+.variante { display:flex; align-items:center; gap:8px; min-width:0; }
+.variante[hidden] { display:none; }
+.var-et { font-size:12px; font-weight:600; color:var(--atentie); white-space:nowrap; }
+.variante .segmente button { padding:5px 10px; font-size:12.5px; }
+.variante .segmente button.on { color:var(--atentie); box-shadow:0 0 0 1px color-mix(in srgb, var(--atentie) 50%, transparent), 0 1px 2px rgba(0,0,0,.14); }
+.chips { display:flex; gap:6px; margin-left:auto; min-width:0; overflow-x:auto; scrollbar-width:none; }
+.chip { display:inline-flex; align-items:center; gap:6px; flex:none; border:1px dashed var(--border); background:transparent; border-radius:999px; padding:5px 11px 5px 9px; font-size:13px; color:var(--muted); cursor:pointer; white-space:nowrap; }
+.chip i { width:10px; height:10px; border-radius:3px; border:1.5px solid var(--c); }
+.chip .n { font-size:11.5px; color:var(--muted); font-variant-numeric:tabular-nums; }
+.chip.on { border-style:solid; border-color:color-mix(in srgb, var(--c) 45%, var(--border)); background:color-mix(in srgb, var(--c) 10%, var(--surface)); color:var(--text); font-weight:600; }
+.chip.on i { background:var(--c); }
+
+.lucru { flex:1; min-height:0; display:grid; grid-template-columns:minmax(0, 1fr) 380px; background:var(--hartie); }
+.desen-cutie { position:relative; min-width:0; min-height:0; overflow:hidden; background:var(--hartie); }
+#desen { position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:none; user-select:none; -webkit-user-select:none; cursor:grab; font-family:var(--font); }
+#desen:active { cursor:grabbing; }
+#desen .elem, #desen .eticheta { cursor:pointer; }
+#desen .stins { opacity:.2; }
+#desen .glow { animation:puls 2.8s ease-in-out infinite; }
+@keyframes puls { 50% { opacity:.35; } }
+@media (hover: hover) {
+  #desen .elem:not(.stins):hover, #desen .eticheta:not(.stins):hover { filter:drop-shadow(0 0 2.5px rgba(29,78,216,.8)); }
+  #desen .stins:hover { opacity:.5; }
+}
+@media (prefers-reduced-motion: reduce) { #desen .glow { animation:none; } }
+
+/* butoanele de zoom stau peste hârtie, deci au aceleași culori deschise și în modul întunecat */
+.zoom { position:absolute; right:12px; bottom:12px; display:flex; flex-direction:column; background:#fffdfa; border:1px solid #d8d2c7; border-radius:10px; box-shadow:var(--umbra); overflow:hidden; }
+.zoom button { width:38px; height:38px; display:grid; place-items:center; border:0; background:transparent; color:#2b2622; cursor:pointer; }
+.zoom button + button { border-top:1px solid #ece7df; }
+.zoom button:hover { background:#f1ece4; }
+
+.tooltip[hidden] { display:none; }
+.tooltip { position:absolute; left:0; top:0; z-index:3; pointer-events:none; max-width:320px; padding:4px 9px; background:#1d1916; color:#f5f0e6; border-radius:6px; font-size:12.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; box-shadow:var(--umbra); }
+.tooltip b { margin-right:6px; }
+.tooltip em { display:block; font-style:normal; color:#93b4ff; }
+.tooltip .tp-pasi { display:block; color:#d6cfc3; font-size:12px; }
+.semn-pasi { display:inline-flex; margin-left:6px; vertical-align:-2px; }
+.semn-pasi svg { width:13px; height:13px; }
+.semn-pasi circle { fill:#fff; stroke:#1f2937; stroke-width:1; }
+.semn-pasi path { fill:#1f2937; }
+.leg .semn-pasi { margin-left:-2px; }
+
+.panou { display:flex; flex-direction:column; min-height:0; background:var(--surface); border-left:1px solid var(--border); }
+.rezumat { display:none; }
+.panou-corp { flex:1; min-height:0; overflow-y:auto; padding:14px 16px 28px; }
+
+/* ---------------------------------------------------------------- fișa elementului și distanțele */
+.selectie { margin-bottom:16px; }
+.selectie.gol p { margin:0; padding:10px 12px; border:1px dashed var(--border); border-radius:10px; color:var(--muted); font-size:13px; }
+.fisa { padding:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; box-shadow:var(--umbra); }
+.fisa-cap { display:flex; align-items:flex-start; gap:10px; }
+.fisa-cap > .badge { margin-top:2px; }
+.fisa-titlu { flex:1; min-width:0; }
+.fisa-titlu b { display:block; font-size:15px; line-height:1.3; color:var(--heading); }
+.fisa-cap .buton-icon { width:30px; height:30px; margin:-4px -4px 0 0; color:var(--muted); }
+.stare-text { display:inline-flex; align-items:center; gap:6px; margin-top:3px; font-size:12.5px; color:var(--muted); }
+.stare-text i { width:8px; height:8px; border-radius:50%; background:var(--c); }
+.cote-titlu { margin:12px 0 5px; font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.cote-grid { display:grid; gap:5px; }
+.cote-rand { display:grid; grid-template-columns:62px repeat(3, minmax(0, 1fr)); gap:5px; }
+.cote-rand.n2 { grid-template-columns:62px repeat(2, minmax(0, 1fr)); }
+.cote-et { align-self:center; font-size:12px; color:var(--muted); }
+.c { display:flex; flex-direction:column; min-width:0; padding:5px 8px; background:var(--surface-2); border-radius:8px; }
+.c b { font-size:16px; line-height:1.25; color:var(--sel); font-variant-numeric:tabular-nums; }
+.c.el b { color:var(--heading); }
+.c small { font-size:11px; line-height:1.25; color:var(--muted); }
+.fara-poz { margin:12px 0 0; padding:8px 10px; border-radius:8px; background:var(--atentie-soft); color:var(--atentie); font-size:13px; }
+.detalii { display:grid; grid-template-columns:82px 1fr; gap:5px 10px; margin:12px 0; font-size:13.5px; }
+.detalii dt { color:var(--muted); }
+.detalii dd { margin:0; overflow-wrap:anywhere; }
+.actiuni { display:flex; flex-wrap:wrap; gap:8px; }
+.buton { display:inline-flex; align-items:center; gap:7px; padding:7px 12px; border:1px solid var(--border); border-radius:9px; background:var(--surface); color:var(--text); font-size:13.5px; font-weight:600; text-decoration:none; cursor:pointer; }
+.buton:hover { background:var(--surface-2); }
+.buton .ic { width:16px; height:16px; }
+.buton.principal { background:#1d4ed8; border-color:#1d4ed8; color:#fff; }
+.buton.principal:hover { background:#1e40af; }
+.buton.activ { border-color:#1d4ed8; color:var(--intre); }
+.buton.whatsapp { color:var(--ok); }
+.pereche { display:inline-flex; align-items:center; gap:5px; margin-top:2px; color:var(--intre); font-weight:700; }
+.intre { margin:10px 0 0; font-size:13px; color:var(--muted); }
+.masuri h4 { margin:12px 0 5px; font-size:11.5px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.masuri ul { list-style:none; margin:0; padding:0; display:grid; gap:4px; }
+.masuri li { padding:6px 9px; background:var(--surface-2); border-radius:8px; font-size:13.5px; }
+.masuri li b { margin-right:3px; font-size:15px; color:var(--intre); font-variant-numeric:tabular-nums; }
+.indiciu { margin:10px 0 0; font-size:12.5px; color:var(--muted); }
+.indiciu .ic { width:14px; height:14px; margin-right:5px; vertical-align:-2px; }
+
+.badge { display:inline-block; padding:0 7px; border:0; border-radius:5px; color:#fff; font-size:12.5px; font-weight:700; line-height:1.55; white-space:nowrap; font-variant-numeric:tabular-nums; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+button.badge { cursor:pointer; }
+button.badge:hover { filter:brightness(1.12); }
+.badge.mic { padding:0 5px; font-size:11px; }
+
+/* ---------------------------------------------------------------- file: elemente și verificări */
+.file { position:sticky; top:-14px; z-index:1; display:flex; gap:2px; margin:0 -16px 10px; padding:0 12px; background:var(--surface); border-bottom:1px solid var(--border); }
+.file button { display:inline-flex; align-items:center; gap:6px; margin-bottom:-1px; padding:9px 8px; border:0; border-bottom:2px solid transparent; background:transparent; color:var(--muted); font-weight:600; cursor:pointer; }
+.file button.on { color:var(--heading); border-bottom-color:var(--accent); }
+.nr { padding:0 6px; border-radius:999px; background:var(--surface-2); color:var(--muted); font-size:11px; font-weight:600; line-height:17px; font-variant-numeric:tabular-nums; }
+.nr.atentie { background:var(--atentie-soft); color:var(--atentie); border:1px solid color-mix(in srgb, var(--atentie) 40%, transparent); }
+
+.cauta { position:relative; display:block; margin-bottom:6px; }
+.cauta .ic { position:absolute; left:10px; top:50%; width:16px; height:16px; transform:translateY(-50%); color:var(--muted); }
+.cauta input { width:100%; padding:8px 10px 8px 34px; border:1px solid var(--border); border-radius:9px; background:var(--surface-2); color:var(--text); font:inherit; }
+.grup h3 { display:flex; align-items:center; gap:7px; margin:14px 0 4px; font-size:11.5px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.grup h3 i { width:9px; height:9px; border-radius:3px; background:var(--c); }
+.grup h3 em { font-style:normal; font-weight:400; text-transform:none; letter-spacing:0; }
+.grup ul { list-style:none; margin:0; padding:0; }
+.rand { display:grid; grid-template-columns:50px minmax(0, 1fr); gap:1px 10px; align-items:baseline; width:100%; padding:6px 8px; border:0; border-radius:8px; background:transparent; text-align:left; cursor:pointer; }
+.rand:hover { background:var(--surface-2); }
+.rand.ales { background:var(--accent-soft); box-shadow:inset 3px 0 0 var(--accent); }
+.rand .badge { grid-row:span 2; align-self:start; justify-self:start; margin-top:1px; }
+.rand .nume { font-size:13.5px; line-height:1.3; }
+.rand .poz { font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums; }
+.grup.ascuns .rand { opacity:.6; }
+.gol-lista { color:var(--muted); font-size:13px; }
+.link-tabel { display:inline-block; margin-top:12px; font-size:13px; }
+
+.verif { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+.verif li { display:grid; grid-template-columns:20px 1fr; gap:9px; padding:9px 10px; border:1px solid var(--border); border-radius:10px; background:var(--surface); font-size:13.5px; }
+.verif li.atentie { border-color:color-mix(in srgb, var(--atentie) 45%, var(--border)); background:var(--atentie-soft); }
+.verif li[data-act] { cursor:pointer; }
+.verif li[data-act]:hover { border-color:var(--accent); }
+.verif p { margin:0; }
+.v-ic { display:grid; place-items:center; width:20px; height:20px; border-radius:50%; background:var(--surface-2); color:var(--muted); font-size:12px; font-weight:700; font-style:normal; }
+.atentie .v-ic { background:var(--atentie); color:#fff; }
+.v-ids { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
+.verif small { display:block; margin-top:4px; color:var(--muted); font-size:12px; }
+.v-arata { display:block; margin-top:4px; color:var(--accent); font-size:12px; font-weight:600; }
+
+/* ---------------------------------------------------------------- sub aplicație: tabelul complet */
+.sub { max-width:1280px; margin:0 auto; padding:22px 14px 40px; }
+.sub h2 { margin:0 0 6px; font-size:15px; color:var(--heading); }
+.nota { margin:0 0 10px; color:var(--muted); font-size:13px; }
+#tabel { overflow-x:auto; border:1px solid var(--border); border-radius:10px; }
+#tabel table { border-collapse:collapse; width:100%; font-size:13.5px; background:var(--surface); }
+#tabel th, #tabel td { padding:7px 8px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top; }
+#tabel tr:last-child td { border-bottom:0; }
+#tabel th { background:var(--surface-2); font-weight:600; white-space:nowrap; }
+#tabel td.num { white-space:nowrap; font-variant-numeric:tabular-nums; }
+#tabel input { width:18px; height:18px; }
+.sursa { color:var(--muted); font-size:12.5px; }
+#modificari { margin-top:18px; color:var(--muted); font-size:13px; }
+
+/* ---------------------------------------------------------------- ajutor și legendă */
+dialog { width:min(640px, calc(100vw - 24px)); max-height:min(82vh, 760px); padding:0; border:1px solid var(--border); border-radius:14px; background:var(--surface); color:var(--text); box-shadow:0 20px 60px rgba(0,0,0,.3); }
+dialog::backdrop { background:rgba(20,15,10,.45); }
+.dialog-cap { position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; padding:10px 10px 10px 18px; background:var(--surface); border-bottom:1px solid var(--border); }
+.dialog-cap h2 { margin:0; font-size:16px; color:var(--heading); }
+.dialog-corp { padding:4px 18px 20px; }
+.dialog-corp h3 { margin:16px 0 6px; font-size:11.5px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.dialog-corp ul { margin:0; padding-left:18px; }
+.dialog-corp li { margin:5px 0; }
+.referinte p { margin:4px 0; }
+.leg-rand { margin:6px 0; }
+.leg-rand > b { display:block; margin-bottom:2px; font-size:13px; }
+.leg { display:inline-flex; align-items:center; gap:5px; margin:2px 14px 2px 0; white-space:nowrap; font-size:13.5px; }
+.leg i { display:inline-block; width:12px; height:12px; border-radius:3px; }
+.t-sel { color:var(--sel); font-weight:600; }
+.t-intre { color:var(--intre); font-weight:600; }
+
+/* ---------------------------------------------------------------- butonul „Cum se montează” din fișă */
+.detaliu-card { display:flex; align-items:center; gap:12px; width:100%; margin:12px 0 0; padding:10px 12px; border:1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); border-radius:10px; background:var(--accent-soft); color:var(--text); text-align:left; cursor:pointer; }
+.detaliu-card:hover { border-color:var(--accent); }
+.dc-ic { display:grid; place-items:center; flex:none; width:36px; height:36px; border-radius:50%; background:var(--accent); color:var(--surface); }
+.dc-ic .ic { width:15px; height:15px; margin-left:2px; fill:currentColor; stroke:none; }
+.dc-text b { display:block; color:var(--heading); }
+.dc-text small { color:var(--muted); font-size:12.5px; }
+
+/* ---------------------------------------------------------------- pașii de montaj (js/pasi.js) */
+dialog.pasi { width:min(1180px, calc(100vw - 24px)); height:min(800px, calc(100dvh - 24px)); max-width:none; max-height:none; display:none; flex-direction:column; overflow:hidden; }
+dialog.pasi[open] { display:flex; }
+.ps-cap { display:flex; align-items:flex-start; gap:10px; padding:12px 10px 10px 16px; border-bottom:1px solid var(--border); }
+.ps-cod { margin-top:2px; background:#57534e; }
+.ps-titluri { flex:1; min-width:0; }
+.ps-titluri h2 { margin:0; font-size:16px; line-height:1.3; color:var(--heading); }
+.ps-sub { display:block; font-size:12.5px; color:var(--muted); }
+.ps-corp { flex:1; min-height:0; display:grid; grid-template-columns:minmax(0, 1.55fr) minmax(300px, 1fr); }
+.ps-scena { display:flex; flex-direction:column; min-height:0; margin:0; background:var(--hartie); border-right:1px solid var(--border); }
+.ps-scena svg { flex:1; min-height:0; width:100%; display:block; font-family:var(--font); }
+.ps-scena figcaption { padding:6px 12px 8px; font-size:12px; color:#6d635a; }
+.ps-text { min-height:0; overflow-y:auto; padding:16px 18px 20px; }
+.ps-meta { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+.ps-nr { font-size:12px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.05em; }
+.ps-cine { padding:1px 9px; border:1px solid var(--border); border-radius:999px; background:var(--surface-2); color:var(--muted); font-size:12.5px; }
+.ps-text h3 { margin:8px 0 6px; font-size:19px; line-height:1.25; color:var(--heading); }
+.ps-text p { margin:0 0 10px; }
+.ps-text h4 { margin:14px 0 6px; font-size:11.5px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.ps-puncte { margin:0 0 10px; padding-left:18px; }
+.ps-puncte li { margin:4px 0; }
+.ps-verifica { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+.ps-verifica li { position:relative; padding:7px 10px 7px 32px; border-radius:8px; background:var(--surface-2); }
+.ps-verifica li::before { content:""; position:absolute; left:10px; top:10px; width:12px; height:12px; border:1.5px solid var(--muted); border-radius:3px; }
+.ps-atentie { padding:8px 10px; border-radius:8px; background:var(--atentie-soft); color:var(--atentie); font-weight:600; }
+.ps-text .ps-sursa { margin-top:16px; font-size:12.5px; color:var(--muted); }
+.ps-stare { display:inline-flex; align-items:center; gap:5px; margin-right:6px; color:var(--text); font-weight:600; }
+.ps-stare i { width:8px; height:8px; border-radius:50%; background:var(--c); }
+.ps-jos { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 16px; padding:10px 14px; border-top:1px solid var(--border); }
+.ps-puncte-nav { display:flex; flex-wrap:wrap; gap:4px; }
+.ps-puncte-nav button { width:28px; height:28px; border:1px solid var(--border); border-radius:50%; background:var(--surface); color:var(--muted); font-size:12px; font-weight:600; font-variant-numeric:tabular-nums; cursor:pointer; }
+.ps-puncte-nav button.vazut { border-color:color-mix(in srgb, var(--accent) 35%, var(--border)); background:var(--accent-soft); color:var(--accent); }
+.ps-puncte-nav button.on { border-color:var(--accent); background:var(--accent); color:var(--surface); }
+.ps-butoane { display:flex; gap:6px; }
+.ps-butoane .buton:disabled { opacity:.45; cursor:default; }
+.ps-butoane [data-p="reda"] { min-width:150px; justify-content:center; }
+.ps-butoane [data-p="reda"] .ic, .dc-ic .ic { fill:currentColor; }
+@media (prefers-reduced-motion: no-preference) { .ps-lumina { animation:puls 2.8s ease-in-out 1.6s infinite; } }
+
+/* ---------------------------------------------------------------- telefon și tabletă: panoul devine foaie de jos */
+@media (max-width: 899px) {
+  .lucru { display:flex; flex-direction:column; }
+  .desen-cutie { flex:1; }
+  .panou { flex:none; border-left:0; border-top:1px solid var(--border); border-radius:16px 16px 0 0; box-shadow:0 -6px 20px rgba(0,0,0,.1); padding-bottom:env(safe-area-inset-bottom); }
+  .panou[data-stare="mare"] { flex:0 0 56%; }
+  .panou[data-stare="mic"] .panou-corp { display:none; }
+  .panou-corp { padding-top:4px; overscroll-behavior:contain; }
+  .file { top:-4px; }
+  .rezumat { position:relative; display:flex; align-items:center; gap:8px; width:100%; min-height:62px; padding:16px 14px 8px; border:0; background:transparent; text-align:left; cursor:pointer; }
+  .rezumat::before { content:""; position:absolute; top:6px; left:50%; width:36px; height:4px; margin-left:-18px; border-radius:2px; background:var(--border); }
+  .rz-text { flex:1; min-width:0; display:flex; flex-direction:column; }
+  .rz-text b { font-size:14px; color:var(--heading); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .rz-text small { font-size:12.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .rz-sag { color:var(--intre); font-weight:700; }
+  .rz-sageata { color:var(--muted); display:grid; }
+  .rz-sageata .ic { transition:transform .2s; }
+  .panou[data-stare="mare"] .rz-sageata .ic { transform:rotate(180deg); }
+  .selectie.gol { display:none; }
+}
+@media (max-width: 760px) {
+  dialog.pasi { width:100vw; height:100dvh; border:0; border-radius:0; }
+  .ps-sub { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .ps-corp { display:flex; flex-direction:column; }
+  .ps-scena { flex:0 0 46%; border-right:0; border-bottom:1px solid var(--border); }
+  .ps-scena figcaption { padding:4px 10px 6px; font-size:11.5px; }
+  .ps-text { flex:1; padding:12px 14px; }
+  .ps-text h3 { font-size:17px; }
+  .ps-jos { padding:8px 10px calc(8px + env(safe-area-inset-bottom)); gap:8px; }
+  .ps-puncte-nav { flex-wrap:nowrap; width:100%; overflow-x:auto; scrollbar-width:none; }
+  .ps-puncte-nav button { flex:none; width:26px; height:26px; }
+  .ps-butoane { width:100%; }
+  .ps-butoane .buton { flex:1; justify-content:center; padding:8px 6px; }
+  .ps-butoane [data-p="reda"] { min-width:0; flex:1.6; }
+  .ps-butoane [data-p="reia"] { flex:none; }
+}
+@media (max-width: 640px) {
+  .bara { padding:6px 6px 6px 2px; min-height:48px; gap:4px; }
+  .titluri h1 { font-size:15px; }
+  .titluri #subtitlu, .chip-meta { display:none; }
+  .comenzi { flex-wrap:wrap; gap:6px 8px; padding:6px 10px; }
+  .mini-plan { width:36px; height:42px; }
+  .segmente { flex:1; }
+  .segmente button { padding:6px 9px; font-size:13px; }
+  .chips { margin-left:0; width:100%; }
+  .variante { width:100%; }
+  .variante .segmente { flex:none; }
+  .chip { padding:4px 10px 4px 8px; }
+  .zoom { right:8px; bottom:8px; }
+}
+
+/* ---------------------------------------------------------------- tipar: A3 orizontal, desenul la 1:20 */
+@page { size:A3 landscape; margin:10mm; }
+@media print {
+  :root { --bg:#fff; --surface:#fff; --surface-2:#f2f2f2; --border:#ccc; --text:#000; --muted:#444; --heading:#000; --hartie:#fff; --atentie:#9a4a00; --atentie-soft:#fff; color-scheme:light; }
+  body { font-size:11px; }
+  .app { display:block; height:auto; }
+  .comenzi, .panou, .zoom, .tooltip, .bara .buton-icon, .nu-print, dialog { display:none !important; }
+  .doar-print { display:revert; }
+  .bara { min-height:0; padding:4px 8px; border:1px solid #000; }
+  .titluri { flex-direction:row; flex-wrap:wrap; align-items:baseline; gap:2px 12px; }
+  .titluri h1, .titluri #subtitlu { white-space:normal; }
+  .chip-meta { border:0; background:none; padding:0; color:#000; }
+  .lucru { display:block; }
+  .desen-cutie { overflow:visible; }
+  #desen { position:static; }
+  #desen .glow { animation:none; }
+  .sub { max-width:none; padding:0; }
+  .tipar-info { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,2.6fr); gap:14px; margin-top:4px; font-size:10.5px; }
+  /* tavanul e înalt și îngust: legenda stă în dreapta lui */
+  .vedere-tavan .lucru { display:flex; align-items:flex-start; gap:10mm; }
+  .vedere-tavan .tipar-info { display:block; flex:1; margin-top:0; }
+  .tipar-info h2 { font-size:11.5px; margin:4px 0 2px; }
+  .tipar-info .leg { font-size:10.5px; margin-right:10px; }
+  .tipar-info .leg-rand > b { font-size:10.5px; }
+  #verificari-tipar { margin:0; padding-left:14px; columns:2; column-gap:22px; }
+  .vedere-tavan #verificari-tipar { columns:auto; }
+  #verificari-tipar li { margin:0 0 2px; font-size:10px; break-inside:avoid; }
+  .sec-tabel { break-before:page; }
+  #tabel { border:0; }
+  #tabel table { font-size:10.5px; }
+  .sursa { font-size:10px; }
+  #modificari { font-size:10.5px; color:#000; }
+}
