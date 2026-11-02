@@ -12,6 +12,8 @@
     { id: 'mobila', nume: 'Mobilă', scurt: 'Mobilă', culoare: '#93622f' },
     { id: 'electric', nume: 'Prize, cabluri, tuburi', scurt: 'Electric', culoare: '#c0392b' },
     { id: 'led', nume: 'Lumini LED', scurt: 'LED', culoare: '#b07800' },
+    { id: 'finisaje', nume: 'Faianță', scurt: 'Faianță', culoare: '#8d8270' },
+    { id: 'sanitare', nume: 'Apă, scurgere și gaz', scurt: 'Apă', culoare: '#2f6f9f' },
   ];
   const STARI = {
     proiect: { nume: 'din proiect', culoare: '#6b7280' },
@@ -27,6 +29,14 @@
     usa: 'ușă', fereastra: 'fereastră', sina: 'șină magnetică', suspendat: 'corp suspendat', spot: 'spot', scafa: 'scafă',
     grinda: 'grindă', stalp: 'stâlp', ac: 'unitate AC', doza: 'doză', calorifer: 'calorifer',
     corp: 'corp de mobilier', riflaj: 'riflaj', tv: 'televizor', semineu: 'șemineu', perforatii: 'perforații', cutie: 'cutie încastrată',
+    faianta: 'faianță', sanitar: 'obiect sanitar', racord: 'racord', teava: 'țeavă', electrocasnic: 'electrocasnic',
+  };
+  // racordurile și țevile, după fluid
+  const FLUIDE = {
+    rece: { nume: 'apă rece', culoare: '#1f6fd1' },
+    calda: { nume: 'apă caldă', culoare: '#d1453b' },
+    scurgere: { nume: 'scurgere', culoare: '#6b5e55' },
+    gaz: { nume: 'gaz', culoare: '#d9a400' },
   };
   // Detaliile cu pași de montaj vin din desene/data/detalii/ (window.DETALII) și se arată cu js/pasi.js.
   const pasiDetaliu = e => e.detaliu && window.Pasi && window.DETALII && window.DETALII[e.detaliu];
@@ -34,7 +44,7 @@
   const LS = 'desene:';
   const STRUCTURA = { id: 'structura', nume: 'Uși și ferestre', culoare: '#57534e' };
   // ordinea în care primesc loc codurile pe desen, după cele selectate
-  const PRIORITATE = { electric: 5, led: 4, mobila: 3, gips: 2, structura: 1 };
+  const PRIORITATE = { electric: 5, sanitare: 4.5, led: 4, mobila: 3, gips: 2, finisaje: 1.5, structura: 1 };
   const ic = d => `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
   const ICON = {
     inapoi: ic('<path d="M15 18l-6-6 6-6"/>'),
@@ -76,6 +86,8 @@
   // „inFata”: codul sau lista de coduri ale elementelor din spatele acestuia (nu se raportează ca suprapunere)
   const inFataDe = (m, id) => [].concat(m.inFata || []).includes(id);
   const strat = id => STRATURI.find(s => s.id === id);
+  // doar straturile care au elemente în cameră (în living nu apar „Faianță” și „Apă”)
+  const straturiCamera = () => STRATURI.filter(s => vederi().some(v => v.elemente.some(e => e.strat === s.id)));
 
   // ---------------------------------------------------------------- modele de umplere
   function defs(svg) {
@@ -88,6 +100,8 @@
       ['M0,5 C6,2 10,9 17,5 S24,3 26,6', 'M0,14 C5,11 9,17 15,13 S22,12 26,15', 'M3,20 C8,18 12,22 19,19'].forEach(dd =>
         el('path', { d: dd, fill: 'none', stroke: '#b3a48d', 'stroke-width': .8 }, p));
     });
+    // faianța cu model liniar (Sand Moon STR): striații fine pe verticală
+    pat('p-str', 3, 10, p => { el('rect', { width: 3, height: 10, fill: '#e3dbcd' }, p); el('line', { x1: 1, y1: 0, x2: 1, y2: 10, stroke: '#cfc4b2', 'stroke-width': .35 }, p); });
     pat('p-lemn', 30, 7, p => { el('rect', { width: 30, height: 7, fill: '#b98b55' }, p); el('path', { d: 'M0,3 C10,2 20,4.5 30,3', fill: 'none', stroke: '#a3773f', 'stroke-width': .5 }, p); });
     pat('p-riflaj', 2.6, 10, p => { el('rect', { width: 2.6, height: 10, fill: '#a99080' }, p); el('line', { x1: .3, y1: 0, x2: .3, y2: 10, stroke: '#7c6556', 'stroke-width': .6 }, p); });
     // PAL H1775 ST12 Nuc Parona (legenda A.16): fibra pe verticală la panourile înalte, pe orizontală la fronturile late
@@ -109,6 +123,7 @@
     });
     const grad = (id, a, stops) => { const gr = el('linearGradient', Object.assign({ id }, a), d); stops.forEach(([o, c, op]) => el('stop', { offset: o, 'stop-color': c, 'stop-opacity': op === undefined ? 1 : op }, gr)); };
     grad('g-ecran', { x1: 0, y1: 0, x2: 1, y2: 1 }, [[0, '#2b3038'], [.55, '#0e1013'], [1, '#050607']]);
+    grad('g-inox', { x1: 0, y1: 0, x2: 1, y2: 0 }, [[0, '#d5d8db'], [.5, '#eef0f1'], [1, '#c4c8cc']]);
     grad('g-oglinda', { x1: 0, y1: 0, x2: 1, y2: 1 }, [[0, '#eef3f6'], [.5, '#cfd9df'], [1, '#e3eaee']]);
     grad('g-flacara', { x1: 0, y1: 1, x2: 0, y2: 0 }, [[0, '#ff6a00'], [.45, '#ffb347'], [1, '#ffe08a', 0]]);
     const fl = el('filter', { id: 'f-glow', x: '-200%', y: '-10%', width: '500%', height: '120%' }, d);
@@ -123,6 +138,11 @@
     alb: { nume: 'alb', fill: '#f4f2ee', stroke: '#a39d93' },
     negru: { nume: 'negru', fill: '#1f1f1f', stroke: '#000' },
     oglinda: { nume: 'oglindă', fill: 'url(#g-oglinda)', stroke: '#7d8a93' },
+    inox: { nume: 'inox', fill: 'url(#g-inox)', stroke: '#6b7280' },
+    p751: { nume: 'MDF vopsit San Marco P751 Paris', fill: '#8a7b75', stroke: '#5e524d' },
+    p722: { nume: 'vopsit San Marco P722 Alloro (profil ORAC W109 Valley)', fill: '#929f8e', stroke: '#6b7768' },
+    'sand-moon': { nume: 'NOVABELL Sand Moon', fill: '#e9e3d8', stroke: '#a89c88' },
+    blat: { nume: 'blatul bucătăriei', fill: '#d8ccb9', stroke: '#8f8170' },
   };
   function finisaj(e, lat) {
     const fz = FINISAJE[e.finisaj] || FINISAJE.alb;
@@ -178,8 +198,10 @@
     riflaj(g, e, H) {
       const lam = e.lamela || 3, rost = e.rost || 2;
       const n = Math.max(1, Math.round((e.lat + rost) / (lam + rost))), pas = n > 1 ? (e.lat - lam) / (n - 1) : 0;
-      rect(g, e.x, e.h, e.lat, e.inalt, H, { fill: '#a8967d' });
-      for (let i = 0; i < n; i++) rect(g, e.x + i * pas, e.h, lam, e.inalt, H, { fill: '#ddd0bc', stroke: '#bfae95', 'stroke-width': .5 });
+      // cu finisaj: lamelele în culoarea lui, rosturile în culoarea mai închisă a conturului
+      const fz = e.finisaj && FINISAJE[e.finisaj], lamA = fz ? finisaj(e, lam) : { fill: '#ddd0bc', stroke: '#bfae95' };
+      rect(g, e.x, e.h, e.lat, e.inalt, H, { fill: fz ? fz.stroke : '#a8967d' });
+      for (let i = 0; i < n; i++) rect(g, e.x + i * pas, e.h, lam, e.inalt, H, Object.assign({}, lamA, { 'stroke-width': .5 }));
       rect(g, e.x, e.h, e.lat, e.inalt, H, { fill: 'none', stroke: '#8a7861', 'stroke-width': 1 });
     },
     tv(g, e, H) {
@@ -266,6 +288,88 @@
     doza(g, e, H) {
       el('rect', Object.assign({ x: e.x - 3.5, y: H - e.h - 3.5, width: 7, height: 7, fill: '#fff', stroke: '#c0392b', 'stroke-width': 1.3 }, NSS), g);
       el('path', Object.assign({ d: `M${e.x - 3.5},${H - e.h - 3.5} L${e.x + 3.5},${H - e.h + 3.5} M${e.x + 3.5},${H - e.h - 3.5} L${e.x - 3.5},${H - e.h + 3.5}`, stroke: '#c0392b', 'stroke-width': 1 }, NSS), g);
+    },
+    // faianța: suprafața, fără goluri, cu rosturile plăcilor pornind din colțul dat de „pornire”
+    faianta(g, e, H) {
+      const [pl, ph] = e.placa || [60, 60], r = e.rost || .3, p0 = e.pornire || { x: e.x, h: e.h };
+      const id = 'm-' + S.per.id + '-' + String(e.id).replace(/[^\w-]/g, '_');
+      const m = el('mask', { id, maskUnits: 'userSpaceOnUse', x: e.x - 1, y: H - e.h - e.inalt - 1, width: e.lat + 2, height: e.inalt + 2 }, g);
+      el('rect', { x: e.x, y: H - e.h - e.inalt, width: e.lat, height: e.inalt, fill: '#fff' }, m);
+      for (const o of e.goluri || []) el('rect', { x: o.x, y: H - o.h - o.inalt, width: o.lat, height: o.inalt, fill: '#000' }, m);
+      const gm = el('g', { mask: `url(#${id})` }, g);
+      el('rect', { x: e.x, y: H - e.h - e.inalt, width: e.lat, height: e.inalt, fill: e.finisaj === 'sand-moon-str' ? 'url(#p-str)' : '#e9e3d8' }, gm);
+      const rost = { stroke: '#a89c88', 'stroke-width': .7 };
+      const px = pl + r, ph2 = ph + r;
+      for (let x = p0.x - Math.ceil((p0.x - e.x) / px) * px; x <= e.x + e.lat + .01; x += px)
+        if (x >= e.x - .01) el('line', Object.assign({ x1: x, y1: H - e.h, x2: x, y2: H - e.h - e.inalt }, rost, NSS), gm);
+      for (let hh = p0.h - Math.ceil((p0.h - e.h) / ph2) * ph2; hh <= e.h + e.inalt + .01; hh += ph2)
+        if (hh >= e.h - .01) el('line', Object.assign({ x1: e.x, y1: H - hh, x2: e.x + e.lat, y2: H - hh }, rost, NSS), gm);
+      // colțul de pornire al stereotomiei: un semn mic în unghi
+      if (e.pornire) el('path', Object.assign({ d: `M${p0.x},${H - p0.h - 9} L${p0.x},${H - p0.h} L${p0.x + 9},${H - p0.h}`, fill: 'none', stroke: '#8d5a1f', 'stroke-width': 2 }, NSS), g);
+      el('rect', Object.assign({ x: e.x, y: H - e.h - e.inalt, width: e.lat, height: e.inalt, fill: 'none', stroke: '#8d8270', 'stroke-width': .9 }, NSS), g);
+    },
+    // obiecte sanitare, în vedere din față
+    sanitar(g, e, H) {
+      const x0 = e.x, x1 = e.x + e.lat, jos = H - e.h, sus = H - e.h - e.inalt, w = e.lat, hh = e.inalt;
+      const alb = { fill: '#fdfdfc', stroke: '#5f6b75', 'stroke-width': 1.1 }, metal = { fill: 'url(#g-inox)', stroke: '#5f6b75', 'stroke-width': 1 };
+      const P = (d, a) => el('path', Object.assign({ d }, a, NSS), g);
+      const T = t => { if (w > 14 && hh > 6) el('text', { x: x0 + w / 2, y: sus + hh / 2 + 2.2, 'font-size': Math.min(6.5, hh * .45), 'text-anchor': 'middle', fill: '#4b5563', 'font-weight': 600, 'pointer-events': 'none' }, g, t); };
+      switch (e.obiect) {
+        case 'wc':        // vas suspendat: capacul sus, vasul rotunjit spre perete
+          P(`M${x0},${sus} H${x1} V${sus + hh * .35} C${x1},${jos} ${x0 + w * .75},${jos} ${x0 + w * .5},${jos} C${x0 + w * .25},${jos} ${x0},${jos} ${x0},${sus + hh * .35} Z`, alb);
+          P(`M${x0},${sus + hh * .14} H${x1}`, { stroke: '#5f6b75', 'stroke-width': .8 }); break;
+        case 'lavoar':
+          P(`M${x0},${sus} H${x1} V${sus + hh * .3} C${x1},${jos} ${x0 + w * .8},${jos} ${x0 + w * .5},${jos} C${x0 + w * .2},${jos} ${x0},${jos} ${x0},${sus + hh * .3} Z`, alb); break;
+        case 'chiuveta': rect(g, x0, e.h, w, hh, H, metal); break;
+        case 'cada': rect(g, x0, e.h, w, hh, H, alb); P(`M${x0 + 3},${sus + 3} H${x1 - 3}`, { stroke: '#9aa5ae', 'stroke-width': .8 }); T('cadă'); break;
+        case 'dus': rect(g, x0, e.h, w, hh, H, { fill: '#e3eef6', 'fill-opacity': .55, stroke: '#5f8bb0', 'stroke-width': 1, 'stroke-dasharray': '6 4' }); T('duș'); break;
+        case 'rigola': rect(g, x0, e.h, w, Math.max(hh, 1.5), H, { fill: '#4b5563', stroke: '#1f2937', 'stroke-width': .8 }); break;
+        case 'rezervor': rect(g, x0, e.h, w, hh, H, { fill: '#fff', 'fill-opacity': .15, stroke: '#5f6b75', 'stroke-width': 1.1, 'stroke-dasharray': '6 4' }); break;
+        case 'clapeta':
+          rect(g, x0, e.h, w, hh, H, metal);
+          rect(g, x0 + w * .12, e.h + hh * .2, w * .34, hh * .6, H, { fill: '#fff', stroke: '#5f6b75', 'stroke-width': .7 });
+          rect(g, x0 + w * .54, e.h + hh * .2, w * .34, hh * .6, H, { fill: '#fff', stroke: '#5f6b75', 'stroke-width': .7 }); break;
+        case 'para-dus': { const r = Math.min(w, hh) / 2; el('circle', Object.assign({ cx: x0 + w / 2, cy: sus + hh / 2, r }, metal, NSS), g); break; }
+        case 'ventilator': {
+          const r = Math.min(w, hh) / 2, cx = x0 + w / 2, cy = sus + hh / 2;
+          el('circle', Object.assign({ cx, cy, r, fill: '#fff', stroke: '#5f6b75', 'stroke-width': 1.1 }, NSS), g);
+          for (const k of [-.5, 0, .5]) P(`M${cx - r * .8},${cy + k * r} H${cx + r * .8}`, { stroke: '#9aa5ae', 'stroke-width': .8 });
+          break;
+        }
+        case 'apometru': rect(g, x0, e.h, w, hh, H, { fill: '#f6f5f2', stroke: '#5f6b75', 'stroke-width': 1.1, 'stroke-dasharray': '4 3' }); T('vizitare'); break;
+        case 'centrala': rect(g, x0, e.h, w, hh, H, alb); T('centrală'); break;
+        case 'boiler': rect(g, x0, e.h, w, hh, H, Object.assign({}, alb, { rx: Math.min(w, hh) * .2 })); T('boiler'); break;
+        default: rect(g, x0, e.h, w, hh, H, metal);
+      }
+    },
+    // racord: capătul țevii în perete; cerc în culoarea fluidului
+    racord(g, e, H) {
+      const c = (FLUIDE[e.fluid] || FLUIDE.rece).culoare, r = e.diam ? Math.max(2.4, e.diam / 2) : 3.2;
+      el('circle', Object.assign({ cx: e.x, cy: H - e.h, r, fill: '#fff', stroke: c, 'stroke-width': 1.6, 'stroke-dasharray': e.pozitie === 'aprox' ? '3 2' : null }, NSS), g);
+      el('circle', Object.assign({ cx: e.x, cy: H - e.h, r: r * .45, fill: c }, NSS), g);
+    },
+    // traseu de țeavă: o linie groasă pe axa dreptunghiului
+    teava(g, e, H) {
+      const c = (FLUIDE[e.fluid] || FLUIDE.rece).culoare, vert = e.inalt >= e.lat;
+      rect(g, e.x, e.h, e.lat, e.inalt, H, { fill: 'transparent' });
+      const a = { stroke: c, 'stroke-width': 2.4, 'stroke-linecap': 'round', opacity: .85, 'stroke-dasharray': e.ascuns ? '7 4' : null };
+      if (vert) el('line', Object.assign({ x1: e.x + e.lat / 2, y1: H - e.h, x2: e.x + e.lat / 2, y2: H - e.h - e.inalt }, a, NSS), g);
+      else el('line', Object.assign({ x1: e.x, y1: H - e.h - e.inalt / 2, x2: e.x + e.lat, y2: H - e.h - e.inalt / 2 }, a, NSS), g);
+    },
+    // electrocasnic: carcasa, cu numele aparatului; „incastrat” = în spatele unui front (linie întreruptă)
+    electrocasnic(g, e, H) {
+      const NUME = { frigider: 'frigider', congelator: 'congelator', cuptor: 'cuptor', microunde: 'microunde', plita: 'plită', hota: 'hotă',
+        msv: 'MSV', msr: 'MSR', uscator: 'uscător', espressor: 'espressor' };
+      const inc = e.finisaj === 'incastrat' || e.ascuns, negru = e.finisaj === 'negru';
+      rect(g, e.x, e.h, e.lat, e.inalt, H, inc
+        ? { fill: '#fff', 'fill-opacity': .2, stroke: '#3f3f46', 'stroke-width': 1.1, 'stroke-dasharray': '6 4' }
+        : negru ? { fill: '#1f1f1f', stroke: '#000', 'stroke-width': 1.1 } : { fill: 'url(#g-inox)', stroke: '#6b7280', 'stroke-width': 1.1 });
+      if (!inc && (e.aparat === 'cuptor' || e.aparat === 'microunde') && e.lat > 20 && e.inalt > 15) {
+        const m = Math.min(e.lat, e.inalt) * .14;
+        rect(g, e.x + m, e.h + m, e.lat - 2 * m, e.inalt - 2.6 * m, H, { fill: negru ? '#40454d' : '#111827', 'fill-opacity': .85 });
+      }
+      if (e.lat > 16 && e.inalt > 8) el('text', { x: e.x + e.lat / 2, y: H - e.h - e.inalt / 2 + 2.4, 'font-size': Math.min(7, e.inalt * .4, e.lat / 5), 'text-anchor': 'middle',
+        fill: negru || (!inc && (e.aparat === 'cuptor' || e.aparat === 'microunde')) ? '#f3f4f6' : '#374151', 'font-weight': 600, 'pointer-events': 'none' }, g, NUME[e.aparat] || e.aparat || '');
     },
     'banda-led'(g, e, H) {
       const vert = e.inalt >= e.lat;
@@ -493,7 +597,7 @@
     // cu un element ales, celelalte se estompează, dar rămân de ales pentru distanță
     const stins = e => sel.length && !S.sel.includes(e.id) ? ' stins' : '';
     const gEl = el('g', {}, root);
-    for (const st of ['structura', 'gips', 'mobila', 'electric', 'led']) {
+    for (const st of ['finisaje', 'structura', 'gips', 'mobila', 'sanitare', 'electric', 'led']) {
       for (const e of vizibile.filter(x => x.strat === st)) {
         const g = el('g', { class: 'elem' + stins(e), 'data-id': e.id }, gEl);
         (DESEN[e.tip] || (e.punct ? DESEN.doza : DESEN.mobilier))(g, e, H, u);
@@ -860,9 +964,11 @@
   // ---------------------------------------------------------------- lista elementelor și verificările
   function lista() {
     const box = document.getElementById('lista'), q = S.cauta.trim().toLowerCase();
+    // coloana codurilor, cât cel mai lung cod din cameră (bucătăria are coduri ca M01-DC0)
+    box.style.setProperty('--cod', Math.max(50, 14 + 8 * Math.max(...vederi().flatMap(v => v.elemente.map(e => e.id.length)))) + 'px');
     const gasit = e => !q || `${e.id} ${e.nume} ${TIPURI[e.tip] || ''}`.toLowerCase().includes(q);
     const els = elemente().filter(gasit);
-    const grupuri = STRATURI.concat([STRUCTURA])
+    const grupuri = straturiCamera().concat([STRUCTURA])
       .map(s => ({ s, els: els.filter(e => e.strat === s.id && cunoscut(e)).sort((a, b) => a.x - b.x) }))
       .concat([{ s: { id: 'fara', nume: 'Fără poziție, de măsurat', culoare: STARI['de-verificat'].culoare }, els: els.filter(e => !cunoscut(e)) }])
       .filter(g => g.els.length);
@@ -964,7 +1070,7 @@
 
   // ---------------------------------------------------------------- straturi, legendă, antet
   function comenziStraturi() {
-    document.getElementById('straturi').innerHTML = STRATURI.map(s => {
+    document.getElementById('straturi').innerHTML = straturiCamera().map(s => {
       const n = elemente().filter(e => e.strat === s.id).length;
       return `<button type="button" class="chip${S.viz[s.id] ? ' on' : ''}" style="--c:${s.culoare}" data-act="strat" data-id="${s.id}" aria-pressed="${!!S.viz[s.id]}"
         title="${esc(s.nume)}: ${S.viz[s.id] ? 'ascunde' : 'arată'}"><i></i>${esc(s.scurt)}<span class="n">${n}</span></button>`;
@@ -973,11 +1079,14 @@
   function salveaza() { localStorage.setItem(LS + 'straturi', JSON.stringify({ viz: S.viz, var: S.var })); }
 
   function legendaHtml() {
-    return `<div class="leg-rand"><b>Straturi</b>${STRATURI.concat([STRUCTURA]).map(s => `<span class="leg"><i style="background:${s.culoare}"></i>${s.nume}</span>`).join('')}</div>
+    return `<div class="leg-rand"><b>Straturi</b>${straturiCamera().concat([STRUCTURA]).map(s => `<span class="leg"><i style="background:${s.culoare}"></i>${s.nume}</span>`).join('')}</div>
+${straturiCamera().some(s => s.id === 'sanitare') ? `
+      <div class="leg-rand"><b>Racorduri și țevi</b>${Object.values(FLUIDE).map(f => `<span class="leg"><i style="background:${f.culoare};border-radius:50%"></i>${f.nume}</span>`).join('')}</div>` : ''}
       <div class="leg-rand"><b>Starea (culoarea codului)</b>${Object.values(STARI).map(s => `<span class="leg"><span class="badge mic" style="background:${s.culoare}">ID</span>${s.nume}</span>`).join('')}</div>
-      <div class="leg-rand"><b>Pași de montaj</b><span class="leg"><span class="badge mic" style="background:${STARI.proiect.culoare}">ID</span>${semnPasiHtml} = are pași de montaj animați: „Cum se montează” în fișă</span></div>
+${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
+      <div class="leg-rand"><b>Pași de montaj</b><span class="leg"><span class="badge mic" style="background:${STARI.proiect.culoare}">ID</span>${semnPasiHtml} = are pași de montaj animați: „Cum se montează” în fișă</span></div>` : ''}
       <div class="leg-rand"><b>Linii</b>Linie întreruptă = ascuns după alt element sau poziție aproximativă. „~” în fața unei cote = aproximativ.</div>
-      <div class="leg-rand"><b>Cote</b><span class="t-sel">Roșu</span> = elementul selectat, față de colțuri, pardoseală și tavan (pe planul tavanului: față de pereți).
+      <div class="leg-rand nu-print"><b>Cote</b><span class="t-sel">Roșu</span> = elementul selectat, față de colțuri, pardoseală și tavan (pe planul tavanului: față de pereți).
         <span class="t-intre">Albastru</span> = distanța dintre două elemente selectate.</div>`;
   }
 

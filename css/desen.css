@@ -168,7 +168,7 @@ button.badge:hover { filter:brightness(1.12); }
 .grup h3 i { width:9px; height:9px; border-radius:3px; background:var(--c); }
 .grup h3 em { font-style:normal; font-weight:400; text-transform:none; letter-spacing:0; }
 .grup ul { list-style:none; margin:0; padding:0; }
-.rand { display:grid; grid-template-columns:50px minmax(0, 1fr); gap:1px 10px; align-items:baseline; width:100%; padding:6px 8px; border:0; border-radius:8px; background:transparent; text-align:left; cursor:pointer; }
+.rand { display:grid; grid-template-columns:var(--cod, 50px) minmax(0, 1fr); gap:1px 10px; align-items:baseline; width:100%; padding:6px 8px; border:0; border-radius:8px; background:transparent; text-align:left; cursor:pointer; }
 .rand:hover { background:var(--surface-2); }
 .rand.ales { background:var(--accent-soft); box-shadow:inset 3px 0 0 var(--accent); }
 .rand .badge { grid-row:span 2; align-self:start; justify-self:start; margin-top:1px; }
