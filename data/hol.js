@@ -14,9 +14,10 @@ window.CAMERE["hol"] = {
   "nota": "Înălțimea liberă sub tavanul fals: 243 cm (placa la 250, tavan fals de 7 cm), după detaliul hol din A.05, singura cotă. A.17 și A.18 desenează fața la 242, iar legenda A.05 scrie 10 cm (fața la 240): de confirmat cu arhitecta (L6). Sub grinda GR1 rămân 205 cm."
  },
  "revizie": {
-  "nr": 1,
+  "nr": 2,
   "data": "2026-11-02",
   "modificari": [
+   "Atenționare nouă la ușa spre bucătărie (U4): planul bucătăriei din 10/2026 mută golul cu 7,1 cm spre intrare (BC2).",
    "Prima versiune: peretele cu banca (vest, D05) și peretele cu oglinda (est, D04), din A.01, A.05–A.09 și A.17–A.20.",
    "Peretele de est e desenat în două vederi: E, de la colțul dinspre baie până la treaptă (550,9 cm), și E2, porțiunea îngustă de la intrare (140 cm), retrasă cu 20 cm.",
    "Peretele spre baie, peretele cu ușa de intrare și planul tavanului urmează."
@@ -524,6 +525,16 @@ window.CAMERE["hol"] = {
       "I1",
       "I2",
       "I3"
+     ]
+    },
+    {
+     "nivel": "atentie",
+     "text": "Planul bucătăriei din 10/2026 (A.21) mută golul ușii U4 cu 7,1 cm spre intrare: x 201,9–281,9 în loc de 194,8–274,8. Bucătăria e desenată după planul nou, holul după A.01. Dacă se confirmă (BC2), se mută U4, plinta G7 și întrerupătorul I2.",
+     "sursa": "A.21 din 10/2026; A.01; analiza/11 BC2",
+     "ids": [
+      "U4",
+      "G7",
+      "I2"
      ]
     }
    ]
