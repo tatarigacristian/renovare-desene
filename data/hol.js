@@ -14,9 +14,10 @@ window.CAMERE["hol"] = {
   "nota": "Înălțimea liberă sub tavanul fals: 243 cm (placa la 250, tavan fals de 7 cm), după detaliul hol din A.05, singura cotă. A.17 și A.18 desenează fața la 242, iar legenda A.05 scrie 10 cm (fața la 240): de confirmat cu arhitecta (L6). Sub grinda GR1 rămân 205 cm."
  },
  "revizie": {
-  "nr": 2,
+  "nr": 3,
   "data": "2026-11-02",
   "modificari": [
+   "Masca țevii de gaz M06 (panoul din PAL Nuc Parona de la grindă) scoasă: țeava de gaz trece prin nișa din tavan și nu se mai vede (decizia din 02.11.2026). Plintele G7 și G8 devin o singură plintă, G7, de la ușa bucătăriei la ușa GS.",
    "Atenționare nouă la ușa spre bucătărie (U4): planul bucătăriei din 10/2026 mută golul cu 7,1 cm spre intrare (BC2).",
    "Prima versiune: peretele cu banca (vest, D05) și peretele cu oglinda (est, D04), din A.01, A.05–A.09 și A.17–A.20.",
    "Peretele de est e desenat în două vederi: E, de la colțul dinspre baie până la treaptă (550,9 cm), și E2, porțiunea îngustă de la intrare (140 cm), retrasă cu 20 cm.",
@@ -166,7 +167,7 @@ window.CAMERE["hol"] = {
   {
    "id": "E",
    "nume": "Peretele cu oglinda",
-   "subtitlu": "ușile spre dormitorul mare, bucătărie și GS, masca țevii de gaz M06, oglinda M05 · D04 în A.17",
+   "subtitlu": "ușile spre dormitorul mare, bucătărie și GS, oglinda M05 · D04 în A.17",
    "lungime": 550.9,
    "origine": "colțul N-E, cu peretele spre baie",
    "etapa": 1,
@@ -193,7 +194,7 @@ window.CAMERE["hol"] = {
      "pozitie": "aprox",
      "stare": "proiect",
      "sursa": "A.01 și A.05 (140 + 213,9 + 25, cotat); A.17 D05 (205, cotat)",
-     "nota": "Trece de la peretele de vest la acesta. Pe x e cotată: 312–337 de la colțul N-E. Fața de jos la ~205 cm, măsurată pe A.17: de măsurat acum. Tavanul fals TF1 se oprește la fețele ei. Masca M06 e centrată pe ea. Același cod pe peretele de vest și pe planul tavanului."
+     "nota": "Trece de la peretele de vest la acesta. Pe x e cotată: 312–337 de la colțul N-E. Fața de jos la ~205 cm, măsurată pe A.17: de măsurat acum. Tavanul fals TF1 se oprește la fețele ei. Masca M06 din planșe, centrată pe grindă, nu se mai face: țeava de gaz nu mai coboară pe grindă (decizia din 02.11.2026). Același cod pe peretele de vest și pe planul tavanului."
     },
     {
      "id": "U3",
@@ -288,27 +289,13 @@ window.CAMERE["hol"] = {
      "tip": "plinta",
      "nume": "Plintă duropolimer 8 cm",
      "x": 278.5,
-     "lat": 26.0,
+     "lat": 156.7,
      "h": 0,
      "inalt": 8,
      "stare": "proiect",
      "finisaj": "alb",
-     "sursa": "A.09 (în hol: plintă duropolimer 8 cm); A.17 D04 (linia de la 8 cm, întreruptă la uși și la M06)",
-     "nota": "De la pervazul ușii U4 până la masca M06. În fața lui M06 nu se pune: panoul coboară până la pardoseală."
-    },
-    {
-     "id": "G8",
-     "strat": "gips",
-     "tip": "plinta",
-     "nume": "Plintă duropolimer 8 cm",
-     "x": 344.5,
-     "lat": 90.7,
-     "h": 0,
-     "inalt": 8,
-     "stare": "proiect",
-     "finisaj": "alb",
-     "sursa": "A.09 (în hol: plintă duropolimer 8 cm); A.17 D04 (linia de la 8 cm, întreruptă la uși și la M06)",
-     "nota": "De la M06 până la pervazul ușii U5. Trece pe sub lamelele RF1, RF2 și pe sub oglinda M05: lamelele pornesc de pe plintă (A.09: «riflajele se termină în plintă»)."
+     "sursa": "A.09 (în hol: plintă duropolimer 8 cm); A.17 D04 (linia de la 8 cm, întreruptă la uși și la M06); decizia din 02.11.2026 (fără M06)",
+     "nota": "De la pervazul ușii U4 până la pervazul ușii U5, dintr-o bucată: în A.17 se întrerupea la masca M06, care nu se mai face. Trece pe sub lamelele RF1, RF2 și pe sub oglinda M05: lamelele pornesc de pe plintă (A.09: «riflajele se termină în plintă»)."
     },
     {
      "id": "G9",
@@ -325,25 +312,10 @@ window.CAMERE["hol"] = {
      "nota": "De la pervazul ușii U5 până la colțul treptei. Continuă pe latura treptei (20 cm, cu fața spre nord) și pe peretele E2 (G10)."
     },
     {
-     "id": "M06",
-     "strat": "mobila",
-     "tip": "mobilier",
-     "nume": "Masca țevii de gaz, panou din PAL Nuc Parona (M06)",
-     "x": 304.5,
-     "lat": 40,
-     "h": 0,
-     "inalt": 240,
-     "adanc": 12.2,
-     "stare": "proiect",
-     "finisaj": "nuc",
-     "sursa": "A.17 D04 (40, cotat; 0–240, necotat); A.08 (M06; adâncimea 12,2, cotat); A.01 («Masca Teava Gaz»); A.06 (plan); A.19 (legenda: H1775 ST12 Nuc Parona)",
-     "nota": "Cutie de 40 × 12,2 cm din plăci de 1,8 cm, centrată pe grinda GR1 (7,5 cm de fiecare parte). În plan (A.01, A.06, A.08): panoul din față la 12,2 cm de perete, două nervuri până la perete în dreptul fețelor grinzii, laturi care se opresc la ~5 cm de perete. Până la 205 cm panoul are 40 cm; deasupra, grinda ocupă mijlocul și rămân două fâșii de ~7,5 cm până la 240. Masca trebuie să fie demontabilă și ventilată (specs/08 D; analiza/01, 4.1): planșele nu arată grilele și prinderea. Traseul nou al țevii îl stabilește firma autorizată ANRE. În spatele fiecărei laturi e câte o lamelă de 2,4 × 3 cm lipită de perete (x 304,5 și 342,7)."
-    },
-    {
      "id": "RF1",
      "strat": "mobila",
      "tip": "riflaj",
-     "nume": "Lamele verticale între M06 și oglindă (4 × 2,4 cm)",
+     "nume": "Lamele verticale din stânga oglinzii (4 × 2,4 cm)",
      "x": 342.7,
      "lat": 17.3,
      "h": 8,
@@ -354,7 +326,7 @@ window.CAMERE["hol"] = {
      "stare": "de-verificat",
      "finisaj": "bej",
      "sursa": "A.17 D04 (17,3 și 2,4, cotat; pasul de 5 cm, măsurat); A.06 și A.08 (secțiunea 2,4 × 3 cm, măsurat)",
-     "nota": "Patru lamele de 2,4 cm la pas de 5 cm (rost 2,6), adânci de ~3 cm, de pe plintă până la tavanul fals (A.17: 8–242; cu tavanul la 243, 235 cm). Prima lamelă stă în spatele laturii lui M06 și coboară până la pardoseală. Culoarea din A.17 e ca fronturile U156 Bej nisip. Nu sunt benzi LED: A.06 nu are marcaj de LED aici, iar specs/06 G nu are bandă la oglinda holului. Materialul și prinderea: de confirmat cu arhitecta."
+     "nota": "Patru lamele de 2,4 cm la pas de 5 cm (rost 2,6), adânci de ~3 cm, de pe plintă până la tavanul fals (A.17: 8–242; cu tavanul la 243, 235 cm). Culoarea din A.17 e ca fronturile U156 Bej nisip. Nu sunt benzi LED: A.06 nu are marcaj de LED aici, iar specs/06 G nu are bandă la oglinda holului. Materialul și prinderea: de confirmat cu arhitecta."
     },
     {
      "id": "M05",
@@ -460,7 +432,7 @@ window.CAMERE["hol"] = {
     },
     {
      "nivel": "atentie",
-     "text": "Înălțimea tavanului fals din hol: detaliul holului din A.05 cotează 7 cm (fața la 243); A.17 (D04, D05) și A.18 îl desenează la 242 (8 cm); legenda A.05 scrie 10 cm (240). Desenul folosește 243, ca în living. Mobilierul de 240 (M07), oglinda și M06 (până la 240) încap în toate trei variantele. De confirmat (L6).",
+     "text": "Înălțimea tavanului fals din hol: detaliul holului din A.05 cotează 7 cm (fața la 243); A.17 (D04, D05) și A.18 îl desenează la 242 (8 cm); legenda A.05 scrie 10 cm (240). Desenul folosește 243, ca în living. Mobilierul de 240 (M07) și oglinda (până la 240) încap în toate trei variantele. De confirmat (L6).",
      "sursa": "A.05, A.17, A.18",
      "ids": [
       "TF1"
@@ -478,11 +450,11 @@ window.CAMERE["hol"] = {
     },
     {
      "nivel": "atentie",
-     "text": "Masca M06 acoperă țeava de gaz și trebuie să fie demontabilă și ventilată (specs/08 D). Planșele nu arată grilele, prinderea și locul pe unde trece țeava; A.22 (BU03) arată traseul de gaz în bucătărie lângă aceeași grindă. În tavan, țeava trece prin fâșia de 20 cm de lângă acest perete (A.05): și fâșia trebuie să se poată deschide. Traseul îl stabilește firma ANRE, înainte de execuția măștii.",
-     "sursa": "A.01, A.05, A.17 D04, A.22; specs/08 D; analiza/01, 4.1",
+     "text": "Masca M06 din A.17 D04 (panoul din PAL Nuc Parona de la grindă) nu se mai face (decizia din 02.11.2026): țeava de gaz trece acum prin nișa din tavan și nu se mai vede pe perete. Între ușa bucătăriei și lamelele RF1 peretele rămâne liber, iar plinta G7 merge dintr-o bucată. În tavan, fâșia de 20 cm de lângă acest perete (MG1, MG2 pe planul tavanului) trebuie să fie demontabilă și ventilată (specs/08 D). Traseul îl confirmă firma ANRE.",
+     "sursa": "decizia din 02.11.2026; A.05; A.17 D04; specs/08 D; analiza/01, 4.1",
      "ids": [
-      "M06",
       "GR1",
+      "G7",
       "TF1"
      ]
     },
@@ -498,22 +470,20 @@ window.CAMERE["hol"] = {
     },
     {
      "nivel": "info",
-     "text": "Codurile M05 (oglinda) și M06 (masca de gaz) vin din săgețile din A.08. specs/09 le trece pe amândouă ca «corp de mobilier hol», iar oglinda și lamelele nu apar în specs/04.",
+     "text": "Codul M05 (oglinda) vine din săgeata din A.08. specs/09 o trece ca «corp de mobilier hol», iar oglinda și lamelele nu apar în specs/04.",
      "sursa": "A.08; specs/04; specs/09",
      "ids": [
-      "M05",
-      "M06"
+      "M05"
      ]
     },
     {
      "nivel": "info",
-     "text": "A.09 cere plintă duropolimer de 8 cm în hol, dar produsul din lista de achiziții are 6 cm (specs/07 E). Pe acest perete: ~257 cm, plus 20 cm pe latura treptei și 140 cm pe E2.",
+     "text": "A.09 cere plintă duropolimer de 8 cm în hol, dar produsul din lista de achiziții are 6 cm (specs/07 E). Pe acest perete: ~297 cm, plus 20 cm pe latura treptei și 140 cm pe E2.",
      "sursa": "A.09; specs/07 E",
      "ids": [
       "G5",
       "G6",
       "G7",
-      "G8",
       "G9"
      ]
     },
@@ -1548,25 +1518,6 @@ window.CAMERE["hol"] = {
     "nota": "Ca MG1. De la fața de sud a grinzii (y 353,9) până la colțul de la y = 140, unde holul se îngustează. Între y = 140 și 155 se continuă, la același nivel, cu tavanul fals (A.05 nu desenează o margine între ele). A.05 cotează aici 109,3 + 15 + 20 = 144,3, cu 0,3 cm peste lățimea holului: masca are ~19,7 cm. Pe unde intră țeava în mască nu e desenat."
    },
    {
-    "id": "M06",
-    "strat": "mobila",
-    "tip": "mobilier",
-    "nume": "Masca țevii de gaz la grindă, panou din PAL Nuc Parona (M06)",
-    "x": 131.8,
-    "lat": 12.2,
-    "h": 346.4,
-    "inalt": 40,
-    "pozitie": "aprox",
-    "stare": "de-verificat",
-    "finisaj": "nuc",
-    "inFata": [
-     "MG1",
-     "MG2"
-    ],
-    "sursa": "A.08 (M06; 12,2 cotat); A.01 („Masca Teava Gaz”, desenată la grindă); A.05 și A.06 (~12 × 40 cm, din plăci de 1,8 cm); A.17 D04 (panoul de lemn de 40 cm, de la pardoseală la tavanul fals)",
-    "nota": "Cutie lipită de peretele de est, sub grindă: 12,2 cm din perete (A.08), 40 cm lungime (y 346,4–386,4), de la pardoseală până la tavanul fals (A.17 D04). Pe aici țeava de gaz trece pe sub grindă: azi coboară pe fața grinzii și trece pe sub ea (pozele din stare_actuala/hol). Trebuie să fie demontabilă și ventilată, ca MG1 și MG2. Același cod pe peretele de est, unde sunt detaliile."
-   },
-   {
     "id": "C1",
     "strat": "led",
     "tip": "banda-led",
@@ -1720,23 +1671,22 @@ window.CAMERE["hol"] = {
    },
    {
     "nivel": "atentie",
-    "text": "Grinda GR1 coboară la 205 cm, 38 cm sub tavanul fals, și întrerupe fanta, banda și masca de gaz: C1 și C2 sunt trasee separate, fiecare cu kitul ei. A.05 hașurează tavanul fals și peste grindă; A.17 și A.20 o arată aparentă. Țeava de gaz trece pe sub grindă prin masca M06.",
+    "text": "Grinda GR1 coboară la 205 cm, 38 cm sub tavanul fals, și întrerupe fanta, banda și masca de gaz: C1 și C2 sunt trasee separate, fiecare cu kitul ei. A.05 hașurează tavanul fals și peste grindă; A.17 și A.20 o arată aparentă. Țeava de gaz nu mai trece pe sub grindă: masca M06 nu se mai face (decizia din 02.11.2026).",
     "sursa": "A.01, A.05, A.17, A.20",
     "ids": [
      "GR1",
      "SC1",
-     "SC2",
-     "M06"
+     "SC2"
     ]
    },
    {
     "nivel": "atentie",
-    "text": "Masca țevii de gaz trebuie să fie ventilată și demontabilă (specs/08 D, analiza/01 pasul 4.1). Detaliul A.05 arată o placă fixă de 20 cm, fără grile și fără prinderi demontabile. Traseul țevii nu e desenat: nu se știe pe unde intră în hol și pe unde iese spre bucătărie. Firma ANRE confirmă traseul înainte de scheletul tavanului.",
-    "sursa": "A.05, specs/08, analiza/01",
+    "text": "Masca țevii de gaz trebuie să fie ventilată și demontabilă (specs/08 D, analiza/01 pasul 4.1). Detaliul A.05 arată o placă fixă de 20 cm, fără grile și fără prinderi demontabile. Din 02.11.2026 țeava trece prin nișa din tavan și nu se mai vede; masca M06 de pe perete nu se mai face. Pe unde trece de grinda GR1 și pe unde iese spre bucătărie nu e desenat. Firma ANRE confirmă traseul înainte de scheletul tavanului.",
+    "sursa": "A.05, specs/08, analiza/01; decizia din 02.11.2026",
     "ids": [
      "MG1",
      "MG2",
-     "M06"
+     "GR1"
     ]
    },
    {
