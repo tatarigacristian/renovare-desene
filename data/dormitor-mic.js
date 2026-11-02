@@ -88,7 +88,7 @@ window.CAMERE["dormitor-mic"] = {
      "adanc": 256,
      "stare": "propunere",
      "sursa": "analiza/06 v3 și decizia D26 (02.11.2026); ca TF1 din living (A.16, D-09)",
-     "nota": "Fața tavanului fals la ~243 cm, placa la ~250 cm, ca în living. Golul de 7 cm cuprinde profilul șinei SM (min. 6 cm, oferta LedHome). Același cod pe toți pereții și pe planul tavanului."
+     "nota": "Fața tavanului fals la ~243 cm, placa la ~250 cm, ca în living. Deasupra plăcii de 12,5 mm rămân ~5,75 cm, iar oferta LedHome cere min. 6 cm pentru șina SM: aceeași întrebare ca la șinele J și K din living (detaliul J-K). Același cod pe toți pereții și pe planul tavanului."
     },
     {
      "id": "G1",
@@ -275,7 +275,7 @@ window.CAMERE["dormitor-mic"] = {
      "adanc": 256,
      "stare": "propunere",
      "sursa": "analiza/06 v3 și decizia D26 (02.11.2026); ca TF1 din living (A.16, D-09)",
-     "nota": "Fața tavanului fals la ~243 cm, placa la ~250 cm, ca în living. Golul de 7 cm cuprinde profilul șinei SM (min. 6 cm, oferta LedHome). Același cod pe toți pereții și pe planul tavanului."
+     "nota": "Fața tavanului fals la ~243 cm, placa la ~250 cm, ca în living. Deasupra plăcii de 12,5 mm rămân ~5,75 cm, iar oferta LedHome cere min. 6 cm pentru șina SM: aceeași întrebare ca la șinele J și K din living (detaliul J-K). Același cod pe toți pereții și pe planul tavanului."
     },
     {
      "id": "G2",
@@ -430,7 +430,7 @@ window.CAMERE["dormitor-mic"] = {
      "adanc": 256,
      "stare": "propunere",
      "sursa": "analiza/06 v3 și decizia D26 (02.11.2026); ca TF1 din living (A.16, D-09)",
-     "nota": "Fața tavanului fals la ~243 cm, placa la ~250 cm, ca în living. Golul de 7 cm cuprinde profilul șinei SM (min. 6 cm, oferta LedHome). Același cod pe toți pereții și pe planul tavanului."
+     "nota": "Fața tavanului fals la ~243 cm, placa la ~250 cm, ca în living. Deasupra plăcii de 12,5 mm rămân ~5,75 cm, iar oferta LedHome cere min. 6 cm pentru șina SM: aceeași întrebare ca la șinele J și K din living (detaliul J-K). Același cod pe toți pereții și pe planul tavanului."
     },
     {
      "id": "G3",
@@ -638,7 +638,7 @@ window.CAMERE["dormitor-mic"] = {
      "adanc": 256,
      "stare": "propunere",
      "sursa": "analiza/06 v3 și decizia D26 (02.11.2026); ca TF1 din living (A.16, D-09)",
-     "nota": "Fața tavanului fals la ~243 cm, placa la ~250 cm, ca în living. Golul de 7 cm cuprinde profilul șinei SM (min. 6 cm, oferta LedHome). Același cod pe toți pereții și pe planul tavanului."
+     "nota": "Fața tavanului fals la ~243 cm, placa la ~250 cm, ca în living. Deasupra plăcii de 12,5 mm rămân ~5,75 cm, iar oferta LedHome cere min. 6 cm pentru șina SM: aceeași întrebare ca la șinele J și K din living (detaliul J-K). Același cod pe toți pereții și pe planul tavanului."
     },
     {
      "id": "M13",
@@ -762,7 +762,7 @@ window.CAMERE["dormitor-mic"] = {
      "ascuns": true,
      "stare": "propunere",
      "sursa": "analiza/06 v3 și decizia D26 (02.11.2026); ca SC din living (D-09)",
-     "nota": "Între fața grinzii și a stâlpului (27 cm de zidărie) și marginea tavanului fals (42 cm), de la fața dulapului M13 (60) până la peretele N. În ea: șina dublă de draperie (perdea + draperie), la 4–10 cm de grindă, și banda L1, lipită de marginea tavanului fals. Prin fantă se ajunge la sursele de deasupra tavanului fals (doza D1)."
+     "nota": "Între fața grinzii și a stâlpului (27 cm de zidărie) și marginea tavanului fals (42 cm), de la fața dulapului M13 (60) până la peretele N. În ea: șina dublă de draperie (perdea + draperie), la 4–10 cm de grindă, și banda L1, lipită de marginea tavanului fals."
     },
     {
      "id": "L1",
@@ -832,7 +832,7 @@ window.CAMERE["dormitor-mic"] = {
     "inalt": 256,
     "stare": "propunere",
     "sursa": "analiza/06 v3 și decizia D26 (02.11.2026); ca TF1 din living",
-    "nota": "Fața de jos la ~243 cm, placa la ~250. Se oprește la scafa SC1 (x = 42). Golul de 7 cm cuprinde profilul șinei SM (min. 6 cm)."
+    "nota": "Fața de jos la ~243 cm, placa la ~250. Se oprește la scafa SC1 (x = 42). Deasupra plăcii rămân ~5,75 cm; LedHome cere min. 6 cm pentru șina SM (vezi avertismentul)."
    },
    {
     "id": "TF1-D",
@@ -979,7 +979,7 @@ window.CAMERE["dormitor-mic"] = {
     "pozitie": "aprox",
     "stare": "propunere",
     "sursa": "analiza/06 v3 și decizia D26 (02.11.2026)",
-    "nota": "Deasupra tavanului fals, lângă scafă: sursa Push-DIM a șinei SM și sursa Push-DIM a benzilor L1, L2 și L3. Se ajunge la ele prin scafă, ca în living. Cablurile de 24 V: spre L2 prin tavanul fals până la riflaj; spre L3 prin tavanul fals și un tub pe peretele TV."
+    "nota": "Deasupra tavanului fals, lângă scafă: sursa Push-DIM a șinei SM și sursa Push-DIM a benzilor L1, L2 și L3. Marginea verticală a tavanului fals închide golul spre scafă (ca în D-09 din living), deci la surse se ajunge printr-o trapă de vizitare lângă D1, sau marginea se lasă demontabilă. Cablurile de 24 V: spre L2 prin tavanul fals până la riflaj; spre L3 prin tavanul fals și un tub pe peretele TV."
    }
   ],
   "avertismente": [
@@ -990,7 +990,7 @@ window.CAMERE["dormitor-mic"] = {
      "SM",
      "TF1"
     ],
-    "text": "Șina SM e cea de 3 m din oferta LedHome: profil pentru placă de 12,5 mm, cu gol ≥ 6 cm deasupra. Tavanul fals are 7 cm, ca în living. Lângă șină se pune un profil suplimentar al scheletului."
+    "text": "Șina SM e cea de 3 m din oferta LedHome: profil pentru placă de 12,5 mm, cu gol ≥ 6 cm deasupra. Tavanul fals de 7 cm lasă ~5,75 cm deasupra plăcii, ca în living (detaliul J-K). De hotărât cu LedHome: ajung 5,75 cm sau tavanul fals coboară cu ~0,5 cm. Lângă șină se pune un profil suplimentar al scheletului."
    },
    {
     "nivel": "info",
