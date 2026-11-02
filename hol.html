@@ -31,6 +31,7 @@
     <div class="desen-cutie">
       <svg id="desen" xmlns="http://www.w3.org/2000/svg" aria-label="Desenul peretelui"></svg>
       <div id="eticheta-hover" class="tooltip" hidden></div>
+      <div id="banda-masura" class="banda-masura" hidden aria-live="polite"></div>
       <div class="zoom">
         <button data-act="zoom-plus" data-icon="plus" title="Mărește" aria-label="Mărește"></button>
         <button data-act="zoom-minus" data-icon="minus" title="Micșorează" aria-label="Micșorează"></button>
@@ -39,19 +40,21 @@
     </div>
 
     <aside id="panou" class="panou" data-stare="mic">
-      <button id="panou-rezumat" class="rezumat" data-act="panou" aria-expanded="false" aria-controls="panou-corp"></button>
+      <div class="rezumat-bara"><button id="panou-rezumat" class="rezumat" data-act="panou" aria-expanded="false" aria-controls="panou-corp"></button><div id="rezumat-actiuni" class="rezumat-actiuni"></div></div>
       <div id="panou-corp" class="panou-corp">
         <section id="selectie" class="selectie gol" aria-live="polite"></section>
         <div class="file" role="tablist">
           <button role="tab" data-act="fila" data-id="elemente" class="on" aria-selected="true">Elemente <span id="nr-elemente" class="nr"></span></button>
           <button role="tab" data-act="fila" data-id="verificari" aria-selected="false">Verificări <span id="nr-verificari"></span></button>
+          <button role="tab" data-act="fila" data-id="santier" aria-selected="false">Șantier <span id="nr-santier" class="nr"></span></button>
         </div>
         <div id="fila-elemente" class="fila">
           <label class="cauta"><span data-icon="cauta"></span><input id="cauta" type="search" placeholder="Caută după cod sau nume" autocomplete="off"></label>
           <div id="lista"></div>
-          <a class="link-tabel" href="#tabel-complet">Tabelul complet, cu bife pentru șantier ↓</a>
+          <button type="button" class="link-tabel" data-act="fila" data-id="santier">Bifele pentru șantier →</button>
         </div>
         <div id="fila-verificari" class="fila" hidden><ul id="verificari" class="verif"></ul></div>
+        <div id="fila-santier" class="fila" hidden><div id="santier"></div><button type="button" class="buton tabel-btn" data-act="tabel-complet">Tabelul complet, cu sursa și starea ↗</button></div>
       </div>
     </aside>
     <div class="doar-print tipar-info">
@@ -64,7 +67,7 @@
 
 <div class="sub">
   <section id="tabel-complet" class="sec-tabel">
-    <h2>Toate elementele peretelui, de la stânga la dreapta</h2>
+    <div class="sec-cap"><h2>Toate elementele peretelui, de la stânga la dreapta</h2><button type="button" class="buton-icon nu-print" data-act="inchide-tabel" data-icon="inchide" title="Închide tabelul (Esc)" aria-label="Închide tabelul"></button></div>
     <p class="nota nu-print">Bifează ce e gata pe șantier. Bifele rămân salvate în acest browser.</p>
     <div id="tabel"></div>
   </section>
@@ -77,11 +80,14 @@
     <h3>Pe desen</h3>
     <ul>
       <li><b>Click sau atingere pe un element:</b> celelalte se estompează și apar cotele lui, cu roșu, față de colțuri, pardoseală și tavan.</li>
-      <li><b>Distanța dintre două elemente:</b> după primul element, alegi al doilea. Cotele dintre ele apar cu albastru. Al treilea element începe o selecție nouă.</li>
+      <li><b>Distanța dintre două elemente:</b> în fișa primului element apeși „Măsoară până la…”, apoi alegi al doilea, pe desen sau în listă. Cotele dintre ele apar cu albastru, iar banda de sus arată distanța. Pe calculator merge și Shift + clic pe al doilea element.</li>
       <li><b>Zoom:</b> rotița mouse-ului sau două degete. Butonul cu patru colțuri arată tot peretele.</li>
-      <li><b>Anulare:</b> click pe un loc gol sau tasta Esc.</li>
+      <li><b>Anulare:</b> ✕, „Gata”, butonul Înapoi al telefonului sau al browserului, tasta Esc sau un clic pe un loc gol.</li>
+      <li><b>Pași de montaj:</b> semnul ▶ de lângă un cod deschide pașii animați. În fereastra lor, „Trimite linkul” trimite pe WhatsApp linkul spre pasul de acum.</li>
+      <li><b>Bife pentru șantier:</b> fila Șantier din panou. Tabelul complet, cu sursa și starea, se deschide din ea.</li>
       <li><b>Straturi:</b> butoanele Gips, Mobilă, Electric și LED ascund sau arată elementele. Alegerea rămâne salvată în browser.</li>
     </ul>
+    <h3>Ce s-a schimbat</h3><p id="modificari-ajutor"></p>
     <h3>De unde se măsoară</h3><div class="referinte"></div>
     <h3>Legendă</h3><div class="legenda"></div>
   </div>

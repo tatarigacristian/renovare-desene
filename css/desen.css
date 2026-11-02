@@ -99,13 +99,13 @@ header.cap #subtitlu { color:var(--muted); }
 .tooltip em { display:block; font-style:normal; color:#93b4ff; }
 .tooltip .tp-pasi { display:block; color:#d6cfc3; font-size:12px; }
 .semn-pasi { display:inline-flex; margin-left:6px; vertical-align:-2px; }
-.semn-pasi svg { width:13px; height:13px; }
-.semn-pasi circle { fill:#fff; stroke:#1f2937; stroke-width:1; }
-.semn-pasi path { fill:#1f2937; }
+.semn-pasi svg { width:15px; height:15px; }
+.semn-pasi circle { fill:#8a5a2b; stroke:#fff; stroke-width:.8; }
+.semn-pasi path { fill:#fff; }
 .leg .semn-pasi { margin-left:-2px; }
 
 .panou { display:flex; flex-direction:column; min-height:0; background:var(--surface); border-left:1px solid var(--border); }
-.rezumat { display:none; }
+.rezumat-bara { display:none; }
 .panou-corp { flex:1; min-height:0; overflow-y:auto; padding:14px 16px 28px; }
 
 /* ---------------------------------------------------------------- fișa elementului și distanțele */
@@ -155,9 +155,11 @@ button.badge:hover { filter:brightness(1.12); }
 .badge.mic { padding:0 5px; font-size:11px; }
 
 /* ---------------------------------------------------------------- file: elemente și verificări */
-.file { position:sticky; top:-14px; z-index:1; display:flex; gap:2px; margin:0 -16px 10px; padding:0 12px; background:var(--surface); border-bottom:1px solid var(--border); }
-.file button { display:inline-flex; align-items:center; gap:6px; margin-bottom:-1px; padding:9px 8px; border:0; border-bottom:2px solid transparent; background:transparent; color:var(--muted); font-weight:600; cursor:pointer; }
+.file { position:sticky; top:-14px; z-index:1; display:flex; gap:2px; margin:0 -16px 10px; padding:0 12px; background:var(--surface); border-bottom:1px solid var(--border); overflow-x:auto; scrollbar-width:none; }
+.file::-webkit-scrollbar { display:none; }
+.file button { flex:none; white-space:nowrap; display:inline-flex; align-items:center; gap:6px; margin-bottom:-1px; padding:9px 8px; border:0; border-bottom:2px solid transparent; background:transparent; color:var(--muted); font-weight:600; cursor:pointer; }
 .file button.on { color:var(--heading); border-bottom-color:var(--accent); }
+#nr-verificari { display:inline-flex; gap:3px; }
 .nr { padding:0 6px; border-radius:999px; background:var(--surface-2); color:var(--muted); font-size:11px; font-weight:600; line-height:17px; font-variant-numeric:tabular-nums; }
 .nr.atentie { background:var(--atentie-soft); color:var(--atentie); border:1px solid color-mix(in srgb, var(--atentie) 40%, transparent); }
 
@@ -221,13 +223,35 @@ dialog::backdrop { background:rgba(20,15,10,.45); }
 .t-sel { color:var(--sel); font-weight:600; }
 .t-intre { color:var(--intre); font-weight:600; }
 
-/* ---------------------------------------------------------------- butonul „Cum se montează” din fișă */
-.detaliu-card { display:flex; align-items:center; gap:12px; width:100%; margin:12px 0 0; padding:10px 12px; border:1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); border-radius:10px; background:var(--accent-soft); color:var(--text); text-align:left; cursor:pointer; }
-.detaliu-card:hover { border-color:var(--accent); }
-.dc-ic { display:grid; place-items:center; flex:none; width:36px; height:36px; border-radius:50%; background:var(--accent); color:var(--surface); }
-.dc-ic .ic { width:15px; height:15px; margin-left:2px; fill:currentColor; stroke:none; }
-.dc-text b { display:block; color:var(--heading); }
-.dc-text small { color:var(--muted); font-size:12.5px; }
+/* ---------------------------------------------------------------- acțiunile fișei, banda de măsurare, fila Șantier */
+.fisa-actiuni { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 4px; }
+.fisa-actiuni .buton { flex:1 1 auto; justify-content:center; min-height:40px; }
+.buton.pasi-btn { background:var(--accent); border-color:var(--accent); color:var(--surface); }
+.buton.pasi-btn:hover { background:var(--accent); filter:brightness(1.1); }
+.buton.pasi-btn .ic { fill:currentColor; stroke:none; }
+#desen .semn-pasi-btn { cursor:pointer; }
+@media (hover: hover) { #desen .semn-pasi-btn:hover { filter:drop-shadow(0 0 2.5px rgba(138,90,43,.95)); } }
+
+/* banda de măsurare stă peste hârtie, deci are aceleași culori și în modul întunecat */
+.banda-masura { position:absolute; top:10px; left:50%; z-index:2; transform:translateX(-50%); display:flex; align-items:center; gap:12px; width:max-content; max-width:calc(100% - 20px); padding:6px 6px 6px 14px; border-radius:12px; background:#1d4ed8; color:#fff; box-shadow:0 4px 14px rgba(29,78,216,.35); }
+.banda-masura[hidden] { display:none; }
+.bm-text { display:flex; flex-direction:column; min-width:0; }
+.bm-text b { display:flex; align-items:center; gap:6px; font-size:14px; white-space:nowrap; }
+.bm-text small { font-size:12.5px; line-height:1.3; opacity:.92; }
+.banda-masura .badge { box-shadow:0 0 0 1.5px rgba(255,255,255,.75); }
+.bm-buton { display:inline-flex; align-items:center; gap:5px; flex:none; min-height:40px; padding:0 12px; border:0; border-radius:9px; background:rgba(255,255,255,.2); color:#fff; font-weight:700; cursor:pointer; }
+.bm-buton:hover { background:rgba(255,255,255,.3); }
+.bm-buton .ic { width:16px; height:16px; }
+
+.link-tabel { padding:0; border:0; background:none; color:var(--accent); font-size:13px; text-decoration:underline; cursor:pointer; }
+.bife { list-style:none; margin:0; padding:0; }
+.bife li { display:flex; align-items:center; gap:4px; }
+.bife input { flex:none; width:20px; height:20px; margin:0 4px; accent-color:var(--ok); }
+.bife .rand { flex:1; min-width:0; }
+.bife li.gata .nume { color:var(--muted); text-decoration:line-through; }
+.tabel-btn { margin-top:12px; }
+.sec-cap { display:flex; align-items:center; gap:10px; }
+.sec-cap h2 { flex:1; }
 
 /* ---------------------------------------------------------------- pașii de montaj (js/pasi.js) */
 dialog.pasi { width:min(1180px, calc(100vw - 24px)); height:min(800px, calc(100dvh - 24px)); max-width:none; max-height:none; display:none; flex-direction:column; overflow:hidden; }
@@ -265,7 +289,8 @@ dialog.pasi[open] { display:flex; }
 .ps-butoane { display:flex; gap:6px; }
 .ps-butoane .buton:disabled { opacity:.45; cursor:default; }
 .ps-butoane [data-p="reda"] { min-width:150px; justify-content:center; }
-.ps-butoane [data-p="reda"] .ic, .dc-ic .ic { fill:currentColor; }
+.ps-butoane [data-p="reda"] .ic { fill:currentColor; }
+.ps-link { flex:none; color:var(--ok); }
 @media (prefers-reduced-motion: no-preference) { .ps-lumina { animation:puls 2.8s ease-in-out 1.6s infinite; } }
 
 /* ---------------------------------------------------------------- telefon și tabletă: panoul devine foaie de jos */
@@ -277,8 +302,20 @@ dialog.pasi[open] { display:flex; }
   .panou[data-stare="mic"] .panou-corp { display:none; }
   .panou-corp { padding-top:4px; overscroll-behavior:contain; }
   .file { top:-4px; }
-  .rezumat { position:relative; display:flex; align-items:center; gap:8px; width:100%; min-height:62px; padding:16px 14px 8px; border:0; background:transparent; text-align:left; cursor:pointer; }
-  .rezumat::before { content:""; position:absolute; top:6px; left:50%; width:36px; height:4px; margin-left:-18px; border-radius:2px; background:var(--border); }
+}
+@media screen and (max-width: 400px) {
+  .file { gap:0; padding:0 8px; }
+  .file button { gap:4px; padding:9px 5px; }
+}
+@media screen and (max-width: 899px) {
+  .rezumat-bara { position:relative; display:flex; align-items:center; }
+  .rezumat-bara::before { content:""; position:absolute; top:6px; left:50%; width:36px; height:4px; margin-left:-18px; border-radius:2px; background:var(--border); }
+  .rezumat { display:flex; align-items:center; gap:8px; flex:1; min-width:0; min-height:62px; padding:16px 10px 8px 14px; border:0; background:transparent; text-align:left; cursor:pointer; }
+  .rezumat-actiuni { display:flex; gap:4px; flex:none; padding:10px 8px 2px 0; }
+  .rezumat-actiuni:empty { display:none; }
+  .rz-buton { display:grid; place-items:center; width:44px; height:44px; border:1px solid var(--border); border-radius:12px; background:var(--surface); color:var(--text); cursor:pointer; }
+  .rz-buton.pasi { border-color:var(--accent); background:var(--accent); color:var(--surface); }
+  .rz-buton.pasi .ic { fill:currentColor; stroke:none; }
   .rz-text { flex:1; min-width:0; display:flex; flex-direction:column; }
   .rz-text b { font-size:14px; color:var(--heading); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .rz-text small { font-size:12.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -303,6 +340,8 @@ dialog.pasi[open] { display:flex; }
   .ps-butoane .buton { flex:1; justify-content:center; padding:8px 6px; }
   .ps-butoane [data-p="reda"] { min-width:0; flex:1.6; }
   .ps-butoane [data-p="reia"] { flex:none; }
+  .ps-link span { display:none; }
+  .ps-link { padding:7px 9px; }
 }
 @media screen and (max-width: 640px) {
   .bara { padding:6px 6px 6px 2px; min-height:48px; gap:4px; }
@@ -319,13 +358,29 @@ dialog.pasi[open] { display:flex; }
   .zoom { right:8px; bottom:8px; }
 }
 
+/* ---------------------------------------------------------------- pagina aplicației nu derulează
+   Desenul folosește toate atingerile pentru mutare și zoom, deci o pagină care derulează nu mai poate fi urcată
+   înapoi de pe desen. Tabelul complet se deschide peste aplicație (fila Șantier); la tipar rămâne pe pagina a doua. */
+@media screen {
+  html.aplicatie, html.aplicatie body { height:100%; overflow:hidden; overscroll-behavior:none; }
+  html.aplicatie .sub { display:none; }
+  html.aplicatie body.tabel-deschis .sub { display:block; position:fixed; inset:0; z-index:40; max-width:none; margin:0; padding:0 14px 40px; overflow-y:auto; overscroll-behavior:contain; background:var(--bg); }
+  html.aplicatie body.tabel-deschis .sub > * { max-width:1280px; margin-left:auto; margin-right:auto; }
+  html.aplicatie .sec-cap { position:sticky; top:0; z-index:1; padding:10px 0 8px; background:var(--bg); }
+  html.aplicatie .sec-cap h2 { margin:0; }
+}
+@media (pointer: coarse) {
+  .zoom button { width:44px; height:44px; }
+  .fisa-cap .buton-icon { width:40px; height:40px; margin:-8px -8px 0 0; }
+}
+
 /* ---------------------------------------------------------------- tipar: A3 orizontal, desenul la 1:20 */
 @page { size:A3 landscape; margin:10mm; }
 @media print {
   :root { --bg:#fff; --surface:#fff; --surface-2:#f2f2f2; --border:#ccc; --text:#000; --muted:#444; --heading:#000; --hartie:#fff; --atentie:#9a4a00; --atentie-soft:#fff; color-scheme:light; }
   body { font-size:11px; }
   .app { display:block; height:auto; }
-  .comenzi, .panou, .zoom, .tooltip, .bara .buton-icon, .nu-print, dialog { display:none !important; }
+  .comenzi, .panou, .zoom, .tooltip, .banda-masura, .bara .buton-icon, .nu-print, dialog { display:none !important; }
   .doar-print { display:revert; }
   .bara { min-height:0; padding:4px 8px; border:1px solid #000; }
   .titluri { flex-direction:row; flex-wrap:wrap; align-items:baseline; gap:2px 12px; }

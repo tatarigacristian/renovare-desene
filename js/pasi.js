@@ -37,6 +37,7 @@
   const IC = {
     inapoi: '<path d="M15 18l-6-6 6-6"/>', inainte: '<path d="M9 18l6-6-6-6"/>', inchide: '<path d="M6 6l12 12M18 6L6 18"/>',
     reda: '<path d="M7 5l12 7-12 7z"/>', pauza: '<path d="M8 5v14M16 5v14"/>', reia: '<path d="M4 12a8 8 0 1 0 2.5-5.8M4 4v4h4"/>',
+    mesaj: '<path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12z"/>',
   };
   const ic = n => `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${IC[n]}</svg>`;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -293,6 +294,7 @@
     dlg.innerHTML = `
       <header class="ps-cap"><span class="badge ps-cod"></span>
         <div class="ps-titluri"><h2 id="ps-titlu"></h2><span class="ps-sub"></span></div>
+        <button type="button" class="buton ps-link" data-p="link" title="Trimite pe WhatsApp linkul spre pasul de acum" hidden>${ic('mesaj')}<span>Trimite linkul</span></button>
         <button type="button" class="buton-icon" data-p="inchide" aria-label="Închide">${ic('inchide')}</button></header>
       <div class="ps-corp">
         <figure class="ps-scena"><svg xmlns="${NS}" role="img" aria-label="Secțiunea detaliului"></svg>
@@ -319,6 +321,10 @@
       else if (a === 'inainte') mergiLa(P.k + 1);
       else if (a === 'reia') mergiLa(P.k);
       else if (a === 'pas') mergiLa(+b.dataset.k);
+      else if (a === 'link' && P.link) {
+        const d = P.det, n = d.pasi.length - 1, unde = P.k ? `pasul ${P.k} din ${n}` : 'pe scurt';
+        window.open('https://wa.me/?text=' + encodeURIComponent(`${d.id} — ${d.nume}, ${unde}: ${P.link(P.k)}`), '_blank', 'noopener');
+      }
       else if (a === 'reda') { const da = !P.reda; seteazaReda(da); if (da) mergiLa(P.k === P.det.pasi.length - 1 ? 0 : P.k + 1); }
     });
     dlg.addEventListener('keydown', ev => {
@@ -334,11 +340,14 @@
     P.ro.observe(P.svg);
   }
 
-  function deschide(id) {
+  // opt.pas: pasul de la care se deschide (din linkul direct); opt.link(k): adresa pasului k, pentru „Trimite linkul”
+  function deschide(id, opt = {}) {
     const d = window.DETALII && window.DETALII[id];
-    if (!d) return;
+    if (!d) return false;
     if (!P.dlg) construieste();
     P.det = d;
+    P.link = opt.link || null;
+    P.dlg.querySelector('[data-p="link"]').hidden = !P.link;
     const dlg = P.dlg;
     dlg.querySelector('.ps-cod').textContent = d.id;
     dlg.querySelector('#ps-titlu').textContent = d.nume;
@@ -349,8 +358,9 @@
       `<button type="button" data-p="pas" data-k="${i}" title="${i ? i + '. ' : ''}${esc(p.titlu)}" aria-label="${i ? 'Pasul ' + i : 'Pe scurt'}: ${esc(p.titlu)}">${i || '•'}</button>`).join('');
     seteazaReda(false);
     dlg.showModal();
-    mergiLa(0);
+    mergiLa(+opt.pas || 0);
+    return true;
   }
 
-  window.Pasi = { deschide, numar: id => window.DETALII && window.DETALII[id] ? window.DETALII[id].pasi.length - 1 : 0 };
+  window.Pasi = { deschide, dialog: () => P.dlg, numar: id => window.DETALII && window.DETALII[id] ? window.DETALII[id].pasi.length - 1 : 0 };
 })();

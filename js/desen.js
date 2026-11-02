@@ -63,8 +63,11 @@
 
   const f = n => (Math.round(n * 100) / 100).toString().replace('.', ',');
   // vedere: 'tot' (tot peretele), 'sel' (încadrat pe selecție) sau 'liber' (mutat de utilizator); contează la redimensionare
-  const S = { cam: null, per: null, viz: {}, sel: [], view: null, vedere: 'tot', dim: null, print: false, svg: null, fitS: 1, raf: 0,
+  // masura: modul „Măsoară”: primul element ales e punctul de pornire, următorul ales dă distanța
+  const S = { cam: null, per: null, viz: {}, sel: [], masura: false, view: null, vedere: 'tot', dim: null, print: false, svg: null, fitS: 1, raf: 0,
     panou: 'mic', cauta: '', selPanou: '', var: {} };
+  // adresa publică a desenelor, pentru linkurile trimise echipei
+  const SITE = 'https://tatarigacristian.github.io/renovare-desene/';
 
   function el(tag, a, parent, text) {
     const e = document.createElementNS(NS, tag);
@@ -402,11 +405,13 @@
   }
   const seSuprapun = (a, b, m) => a.x < b.x + b.w + m && b.x < a.x + a.w + m && a.y < b.y + b.h + m && b.y < a.y + a.h + m;
 
-  // semnul elementelor cu pași de montaj: un cerc mic cu triunghi, lipit de cod
-  const SEMN_PASI = 9;   // px de ecran, cât se adaugă la lățimea codului
+  // semnul elementelor cu pași de montaj: un cerc cu triunghi, în dreapta codului, cu 2 px între ele
+  const SEMN_PASI = 18;  // px de ecran, cât se adaugă la lățimea codului
+  const SEMN_R = 7;      // raza semnului, px de ecran
   function semnPasi(g, cx, cy, u) {
-    el('circle', { cx, cy, r: 5.6 * u, fill: '#fff', stroke: '#1f2937', 'stroke-width': .9 * u }, g);
-    el('path', { d: `M${cx - 1.7 * u},${cy - 2.6 * u} L${cx + 2.9 * u},${cy} L${cx - 1.7 * u},${cy + 2.6 * u} Z`, fill: '#1f2937' }, g);
+    const k = SEMN_R / 5.6;
+    el('circle', { cx, cy, r: SEMN_R * u, fill: '#8a5a2b', stroke: '#fff', 'stroke-width': 1.1 * u }, g);
+    el('path', { d: `M${cx - 1.7 * k * u},${cy - 2.6 * k * u} L${cx + 2.9 * k * u},${cy} L${cx - 1.7 * k * u},${cy + 2.6 * k * u} Z`, fill: '#fff' }, g);
   }
   const semnPasiHtml = '<span class="semn-pasi" title="Are pași de montaj: „Cum se montează”" aria-label="are pași de montaj"><svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5.2"/><path d="M4.8 3.5 L8.7 6 L4.8 8.5 Z"/></svg></span>';
 
@@ -414,7 +419,13 @@
     const b = el('g', { class: 'eticheta', 'data-id': e.id }, g), extra = pasiDetaliu(e) ? SEMN_PASI * u : 0, w = r.w - extra;
     el('rect', { x: r.x, y: r.y, width: w, height: r.h, rx: 3 * u, fill: (STARI[e.stare] || STARI.proiect).culoare, stroke: '#fff', 'stroke-width': .8 * u }, b);
     el('text', { x: r.x + w / 2, y: r.y + r.h * .72, 'font-size': 10.5 * u, 'text-anchor': 'middle', fill: '#fff', 'font-weight': 700 }, b, e.id);
-    if (extra) semnPasi(b, r.x + r.w - 4.6 * u, r.y + r.h / 2, u);
+    if (extra) {
+      // semnul e un buton separat, lângă cod: deschide direct pașii; codul alege în continuare elementul
+      const cx = r.x + w + (2 + SEMN_R) * u, cy = r.y + r.h / 2;
+      const p = S.print ? b : el('g', { class: 'semn-pasi-btn', 'data-pasi': e.detaliu }, b);
+      if (!S.print) el('circle', { cx, cy, r: (SEMN_R + 2) * u, fill: 'transparent' }, p);
+      semnPasi(p, cx, cy, u);
+    }
     return b;
   }
 
@@ -717,14 +728,14 @@
   // ---------------------------------------------------------------- pan / zoom cu mouse și degete (Pointer Events)
   function initZoom(svg) {
     const pts = new Map();
-    let g0 = null, mutat = false, tinta = null;
+    let g0 = null, mutat = false, tinta = null, shift = false;
     const gest = () => {
       const a = [...pts.values()], n = a.length;
       const cx = a.reduce((s, p) => s + p.x, 0) / n, cy = a.reduce((s, p) => s + p.y, 0) / n;
       return { n, cx, cy, d: n > 1 ? Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y) : 0, view: Object.assign({}, S.view) };
     };
     svg.addEventListener('pointerdown', e => {
-      if (pts.size === 0) { mutat = false; tinta = e.target.closest('[data-id]'); }
+      if (pts.size === 0) { mutat = false; tinta = e.target.closest('[data-pasi]') || e.target.closest('[data-id]'); shift = e.shiftKey; }
       try { svg.setPointerCapture(e.pointerId); } catch (_) { /* evenimente sintetice */ }
       pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
       g0 = gest();
@@ -747,7 +758,10 @@
     const sus = e => {
       if (!pts.has(e.pointerId)) return;
       pts.delete(e.pointerId);
-      if (pts.size === 0 && !mutat) apasare(tinta ? tinta.dataset.id : null);
+      if (pts.size === 0 && !mutat) {
+        if (tinta && tinta.dataset.pasi) deschidePasi(tinta.dataset.pasi, tinta.closest('[data-id]').dataset.id);
+        else apasare(tinta ? tinta.dataset.id : null, shift);
+      }
       if (pts.size) g0 = gest();
     };
     svg.addEventListener('pointerup', sus);
@@ -765,8 +779,11 @@
     svg.addEventListener('pointermove', ev => {
       const t = ev.pointerType === 'mouse' && !ev.buttons && ev.target.closest('[data-id]'), e = t && gaseste(t.dataset.id);
       if (!e) { tip.hidden = true; return; }
-      tip.innerHTML = `<b>${esc(e.id)}</b>${esc(e.nume)}` + (pasiDetaliu(e) ? '<span class="tp-pasi">are pași de montaj: „Cum se montează” în fișă</span>' : '') +
-        (S.sel.length === 1 && !S.sel.includes(e.id) && cunoscut(gaseste(S.sel[0]) || {}) ? `<em>click: distanța față de ${esc(S.sel[0])}</em>` : '');
+      const peSemn = !!ev.target.closest('[data-pasi]'), prim = S.sel.length && gaseste(S.sel[0]);
+      const dist = prim && cunoscut(prim) && cunoscut(e) && !S.sel.includes(e.id) ? (S.masura ? 'clic' : 'Shift + clic') : '';
+      tip.innerHTML = `<b>${esc(e.id)}</b>${esc(e.nume)}` +
+        (pasiDetaliu(e) ? `<span class="tp-pasi">${peSemn ? 'clic: pașii de montaj' : 'are pași de montaj: clic pe ▶'}</span>` : '') +
+        (dist && !peSemn ? `<em>${dist}: distanța față de ${esc(prim.id)}</em>` : '');
       tip.hidden = false;
       const r = box.getBoundingClientRect();
       let x = ev.clientX - r.left + 14;
@@ -841,36 +858,77 @@
   const badgeBtn = (e, act) => `<button type="button" class="badge" style="background:${culoareStare(e)}" data-act="${act}" data-id="${esc(e.id)}" title="${esc(e.id)}: ${esc(e.nume)}">${esc(e.id)}</button>`;
 
   // ---------------------------------------------------------------- selecția
-  // Selecția merge în ciclu: primul element arată cotele lui, al doilea distanța dintre ele, al treilea
-  // începe din nou. Un click pe singurul element ales îl deselectează.
-  function urmatoarea(id) {
+  // O atingere alege elementul (altul îl înlocuiește; același îl deselectează). Distanța se cere explicit:
+  // „Măsoară” din fișă, sau Shift + clic pe al doilea element. În modul de măsurare, primul element rămâne
+  // punctul de pornire și fiecare element ales după el dă distanța până la el, până la „Gata”, ✕, Înapoi sau Esc.
+  function urmatoarea(id, masoara) {
     const e = id && gaseste(id);
     if (!e) return [];
-    if (S.sel.length !== 1) return [id];
-    if (S.sel[0] === id) return [];
-    const prim = gaseste(S.sel[0]);
-    return prim && cunoscut(prim) && cunoscut(e) ? [prim.id, id] : [id];
+    const prim = S.sel.length ? gaseste(S.sel[0]) : null;
+    if (masoara && prim) {
+      if (prim.id === id) return S.sel;
+      return cunoscut(prim) && cunoscut(e) ? [prim.id, id] : [id];
+    }
+    if (S.sel.length === 1 && S.sel[0] === id) return [];
+    return [id];
+  }
+  // după o schimbare a selecției: modul de măsurare rămâne doar cât timp punctul de pornire e același
+  function aplicaSelectia(urm, masoara) {
+    const prim = S.sel[0];
+    S.sel = urm;
+    S.masura = !!masoara && urm.length > 0 && urm[0] === prim && (urm.length === 2 || S.masura);
   }
   // click sau atingere pe desen
-  function apasare(id) {
-    S.sel = urmatoarea(id);
+  function apasare(id, shift) {
+    const masoara = !!id && S.sel.length > 0 && (S.masura || (shift && S.sel.length === 1));
+    aplicaSelectia(urmatoarea(id, masoara), masoara);
     document.getElementById('eticheta-hover').hidden = true;
     // pe ecran îngust, vederea se mută singură pe selecție și înapoi pe tot peretele
     if (ingust()) { if (S.sel.length) zoomPe(S.sel); else potriveste(); } else deseneaza();
     panou();
   }
-  // din listă, tabel sau verificări; pornește stratul elementului dacă era ascuns
+  // din listă, tabel sau verificări; pornește stratul elementului dacă era ascuns. Două coduri = distanța dintre ele.
   function selecteaza(ids, zoom) {
     const els = ids.map(gaseste).filter(Boolean).slice(0, 2);
     const ascunse = els.filter(e => !vizibil(e));
     ascunse.forEach(e => { S.viz[e.strat] = true; });
     if (ascunse.length) { salveaza(); comenziStraturi(); lista(); tabel(); }
     S.sel = els.length === 2 && !els.every(cunoscut) ? [els[0].id] : els.map(e => e.id);
+    S.masura = S.sel.length === 2;
     const desenate = S.sel.map(gaseste).filter(cunoscut);
     if (zoom && desenate.length && (ingust() || !inVedere(desenate))) zoomPe(S.sel); else deseneaza();
     panou();
   }
-  function dinLista(id) { selecteaza(urmatoarea(id), true); }
+  function dinLista(id) {
+    const prim = S.sel[0], masoara = S.masura && S.sel.length > 0;
+    const urm = urmatoarea(id, masoara);
+    selecteaza(urm, true);
+    // a ales din nou punctul de pornire: rămâne în modul de măsurare
+    if (masoara && urm.length === 1 && urm[0] === prim) { S.masura = true; panou(); }
+  }
+  // „Măsoară”: elementul ales rămâne punctul de pornire
+  function incepeMasura() {
+    const prim = S.sel.length && gaseste(S.sel[0]);
+    if (!prim || !cunoscut(prim)) return;
+    S.sel = [prim.id]; S.masura = true;
+    if (ingust()) potriveste(); else deseneaza();
+    panou();
+  }
+  // „Anulează” (încă nu e ales al doilea element): rămâne ales doar primul
+  function anuleazaMasura() { S.masura = false; selecteaza(S.sel.slice(0, 1), true); }
+
+  // pașii de montaj: se deschid peste desen; elementul de pe care s-au deschis rămâne ales
+  function linkPasi(id, k) {
+    const pag = (location.pathname.split('/').pop() || 'index.html');
+    return `${SITE}${pag}#${encodeURIComponent(S.per.id)}?pasi=${encodeURIComponent(id).replace(/'/g, '%27')}&pas=${k}`;
+  }
+  function deschidePasi(id, elId, pas) {
+    if (elId && !S.sel.includes(elId)) { S.masura = false; S.sel = [elId]; deseneaza(); panou(); }
+    if (!window.Pasi || !window.Pasi.deschide(id, { pas, link: k => linkPasi(id, k) })) return;
+    const dlg = window.Pasi.dialog();
+    if (!dlg.dataset.istoric) { dlg.dataset.istoric = '1'; dlg.addEventListener('close', () => iesi('pasi')); }
+    intra('pasi', () => dlg.close());
+  }
 
   // ---------------------------------------------------------------- panoul: fișa, distanțele, rezumatul
   function coteGrid(e) {
@@ -901,11 +959,19 @@
       <div class="fisa-cap">${badge(e)}<div class="fisa-titlu"><b>${esc(e.nume)}</b>
         <span class="stare-text" style="--c:${st.culoare}"><i></i>${st.nume}${e.pozitie === 'aprox' ? ' · poziție aproximativă' : ''}</span></div>
         <button type="button" class="buton-icon" data-act="inchide" title="Anulează selecția (Esc)" aria-label="Anulează selecția">${ICON.inchide}</button></div>
-      ${cunoscut(e) ? coteGrid(e) + `<p class="indiciu">${ICON.rigla}Alege încă un element: apare distanța dintre ele.</p>` : '<p class="fara-poz">Poziția nu e cunoscută încă: se măsoară pe șantier și se trece în date.</p>'}
-      ${pasiDetaliu(e) ? `<button type="button" class="detaliu-card" data-act="pasi" data-id="${esc(e.detaliu)}"><span class="dc-ic">${ICON.reda}</span>
-        <span class="dc-text"><b>Cum se montează</b><small>Detaliul ${esc(e.detaliu)} · ${window.Pasi.numar(e.detaliu)} pași, cu animație</small></span></button>` : ''}
+      ${cunoscut(e) ? coteGrid(e) : '<p class="fara-poz">Poziția nu e cunoscută încă: se măsoară pe șantier și se trece în date.</p>'}
+      ${actiuniFisa(e)}
       <dl class="detalii">${rows.map(r => `<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join('')}</dl>
       <div class="actiuni"><a class="buton whatsapp" href="${linkRaport(e)}" target="_blank" rel="noopener">${ICON.mesaj}Raportează o corectură</a></div></div>`;
+  }
+  // cele două acțiuni ale fișei: pașii de montaj (dacă are) și măsurarea până la alt element
+  function actiuniFisa(e) {
+    const b = [];
+    if (pasiDetaliu(e)) b.push(`<button type="button" class="buton pasi-btn" data-act="pasi" data-id="${esc(e.detaliu)}">${ICON.reda}Cum se montează · ${window.Pasi.numar(e.detaliu)} pași</button>`);
+    if (cunoscut(e)) b.push(S.masura
+      ? `<button type="button" class="buton activ" data-act="anuleaza-masura">${ICON.rigla}Anulează măsurarea</button>`
+      : `<button type="button" class="buton" data-act="masoara" title="Sau Shift + clic pe al doilea element">${ICON.rigla}Măsoară până la…</button>`);
+    return b.length ? `<div class="fisa-actiuni">${b.join('')}</div>` : '';
   }
   function muchie(E, v, dir) {
     if (E.punct) return `axa lui ${E.id}`;
@@ -922,19 +988,39 @@
       <p class="intre">${esc(A.id)}: ${esc(A.nume)}<br>${esc(B.id)}: ${esc(B.nume)}</p>
       <div class="masuri"><h4>Pe orizontală</h4><ul>${linii(m.oriz.seg, 'x') || '<li>aceeași poziție</li>'}</ul>
         <h4>Pe verticală</h4><ul>${linii(m.vert.seg, 'h') || '<li>aceeași înălțime</li>'}</ul></div>
-      <p class="indiciu">Alt element începe o selecție nouă. Un cod de mai sus îl lasă ales doar pe el.</p></div>`;
+      <p class="indiciu">Alege alt element: măsori de la ${esc(A.id)} până la el. ✕, „Gata” sau Esc închide măsurarea. Un cod de mai sus îl lasă ales doar pe el.</p></div>`;
+  }
+  // distanța principală dintre două elemente, pentru rezumat și pentru banda de sus
+  function distantaPrincipala(A, B) {
+    const m = masuratori(A, B), ap = A.pozitie === 'aprox' || B.pozitie === 'aprox' ? '~' : '';
+    const t = (seg, dir) => `${ap}${f(seg[1] - seg[0])} cm ${dir}`;
+    const parti = [];
+    if (m.oriz.gol) parti.push(t(m.oriz.seg[0], 'pe orizontală'));
+    if (m.vert.gol) parti.push(t(m.vert.seg[0], 'pe verticală'));
+    if (!parti.length && m.oriz.seg.length) parti.push(t(m.oriz.seg[0], 'între margini, pe orizontală'));
+    if (!parti.length && m.vert.seg.length) parti.push(t(m.vert.seg[0], 'între margini, pe verticală'));
+    return parti.join(' · ') || 'aceeași poziție';
+  }
+  // banda albastră de deasupra desenului, cât timp e pornit modul de măsurare
+  function banda() {
+    const b = document.getElementById('banda-masura'), sel = S.sel.map(gaseste).filter(Boolean);
+    b.hidden = !S.masura || !sel.length;
+    if (b.hidden) { b.innerHTML = ''; return; }
+    b.innerHTML = sel.length === 1
+      ? `<span class="bm-text"><b>Măsori de la ${badge(sel[0])}</b><small>Alege al doilea element, pe desen sau în listă</small></span>
+         <button type="button" class="bm-buton" data-act="anuleaza-masura">Anulează</button>`
+      : `<span class="bm-text"><b>${badge(sel[0])} ↔ ${badge(sel[1])}</b><small>${distantaPrincipala(sel[0], sel[1])}</small></span>
+         <button type="button" class="bm-buton" data-act="inchide">${ICON.inchide}Gata</button>`;
   }
   // rândul de sus al foii de jos (telefon): ce e selectat sau câte elemente are peretele
   function rezumat() {
     const r = document.getElementById('panou-rezumat'), sel = S.sel.map(gaseste).filter(Boolean);
     let st = '', txt, sub;
-    if (sel.length === 1) { st = badge(sel[0]); txt = esc(sel[0].nume); sub = scurtPozitie(sel[0]); }
+    if (sel.length === 1 && S.masura) { st = badge(sel[0]); txt = `Măsori de la ${esc(sel[0].id)}`; sub = 'alege al doilea element'; }
+    else if (sel.length === 1) { st = badge(sel[0]); txt = esc(sel[0].nume); sub = scurtPozitie(sel[0]); }
     else if (sel.length === 2) {
-      const [A, B] = sel, m = masuratori(A, B), ap = A.pozitie === 'aprox' || B.pozitie === 'aprox' ? '~' : '';
-      const [dir, seg] = m.oriz.gol ? ['pe orizontală', m.oriz.seg[0]] : m.vert.gol ? ['pe verticală', m.vert.seg[0]]
-        : m.oriz.seg.length ? ['între margini, pe orizontală', m.oriz.seg[0]] : m.vert.seg.length ? ['între margini, pe verticală', m.vert.seg[0]] : ['', null];
-      st = badge(A) + '<span class="rz-sag">↔</span>' + badge(B);
-      txt = seg ? `${ap}${f(seg[1] - seg[0])} cm ${dir}` : 'aceeași poziție';
+      st = badge(sel[0]) + '<span class="rz-sag">↔</span>' + badge(sel[1]);
+      txt = distantaPrincipala(sel[0], sel[1]);
       sub = 'toate distanțele în fișă';
     } else {
       const at = verificari().filter(v => v.nivel === 'atentie').length;
@@ -942,6 +1028,12 @@
       sub = (at ? `${at} atenționări · ` : '') + 'lista și verificările';
     }
     r.innerHTML = `${st}<span class="rz-text"><b>${txt}</b><small>${sub}</small></span><span class="rz-sageata">${ICON.sus}</span>`;
+    // acțiunile de lângă rezumat: se văd și cu foaia închisă
+    const a = [], e = sel.length === 1 ? sel[0] : null;
+    if (e && pasiDetaliu(e)) a.push(`<button type="button" class="rz-buton pasi" data-act="pasi" data-id="${esc(e.detaliu)}" title="Cum se montează: ${window.Pasi.numar(e.detaliu)} pași" aria-label="Cum se montează">${ICON.reda}</button>`);
+    if (e && cunoscut(e) && !S.masura) a.push(`<button type="button" class="rz-buton" data-act="masoara" title="Măsoară până la alt element" aria-label="Măsoară până la alt element">${ICON.rigla}</button>`);
+    if (sel.length) a.push(`<button type="button" class="rz-buton" data-act="inchide" title="Anulează selecția" aria-label="Anulează selecția">${ICON.inchide}</button>`);
+    document.getElementById('rezumat-actiuni').innerHTML = a.join('');
   }
   function seteazaPanou(stare) {
     S.panou = stare;
@@ -952,9 +1044,11 @@
     const box = document.getElementById('selectie'), sel = S.sel.map(gaseste).filter(Boolean);
     box.className = 'selectie' + (sel.length ? '' : ' gol');
     box.innerHTML = sel.length === 1 ? fisaHtml(sel[0]) : sel.length === 2 ? intreHtml(sel[0], sel[1])
-      : '<p>Alege un element pe desen sau din listă: apar cotele lui. Alege încă unul: apare distanța dintre ele. Al treilea începe o selecție nouă.</p>';
+      : '<p>Alege un element pe desen sau din listă: apar cotele lui. „Măsoară” din fișa lui dă distanța până la alt element.</p>';
     rezumat();
-    document.querySelectorAll('#lista .rand').forEach(b => b.classList.toggle('ales', S.sel.includes(b.dataset.id)));
+    banda();
+    sincIstoric();
+    document.querySelectorAll('#lista .rand, #santier .rand').forEach(b => b.classList.toggle('ales', S.sel.includes(b.dataset.id)));
     // la o selecție nouă, fișa trebuie să se vadă
     const cheie = S.sel.join(',');
     if (cheie && cheie !== S.selPanou) document.getElementById('panou-corp').scrollTo({ top: 0, behavior: 'smooth' });
@@ -995,8 +1089,7 @@
   }
   function arataFila(id) {
     document.querySelectorAll('.file button').forEach(b => { const on = b.dataset.id === id; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
-    document.getElementById('fila-elemente').hidden = id !== 'elemente';
-    document.getElementById('fila-verificari').hidden = id !== 'verificari';
+    ['elemente', 'verificari', 'santier'].forEach(f => { const x = document.getElementById('fila-' + f); if (x) x.hidden = id !== f; });
   }
 
   // ---------------------------------------------------------------- tabelul complet (și pentru tipar)
@@ -1004,7 +1097,7 @@
     const tb = document.getElementById('tabel');
     const els = elemente().filter(vizibil)
       .sort((a, b) => (cunoscut(a) ? a.x : 1e9) - (cunoscut(b) ? b.x : 1e9));
-    const key = e => `${LS}${S.cam.id}:${S.per.id}:${e.id}`;
+    const key = cheieBifa;
     tb.innerHTML = `<table><thead><tr><th title="Bifează ce e făcut pe șantier">✓</th><th>ID</th><th>Ce</th><th>${esc(axe().thX)}</th><th>${esc(axe().thH)}</th><th>Dimensiuni</th><th>Stare</th><th>Sursa</th><th class="nu-print"></th></tr></thead><tbody>${
       els.map(e => {
         const st = STARI[e.stare] || STARI.proiect, ap = e.pozitie === 'aprox' ? '~' : '';
@@ -1016,7 +1109,63 @@
           <td style="color:${st.culoare}">${st.nume}</td><td class="sursa">${esc(e.sursa || '')}</td>
           <td class="nu-print"><a href="${linkRaport(e)}" target="_blank" rel="noopener" title="Raportează pe WhatsApp">raportează</a></td></tr>`;
       }).join('')}</tbody></table>`;
-    tb.querySelectorAll('input[data-k]').forEach(c => c.onchange = () => c.checked ? localStorage.setItem(c.dataset.k, '1') : localStorage.removeItem(c.dataset.k));
+    tb.querySelectorAll('input[data-k]').forEach(c => c.onchange = () => { bifeaza(c.dataset.k, c.checked); santier(); });
+    santier();
+  }
+  const cheieBifa = e => `${LS}${S.cam.id}:${S.per.id}:${e.id}`;
+  function bifeaza(k, da) { if (da) localStorage.setItem(k, '1'); else localStorage.removeItem(k); }
+
+  // fila „Șantier”: aceleași bife ca tabelul complet, cu coloanele esențiale
+  function santier() {
+    const box = document.getElementById('santier');
+    if (!box) return;
+    const els = elemente().filter(vizibil).sort((a, b) => (cunoscut(a) ? a.x : 1e9) - (cunoscut(b) ? b.x : 1e9));
+    const gata = els.filter(e => localStorage.getItem(cheieBifa(e))).length;
+    document.getElementById('nr-santier').textContent = `${gata}/${els.length}`;
+    box.style.setProperty('--cod', document.getElementById('lista').style.getPropertyValue('--cod'));
+    box.innerHTML = `<p class="nota">Bifează ce e gata. Bifele rămân salvate în acest browser.</p>
+      <ul class="bife">${els.map(e => `<li class="${localStorage.getItem(cheieBifa(e)) ? 'gata' : ''}">
+        <input type="checkbox" data-k="${cheieBifa(e)}" aria-label="${esc(e.id)} gata" ${localStorage.getItem(cheieBifa(e)) ? 'checked' : ''}>
+        <button type="button" class="rand${S.sel.includes(e.id) ? ' ales' : ''}" data-act="rand" data-id="${esc(e.id)}">${badge(e)}<span class="nume">${esc(e.nume)}</span><span class="poz">${scurtPozitie(e)}</span></button></li>`).join('')}</ul>`;
+    box.querySelectorAll('input[data-k]').forEach(c => c.onchange = () => { bifeaza(c.dataset.k, c.checked); tabel(); });
+  }
+
+  // ---------------------------------------------------------------- butonul Înapoi al telefonului și al browserului
+  // Selecția, fereastra cu pași, ajutorul și tabelul complet pun câte o intrare în istoric: „Înapoi” le închide
+  // pe rând, în loc să părăsească pagina. Când se închid din pagină (✕, Esc), intrarea se scoate cu history.back().
+  const ISTORIC = [];
+  let popIgnorat = 0, dupaPop = null;
+  const inIstoric = cheie => ISTORIC.some(x => x.cheie === cheie);
+  function intra(cheie, inchide) {
+    if (inIstoric(cheie)) return;
+    ISTORIC.push({ cheie, inchide });
+    history.pushState({ desen: cheie }, '', location.href);
+  }
+  function iesi(cheie, apoi) {
+    const i = ISTORIC.findIndex(x => x.cheie === cheie);
+    if (i < 0) { if (apoi) apoi(); return; }
+    ISTORIC.splice(i, 1);
+    popIgnorat++; dupaPop = apoi || null;
+    history.back();
+  }
+  function laPop() {
+    if (popIgnorat) { popIgnorat--; const fn = dupaPop; dupaPop = null; if (fn) fn(); return; }
+    const x = ISTORIC.pop();
+    if (x) x.inchide();
+  }
+  // selecția are o singură intrare, oricâte elemente se aleg una după alta
+  function sincIstoric() {
+    if (S.sel.length && !inIstoric('sel')) intra('sel', () => { S.sel = []; S.masura = false; if (ingust()) potriveste(); else deseneaza(); panou(); });
+    else if (!S.sel.length && inIstoric('sel')) iesi('sel');
+  }
+  function deschideTabel() {
+    document.body.classList.add('tabel-deschis');
+    intra('tabel', () => document.body.classList.remove('tabel-deschis'));
+    document.querySelector('.sub').scrollTop = 0;
+  }
+  function inchideTabel(apoi) {
+    document.body.classList.remove('tabel-deschis');
+    iesi('tabel', apoi);
   }
 
   // ---------------------------------------------------------------- planul mic al camerei și pereții
@@ -1104,14 +1253,18 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     document.querySelectorAll('.referinte').forEach(d => { d.innerHTML = ref; });
     document.querySelectorAll('.legenda').forEach(d => { d.innerHTML = legendaHtml(); });
     document.getElementById('modificari').innerHTML = `<b>Ce s-a schimbat în revizia ${r.nr}:</b> ${r.modificari.map(esc).join(' ')}`;
+    const ma = document.getElementById('modificari-ajutor');
+    if (ma) ma.innerHTML = `<b>Revizia ${r.nr}, ${data}.</b> ${r.modificari.map(esc).join(' ')}`;
   }
 
   function alegePerete(id) {
     const p = vederi().find(x => x.id === id);
     if (!p || p.etapa > ETAPA) return;
+    // intrarea selecției din istoric se scoate înainte de schimbarea adresei, ca „Înapoi” să nu ducă la peretele vechi
+    if (inIstoric('sel')) { S.sel = []; S.masura = false; return iesi('sel', () => alegePerete(id)); }
     S.per = p;
-    history.replaceState(null, '', '#' + id);
-    S.sel = []; S.cauta = '';
+    history.replaceState(history.state, '', '#' + id);
+    S.sel = []; S.masura = false; S.cauta = '';
     document.getElementById('cauta').value = '';
     antet(); plan(); comenziVariante(); comenziStraturi(); lista(); listaVerificari(); tabel(); panou(); potriveste();
   }
@@ -1127,7 +1280,11 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     doar: id => selecteaza([id]),
     arata: ids => selecteaza(ids.split(','), true),
     rand: id => dinLista(id),
-    tabel: id => { selecteaza([id], true); document.querySelector('.app').scrollIntoView({ behavior: 'smooth' }); },
+    tabel: id => inchideTabel(() => selecteaza([id], true)),
+    'tabel-complet': deschideTabel,
+    'inchide-tabel': () => inchideTabel(),
+    masoara: incepeMasura,
+    'anuleaza-masura': anuleazaMasura,
     fila: arataFila,
     panou: () => seteazaPanou(S.panou === 'mic' ? 'mare' : 'mic'),
     perete: alegePerete,
@@ -1135,22 +1292,25 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     'zoom-plus': () => zoomCentru(1.4),
     'zoom-minus': () => zoomCentru(1 / 1.4),
     'zoom-tot': potriveste,
-    ajutor: () => document.getElementById('dialog-ajutor').showModal(),
+    ajutor: () => { document.getElementById('dialog-ajutor').showModal(); intra('ajutor', () => document.getElementById('dialog-ajutor').close()); },
     'inchide-dialog': () => document.getElementById('dialog-ajutor').close(),
     tipareste: () => { tipar(true); setTimeout(() => window.print(), 50); },
-    pasi: id => window.Pasi.deschide(id),
-    varianta: id => { S.var[S.per.id] = id; S.sel = []; salveaza(); antet(); comenziVariante(); comenziStraturi(); lista(); listaVerificari(); tabel(); panou(); deseneaza(); },
+    pasi: id => deschidePasi(id),
+    varianta: id => { S.var[S.per.id] = id; S.sel = []; S.masura = false; salveaza(); antet(); comenziVariante(); comenziStraturi(); lista(); listaVerificari(); tabel(); panou(); deseneaza(); },
   };
 
   // ---------------------------------------------------------------- pornire
   function pagina(cameraId) {
     S.cam = window.CAMERE[cameraId];
+    document.documentElement.classList.add('aplicatie');   // pagina nu derulează pe ecran (css: „pagina aplicației”)
     const salvat = JSON.parse(localStorage.getItem(LS + 'straturi') || 'null');
     STRATURI.forEach(s => { S.viz[s.id] = salvat ? salvat.viz[s.id] !== false : true; });
     S.var = (salvat && salvat.var) || {};
     S.svg = document.getElementById('desen');
-    const dorit = location.hash.slice(1);
-    S.per = vederi().find(x => x.id === dorit && x.etapa <= ETAPA) || vederi().find(x => x.etapa <= ETAPA);
+    // adresa: #PERETE sau #PERETE?pasi=D-06&pas=4 (linkul direct spre un pas de montaj)
+    const [dorit, q] = location.hash.slice(1).split('?');
+    const cer = new URLSearchParams(q || '');
+    S.per = vederi().find(x => x.id === decodeURIComponent(dorit) && x.etapa <= ETAPA) || vederi().find(x => x.etapa <= ETAPA);
     document.querySelectorAll('[data-icon]').forEach(b => b.insertAdjacentHTML('afterbegin', ICON[b.dataset.icon]));
 
     document.addEventListener('click', ev => {
@@ -1160,15 +1320,24 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     });
     document.addEventListener('keydown', ev => {
       if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.matches('[data-act][role="button"]')) { ev.preventDefault(); ev.target.click(); return; }
-      if (ev.key === 'Escape' && !document.querySelector('dialog[open]')) { if (S.sel.length) selecteaza([]); }
+      if (ev.key === 'Escape' && !document.querySelector('dialog[open]')) {
+        if (document.body.classList.contains('tabel-deschis')) inchideTabel();
+        else if (S.masura && S.sel.length === 1) anuleazaMasura();
+        else if (S.sel.length) selecteaza([]);
+      }
     });
     const dlg = document.getElementById('dialog-ajutor');
     dlg.addEventListener('click', ev => { if (ev.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', () => iesi('ajutor'));
+    window.addEventListener('popstate', laPop);
     document.getElementById('cauta').addEventListener('input', ev => { S.cauta = ev.target.value; lista(); });
 
     initZoom(S.svg);
     initHover(S.svg);
     antet(); plan(); comenziVariante(); comenziStraturi(); lista(); listaVerificari(); tabel(); seteazaPanou('mic'); panou(); potriveste();
+    // adresa curată (#PERETE); dacă linkul cere un pas de montaj, fereastra se deschide direct la el
+    history.replaceState(null, '', '#' + S.per.id);
+    if (cer.get('pasi')) deschidePasi(cer.get('pasi'), null, +cer.get('pas') || 0);
 
     window.addEventListener('beforeprint', () => tipar(true));
     window.addEventListener('afterprint', () => tipar(false));
