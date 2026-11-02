@@ -5,9 +5,10 @@ window.CAMERE["living"] = {
  "id": "living",
  "nume": "Living",
  "revizie": {
-  "nr": 4,
-  "data": "2026-11-02",
+  "nr": 5,
+  "data": "2026-11-03",
   "modificari": [
+   "Revizia 5: compartimentul AC din masca M11: aerul rece iese liber printr-o fantă jos, iar compartimentul coboară dacă manualul unității cere mai mult spațiu deasupra (decizia din 03.11.2026, de confirmat cu arhitecta).",
    "Revizia 4: pașii de montaj animați pentru scafa draperiei (D-09) și pentru șinele magnetice J și K (J-K) (02.11.2026).",
    "Revizia 3: ușa de balcon U2 desenată cu sticlă, iar fereastra F2 cu un singur geam, fără montant la mijloc (02.11.2026).",
    "Pereții E (cu biroul), S (TV) și V (cu fereastra) și planul tavanului refăcuți din planșe (A.01, A.05–A.07, A.15, A.16, D-09).",
@@ -1295,13 +1296,13 @@ window.CAMERE["living"] = {
     },
     {
      "nivel": "atentie",
-     "sursa": "A.07, A.16 D03, A.29",
+     "sursa": "A.07, A.16 D03, A.29; decizia din 03.11.2026; manualele LG și Pioneer; analiza/11",
      "ids": [
       "AC",
       "PF",
       "M11-C"
      ],
-     "text": "Unitatea AC e închisă în mască, iar pentru aer sunt desenate doar 9 găuri Ø 3 cm (~64 cm² în total). De verificat cu manualul unității și cu firma de AC pe unde intră și iese aerul și ce spațiu liber cere unitatea în jur. Capacul M11-C trebuie să se deschidă pentru filtre și service."
+     "text": "Unitatea AC e închisă în mască, iar pentru aer sunt desenate doar 9 găuri Ø 3 cm (~64 cm² în total). Compartimentul are 37 cm (h 205,2–242,2): cu o unitate de ~29 cm rămân ≤ 8 cm deasupra, iar manualele cer de obicei 15–20 cm. Decizia din 03.11.2026, ca în dormitorul mic: aerul rece iese liber, printr-o fantă jos, iar compartimentul coboară dacă manualul modelului ales o cere. De confirmat cu arhitecta (unitatea e desenată cu spatele pe grinda GR1, cu fața de jos la 205) și cu firma de AC. Capacul M11-C trebuie să se deschidă pentru filtre și service."
     },
     {
      "nivel": "atentie",
