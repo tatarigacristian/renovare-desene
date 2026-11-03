@@ -22,6 +22,7 @@ window.DETALII["M02-B"] = {
   "y0": -98,
   "y1": 4
  },
+ "sectiune3d": {"plan": "vertical", "adancime": 60, "privire": [28, 14]},
  "forme": [
   {
    "id": "tavan",
@@ -75,7 +76,9 @@ window.DETALII["M02-B"] = {
    "y": -83,
    "w": 37.4,
    "h": 2,
-   "umplere": "otel"
+   "umplere": "otel",
+   "z3d": 19.5,
+   "adanc3d": 3
   },
   {
    "id": "uw-perete",
@@ -232,7 +235,9 @@ window.DETALII["M02-B"] = {
      -82.95
     ]
    ],
-   "umplere": "negru"
+   "umplere": "negru",
+   "puncte3d": [[5.95, -84.25], [7.5, -84.25], [7.9, -81.5], [9.1, -78.6], [11.2, -76.2], [14.5, -74.6], [17.8, -74.25], [22.2, -74.25], [25.5, -74.6], [28.8, -76.2], [30.9, -78.6], [32.1, -81.5], [32.5, -84.25], [34.05, -84.25], [34.05, -82.95], [33.3, -82.95], [33, -80.5], [32, -77.5], [30, -75], [27.5, -73.6], [26, -73.3], [26, -70.15], [14, -70.15], [14, -73.3], [12.5, -73.6], [10, -75], [8, -77.5], [7, -80.5], [6.7, -82.95], [5.95, -82.95]],
+   "rotund3d": {"ax": 20, "r": 20.15, "p": 2.2}
   },
   {
    "id": "s4-int",
@@ -287,7 +292,8 @@ window.DETALII["M02-B"] = {
      -81.5
     ]
    ],
-   "umplere": "alb"
+   "umplere": "alb",
+   "corp3d": "ascuns"
   },
   {
    "id": "s4-ventil",
@@ -296,7 +302,8 @@ window.DETALII["M02-B"] = {
    "y": -74.25,
    "w": 4.4,
    "h": 4.1,
-   "umplere": "pvc"
+   "umplere": "pvc",
+   "rotund3d": {"ax": 20, "r": 2.2, "p": 2}
   },
   {
    "id": "placa-sus-perete",
@@ -305,7 +312,8 @@ window.DETALII["M02-B"] = {
    "y": -84.25,
    "w": 4.2,
    "h": 1.25,
-   "umplere": "gips"
+   "umplere": "gips",
+   "umplere3d": "gips-ru"
   },
   {
    "id": "placa-sus-fata",
@@ -314,7 +322,8 @@ window.DETALII["M02-B"] = {
    "y": -84.25,
    "w": 2,
    "h": 1.25,
-   "umplere": "gips"
+   "umplere": "gips",
+   "umplere3d": "gips-ru"
   },
   {
    "id": "placa-fata",
@@ -323,7 +332,8 @@ window.DETALII["M02-B"] = {
    "y": -84.25,
    "w": 1.25,
    "h": 11.25,
-   "umplere": "gips"
+   "umplere": "gips",
+   "umplere3d": "gips-ru"
   },
   {
    "id": "ps1-a",
@@ -332,7 +342,8 @@ window.DETALII["M02-B"] = {
    "y": -250,
    "w": 1.25,
    "h": 165.75,
-   "umplere": "gips"
+   "umplere": "gips",
+   "umplere3d": "gips-ru"
   },
   {
    "id": "ps1-b",
@@ -341,7 +352,8 @@ window.DETALII["M02-B"] = {
    "y": -250,
    "w": 1.25,
    "h": 165.75,
-   "umplere": "gips"
+   "umplere": "gips",
+   "umplere3d": "gips-ru"
   },
   {
    "id": "faianta-sus-a",
@@ -377,7 +389,8 @@ window.DETALII["M02-B"] = {
    "y": -250,
    "w": 0.5,
    "h": 165,
-   "umplere": "sticla"
+   "umplere": "sticla",
+   "umplere3d": "oglinda"
   },
   {
    "id": "r5",
@@ -386,7 +399,8 @@ window.DETALII["M02-B"] = {
    "y": -57,
    "w": 3,
    "h": 4,
-   "umplere": "pvc"
+   "umplere": "pvc",
+   "cilindru3d": "x"
   },
   {
    "id": "sifon",
@@ -422,7 +436,8 @@ window.DETALII["M02-B"] = {
     ]
    ],
    "culoare": "scurgere",
-   "gros": 5
+   "gros": 5,
+   "z3d": 0
   },
   {
    "id": "m02-front",
@@ -431,7 +446,8 @@ window.DETALII["M02-B"] = {
    "y": -73,
    "w": 2,
    "h": 38,
-   "umplere": "pal"
+   "umplere": "pal",
+   "umplere3d": "nuc"
   },
   {
    "id": "m02-fund",
@@ -504,7 +520,8 @@ window.DETALII["M02-B"] = {
    "w": 6,
    "h": 14,
    "umplere": "zid",
-   "temporar": true
+   "temporar": true,
+   "adanc3d": 12
   },
   {
    "id": "i-ps1a",
@@ -514,7 +531,9 @@ window.DETALII["M02-B"] = {
    "w": 1.25,
    "h": 8,
    "umplere": "gips",
-   "temporar": true
+   "temporar": true,
+   "adanc3d": 12,
+   "umplere3d": "gips-ru"
   },
   {
    "id": "i-ps1b",
@@ -524,7 +543,9 @@ window.DETALII["M02-B"] = {
    "w": 1.25,
    "h": 8,
    "umplere": "gips",
-   "temporar": true
+   "temporar": true,
+   "adanc3d": 12,
+   "umplere3d": "gips-ru"
   },
   {
    "id": "i-oglinda",
@@ -534,7 +555,9 @@ window.DETALII["M02-B"] = {
    "w": 0.5,
    "h": 9.1,
    "umplere": "sticla",
-   "temporar": true
+   "temporar": true,
+   "adanc3d": 12,
+   "umplere3d": "oglinda"
   },
   {
    "id": "i-faianta",
@@ -544,7 +567,8 @@ window.DETALII["M02-B"] = {
    "w": 1,
    "h": 6,
    "umplere": "faianta",
-   "temporar": true
+   "temporar": true,
+   "adanc3d": 12
   },
   {
    "id": "i-profil",
@@ -554,7 +578,8 @@ window.DETALII["M02-B"] = {
    "w": 1.07,
    "h": 0.88,
    "umplere": "alb",
-   "temporar": true
+   "temporar": true,
+   "adanc3d": 12
   },
   {
    "id": "i-banda",
@@ -564,7 +589,8 @@ window.DETALII["M02-B"] = {
    "w": 0.67,
    "h": 0.3,
    "umplere": "banda",
-   "temporar": true
+   "temporar": true,
+   "adanc3d": 12
   },
   {
    "id": "i-t-plan",

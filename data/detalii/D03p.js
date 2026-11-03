@@ -19,6 +19,7 @@ window.DETALII["D03'"] = {
   "y0": -140,
   "y1": -42
  },
+ "sectiune3d": {"plan": "vertical", "adancime": 40, "privire": [28, 10]},
  "forme": [
   {
    "id": "placa",
@@ -136,7 +137,8 @@ window.DETALII["D03'"] = {
    "y": -60.75,
    "w": 5,
    "h": 60.75,
-   "umplere": "otel"
+   "umplere": "otel",
+   "repeta3d": {"pas": 34}
   },
   {
    "id": "m-fata-sus",
@@ -145,7 +147,8 @@ window.DETALII["D03'"] = {
    "y": -189.2,
    "w": 5,
    "h": 71.95,
-   "umplere": "otel"
+   "umplere": "otel",
+   "repeta3d": {"pas": 34}
   },
   {
    "id": "m-spate",
@@ -154,7 +157,8 @@ window.DETALII["D03'"] = {
    "y": -117.25,
    "w": 5,
    "h": 56.5,
-   "umplere": "otel"
+   "umplere": "otel",
+   "repeta3d": {"pas": 34}
   },
   {
    "id": "o-jos",
@@ -163,7 +167,8 @@ window.DETALII["D03'"] = {
    "y": -60.75,
    "w": 32.2,
    "h": 5,
-   "umplere": "otel"
+   "umplere": "otel",
+   "repeta3d": {"pas": 34}
   },
   {
    "id": "o-sus",
@@ -172,7 +177,8 @@ window.DETALII["D03'"] = {
    "y": -122.25,
    "w": 32.2,
    "h": 5,
-   "umplere": "otel"
+   "umplere": "otel",
+   "repeta3d": {"pas": 34}
   },
   {
    "id": "g-fata-jos",
@@ -253,7 +259,8 @@ window.DETALII["D03'"] = {
    "y": -65,
    "w": 1.8,
    "h": 65,
-   "umplere": "pal"
+   "umplere": "pal",
+   "umplere3d": "nuc"
   },
   {
    "id": "p-sus",
@@ -262,7 +269,8 @@ window.DETALII["D03'"] = {
    "y": -189.2,
    "w": 1.8,
    "h": 76.2,
-   "umplere": "pal"
+   "umplere": "pal",
+   "umplere3d": "nuc"
   },
   {
    "id": "p-capac",
@@ -271,7 +279,10 @@ window.DETALII["D03'"] = {
    "y": -242.2,
    "w": 1.8,
    "h": 35,
-   "umplere": "pal"
+   "umplere": "pal",
+   "umplere3d": "nuc",
+   "repeta3d": {"pas": 5.3},
+   "adanc3d": 3
   },
   {
    "id": "p-clapa",
@@ -280,7 +291,8 @@ window.DETALII["D03'"] = {
    "y": -207.2,
    "w": 1.8,
    "h": 18,
-   "umplere": "pal"
+   "umplere": "pal",
+   "umplere3d": "nuc"
   },
   {
    "id": "focar",
@@ -288,7 +300,8 @@ window.DETALII["D03'"] = {
    "x": 22,
    "y": -113,
    "w": 28,
-   "h": 48
+   "h": 48,
+   "adanc3d": 35
   },
   {
    "id": "flacara",
@@ -296,7 +309,9 @@ window.DETALII["D03'"] = {
    "x": 27,
    "y": -92,
    "w": 18,
-   "h": 22
+   "h": 22,
+   "z3d": 2,
+   "adanc3d": 30
   },
   {
    "id": "zona-caldura",

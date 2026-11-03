@@ -14,9 +14,10 @@ window.CAMERE["dormitor-mic"] = {
   "nota": "Sub tavanul fals de 7 cm, montat deja (03.11.2026): desenat la ~243 cm, ca în living; placa la ~250 cm. Arhitecta nu a proiectat camera: cotele sunt din releveul din 2021 și din analiza/06 v3. Înălțimea se măsoară în 4 puncte."
  },
  "revizie": {
-  "nr": 6,
+  "nr": 7,
   "data": "2026-11-03",
   "modificari": [
+   "Revizia 7: pașii de montaj ai compartimentului AC din M13, în 3D (detaliul AC-D). Placa BL merge pe tot conturul unității, iar fâșia ei din față e lipită pe capacul M13-C; capacul are balamale cu demontare rapidă, deci filtrele se scot fără scule (analiza/15, I1 și I2) (03.11.2026). Dulapul M13 are acum finisajul nuc și în date (PAL H1775 ST12 Nuc Parona, ca în nota lui și în randare): până acum se desena ca lemn obișnuit.",
    "Revizia 6: șina magnetică SM e montată deja, cu sursa în șină (03.11.2026): doza D1 rămâne doar pentru sursa benzilor L1–L3; butoanele I1 și I2 au nevoie de o sursă în șină cu comandă Push-DIM sau de un releu bistabil.",
    "Revizia 5: capacul de sus al compartimentului AC are lamele verticale (LM) în loc de ~250 de găuri, cu aceeași suprafață liberă (~40%), și se rabatează în jos pentru filtre; clapa CL nu mai are găuri (03.11.2026).",
    "Revizia 4: coloana M16 e bej, în culoarea consolei M14, nu în nuc; nucul rămâne doar pe M13 (03.11.2026).",
@@ -613,6 +614,7 @@ window.CAMERE["dormitor-mic"] = {
      "h": 0,
      "inalt": 190,
      "adanc": 60,
+     "finisaj": "nuc",
      "fronturi": [
       {
        "lat": 1.8,
@@ -632,6 +634,7 @@ window.CAMERE["dormitor-mic"] = {
       }
      ],
      "pozitie": "aprox",
+     "detaliu": "AC-D",
      "stare": "propunere",
      "sursa": "randările din 02.11.2026 (design/dormitor_mic.jpeg, dormitor_mic2.jpeg); analiza/06 v3 și decizia D26 (02.11.2026) (D-DM2, D-DM4); lărgit la 120 cm (02.11.2026); uși până la h 190 (03.11.2026)",
      "nota": "Două uși de ~58 cm, până la h 190; deasupra e compartimentul aerului condiționat (h 190–243). PAL H1775 ST12 Nuc Parona, ca M10 din living. Adâncime 60 cm; 55 dacă ușa de balcon U2 are balamalele spre S (se verifică pe teren). Ușile merg până la 190, nu 198, ca deasupra unității AC să rămână ~15 cm sub tavanul fals montat; înălțimea finală se ia din manualul modelului ales. Cu două bare de umerașe, fiecare rând are ~90 cm."
@@ -653,9 +656,10 @@ window.CAMERE["dormitor-mic"] = {
       "BL"
      ],
      "pozitie": "aprox",
+     "detaliu": "AC-D",
      "stare": "propunere",
      "sursa": "cererea din 02.11.2026 (AC în capul dulapului, cu front perforat); 03.11.2026",
-     "nota": "Partea de sus a frontului, între h 208 și 243, pe toată lățimea: o ramă cu lamelele LM. Pe aici intră aerul cald spre grila de sus a unității. Se rabatează în jos, cu balamale la marginea de jos și un opritor, ca să ajungi la filtre fără să-l dai jos; pentru service se poate și demonta. Același PAL ca M13."
+     "nota": "Partea de sus a frontului, între h 208 și 243, pe toată lățimea: o ramă cu lamelele LM. Pe aici intră aerul cald spre grila de sus a unității. Se prinde jos pe balamale cu demontare rapidă, cu un opritor. Pe spatele lui e lipită fâșia din față a plăcii BL. Pentru filtre se rabatează și se scoate de pe balamale, fără scule, ca panoul frontal al unității să se poată ridica (analiza/15, I1). Același PAL ca M13."
     },
     {
      "id": "CL",
@@ -673,6 +677,7 @@ window.CAMERE["dormitor-mic"] = {
       "TB2"
      ],
      "pozitie": "aprox",
+     "detaliu": "AC-D",
      "stare": "propunere",
      "sursa": "cererea din 03.11.2026",
      "nota": "Între h 190 și 208, pe toată lățimea, fără găuri: vara e deschisă, iar iarna aerul condiționat e oprit. Vara se rabatează în jos și se împinge ~18 cm sub unitate, pe două glisiere cu extragere totală, iar aerul rece iese liber prin fantă. Se deschide cu push, de la marginea de sus. Înainte de pornirea AC-ului clapa trebuie deschisă; opțional, un contact pe clapă taie alimentarea de pe D2 cât timp e închisă."
@@ -695,6 +700,7 @@ window.CAMERE["dormitor-mic"] = {
       "BL"
      ],
      "pozitie": "aprox",
+     "detaliu": "AC-D",
      "stare": "propunere",
      "sursa": "cererea din 03.11.2026 (lamele în loc de găuri); calculul suprafeței libere",
      "nota": "22 de lamele verticale de 3 cm din PAL nuc, pe 114 × 33 cm, cu ~2,3 cm între ele: ~42% din capac e gol, cât aveau găurile, dar cu ~22 de lamele în loc de ~250 de găuri. Prin goluri (~0,16 m²) aerul trece cu ~1,0–1,2 m/s la 600–700 m³/h. În spatele lamelelor, fundul compartimentului se vopsește negru, ca unitatea să nu se vadă. Suprafața minimă se verifică în manualul unității alese."
@@ -711,6 +717,7 @@ window.CAMERE["dormitor-mic"] = {
      "adanc": 20,
      "ascuns": true,
      "pozitie": "aprox",
+     "detaliu": "AC-D",
      "in": "M13-C",
      "stare": "propunere",
      "sursa": "cererea din 02.11.2026; dimensiuni de split tipic de 2,5 kW (9.000 BTU); spațiul de deasupra după manualele LG și Pioneer (15–20 cm)",
@@ -725,10 +732,11 @@ window.CAMERE["dormitor-mic"] = {
      "h": 236,
      "punct": true,
      "pozitie": "aprox",
+     "detaliu": "AC-D",
      "in": "M13-C",
      "stare": "propunere",
      "sursa": "A.07 din living („unitățile se vor conecta direct la doză”); cererea din 02.11.2026",
-     "nota": "Doză cu capac în compartimentul de sus, lângă unitate, accesibilă prin capacul M13-C. Circuit separat din tabloul nou."
+     "nota": "Doză cu capac în compartimentul de sus, lângă unitate, deasupra plăcii BL, în golul de ~28 cm spre peretele cu fereastra; accesibilă prin capacul M13-C. Circuit separat din tabloul nou."
     },
     {
      "id": "TB2",
@@ -740,6 +748,7 @@ window.CAMERE["dormitor-mic"] = {
      "h": 192,
      "inalt": 4,
      "pozitie": "aprox",
+     "detaliu": "AC-D",
      "stare": "propunere",
      "sursa": "cererea din 02.11.2026; specs/08 E",
      "nota": "Din capătul unității spre colțul cu peretele cu fereastra și prin zidăria fațadei, spre unitatea exterioară UE. Gaura e la h ~192–196, sub scurgerea unității (~h 198): condensul curge singur, cu pantă spre exterior."
@@ -748,18 +757,19 @@ window.CAMERE["dormitor-mic"] = {
      "id": "BL",
      "strat": "mobila",
      "tip": "mobilier",
-     "nume": "Placa scurtă cu garnitură, la marginea de jos a capacului de sus",
-     "x": 379,
-     "lat": 112,
+     "nume": "Placa BL cu garnitură, pe tot conturul unității AC",
+     "x": 376.8,
+     "lat": 116.4,
      "h": 208,
      "inalt": 1.5,
-     "adanc": 6,
+     "adanc": 57.4,
      "ascuns": true,
      "pozitie": "aprox",
+     "detaliu": "AC-D",
      "in": "M13-C",
      "stare": "propunere",
-     "sursa": "practica pentru unitățile AC mascate; de confirmat cu firma de AC",
-     "nota": "Între fața unității și capacul de sus, la h 208, pe ~6 cm adâncime, cu garnitură: aerul rece care iese prin fantă nu se întoarce în spatele capacului, spre aspirație."
+     "sursa": "practica pentru unitățile AC mascate; analiza/15, I1 și I2 (03.11.2026); de confirmat cu firma de AC",
+     "nota": "Placă orizontală la h 208, în jurul unității: în spate până la fundul compartimentului și pe ambele laturi până la pereții dulapului, etanșată în jurul țevilor și al cablului, cu garnitură spre corpul unității. Aerul rece care iese prin fantă nu se mai întoarce pe lângă unitate spre aspirație (I2). Fâșia din față (~4 cm) e lipită pe spatele capacului M13-C și se rabatează și se scoate cu el, ca panoul frontal al unității să se poată ridica pentru filtre (I1). Doza D2 rămâne deasupra plăcii. Pașii sunt în detaliul AC-D."
     }
    ],
    "avertismente": [
@@ -850,6 +860,7 @@ window.CAMERE["dormitor-mic"] = {
      "inalt": 243,
      "adanc": 120,
      "vedereaPrincipala": "S",
+     "finisaj": "nuc",
      "fronturi": [
       {
        "lat": 60,
@@ -857,6 +868,7 @@ window.CAMERE["dormitor-mic"] = {
       }
      ],
      "pozitie": "aprox",
+     "detaliu": "AC-D",
      "stare": "propunere",
      "sursa": "randările din 02.11.2026 (design/dormitor_mic.jpeg, dormitor_mic2.jpeg); analiza/06 v3 și decizia D26 (02.11.2026)",
      "nota": "Latura dulapului (60 cm adâncime, 120 cm lățime), lipită de zidărie. În capul lui e unitatea AC; traseul de freon și condens trece prin zidăria de aici spre unitatea exterioară. Se vede din față pe peretele TV."

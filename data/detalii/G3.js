@@ -19,6 +19,7 @@ window.DETALII["G3"] = {
   "y0": -12,
   "y1": 5
  },
+ "sectiune3d": {"plan": "vertical", "adancime": 30, "privire": [30, 18]},
  "forme": [
   {
    "id": "zid",
@@ -45,7 +46,8 @@ window.DETALII["G3"] = {
    "y": -60,
    "w": 5,
    "h": 61,
-   "profile": []
+   "profile": [],
+   "repeta3d": {"pas": 40}
   },
   {
    "id": "uw",

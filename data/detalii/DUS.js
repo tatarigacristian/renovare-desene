@@ -22,6 +22,7 @@ window.DETALII["DUS"] = {
   "y0": -32,
   "y1": 26
  },
+ "sectiune3d": {"plan": "vertical", "adancime": 84, "privire": [-22, 22]},
  "forme": [
   {
    "id": "placa",
@@ -66,7 +67,8 @@ window.DETALII["DUS"] = {
    "y": -236,
    "w": 11,
    "h": 262.0,
-   "umplere": "pvc"
+   "umplere": "pvc",
+   "cilindru3d": "y"
   },
   {
    "id": "tf1",
@@ -153,7 +155,9 @@ window.DETALII["DUS"] = {
     ]
    ],
    "umplere": "glet",
-   "temporar": true
+   "temporar": true,
+   "z3d": 74,
+   "adanc3d": 10
   },
   {
    "id": "prag-hidro",
@@ -181,7 +185,9 @@ window.DETALII["DUS"] = {
     ]
    ],
    "umplere": "hidroizolatie",
-   "temporar": true
+   "temporar": true,
+   "z3d": 74,
+   "adanc3d": 10
   },
   {
    "id": "prag-placare",
@@ -208,7 +214,9 @@ window.DETALII["DUS"] = {
      -2.0
     ]
    ],
-   "umplere": "faianta"
+   "umplere": "faianta",
+   "z3d": 74,
+   "adanc3d": 10
   },
   {
    "id": "sticla",
@@ -217,7 +225,9 @@ window.DETALII["DUS"] = {
    "y": -205,
    "w": 66.8,
    "h": 200,
-   "umplere": "sticla"
+   "umplere": "sticla",
+   "z3d": 78.6,
+   "adanc3d": 0.8
   },
   {
    "id": "sticla-profil",
@@ -226,7 +236,9 @@ window.DETALII["DUS"] = {
    "y": -205,
    "w": 1.05,
    "h": 200,
-   "umplere": "aluminiu"
+   "umplere": "aluminiu",
+   "z3d": 77.5,
+   "adanc3d": 3
   },
   {
    "id": "sapa-panta",
@@ -297,7 +309,8 @@ window.DETALII["DUS"] = {
      5.5
     ]
    ],
-   "umplere": "pvc"
+   "umplere": "pvc",
+   "tub3d": {"axa": [[-4.7, 5.5], [-4.7, 8.2], [13, 8.7]], "r": 2.5}
   },
   {
    "id": "ramificatie",
@@ -306,7 +319,8 @@ window.DETALII["DUS"] = {
    "y": 5.6,
    "w": 1.6,
    "h": 6.2,
-   "umplere": "pvc"
+   "umplere": "pvc",
+   "cilindru3d": "x"
   },
   {
    "id": "rig-pat",
@@ -315,7 +329,8 @@ window.DETALII["DUS"] = {
    "y": 5.5,
    "w": 1.9,
    "h": 6.5,
-   "umplere": "ciment"
+   "umplere": "ciment",
+   "adanc3d": 73
   },
   {
    "id": "rig-corp",
@@ -346,7 +361,10 @@ window.DETALII["DUS"] = {
      5.5
     ]
    ],
-   "umplere": "otel"
+   "umplere": "otel",
+   "adanc3d": 73,
+   "umplere3d": "inox",
+   "puncte3d": [[-9.35, 0], [-8.9, 0], [-8.9, 4.9], [-1.95, 4.9], [-1.95, 0], [-0.25, 0], [-0.25, -6], [0, -6], [0, 5.5], [-9.35, 5.5]]
   },
   {
    "id": "rig-canal",
@@ -355,7 +373,9 @@ window.DETALII["DUS"] = {
    "y": 0.45,
    "w": 6.95,
    "h": 4.45,
-   "umplere": "alb"
+   "umplere": "alb",
+   "corp3d": "ascuns",
+   "adanc3d": 73
   },
   {
    "id": "rig-gratar",
@@ -364,7 +384,8 @@ window.DETALII["DUS"] = {
    "y": 0,
    "w": 7.0,
    "h": 0.45,
-   "umplere": "aluminiu"
+   "umplere": "aluminiu",
+   "adanc3d": 73
   },
   {
    "id": "rig-flansa",
@@ -373,7 +394,9 @@ window.DETALII["DUS"] = {
    "y": 1.9,
    "w": 4.0,
    "h": 0.3,
-   "umplere": "otel"
+   "umplere": "otel",
+   "adanc3d": 73,
+   "umplere3d": "inox"
   },
   {
    "id": "h1-pard",
@@ -506,7 +529,8 @@ window.DETALII["DUS"] = {
      1.8
     ]
    ],
-   "umplere": "banda-hartie"
+   "umplere": "banda-hartie",
+   "adanc3d": 73
   },
   {
    "id": "banda-perete",
@@ -614,7 +638,8 @@ window.DETALII["DUS"] = {
     ]
    ],
    "umplere": "sablon",
-   "temporar": true
+   "temporar": true,
+   "adanc3d": 74
   },
   {
    "id": "adeziv-pard",

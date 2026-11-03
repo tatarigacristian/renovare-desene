@@ -22,6 +22,7 @@ window.DETALII["TFH"] = {
   "y0": -4,
   "y1": 18
  },
+ "sectiune3d": {"plan": "vertical", "adancime": 50, "privire": [-22, -16]},
  "forme": [
   {
    "id": "grinda",
@@ -130,7 +131,8 @@ window.DETALII["TFH"] = {
     ]
    ],
    "culoare": "faza",
-   "gros": 2
+   "gros": 2,
+   "z3d": 8
   },
   {
    "id": "cb",
@@ -138,7 +140,9 @@ window.DETALII["TFH"] = {
    "x": 116.8,
    "y": 2.2,
    "r": 0.75,
-   "umplere": "alb"
+   "umplere": "alb",
+   "z3d": 7,
+   "adanc3d": 2
   },
   {
    "id": "zona-mg",
@@ -159,7 +163,9 @@ window.DETALII["TFH"] = {
    "h": 3.6,
    "text": "D8",
    "umplere": "alb",
-   "temporar": true
+   "temporar": true,
+   "z3d": 4,
+   "adanc3d": 6
   },
   {
    "id": "teava",
@@ -167,7 +173,8 @@ window.DETALII["TFH"] = {
    "x": 139,
    "y": 3,
    "r": 1.5,
-   "umplere": "banda"
+   "umplere": "banda",
+   "umplere3d": "gaz"
   },
   {
    "id": "cd-tf",
@@ -200,7 +207,9 @@ window.DETALII["TFH"] = {
    "y": 2.75,
    "w": 47.45,
    "h": 3.0,
-   "umplere": "otel"
+   "umplere": "otel",
+   "repeta3d": {"pas": 40, "profil": "U"},
+   "adanc3d": 6
   },
   {
    "id": "ud-tf",
@@ -380,7 +389,8 @@ window.DETALII["TFH"] = {
    "w": 0.9,
    "h": 2.35,
    "umplere": "alb",
-   "anim": "din-dreapta"
+   "anim": "din-dreapta",
+   "corp3d": "u-dr"
   },
   {
    "id": "banda",
@@ -400,7 +410,8 @@ window.DETALII["TFH"] = {
    "w": 0.15,
    "h": 2.25,
    "umplere": "glet",
-   "anim": "din-dreapta"
+   "anim": "din-dreapta",
+   "umplere3d": "opal"
   },
   {
    "id": "lumina",

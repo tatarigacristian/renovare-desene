@@ -14,9 +14,10 @@ window.CAMERE["baie"] = {
   "nota": "Înălțimea liberă: 250 cm, placa de beton (A.01, Hu 2,50; A.27 B01: 87 + 163 = 250 în dreptul lavoarului). Baia nu are tavan fals decât deasupra dușului: caseta TF1, cu fața la 225 cm (A.27 B02 și B03: 225 și 25)."
  },
  "revizie": {
-  "nr": 3,
-  "data": "2026-11-02",
+  "nr": 4,
+  "data": "2026-11-03",
   "modificari": [
+   "Revizia 4: bateria lavoarului (S10), bateria dușului (S4) și capul de duș (S5) sunt negre mat, ca în randarea băii; modelele nu sunt alese (03.11.2026).",
    "Revizia 3: pașii de montaj animați pentru dușul walk-in cu rigola (DUS), nișa din duș cu banda H1 (NI1), masca WC (WC) și circuitul cu buton cu revenire (PUSH, banda H2) (02.11.2026).",
    "Revizia 2: vasul WC și clapeta sunt negre, iar lavoarul e desenat încorporat în blatul placat cu faianță. Ușa (U1) are foaia de 60 cm, ca ușa cumpărată (02.11.2026).",
    "Prima versiune: pereții și planul tavanului."
@@ -652,7 +653,8 @@ window.CAMERE["baie"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "A.27 B01 (desenată, necotată); A.03 (3 găuri la ~26, 37 și 48 cm de colț, la ~7 cm de perete, măsurat); specs/04 (Cersanit Zen S951-595)",
-     "nota": "Trei găuri în blat, la ~7 cm de perete, cu pipa în axa lavoarului (37,5)."
+     "nota": "Trei găuri în blat, la ~7 cm de perete, cu pipa în axa lavoarului (37,5). Negru mat, ca în randarea băii (modelul nu e ales).",
+     "finisaj": "negru"
     },
     {
      "id": "MO1",
@@ -938,7 +940,8 @@ window.CAMERE["baie"] = {
      "inalt": 26.6,
      "stare": "proiect",
      "sursa": "A.27 B01 (axa la 41,5 de masca de nord și la 105, cotat)",
-     "nota": "Axa la 196,5 cm de colț (41,5 de masca de nord) și la 105 cm. Corpul încastrat intră în masca WC. Modelul nu e ales (specs/04: „Baterie duș”). Alimentează capul S5 și para cu furtun (A.28)."
+     "nota": "Axa la 196,5 cm de colț (41,5 de masca de nord) și la 105 cm. Corpul încastrat intră în masca WC. Modelul nu e ales (specs/04: „Baterie duș”). Alimentează capul S5 și para cu furtun (A.28). Negru mat, ca în randarea băii (modelul nu e ales).",
+     "finisaj": "negru"
     },
     {
      "id": "S5",
@@ -953,8 +956,9 @@ window.CAMERE["baie"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "A.27 B01 (sub tavanul fals, la ~215–220, în axa bateriei, necotat); A.03 (axa la 36,5 de masca de nord, cotat; la ~40 cm de masca WC, măsurat); A.28 (pe braț din perete)",
-     "nota": "Cap de ~24 cm, la ~40 cm de masca WC. Țeava de la baterie urcă prin mască. Vezi planul tavanului.",
-     "adanc": 24
+     "nota": "Cap de ~24 cm, la ~40 cm de masca WC. Țeava de la baterie urcă prin mască. Vezi planul tavanului. Negru mat, ca în randarea băii (modelul nu e ales).",
+     "adanc": 24,
+     "finisaj": "negru"
     },
     {
      "id": "S6",

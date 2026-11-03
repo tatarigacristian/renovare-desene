@@ -1,6 +1,9 @@
 /* Pașii de montaj ai unui detaliu (window.DETALII, din desene/data/detalii/), într-o fereastră cu animații.
    Desenul e o secțiune în cm. Formele apar la pasul în care sunt listate în „apar” și rămân pe desen la pașii
    următori; cotele, etichetele și formele „temporar” apar doar la pașii care le listează.
+   Detaliile cu 3D („scena3d” în date sau secțiunea ridicată de js/sectiune3d.js) se desenează în 3D, cu motorul din
+   js/pasi3d.js, încărcat doar când trebuie; comutatorul „3D / Secțiune” din desen arată secțiunea 2D (alegerea se ține
+   minte în localStorage, „desene:pasi:vedere”). Fără WebGL sau fără module (fișier deschis direct), rămâne secțiunea.
    Folosire: Pasi.deschide('D-06'). */
 (function () {
   'use strict';
@@ -40,6 +43,7 @@
     pvc: { fill: '#d6d3d1', stroke: '#78716c' },
     cauciuc: { fill: '#3f3f46', stroke: '#18181b' },
     alb: { fill: '#ffffff', stroke: '#374151' },
+    bl: { fill: '#a9c6dc', stroke: '#2f5f86' },
     negru: { fill: '#1f1f1f', stroke: '#000' },
   };
   // culorile firelor din scheme (forma „fir”)
@@ -54,7 +58,8 @@
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
   // numere: pe ecran îngust etichetele devin numere, cu textul lor în lista „Pe desen” (legenda)
-  const P = { det: null, k: 0, dlg: null, svg: null, reda: false, timer: 0, ro: null, numere: false, legenda: [], elemente: [], arata: null, reluat: false };
+  const P = { det: null, k: 0, dlg: null, svg: null, reda: false, timer: 0, ro: null, numere: false, legenda: [], elemente: [], arata: null, reluat: false,
+    motor: null, in3d: false, disponibil: false, gen3: 0 };
 
   // pașii văzuți, în acest browser: „desene:pasi:D03'” = { vazute: [1, 2, 4], ultim: 4 }
   const LSP = 'desene:pasi:';
@@ -283,7 +288,8 @@
     const prima = {};
     d.pasi.forEach((p, i) => p.apar.forEach(id => { if (!(id in prima)) prima[id] = i; }));
     const temporar = s => TEMP.has(s.tip) || s.temporar;
-    const vizibil = s => temporar(s) ? pas.apar.includes(s.id) : prima[s.id] !== undefined && prima[s.id] <= k;
+    // „lipseste”: pașii la care o formă care a apărut deja nu se desenează (de exemplu capacul scos pentru filtre)
+    const vizibil = s => temporar(s) ? pas.apar.includes(s.id) : prima[s.id] !== undefined && prima[s.id] <= k && !(s.lipseste && s.lipseste.includes(k));
     const nou = s => pas.apar.includes(s.id) && (temporar(s) || prima[s.id] === k);
     const gF = el('g', {}, svg), gC = el('g', {}, svg), gE = el('g', {}, svg), contururi = [];
     let sfarsit = 0;
@@ -338,7 +344,13 @@
     textPas();
     P.reluat = false;
     P.dlg.querySelector('.ps-text').scrollTop = 0;
-    const t = deseneaza(cuAnimatie);
+    // în 3D, secțiunea rămâne desenată dedesubt, fără animații (lista „Pe desen” și comutatorul o folosesc);
+    // pașii cu „doar2d” în „scena3d.pasi” arată desenul 2D și în modul 3D, iar randarea 3D stă cât durează pasul
+    const doar2d = P.in3d && pas2d();
+    aplicaPas2d();
+    const t2 = deseneaza(cuAnimatie && (!P.in3d || doar2d));
+    if (P.in3d && P.motor) { if (doar2d) P.motor.opreste(); else P.motor.porneste(); }
+    const t = P.in3d && P.motor && !doar2d ? P.motor.pas(P.k, cuAnimatie) : t2;
     clearTimeout(P.timer);
     if (P.reda) {
       if (P.k === P.det.pasi.length - 1) seteazaReda(false);
@@ -353,6 +365,80 @@
     if (!da) clearTimeout(P.timer);
   }
 
+  // ---------------------------------------------------------------- 3D (js/pasi3d.js, încărcat la cerere)
+  const LSV = 'desene:pasi:vedere';
+  const vederePref = () => { try { return localStorage.getItem(LSV) === 'sectiune' ? 'sectiune' : '3d'; } catch (_) { return '3d'; } };
+  let MOD3D = null;
+  function modul3d() {
+    if (!MOD3D) MOD3D = import(new URL('js/pasi3d.js', document.baseURI).href).catch(e => { console.warn('Pașii de montaj în 3D nu s-au încărcat; rămâne secțiunea.', e); return null; });
+    return MOD3D;
+  }
+  // pasul curent se arată în 2D și în modul 3D („doar2d”, de exemplu pasul cu baia și GS-ul din PUSH)
+  function pas2d() {
+    const q = P.det && P.det.scena3d && P.det.scena3d.pasi && P.det.scena3d.pasi[P.k];
+    return !!(q && q.doar2d);
+  }
+  function aplicaPas2d() {
+    P.dlg.querySelector('.ps-scena').classList.toggle('p2d', P.in3d && pas2d());
+    textSub();
+  }
+  function textSub() {
+    const d = P.det, s3 = d.scena3d || {}, f = P.dlg.querySelector('figcaption');
+    const q = P.in3d && pas2d() ? s3.pasi[P.k] : null;
+    f.textContent = q
+      ? `${d.orientare || ''}${q.nota ? ' ' + q.nota : ''} Albastru: ce se adaugă acum.`
+      : P.in3d
+      ? `${s3.orientare || d.orientare || 'Vedere 3D.'}${s3.nota ? ' ' + s3.nota : ''}${d.schema ? '' : ' Cote în cm.'} Albastru: ce se adaugă acum.`
+      : `${d.orientare || 'Sus: peretele existent. Jos: camera.'}${d.schema ? '' : ' Cote în cm.'} Albastru: ce se adaugă acum.`;
+    // indiciul pentru rotire: pe ecranele mici e ascuns (css), ca desenul să rămână mare; canvasul îl are în aria-label
+    if (P.in3d && !q) { const s = document.createElement('span'); s.className = 'ps-indiciu'; s.textContent = ' Trage ca să rotești; rotița sau două degete măresc.'; f.appendChild(s); }
+  }
+  function arataMod() {
+    const m = P.dlg.querySelector('.ps-mod');
+    P.dlg.querySelector('.ps-scena').classList.toggle('e3d', P.in3d);
+    P.dlg.querySelector('.ps-scena').classList.toggle('p2d', P.in3d && pas2d());
+    m.hidden = !P.disponibil;
+    m.querySelector('[data-mod="sectiune"]').textContent = P.det.schema ? 'Schemă' : 'Secțiune';
+    m.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.mod === '3d') === P.in3d)));
+    textSub();
+  }
+  // la deschidere: dacă detaliul are 3D, apare comutatorul; 3D-ul pornește dacă e alegerea ținută minte
+  async function porneste3d() {
+    const gen = ++P.gen3, d = P.det;
+    P.disponibil = false; P.in3d = false; arataMod();
+    if (!(d.scena3d || !d.schema) || !window.WebGLRenderingContext) return;
+    const m = await modul3d();
+    if (!m || gen !== P.gen3 || !P.dlg.open) return;
+    const are = await m.areScena(d).catch(() => false);
+    if (!are || gen !== P.gen3 || !P.dlg.open) return;
+    P.disponibil = true; arataMod();
+    if (vederePref() === '3d') await activeaza3d(gen);
+  }
+  async function activeaza3d(gen) {
+    const m = await modul3d(), g = P.dlg.querySelector('.ps-3d');
+    if (!m || gen !== P.gen3 || !P.dlg.open) return;
+    // cât se construiește scena, secțiunea rămâne la vedere; desenul 3D are deja mărimea lui
+    g.hidden = false; g.classList.add('incarca');
+    if (!P.motor) P.motor = m.creeaza(g);
+    if (!P.motor) { P.disponibil = false; g.hidden = true; arataMod(); return; }
+    const ok = await P.motor.incarca(P.det).catch(e => { console.warn('Pașii de montaj în 3D:', e); return false; });
+    if (gen !== P.gen3 || !P.dlg.open) return;
+    if (!ok) { opreste3d(); P.disponibil = false; arataMod(); return; }
+    g.classList.remove('incarca');
+    P.in3d = true; arataMod();
+    if (pas2d()) { P.motor.opreste(); return; }
+    P.svg.getAnimations({ subtree: true }).forEach(a => a.cancel());
+    const t = P.motor.pas(P.k, true);
+    if (P.reda) { clearTimeout(P.timer); if (P.k < P.det.pasi.length - 1) P.timer = setTimeout(() => mergiLa(P.k + 1), t + 4200); }
+  }
+  // randarea se oprește și resursele se eliberează: la închidere, la „Secțiune” și la alt detaliu
+  function opreste3d() {
+    if (P.motor) { try { P.motor.elibereaza(); } catch (e) { console.warn(e); } P.motor = null; }
+    P.in3d = false;
+    const g = P.dlg && P.dlg.querySelector('.ps-3d');
+    if (g) { g.hidden = true; g.classList.remove('incarca'); g.textContent = ''; }
+  }
+
   // ---------------------------------------------------------------- fereastra
   function construieste() {
     const dlg = document.createElement('dialog');
@@ -364,7 +450,9 @@
         <button type="button" class="buton ps-link" data-p="link" title="Trimite pe WhatsApp linkul spre pasul de acum" hidden>${ic('mesaj')}<span>Trimite linkul</span></button>
         <button type="button" class="buton-icon" data-p="inchide" aria-label="Închide">${ic('inchide')}</button></header>
       <div class="ps-corp">
-        <figure class="ps-scena"><svg xmlns="${NS}" role="img" aria-label="Secțiunea detaliului"></svg>
+        <figure class="ps-scena"><div class="ps-desen"><svg xmlns="${NS}" role="img" aria-label="Secțiunea detaliului"></svg>
+          <div class="ps-3d" hidden></div>
+          <div class="ps-mod" role="group" aria-label="Felul desenului" hidden><button type="button" data-p="mod" data-mod="3d" aria-pressed="false">3D</button><button type="button" data-p="mod" data-mod="sectiune" aria-pressed="false">Secțiune</button></div></div>
           <figcaption></figcaption></figure>
         <section class="ps-text" aria-live="polite"></section>
       </div>
@@ -394,6 +482,13 @@
         window.open('https://wa.me/?text=' + encodeURIComponent(`${d.id} — ${d.nume}, ${unde}: ${P.link(P.k)}`), '_blank', 'noopener');
       }
       else if (a === 'reda') { const da = !P.reda; seteazaReda(da); if (da) mergiLa(P.k === P.det.pasi.length - 1 ? 0 : P.k + 1); }
+      else if (a === 'mod') {
+        const v = b.dataset.mod;
+        try { localStorage.setItem(LSV, v); } catch (_) { /* fără spațiu: nu se ține minte */ }
+        if (v === '3d' && !P.in3d) activeaza3d(++P.gen3);
+        else if (v === 'sectiune' && (P.in3d || P.motor)) { P.gen3++; opreste3d(); arataMod(); deseneaza(true); }
+        else arataMod();
+      }
     });
     dlg.addEventListener('keydown', ev => {
       if (ev.target.matches('input, textarea')) return;
@@ -402,15 +497,18 @@
     });
     const corp = dlg.querySelector('.ps-corp');
     let g0 = null;
-    corp.addEventListener('pointerdown', ev => { g0 = ev.pointerType === 'mouse' ? null : { x: ev.clientX, y: ev.clientY, t: ev.timeStamp }; });
+    corp.addEventListener('pointerdown', ev => { g0 = ev.pointerType === 'mouse' ? null : { x: ev.clientX, y: ev.clientY, t: ev.timeStamp, d3: P.in3d && !!ev.target.closest('.ps-3d') }; });
     corp.addEventListener('pointerup', ev => {
       if (!g0) return;
-      const dx = ev.clientX - g0.x, dy = ev.clientY - g0.y, dt = ev.timeStamp - g0.t;
+      const dx = ev.clientX - g0.x, dy = ev.clientY - g0.y, dt = ev.timeStamp - g0.t, d3 = g0.d3;
       g0 = null;
-      if (Math.abs(dx) > 60 && Math.abs(dx) > 1.6 * Math.abs(dy) && dt < 900) { seteazaReda(false); mergiLa(P.k + (dx < 0 ? 1 : -1)); }
+      // pe desenul 3D, tragerea lentă cu un deget rotește; o glisare rapidă (sub 0,6 s), mai lungă de 60 px și mai mult
+      // orizontală, trece la alt pas, iar camera noului pas anulează rotirea începută
+      const glisare = d3 ? Math.abs(dx) > 60 && Math.abs(dx) > 1.8 * Math.abs(dy) && dt < 600 : Math.abs(dx) > 60 && Math.abs(dx) > 1.6 * Math.abs(dy) && dt < 900;
+      if (glisare) { seteazaReda(false); mergiLa(P.k + (dx < 0 ? 1 : -1)); }
     });
     corp.addEventListener('pointercancel', () => { g0 = null; });
-    dlg.addEventListener('close', () => { seteazaReda(false); P.vedere = null; cancelAnimationFrame(P.rafV); P.svg.getAnimations({ subtree: true }).forEach(a => a.cancel()); });
+    dlg.addEventListener('close', () => { seteazaReda(false); P.vedere = null; cancelAnimationFrame(P.rafV); P.svg.getAnimations({ subtree: true }).forEach(a => a.cancel()); P.gen3++; opreste3d(); });
     P.dlg = dlg;
     P.svg = dlg.querySelector('.ps-scena svg');
     let t = 0;
@@ -423,6 +521,7 @@
     const d = window.DETALII && window.DETALII[id];
     if (!d) return false;
     if (!P.dlg) construieste();
+    if (P.det !== d) { P.gen3++; opreste3d(); }
     P.det = d;
     P.link = opt.link || null;
     P.elemente = opt.elemente || [];
@@ -433,7 +532,7 @@
     dlg.querySelector('#ps-titlu').textContent = d.nume;
     dlg.querySelector('.ps-sub').textContent = `${d.subtitlu}. ${d.nota}`;
     // „orientare”: unde e peretele și unde e camera pe desen; D-06 e văzut de sus
-    dlg.querySelector('figcaption').textContent = `${d.orientare || 'Sus: peretele existent. Jos: camera.'}${d.schema ? '' : ' Cote în cm.'} Albastru: ce se adaugă acum.`;
+    P.in3d = false; P.disponibil = false; arataMod();
     dlg.querySelector('.ps-puncte-nav').innerHTML = d.pasi.map((p, i) =>
       `<button type="button" data-p="pas" data-k="${i}" title="${i ? i + '. ' : ''}${esc(p.titlu)}" aria-label="${i ? 'Pasul ' + i : 'Pe scurt'}: ${esc(p.titlu)}">${i || '•'}</button>`).join('');
     seteazaReda(false);
@@ -443,6 +542,7 @@
     const start = cerut ? +opt.pas || 0 : st.ultim > 0 && st.ultim < n ? st.ultim : 0;
     P.reluat = !cerut && start > 0;
     mergiLa(start);
+    porneste3d().catch(e => console.warn('Pașii de montaj în 3D:', e));
     return true;
   }
 
@@ -464,5 +564,8 @@
     return true;
   }
 
-  window.Pasi = { deschide, miniatura, progres, dialog: () => P.dlg, numar: id => window.DETALII && window.DETALII[id] ? window.DETALII[id].pasi.length - 1 : 0 };
+  // stare3d, masoara3d: pentru verificările automate (ce se vede în 3D, câți pixeli are desenul)
+  window.Pasi = { deschide, miniatura, progres, dialog: () => P.dlg, numar: id => window.DETALII && window.DETALII[id] ? window.DETALII[id].pasi.length - 1 : 0,
+    stare3d: () => ({ vedere: P.in3d ? '3d' : '2d', disponibil: P.disponibil, pas2d: P.in3d && pas2d(), motor: P.motor ? P.motor.stare() : null }),
+    masoara3d: () => P.motor ? P.motor.masoara() : null };
 })();

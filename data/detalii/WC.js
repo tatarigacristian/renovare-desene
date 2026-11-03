@@ -21,6 +21,7 @@ window.DETALII["WC"] = {
   "y0": -126,
   "y1": 12
  },
+ "sectiune3d": {"plan": "vertical", "adancime": 60, "privire": [28, 10]},
  "forme": [
   {
    "id": "tavan",
@@ -56,7 +57,8 @@ window.DETALII["WC"] = {
    "y": -118,
    "w": 17.5,
    "h": 119.3,
-   "profile": []
+   "profile": [],
+   "repeta3d": {"pas": 30, "start": 26}
   },
   {
    "id": "sapa",
@@ -191,7 +193,8 @@ window.DETALII["WC"] = {
      -110.8
     ]
    ],
-   "umplere": "otel"
+   "umplere": "otel",
+   "adanc3d": 22.5
   },
   {
    "id": "s2-rezervor",
@@ -200,7 +203,8 @@ window.DETALII["WC"] = {
    "y": -110.8,
    "w": 10.1,
    "h": 46,
-   "umplere": "pvc"
+   "umplere": "pvc",
+   "adanc3d": 20
   },
   {
    "id": "s2-cutie",
@@ -209,7 +213,8 @@ window.DETALII["WC"] = {
    "y": -113,
    "w": 4.2,
    "h": 12.4,
-   "umplere": "pvc"
+   "umplere": "pvc",
+   "adanc3d": 12
   },
   {
    "id": "s2-apa",
@@ -247,7 +252,8 @@ window.DETALII["WC"] = {
    "y": -120,
    "w": 20,
    "h": 2,
-   "umplere": "gips"
+   "umplere": "gips",
+   "umplere3d": "gips-ru"
   },
   {
    "id": "ru1-sus",
@@ -256,7 +262,8 @@ window.DETALII["WC"] = {
    "y": -118,
    "w": 1.25,
    "h": 5,
-   "umplere": "gips"
+   "umplere": "gips",
+   "umplere3d": "gips-ru"
   },
   {
    "id": "ru1-jos",
@@ -265,7 +272,8 @@ window.DETALII["WC"] = {
    "y": -100.6,
    "w": 1.25,
    "h": 101.9,
-   "umplere": "gips"
+   "umplere": "gips",
+   "umplere3d": "gips-ru"
   },
   {
    "id": "ru2-sus",
@@ -274,7 +282,8 @@ window.DETALII["WC"] = {
    "y": -118,
    "w": 1.25,
    "h": 5,
-   "umplere": "gips"
+   "umplere": "gips",
+   "umplere3d": "gips-ru"
   },
   {
    "id": "ru2-jos",
@@ -283,7 +292,8 @@ window.DETALII["WC"] = {
    "y": -100.6,
    "w": 1.25,
    "h": 101.9,
-   "umplere": "gips"
+   "umplere": "gips",
+   "umplere3d": "gips-ru"
   },
   {
    "id": "or1-sus",
@@ -292,7 +302,8 @@ window.DETALII["WC"] = {
    "y": -120,
    "w": 1.18,
    "h": 5,
-   "umplere": "pvc"
+   "umplere": "pvc",
+   "umplere3d": "p722"
   },
   {
    "id": "or1-jos",
@@ -301,7 +312,8 @@ window.DETALII["WC"] = {
    "y": -98.6,
    "w": 1.18,
    "h": 98.6,
-   "umplere": "pvc"
+   "umplere": "pvc",
+   "umplere3d": "p722"
   },
   {
    "id": "s2-racord",
@@ -310,7 +322,8 @@ window.DETALII["WC"] = {
    "y": -28.5,
    "w": 10.5,
    "h": 11,
-   "umplere": "pvc"
+   "umplere": "pvc",
+   "cilindru3d": "x"
   },
   {
    "id": "s2-scurgere",
@@ -318,7 +331,8 @@ window.DETALII["WC"] = {
    "x": 11,
    "y": -23,
    "r": 5.5,
-   "umplere": "pvc"
+   "umplere": "pvc",
+   "adanc3d": 18
   },
   {
    "id": "s2-tije",
@@ -334,7 +348,9 @@ window.DETALII["WC"] = {
     ]
    ],
    "culoare": "#52525b",
-   "gros": 3
+   "gros": 3,
+   "corp3d": "bara",
+   "z3d": 9
   },
   {
    "id": "s3",
@@ -343,7 +359,8 @@ window.DETALII["WC"] = {
    "y": -115,
    "w": 1.3,
    "h": 16.4,
-   "umplere": "negru"
+   "umplere": "negru",
+   "adanc3d": 12
   },
   {
    "id": "s1",
@@ -402,7 +419,8 @@ window.DETALII["WC"] = {
      -12
     ]
    ],
-   "umplere": "negru"
+   "umplere": "negru",
+   "rotund3d": {"ax": 21.2, "r": 18, "p": 2.6}
   },
   {
    "id": "dwc-cutie",
@@ -411,7 +429,8 @@ window.DETALII["WC"] = {
    "y": -250,
    "w": 18,
    "h": 130,
-   "umplere": "alb"
+   "umplere": "alb",
+   "corp3d": "carcasa"
   },
   {
    "id": "dwc-raft1",
@@ -456,7 +475,8 @@ window.DETALII["WC"] = {
    "y": -250,
    "w": 1.18,
    "h": 130,
-   "umplere": "pvc"
+   "umplere": "pvc",
+   "umplere3d": "p722"
   },
   {
    "id": "reper",

@@ -74,7 +74,9 @@
   // masura: modul „Măsoară”: primul element ales e punctul de pornire, următorul ales dă distanța
   // meniu: meniul deschis din bară ('pereti', 'straturi', 'mai') sau null
   const S = { cam: null, per: null, viz: {}, sel: [], masura: false, view: null, vedere: 'tot', dim: null, print: false, svg: null, fitS: 1, raf: 0,
-    panou: 'mic', cauta: '', selPanou: '', var: {}, meniu: null };
+    panou: 'mic', cauta: '', selPanou: '', var: {}, meniu: null,
+    // vederea 3D: pornită sau nu, unghiul ales, modulul încărcat (ctl) și încărcarea în curs; salvate în „desene:3d”
+    v3d: { activ: false, unghi: 'st', ctl: null, incarca: null } };
   // adresa publică a desenelor, pentru linkurile trimise echipei
   const SITE = 'https://tatarigacristian.github.io/renovare-desene/';
 
@@ -146,7 +148,7 @@
   // finisajele din legendele arhitectei; „lat” alege direcția fibrei la Nuc Parona
   const FINISAJE = {
     nuc: { nume: 'PAL H1775 ST12 Nuc Parona', stroke: '#7a5a3a' },
-    bej: { nume: 'U156 Bej nisip, mat', fill: '#ebe2d3', stroke: '#a8987f' },
+    bej: { nume: 'U156 Bej nisip, mat', fill: '#bdb2a3', stroke: '#857a6b' },   // bejul din randări, ca în 3D (js/materiale3d.js)
     alb: { nume: 'alb', fill: '#f4f2ee', stroke: '#a39d93' },
     negru: { nume: 'negru', fill: '#1f1f1f', stroke: '#000' },
     oglinda: { nume: 'oglindă', fill: 'url(#g-oglinda)', stroke: '#7d8a93' },
@@ -712,6 +714,7 @@
     } else {
       svg.style.width = ''; svg.style.height = '';
       seteazaViewBox();
+      actualizeaza3d();
     }
   }
 
@@ -841,25 +844,139 @@
     }, { passive: false });
   }
 
-  // numele elementului de sub mouse
+  // numele elementului de sub mouse, pe desen și în vederea 3D (acolo pașii se deschid din fișă, nu din ▶)
+  function arataEticheta(e, ev, peSemn, in3d) {
+    const tip = document.getElementById('eticheta-hover'), box = S.svg.parentNode, prim = S.sel.length && gaseste(S.sel[0]);
+    const dist = prim && cunoscut(prim) && cunoscut(e) && !S.sel.includes(e.id) ? (S.masura ? 'clic' : 'Shift + clic') : '';
+    tip.innerHTML = `<b>${esc(e.id)}</b>${esc(e.nume)}` +
+      (pasiDetaliu(e) ? `<span class="tp-pasi">${peSemn ? 'clic: pașii de montaj' : in3d ? 'are pași de montaj: „Cum se montează”, în fișă' : 'are pași de montaj: clic pe ▶'}</span>` : '') +
+      (dist && !peSemn ? `<em>${dist}: distanța față de ${esc(prim.id)}</em>` : '');
+    tip.hidden = false;
+    const r = box.getBoundingClientRect();
+    let x = ev.clientX - r.left + 14;
+    const y = ev.clientY - r.top + 16;
+    if (x + tip.offsetWidth > r.width - 8) x = ev.clientX - r.left - tip.offsetWidth - 10;
+    tip.style.transform = `translate(${x}px, ${y}px)`;
+  }
   function initHover(svg) {
-    const tip = document.getElementById('eticheta-hover'), box = svg.parentNode;
+    const tip = document.getElementById('eticheta-hover');
     svg.addEventListener('pointermove', ev => {
       const t = ev.pointerType === 'mouse' && !ev.buttons && ev.target.closest('[data-id]'), e = t && gaseste(t.dataset.id);
       if (!e) { tip.hidden = true; return; }
-      const peSemn = !!ev.target.closest('[data-pasi]'), prim = S.sel.length && gaseste(S.sel[0]);
-      const dist = prim && cunoscut(prim) && cunoscut(e) && !S.sel.includes(e.id) ? (S.masura ? 'clic' : 'Shift + clic') : '';
-      tip.innerHTML = `<b>${esc(e.id)}</b>${esc(e.nume)}` +
-        (pasiDetaliu(e) ? `<span class="tp-pasi">${peSemn ? 'clic: pașii de montaj' : 'are pași de montaj: clic pe ▶'}</span>` : '') +
-        (dist && !peSemn ? `<em>${dist}: distanța față de ${esc(prim.id)}</em>` : '');
-      tip.hidden = false;
-      const r = box.getBoundingClientRect();
-      let x = ev.clientX - r.left + 14;
-      const y = ev.clientY - r.top + 16;
-      if (x + tip.offsetWidth > r.width - 8) x = ev.clientX - r.left - tip.offsetWidth - 10;
-      tip.style.transform = `translate(${x}px, ${y}px)`;
+      arataEticheta(e, ev, !!ev.target.closest('[data-pasi]'), false);
     });
     svg.addEventListener('pointerleave', () => { tip.hidden = true; });
+  }
+
+  // ---------------------------------------------------------------- vederea 3D a peretelui (js/vedere3d.js)
+  // Butonul „3D”, sus în grupul de zoom, comută între desenul 2D și vederea 3D; pe planul tavanului nu apare.
+  // Modulul (three.js) se încarcă doar la prima folosire. Alegerea și unghiul rămân salvate în „desene:3d”.
+  // Selecția, fișa, banda de măsurare și distanțele sunt cele din 2D; cotele elementelor alese apar și în 3D.
+  const UNGHIURI_3D = [['fata', 'Față', 'Din față'], ['st', 'Stânga', 'Oblic din stânga'], ['dr', 'Dreapta', 'Oblic din dreapta'], ['sus', 'Sus', 'De sus']];
+  function salveaza3d() {
+    try { localStorage.setItem(LS + '3d', JSON.stringify({ activ: S.v3d.activ, unghi: S.v3d.unghi })); } catch (_) { /* fără localStorage: ține până la reîncărcare */ }
+  }
+  function init3d() {
+    let p = null;
+    try { p = JSON.parse(localStorage.getItem(LS + '3d') || 'null'); } catch (_) { p = null; }
+    if (p) { S.v3d.activ = !!p.activ; if (UNGHIURI_3D.some(u => u[0] === p.unghi)) S.v3d.unghi = p.unghi; }
+    const cutie = S.svg.parentNode;
+    cutie.querySelector('.zoom').insertAdjacentHTML('afterbegin',
+      '<button type="button" class="b3d" data-act="v3d" aria-pressed="false" title="Vederea 3D a peretelui" aria-label="Vederea 3D a peretelui">3D</button>');
+    const v = h('div', { id: 'v3d', class: 'v3d', hidden: '' });
+    v.innerHTML = `<div class="v3d-comenzi">
+        <p class="v3d-ajutor">Trage = rotește · rotița sau două degete = zoom · clic = alege<span class="v3d-shift"> · Shift + clic = măsoară până la al doilea</span></p>
+        <div class="v3d-unghiuri segmente" role="group" aria-label="Unghiul vederii 3D">${UNGHIURI_3D.map(([u, n, t]) =>
+          `<button type="button" data-act="unghi" data-u="${u}" title="${t}" aria-pressed="false">${n}</button>`).join('')}</div></div>
+      <p class="v3d-incarca" role="status" hidden>Se încarcă vederea 3D…</p>`;
+    cutie.insertBefore(v, S.svg.nextSibling);
+    marcheazaUnghi();
+  }
+  function marcheazaUnghi() {
+    document.querySelectorAll('#v3d [data-act="unghi"]').forEach(b => { const on = b.dataset.u === S.v3d.unghi; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+  }
+  // după fiecare desen: butonul, clasa .in-3d pe cutia desenului, modulul (la prima folosire) și datele peretelui
+  function actualizeaza3d() {
+    const v = S.v3d, box = document.getElementById('v3d'), b = document.querySelector('.zoom .b3d');
+    if (!box || !b) return;
+    const cutie = S.svg.parentNode, tav = eTavan(), activ = v.activ && !tav;
+    b.hidden = tav;
+    b.setAttribute('aria-pressed', activ);
+    b.title = activ ? 'Înapoi la desenul 2D' : 'Vederea 3D a peretelui';
+    b.setAttribute('aria-label', b.title);
+    cutie.classList.toggle('in-3d', activ);
+    box.hidden = !activ && !v.eroare;
+    box.classList.toggle('v3d-eroare', !!v.eroare && !activ);
+    if (!activ) { if (v.ctl) v.ctl.opreste(); return; }
+    if (v.ctl) { v.ctl.porneste(); v.ctl.arata(date3d()); return; }
+    if (v.incarca) return;
+    const msg = box.querySelector('.v3d-incarca');
+    msg.textContent = 'Se încarcă vederea 3D…'; msg.hidden = false;
+    v.incarca = import(new URL('js/vedere3d.js', document.baseURI).href).then(m => {
+      v.ctl = m.creeaza(box, { ales: ales3d, peste: peste3d });
+      v.ctl.unghi(v.unghi, true);
+      msg.hidden = true;
+      actualizeaza3d();
+    }).catch(err => {
+      // fără WebGL sau pagina deschisă din fișier (file://): mesajul stă 6 secunde peste desenul 2D
+      console.warn('vederea 3D:', err);
+      box.querySelectorAll('canvas, .v3d-etichete').forEach(x => x.remove());
+      v.incarca = null; v.ctl = null; v.activ = false; salveaza3d();
+      msg.textContent = location.protocol === 'file:'
+        ? 'Vederea 3D merge doar pe site sau cu un server local. Rămâne desenul 2D.'
+        : `Vederea 3D nu s-a putut încărca (${(err && err.message) || err}). Rămâne desenul 2D.`;
+      v.eroare = true;
+      actualizeaza3d();
+      clearTimeout(v.tEroare);
+      v.tEroare = setTimeout(() => { v.eroare = false; msg.hidden = true; actualizeaza3d(); }, 6000);
+    });
+  }
+  // Datele vederii 3D. A = adâncimea camerei perpendicular pe perete (din plan, cel mult 600 cm); H = înălțimea
+  // camerei sau vârful celui mai înalt element. Scena se reface doar când se schimbă cheia.
+  function date3d() {
+    const cam = S.cam, p = S.per, [[, ay], [, by]] = p.plan;
+    const els = elemente().filter(e => cunoscut(e) && vizibil(e));
+    const A = Math.min(600, ay === by ? cam.plan.adancime : cam.plan.latime);
+    const H = Math.max(cam.inaltime.valoare, ...els.map(e => e.punct ? e.h : e.h + (e.inalt || 0)));
+    const sel = S.sel.map(gaseste).filter(e => e && cunoscut(e) && vizibil(e));
+    return {
+      cheie: [cam.id, p.id, varAleasa() || '', STRATURI.filter(s => S.viz[s.id]).map(s => s.id).join('+')].join('|'),
+      vedere: cam.id + '|' + p.id, L: p.lungime, A, H, elemente: els, sel: sel.map(e => e.id),
+      cote: fata => cote3d(sel, fata, H),
+    };
+  }
+  // Cotele de desenat în 3D, cu aceleași valori ca fișa și distanțele din panou. Un element: lățimea (deasupra lui),
+  // înălțimea și înălțimea de la pardoseală (în dreapta lui), adâncimea (pe o muchie din dreapta). Două elemente:
+  // segmentele din masuratori(), la aceleași poziții ca în 2D. Cotele stau la 1 cm în fața feței celei mai din față.
+  function cote3d(sel, fata, Hc) {
+    const L = S.per.lungime, out = [], c = (a, b, text, tip) => out.push({ a, b, text, tip });
+    if (sel.length === 1) {
+      const e = sel[0], [x0, x1] = intX(e), [b0, b1] = intH(e), ap = e.pozitie === 'aprox' ? '~' : '';
+      const z = fata(e.id) + 1, o = 6;
+      const yl = b1 + o <= Hc ? b1 + o : b0 - o;
+      const xl = e.punct ? x0 + o + 2 : x1 + o <= L ? x1 + o : x0 - o;
+      if (x1 - x0 >= .5) c([x0, yl, z], [x1, yl, z], f(x1 - x0), 'element');
+      if (b1 - b0 >= .5) c([xl, b0, z], [xl, b1, z], f(b1 - b0), 'element');
+      if (b0 >= .5) c([xl, 0, z], [xl, b0, z], ap + f(b0), 'element');
+      const ad = !e.punct && !e.incorporatIn && e.tip !== 'banda-led' && e.tip !== 'sina' && e.adanc ? adancText(e) : '';
+      // adâncimea: pe pardoseală pentru piesele care stau pe ea, altfel pe muchia de sus (sub tavan, pe cea de jos)
+      if (ad) { const y = b0 < 3 || b1 >= Hc - 3 ? b0 : b1; c([x1, y, 0], [x1, y, e.adanc], ad, 'element'); }
+    } else if (sel.length === 2) {
+      const [A, B] = sel, m = masuratori(A, B), ia = intX(A), ib = intX(B), va = intH(A), vb = intH(B);
+      const ap = A.pozitie === 'aprox' || B.pozitie === 'aprox' ? '~' : '', z = Math.max(fata(A.id), fata(B.id)) + 1;
+      const hl = m.vert.gol ? (m.vert.seg[0][0] + m.vert.seg[0][1]) / 2 : (Math.max(va[0], vb[0]) + Math.min(va[1], vb[1])) / 2;
+      const xl = m.oriz.gol ? (m.oriz.seg[0][0] + m.oriz.seg[0][1]) / 2 : (Math.max(ia[0], ib[0]) + Math.min(ia[1], ib[1])) / 2;
+      for (const [a, b] of m.oriz.seg) c([a, hl, z], [b, hl, z], ap + f(b - a), 'intre');
+      for (const [a, b] of m.vert.seg) c([xl, a, z], [xl, b, z], ap + f(b - a), 'intre');
+    }
+    return out;
+  }
+  // clic în 3D: aceeași selecție ca pe desen, fără zoomul desenului 2D
+  const ales3d = (id, shift) => apasare(id, shift, true);
+  function peste3d(id, ev) {
+    const e = id && gaseste(id);
+    if (!e) { document.getElementById('eticheta-hover').hidden = true; return; }
+    arataEticheta(e, ev, false, true);
   }
 
   // ---------------------------------------------------------------- verificări automate
@@ -968,13 +1085,13 @@
     S.sel = urm;
     S.masura = !!masoara && urm.length > 0 && urm[0] === prim && (urm.length === 2 || S.masura);
   }
-  // click sau atingere pe desen
-  function apasare(id, shift) {
+  // click sau atingere pe desen (in3d: din vederea 3D, unde desenul 2D nu se mută pe selecție)
+  function apasare(id, shift, in3d) {
     const masoara = !!id && S.sel.length > 0 && (S.masura || (shift && S.sel.length === 1));
     aplicaSelectia(urmatoarea(id, masoara), masoara);
     document.getElementById('eticheta-hover').hidden = true;
     // pe ecran îngust, vederea se mută singură pe selecție și înapoi pe tot peretele
-    if (ingust()) { if (S.sel.length) zoomPe(S.sel); else potriveste(); } else deseneaza();
+    if (ingust() && !in3d) { if (S.sel.length) zoomPe(S.sel); else potriveste(); } else deseneaza();
     panou();
   }
   // din listă, tabel sau verificări; pornește stratul elementului dacă era ascuns. Două coduri = distanța dintre ele.
@@ -1627,6 +1744,8 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
     'inchide-dialog': () => document.getElementById('dialog-ajutor').close(),
     tipareste: () => { tipar(true); setTimeout(() => window.print(), 50); },
     pasi: id => deschidePasi(id),
+    v3d: () => { S.v3d.activ = !S.v3d.activ; S.v3d.eroare = false; salveaza3d(); document.getElementById('eticheta-hover').hidden = true; actualizeaza3d(); },
+    unghi: (_, ev) => { const b = ev.target.closest('[data-u]'); if (!b) return; S.v3d.unghi = b.dataset.u; salveaza3d(); marcheazaUnghi(); if (S.v3d.ctl) S.v3d.ctl.unghi(S.v3d.unghi); },
     varianta: id => { S.var[S.per.id] = id; S.sel = []; S.masura = false; salveaza(); antet(); comenziVariante(); comenziStraturi(); lista(); listaVerificari(); tabel(); panou(); deseneaza(); },
   };
 
@@ -1673,6 +1792,7 @@ ${vederi().some(v => v.elemente.some(pasiDetaliu)) ? `
 
     initZoom(S.svg);
     initHover(S.svg);
+    init3d();
     comenziTema();
     antet(); plan(); comenziVariante(); comenziStraturi(); potrivesteBara(); lista(); listaVerificari(); montaj(); tabel(); stareFoaie('mic'); panou(); potriveste();
     // adresa curată (#PERETE); dacă linkul cere un pas de montaj, fereastra se deschide direct la el
