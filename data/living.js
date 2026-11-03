@@ -5,9 +5,10 @@ window.CAMERE["living"] = {
  "id": "living",
  "nume": "Living",
  "revizie": {
-  "nr": 8,
+  "nr": 9,
   "data": "2026-11-03",
   "modificari": [
+   "Revizia 9: benzile Hue Flux sunt kituri de 3 m (Altex), în afară de scafa M1, care are kitul de 4 m cumpărat deja și 7 segmente din restul de la A1, legate cu un conector drept. Profilele pentru Flux cer interior de min. ~16 mm: banda are 14,5 × 6 mm, cum scrie pe cutie (03.11.2026).",
    "Revizia 8: pașii de montaj ai compartimentului AC din M11, în 3D (detaliul AC-L). Placa BL merge pe tot conturul unității, iar fâșia ei din față e lipită pe capacul M11-C; capacul are balamale cu demontare rapidă, deci filtrele se scot fără scule (analiza/15, I1 și I2). Traseul TB2 trece printr-un dulap: de confirmat (03.11.2026).",
    "Revizia 7: șinele magnetice J și K sunt montate deja, cu sursa în șină (03.11.2026): sursele separate SJK și pașii de montaj J-K au fost scoși. Unitatea AC de pe planul tavanului, mutată în față, ca pe peretele TV.",
    "Revizia 6: compartimentul AC din masca M11 desenat ca în dormitorul mic: coboară la 189,2 cm, unitatea vine în față, aerul cald intră prin capacul de sus cu lamele verticale (în loc de 9 găuri), cel rece iese prin fanta de jos, cu clapa CL; pașii de montaj D03' actualizați. De confirmat cu arhitecta (03.11.2026).",
@@ -1324,7 +1325,7 @@ window.CAMERE["living"] = {
      "ascuns": true,
      "stare": "propunere",
      "sursa": "A.06, A.16 D03 (bandă pe toată consola); decizia Hue Flux din 29.10.2026; specs/04 (plan de tăiere)",
-     "nota": "Pe fața de jos a consolei M10-C, pe toată lungimea, cu lumina în jos, pe corpul M10 și pe riflaj. A.16 scrie bandă LED 3000K; decizia din 29.10.2026 este Hue Flux: un kit de 4 m tăiat la ~249 cm (15 segmente). Profil încastrat în consolă, frezat de tâmplar, lățime interioară min. 17–18 mm (întrebarea L1). Distanța profilului față de fața consolei nu e cotată. Sursa în priza P4."
+     "nota": "Pe fața de jos a consolei M10-C, pe toată lungimea, cu lumina în jos, pe corpul M10 și pe riflaj. A.16 scrie bandă LED 3000K; decizia din 03.11.2026 este Hue Flux: un kit de 3 m tăiat la ~249 cm (15 segmente). Profil încastrat în consolă, frezat de tâmplar, lățime interioară min. ~16 mm (Flux are 14,5 mm; întrebarea L1). Distanța profilului față de fața consolei nu e cotată. Sursa în priza P4."
     }
    ],
    "avertismente": [
@@ -1702,7 +1703,7 @@ window.CAMERE["living"] = {
      "stare": "de-verificat",
      "detaliu": "D-09",
      "sursa": "A.06 (marcajul M, de la x ≈ 50 până la colțul N); A.02/A.05 D-09 (profilul pe placă, lângă marginea tavanului fals); Hue Flux (decizia din 29.10.2026)",
-     "nota": "Profil S3 (23,5 × 10 mm) lipit de placa de beton la 12,6–15 cm de grindă, ascuns după marginea tavanului fals; lumina cade pe draperie. Lungime utilă ~520,75 cm, nu 580: ~31 de segmente de 16,6 cm = kitul de 4 m (24) + 7 segmente din restul de la M2. Se măsoară după ce se fac măștile M11 și G1. D-09 scrie LED 3000K; decizia e Hue Flux color.",
+     "nota": "Profil S3 (23,5 × 10 mm) lipit de placa de beton la 12,6–15 cm de grindă, ascuns după marginea tavanului fals; lumina cade pe draperie. Lungime utilă ~520,75 cm, nu 580: ~31 de segmente de 16,6 cm  = kitul de 4 m cumpărat deja (24) + 7 segmente din restul kitului de 3 m de la A1, legate cu un conector drept (03.11.2026). Lungimea maximă pe o sursă se verifică în manualul din cutia kitului de 4 m. Se măsoară după ce se fac măștile M11 și G1. D-09 scrie LED 3000K; decizia e Hue Flux color.",
      "adanc": 2.4
     },
     {
@@ -2201,7 +2202,7 @@ window.CAMERE["living"] = {
     "stare": "de-verificat",
     "detaliu": "D-09",
     "sursa": "A.02/A.05 D-09 (profilul la marginea tavanului fals); A.06 (marcajul M, ~55–565); specs/04 (29.10.2026); specs/06 G7",
-    "nota": "Hue Flux în profil S3 (23,5 × 10 mm, alb, bare de 2 m), lipit de placa de beton, lângă marginea tavanului fals; lumina cade pe draperie. Lungime utilă ~517 cm (de la D03 la G1): ~31 de segmente (~515 cm) = kitul de 4 m (24) + 7 segmente din restul de la M2. Se măsoară după ce se fac măștile. Sursa se bagă în priza dublă de după perdea (G7); cablul vine prin tub (TB-M1).",
+    "nota": "Hue Flux în profil S3 (23,5 × 10 mm, alb, bare de 2 m), lipit de placa de beton, lângă marginea tavanului fals; lumina cade pe draperie. Lungime utilă ~517 cm (de la D03 la G1): ~31 de segmente (~515 cm)  = kitul de 4 m cumpărat deja (24) + 7 segmente din restul kitului de 3 m de la A1, legate cu un conector drept (03.11.2026). Lungimea maximă pe o sursă se verifică în manualul din cutia kitului de 4 m. Se măsoară după ce se fac măștile. Sursa se bagă în priza dublă de după perdea (G7); cablul vine prin tub (TB-M1).",
     "adanc": 1
    },
    {

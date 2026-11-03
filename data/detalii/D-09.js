@@ -163,11 +163,11 @@ window.DETALII["D-09"] = {
    "stare": "propunere",
    "vedere": {"x0": 1, "x1": 23, "y0": -2, "y1": 10},
    "apar": ["banda", "difuzor", "e8-banda", "e8-difuzor"],
-   "text": "Banda M1 se face din kitul Flux de 4 m (24 de segmente) și 7 segmente din restul benzii M2, legate cu un conector drept: ~31 de segmente, ~515 cm. Se taie după ce se măsoară scafa între măștile M11 și G1, apoi se lipește pe fundul profilului, curățat cu alcool. La sfârșit se pune difuzorul opal.",
-   "puncte": ["Sensul contează: banda are fir de date, deci restul de la M2 se leagă cu capătul tăiat spre banda alimentată.", "Capătul alimentat e la nord, lângă masca G1. Sursa se bagă în priza dublă P3 de după perdea, iar cablul prelungitor Flux de 5 m vine prin TB-M1 până la controller."],
+   "text": "Banda M1 se face din kitul Flux de 4 m cumpărat deja (24 de segmente) și 7 segmente din restul kitului de 3 m de la A1 (hol), legate cu un conector drept: ~31 de segmente, ~515 cm. Se taie după ce se măsoară scafa între măștile M11 și G1, apoi se lipește pe fundul profilului, curățat cu alcool. La sfârșit se pune difuzorul opal.",
+   "puncte": ["Sensul contează: banda are fir de date, deci restul se leagă cu capătul tăiat spre banda alimentată.", "Capătul alimentat e la nord, lângă masca G1. Sursa se bagă în priza dublă P3 de după perdea, iar cablul prelungitor Flux de 5 m vine prin TB-M1 până la controller."],
    "verifica": ["Conectorul drept intră în profil (dimensiunile lui nu sunt publicate).", "Banda se aprinde pe toată lungimea înainte să se pună difuzorul."],
-   "atentie": "Nu e confirmat că un kit de 4 m alimentează ~5,2 m de bandă: de întrebat la suportul Hue.",
-   "sursa": "specs/04, planul de tăiere (29.10.2026); specs/06 G6 și G7; datele peretelui cu fereastra și ale tavanului (M1, P3, TB-M1)"
+   "atentie": "Lungimea maximă pe o sursă Flux nu e în fișele publice: se verifică în manualul din cutia kitului de 4 m, înainte de tăiere.",
+   "sursa": "specs/04, planul de tăiere (29.10.2026) și Flux 3 m (03.11.2026); specs/06 G6 și G7; datele peretelui cu fereastra și ale tavanului (M1, P3, TB-M1)"
   },
   {
    "titlu": "Șina dublă SD",

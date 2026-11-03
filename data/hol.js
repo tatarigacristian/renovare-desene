@@ -14,9 +14,10 @@ window.CAMERE["hol"] = {
   "nota": "Înălțimea liberă sub tavanul fals: 243 cm (placa la 250, tavan fals de 7 cm), după detaliul hol din A.05, singura cotă. A.17 și A.18 desenează fața la 242, iar legenda A.05 scrie 10 cm (fața la 240): de confirmat cu arhitecta (L6). Sub grinda GR1 rămân 205 cm."
  },
  "revizie": {
-  "nr": 6,
-  "data": "2026-11-02",
+  "nr": 7,
+  "data": "2026-11-03",
   "modificari": [
+   "Revizia 7: benzile Hue Flux A1, A2, C1 și C2 sunt kituri de 3 m (Altex), nu de 4 m. C1 folosește tot kitul: 18 segmente, ~299 cm. Din restul de la A1 (12 segmente) se iau 7 pentru scafa din living (03.11.2026).",
    "Revizia 6: pașii de montaj animați pentru tavanul fals cu fanta de lumină (TFH) și pentru circuitul cu buton cu revenire (PUSH): I1 de pe peretele spre baie, I2, I3, D8 și D9 (02.11.2026).",
    "Revizia 5: ușile băii (U6) și GS-ului (U5) au foaia de 60 cm, ca ușile cumpărate; foaia e desenată în gol (02.11.2026).",
    "Revizia 4: lamelele RF1 acoperă acum lățimea grinzii GR1 și merg până la oglindă (x 312–360, 48 cm, 10 lamele), în loc de 17,3 cm cu 4 lamele. Sub grindă se opresc la fața ei de jos, la ~205 (02.11.2026).",
@@ -1300,7 +1301,7 @@ window.CAMERE["hol"] = {
      "pozitie": "aprox",
      "stare": "de-verificat",
      "sursa": "A.06 (marcajul A, ~303, necotat); A.20 (lumina verticală între riflaj și corpul înalt, de pe bancă până sus); decizia Hue Flux din 29.10.2026 (specs/06 G1, G3)",
-     "nota": "Verticală, în colțul dintre ultima lamelă a riflajului și lateralul dulapului de 60, cu lumina pe riflaj. Desenată de pe bancă (40) până sus (240), ca în A.20: ~199 cm (12 segmente Flux) dintr-un kit de 4 m. Planul de tăiere din specs/04 are ~100 cm (estimare CAD): de corectat după răspuns. A.06 pune marcajul la ~303, adică ~9,5 cm în conturul dulapului. Banda se vede: profil adânc cu difuzor opal, lățime interioară min. 17–18 mm (specs/06 G4, G6). Sursa în priza P4."
+     "nota": "Verticală, în colțul dintre ultima lamelă a riflajului și lateralul dulapului de 60, cu lumina pe riflaj. Desenată de pe bancă (40) până sus (240), ca în A.20: ~199 cm (12 segmente Flux) dintr-un kit de 3 m. Planul de tăiere din specs/04 are ~100 cm (estimare CAD): de corectat după răspuns. A.06 pune marcajul la ~303, adică ~9,5 cm în conturul dulapului. Banda se vede: profil adânc cu difuzor opal, lățime interioară min. 17–18 mm (specs/06 G4, G6). Sursa în priza P4."
     },
     {
      "id": "A1",
@@ -1417,7 +1418,7 @@ window.CAMERE["hol"] = {
       "P4",
       "P5"
      ],
-     "text": "A.06 și A.17 cer bandă LED 3000K. Decizia din 29.10.2026: un kit Hue Flux 4 m pentru A1 și unul pentru A2, cu sursa într-o priză din mobilier (P4, P5, propunere). Clapa A din ABC trimite doar comanda (Hue Wall Switch Module), nu taie curentul benzilor."
+     "text": "A.06 și A.17 cer bandă LED 3000K. Decizia din 03.11.2026: un kit Hue Flux 3 m pentru A1 și unul pentru A2, cu sursa într-o priză din mobilier (P4, P5, propunere). Clapa A din ABC trimite doar comanda (Hue Wall Switch Module), nu taie curentul benzilor."
     }
    ]
   }
@@ -1580,8 +1581,8 @@ window.CAMERE["hol"] = {
     "inalt": 312,
     "ascuns": true,
     "stare": "de-verificat",
-    "sursa": "A.05 (312; profilul din detaliul tavanului fals din hol); A.06 (marcajul C, „LED tavan - orizontal”); specs/06 G2; specs/04 (29.10.2026: Hue Flux 4 m, profil S3)",
-    "nota": "Hue Flux (kit de 4 m, folosit pe alb) în profil S3 (23,5 × 10 mm, alb, 2 bare de 2 m), prins sus pe placa verticală de la marginea tavanului fals, cu lumina spre mască (detaliul A.05). Buza tavanului fals (~2 cm) ascunde profilul când e privit de jos. Traseul are 312 cm; banda montată are ~299 cm (18 segmente de 16,6 cm, specs/04). Capătul alimentat e lângă grindă (CB-C1). Clapa C din grupurile ABC.",
+    "sursa": "A.05 (312; profilul din detaliul tavanului fals din hol); A.06 (marcajul C, „LED tavan - orizontal”); specs/06 G2; specs/04 (03.11.2026: Hue Flux 3 m, profil S3)",
+    "nota": "Hue Flux (kit de 3 m, folosit pe alb) în profil S3 (23,5 × 10 mm, alb, 2 bare de 2 m), prins sus pe placa verticală de la marginea tavanului fals, cu lumina spre mască (detaliul A.05). Buza tavanului fals (~2 cm) ascunde profilul când e privit de jos. Traseul are 312 cm; banda montată are ~299 cm (18 segmente de 16,6 cm, specs/04). Capătul alimentat e lângă grindă (CB-C1). Clapa C din grupurile ABC.",
     "detaliu": "TFH"
    },
    {
@@ -1595,7 +1596,7 @@ window.CAMERE["hol"] = {
     "inalt": 198.9,
     "ascuns": true,
     "stare": "de-verificat",
-    "sursa": "A.05 (200; profilul din detaliul tavanului fals din hol); A.06 (marcajul C); specs/06 G2; specs/04 (29.10.2026: Hue Flux 4 m, profil S3)",
+    "sursa": "A.05 (200; profilul din detaliul tavanului fals din hol); A.06 (marcajul C); specs/06 G2; specs/04 (03.11.2026: Hue Flux 3 m, profil S3)",
     "nota": "Ca C1, cu kitul ei (1 bară S3 de 2 m). Traseul are 198,9 cm pe desen (A.05 cotează 200). Planul de tăiere (specs/04) are 12 segmente, ~199 cm: nu rămâne loc pentru capace și pentru conectorul controllerului. Se măsoară fanta pe șantier înainte de tăiere; dacă nu încap 12 segmente, se taie 11 (~183 cm). Capătul alimentat e lângă grindă (CB-C2).",
     "detaliu": "TFH"
    },
