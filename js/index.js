@@ -1,7 +1,8 @@
-/* Pagina camerelor: secțiunea „Pași de montaj animați”, cu desenul fiecărui detaliu, semnul ▶ pe cardurile camerelor
-   cu pași și revizia fiecărei camere. Citește datele camerelor (window.CAMERE) și ale detaliilor (window.DETALII),
-   aceleași fișiere ca paginile camerelor; desenul detaliului îl face Pasi.miniatura (js/pasi.js).
-   Fără JavaScript, pagina rămâne lista statică a camerelor, cu randările. */
+/* Pagina camerelor, în două file: „Camere” (cardurile camerelor, cu semnul ▶ la cele cu pași și revizia fiecăreia)
+   și „Pași de montaj” (un card pe detaliu, cu desenul lui). Fila aleasă stă în adresă (#pasi), ca butonul Înapoi
+   de pe pagina unei camere să ducă tot la ea. Citește datele camerelor (window.CAMERE) și ale detaliilor
+   (window.DETALII), aceleași fișiere ca paginile camerelor; desenul detaliului îl face Pasi.miniatura (js/pasi.js).
+   Fără JavaScript, pagina rămâne lista statică a camerelor, cu randările, fără file. */
 (function () {
   'use strict';
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -52,6 +53,34 @@
       <span class="card-text"><b>${esc(x.d.nume)}</b><small><span class="badge">${esc(x.id)}</span> ${esc(unde(x))}</small>
         <span class="card-rev">${n} pași${v ? ` · ai văzut ${v >= n ? 'tot' : v + ' din ' + n}` : ''}</span></span></a>`;
   }).join('');
-  document.querySelector('.camere').insertAdjacentHTML('beforebegin', `<section class="index-pasi"><h2>Pași de montaj animați</h2><div class="carduri">${html}</div></section><h2 class="index-titlu">Camerele</h2>`);
-  if (window.Pasi && Pasi.miniatura) for (const a of document.querySelectorAll('.card-pasi')) Pasi.miniatura(a.dataset.id, a.querySelector('svg'));
+  const panou = document.getElementById('panou-pasi');
+  panou.innerHTML = `<p class="index-nota">Fiecare card deschide pașii detaliului, cu animații: ce se montează, în ce ordine și ce se verifică.</p><div class="carduri">${html}</div>`;
+
+  // filele: un click, săgețile stânga-dreapta, Home și End; adresa primește #pasi sau rămâne fără hash
+  const file = [...document.querySelectorAll('.file-index [role="tab"]')];
+  file[1].querySelector('.nr').textContent = lista.length;
+  if (window.Pasi && Pasi.miniatura) for (const a of panou.querySelectorAll('.card-pasi')) Pasi.miniatura(a.dataset.id, a.querySelector('svg'));
+  function alege(i, focus) {
+    file.forEach((f, j) => {
+      const on = i === j;
+      f.setAttribute('aria-selected', on);
+      f.tabIndex = on ? 0 : -1;
+      document.getElementById(f.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) file[i].focus();
+    const h = i === 1 ? '#pasi' : '';
+    if (location.hash !== h) history.replaceState(null, '', location.pathname + location.search + h);
+  }
+  file.forEach((f, i) => {
+    f.addEventListener('click', () => alege(i));
+    f.addEventListener('keydown', ev => {
+      const k = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: file.length - 1 }[ev.key];
+      if (k === undefined) return;
+      ev.preventDefault();
+      alege((k + file.length) % file.length, true);
+    });
+  });
+  document.querySelector('.file-index').hidden = false;
+  alege(location.hash === '#pasi' ? 1 : 0);
+  addEventListener('hashchange', () => alege(location.hash === '#pasi' ? 1 : 0));
 })();

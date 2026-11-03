@@ -14,15 +14,16 @@ window.CAMERE["dormitor-mic"] = {
   "nota": "Sub tavanul fals de 7 cm, montat deja (03.11.2026): desenat la ~243 cm, ca în living; placa la ~250 cm. Arhitecta nu a proiectat camera: cotele sunt din releveul din 2021 și din analiza/06 v3. Înălțimea se măsoară în 4 puncte."
  },
  "revizie": {
-  "nr": 5,
+  "nr": 6,
   "data": "2026-11-03",
   "modificari": [
+   "Revizia 6: șina magnetică SM e montată deja, cu sursa în șină (03.11.2026): doza D1 rămâne doar pentru sursa benzilor L1–L3; butoanele I1 și I2 au nevoie de o sursă în șină cu comandă Push-DIM sau de un releu bistabil.",
    "Revizia 5: capacul de sus al compartimentului AC are lamele verticale (LM) în loc de ~250 de găuri, cu aceeași suprafață liberă (~40%), și se rabatează în jos pentru filtre; clapa CL nu mai are găuri (03.11.2026).",
    "Revizia 4: coloana M16 e bej, în culoarea consolei M14, nu în nuc; nucul rămâne doar pe M13 (03.11.2026).",
    "Revizia 3: coloana M16 (60 × 40 cm), din care iese consola M14, acum de 210 cm; televizorul, P4 și TB1 se mută ~25 cm spre ușă, centrate pe consolă, iar P5 la 290. Compartimentul AC crește în jos (ușile lui M13 până la h 190): unitatea vine în față, cu capac rabatabil perforat sus și cu clapa CL, care vara intră sub unitate; tubul TB2 coboară sub scurgerea unității. Tavanul fals e deja montat (03.11.2026).",
    "Revizia 2: dulapul M13 are 120 cm (avea 80), cu unitatea AC în compartimentul de sus, în spatele capacului perforat M13-C; consola M14 are 260 cm (avea 280), iar televizorul e centrat pe ea. Traseul AC spre unitatea exterioară de pe fațadă (02.11.2026).",
    "Prima versiune: cei 4 pereți și planul tavanului, din releveul din 2021 (495 × 256), din cele două randări din 02.11.2026 și din propunerea din analiza/06 v3, acceptată pe 02.11.2026 (D26).",
-   "Camera nu are proiect de la arhitectă. Tot ce nu e în releveu e propunere: mobilierul M13–M16, riflajul RF1, scafa, șina SM, benzile L1–L3 și prizele. Tavanul fals e montat deja.",
+   "Camera nu are proiect de la arhitectă. Tot ce nu e în releveu e propunere: mobilierul M13–M16, riflajul RF1, scafa, benzile L1–L3 și prizele. Tavanul fals și șina SM sunt montate deja.",
    "Față de randări: consola începe la 105 cm de colțul ușii, ca ușa să se deschidă la 90°; tăblia patului se sprijină pe stâlpul din colț, care lipsește din randări."
   ]
  },
@@ -92,7 +93,7 @@ window.CAMERE["dormitor-mic"] = {
      "adanc": 256,
      "stare": "de-verificat",
      "sursa": "montat deja (spus de beneficiar pe 03.11.2026); analiza/06 v3 și decizia D26 (02.11.2026); ca TF1 din living (A.16, D-09)",
-     "nota": "Montat deja. Desenat cu fața la ~243 cm și placa la ~250 cm, ca în living: de măsurat. Deasupra plăcii de 12,5 mm rămân ~5,75 cm, iar oferta LedHome cere min. 6 cm pentru șina SM: aceeași întrebare ca la șinele J și K din living (detaliul J-K). Același cod pe toți pereții și pe planul tavanului."
+     "nota": "Montat deja, cu șina SM. Desenat cu fața la ~243 cm și placa la ~250 cm, ca în living: de măsurat. Același cod pe toți pereții și pe planul tavanului."
     },
     {
      "id": "G1",
@@ -279,7 +280,7 @@ window.CAMERE["dormitor-mic"] = {
      "adanc": 256,
      "stare": "de-verificat",
      "sursa": "montat deja (spus de beneficiar pe 03.11.2026); analiza/06 v3 și decizia D26 (02.11.2026); ca TF1 din living (A.16, D-09)",
-     "nota": "Montat deja. Desenat cu fața la ~243 cm și placa la ~250 cm, ca în living: de măsurat. Deasupra plăcii de 12,5 mm rămân ~5,75 cm, iar oferta LedHome cere min. 6 cm pentru șina SM: aceeași întrebare ca la șinele J și K din living (detaliul J-K). Același cod pe toți pereții și pe planul tavanului."
+     "nota": "Montat deja, cu șina SM. Desenat cu fața la ~243 cm și placa la ~250 cm, ca în living: de măsurat. Același cod pe toți pereții și pe planul tavanului."
     },
     {
      "id": "G2",
@@ -434,7 +435,7 @@ window.CAMERE["dormitor-mic"] = {
      "adanc": 256,
      "stare": "de-verificat",
      "sursa": "montat deja (spus de beneficiar pe 03.11.2026); analiza/06 v3 și decizia D26 (02.11.2026); ca TF1 din living (A.16, D-09)",
-     "nota": "Montat deja. Desenat cu fața la ~243 cm și placa la ~250 cm, ca în living: de măsurat. Deasupra plăcii de 12,5 mm rămân ~5,75 cm, iar oferta LedHome cere min. 6 cm pentru șina SM: aceeași întrebare ca la șinele J și K din living (detaliul J-K). Același cod pe toți pereții și pe planul tavanului."
+     "nota": "Montat deja, cu șina SM. Desenat cu fața la ~243 cm și placa la ~250 cm, ca în living: de măsurat. Același cod pe toți pereții și pe planul tavanului."
     },
     {
      "id": "G3",
@@ -836,7 +837,7 @@ window.CAMERE["dormitor-mic"] = {
      "adanc": 256,
      "stare": "de-verificat",
      "sursa": "montat deja (spus de beneficiar pe 03.11.2026); analiza/06 v3 și decizia D26 (02.11.2026); ca TF1 din living (A.16, D-09)",
-     "nota": "Montat deja. Desenat cu fața la ~243 cm și placa la ~250 cm, ca în living: de măsurat. Deasupra plăcii de 12,5 mm rămân ~5,75 cm, iar oferta LedHome cere min. 6 cm pentru șina SM: aceeași întrebare ca la șinele J și K din living (detaliul J-K). Același cod pe toți pereții și pe planul tavanului."
+     "nota": "Montat deja, cu șina SM. Desenat cu fața la ~243 cm și placa la ~250 cm, ca în living: de măsurat. Același cod pe toți pereții și pe planul tavanului."
     },
     {
      "id": "M13",
@@ -1049,7 +1050,7 @@ window.CAMERE["dormitor-mic"] = {
     "inalt": 256,
     "stare": "de-verificat",
     "sursa": "montat deja (03.11.2026); analiza/06 v3 și decizia D26 (02.11.2026); ca TF1 din living",
-    "nota": "Montat deja. Desenat cu fața de jos la ~243 cm, placa la ~250. Se oprește la scafa SC1 (x = 42). Deasupra plăcii rămân ~5,75 cm; LedHome cere min. 6 cm pentru șina SM (vezi avertismentul)."
+    "nota": "Montat deja, cu șina SM. Desenat cu fața de jos la ~243 cm, placa la ~250. Se oprește la scafa SC1 (x = 42)."
    },
    {
     "id": "TF1-D",
@@ -1142,9 +1143,9 @@ window.CAMERE["dormitor-mic"] = {
     "h": 106,
     "inalt": 5,
     "pozitie": "aprox",
-    "stare": "propunere",
-    "sursa": "specs/04 A (oferta LedHome 6SVNKM3DY, „o șină de 3 m în dormitor”); analiza/06 v3",
-    "nota": "Șină magnetică încastrată LedHome Pro Slim, neagră, trimless, 24 V: o bară de 2 m + una de 1 m, cu conector electric și mecanic pentru rigips. Pe lungimea camerei, cu axa la ~148 cm de peretele N, deasupra marginii patului și a culoarului. Sursă Push-DIM (de întrebat LedHome dacă modulele merg cu ea)."
+    "stare": "de-verificat",
+    "sursa": "montată deja, cu sursa în șină (spus de beneficiar pe 03.11.2026, pentru toate șinele); analiza/06 v3",
+    "nota": "Montată deja (03.11.2026), cu sursa în șină: nu mai e nevoie de sursa separată din tavanul fals. Modelul montat nu e trecut încă aici. Desenată pe lungimea camerei, cu axa la ~148 cm de peretele N, deasupra marginii patului și a culoarului: de măsurat. Comanda din I1 și I2: vezi avertismentul."
    },
    {
     "id": "SM1",
@@ -1189,14 +1190,14 @@ window.CAMERE["dormitor-mic"] = {
     "id": "D1",
     "strat": "electric",
     "tip": "doza",
-    "nume": "Doza de 230 V pentru cele 2 surse de 24 V",
+    "nume": "Doza de 230 V pentru sursa de 24 V a benzilor",
     "x": 50,
     "h": 200,
     "punct": true,
     "pozitie": "aprox",
     "stare": "propunere",
     "sursa": "analiza/06 v3 și decizia D26 (02.11.2026)",
-    "nota": "Deasupra tavanului fals, lângă scafă: sursa Push-DIM a șinei SM și sursa Push-DIM a benzilor L1, L2 și L3. Marginea verticală a tavanului fals închide golul spre scafă (ca în D-09 din living), deci la surse se ajunge printr-o trapă de vizitare lângă D1, sau marginea se lasă demontabilă. Cablurile de 24 V: spre L2 prin tavanul fals până la riflaj; spre L3 prin tavanul fals și un tub pe peretele TV."
+    "nota": "Deasupra tavanului fals, lângă scafă: sursa Push-DIM a benzilor L1, L2 și L3. Șina SM are sursa în ea. Marginea verticală a tavanului fals închide golul spre scafă (ca în D-09 din living), deci la sursă se ajunge printr-o trapă de vizitare lângă D1, sau marginea se lasă demontabilă. Cablurile de 24 V: spre L2 prin tavanul fals până la riflaj; spre L3 prin tavanul fals și un tub pe peretele TV."
    }
   ],
   "avertismente": [
@@ -1210,25 +1211,23 @@ window.CAMERE["dormitor-mic"] = {
      "SM",
      "D1"
     ],
-    "text": "Tavanul fals e deja montat. Desenul arată încă propunerea din analiza/06: fața la ~243, placa la ~250, scafa SC1 cu banda L1, șina SM încastrată și sursele de lângă D1. De măsurat înălțimile reale și de verificat ce s-a făcut din toate acestea. Ce nu s-a făcut încă (șina SM, trapa de lângă D1) se face prin decupaje în placa montată."
+    "text": "Tavanul fals și șina SM sunt deja montate. Desenul arată încă propunerea din analiza/06: fața la ~243, placa la ~250, scafa SC1 cu banda L1, șina SM și sursa benzilor de lângă D1. De măsurat înălțimile reale și poziția șinei și de verificat ce s-a făcut din scafă. Ce nu s-a făcut încă (trapa de lângă D1) se face prin decupaje în placa montată."
    },
    {
     "nivel": "atentie",
-    "sursa": "specs/04 A; analiza/06 v3, 3.4",
+    "sursa": "spus de beneficiar pe 03.11.2026; detaliul PUSH",
     "ids": [
-     "SM",
-     "TF1"
+     "SM"
     ],
-    "text": "Șina SM e cea de 3 m din oferta LedHome: profil pentru placă de 12,5 mm, cu gol ≥ 6 cm deasupra. Tavanul fals de 7 cm lasă ~5,75 cm deasupra plăcii, ca în living (detaliul J-K). De hotărât cu LedHome: ajung 5,75 cm sau tavanul fals coboară cu ~0,5 cm. Lângă șină se pune un profil suplimentar al scheletului."
+    "text": "Șina SM are sursa în ea. Butoanele cu revenire din I1 și I2 nu pot comanda direct o sursă obișnuită de 230 V: e nevoie fie de o sursă în șină care acceptă comandă de la buton (Push-DIM), fie de un releu bistabil (de impuls) pe circuitul șinei. Cu releul, butonul doar aprinde și stinge, fără reglaj. De verificat pe fișa șinei montate."
    },
    {
     "nivel": "info",
     "sursa": "detaliul PUSH; analiza/13",
     "ids": [
-     "D1",
-     "SM"
+     "D1"
     ],
-    "text": "Sursa 1-light cere minimum 45 W. Benzile L1–L3 au împreună ~70 W, deci merg pe o singură sursă. Șina are ~33 W: aceeași întrebare ca la bucătărie (analiza/13). Sursa LTECH LM-150-24-G1A2 dă 0–150 W."
+    "text": "Sursa 1-light cere minimum 45 W. Benzile L1–L3 au împreună ~70 W, deci merg pe o singură sursă. Sursa LTECH LM-150-24-G1A2 dă 0–150 W."
    }
   ]
  }

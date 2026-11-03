@@ -9,7 +9,7 @@ window.DETALII["D-09"] = {
  "subtitlu": "Secțiune verticală perpendiculară pe peretele cu fereastra, prin scafa SC, ca D-09 din A.05: grinda de deasupra ferestrelor, șina dublă SD, banda M1 și marginea tavanului fals TF1",
  "orientare": "Sus: placa. Jos: camera. Stânga: grinda de deasupra ferestrelor.",
  "sursa": "A.02 și A.05, D-09 (1:5); A.05 (planul tavanului); A.06; specs/04, specs/06 G; analiza/01; analiza/11 (L1, L6, LV11, LV14, LV15)",
- "revizie": {"nr": 1, "data": "2026-11-02"},
+ "revizie": {"nr": 2, "data": "2026-11-03"},
  "nota": "Cotele sunt din D-09 și din datele livingului. Ordinea pașilor e propunerea noastră. Se confirmă cu arhitecta, cu echipa de gips-carton, cu electricianul și cu montatorul de draperii.",
  "vedere": {"x0": -8, "x1": 44, "y0": -4, "y1": 28},
  "forme": [
@@ -18,7 +18,6 @@ window.DETALII["D-09"] = {
   {"id": "fantoma", "tip": "contur", "dreptunghiuri": [[15, 0, 1.2, 5.75], [15, 5.75, 55, 1.25], [4, 0, 6, 2], [12.5, 0, 2.35, 1.0]], "temporar": true},
   {"id": "reper", "tip": "linie", "puncte": [[0, 7], [70, 7]], "temporar": true},
   {"id": "reper-15", "tip": "linie", "puncte": [[15, 0.3], [15, 13]], "temporar": true},
-  {"id": "sjk", "tip": "simbol", "x": 21, "y": 0.7, "w": 12, "h": 4.3, "text": "SJK", "umplere": "alb", "temporar": true},
   {"id": "str-tf", "tip": "structura", "x": 16.2, "y": 0, "w": 53.8, "h": 5.75, "profile": []},
   {"id": "cd1", "tip": "fir", "puncte": [[31.2, 0.15], [31.2, 2.75], [37.2, 2.75], [37.2, 0.15]], "culoare": "#52525b", "gros": 1.8},
   {"id": "cd2", "tip": "dreptunghi", "x": 18.86, "y": 2.75, "w": 51.14, "h": 3.0, "umplere": "otel"},
@@ -52,7 +51,6 @@ window.DETALII["D-09"] = {
   {"id": "e0-sina", "tip": "eticheta", "x": 20, "y": 30.5, "lat": 24, "text": "șina dublă SD, la 4 cm de grindă", "spre": [7, 1]},
   {"id": "e1-reper", "tip": "eticheta", "x": 30, "y": 14, "lat": 30, "text": "fața tavanului fals: 243 cm, adică 7 cm sub placă", "spre": [36, 7]},
   {"id": "e1-15", "tip": "eticheta", "x": 20, "y": 22, "lat": 32, "text": "marginea tavanului fals: la 15 cm de fața grinzii, pe toată lungimea", "spre": [15, 12]},
-  {"id": "e2-sjk", "tip": "eticheta", "x": 28, "y": 14, "lat": 32, "text": "SJK: sursele de 24 V ale șinelor J și K, în golul tavanului, lângă scafă; locul exact e de stabilit", "spre": [27, 5]},
   {"id": "e2-capat", "tip": "eticheta", "x": 18, "y": 26, "lat": 42, "text": "TB-M1 și CB-M1 sunt la capătul de nord al scafei, lângă masca G1"},
   {"id": "e3-profile", "tip": "eticheta", "x": 30, "y": 14, "lat": 30, "text": "profile prinse direct de placă, pe două niveluri", "spre": [34, 2]},
   {"id": "e3-margine", "tip": "eticheta", "x": 20, "y": 21, "lat": 30, "text": "profilul de margine, la 16,2 cm de grindă (15 cm plus placa verticală)", "spre": [17.6, 4.2]},
@@ -78,7 +76,7 @@ window.DETALII["D-09"] = {
    "vedere": {"x0": -24, "x1": 64, "y0": -6, "y1": 50},
    "apar": ["placa", "grinda", "fantoma", "t-placa", "t-grinda", "t-camera", "c-15", "c-4", "c-7", "c-38", "e0-scafa", "e0-sina", "e0-banda", "e0-tf"],
    "text": "Între fața grinzii de deasupra ferestrelor și marginea tavanului fals rămâne o scafă de 15 cm, deschisă până la placă. În scafă, prinse de placă: șina dublă SD, la 4 cm de grindă, și banda Hue Flux M1, într-un profil S3 lipit de marginea tavanului fals. Lumina cade pe draperie.",
-   "puncte": ["Tavanul fals TF1 are 7 cm, cu fața la 243 cm (placa la 250). Marginea lui e o fâșie verticală de gips-carton, de la placă până la fața tavanului.", "Lungimea utilă pentru șină și bandă: de la masca M11 (50 cm de zidăria peretelui TV) la masca G1 (~570,75), adică ~520,75 cm, nu 580.", "Prin scafă se ajunge la sursele șinelor J și K (specs/04), deci scafa nu se închide."],
+   "puncte": ["Tavanul fals TF1 are 7 cm, cu fața la 243 cm (placa la 250). Marginea lui e o fâșie verticală de gips-carton, de la placă până la fața tavanului.", "Lungimea utilă pentru șină și bandă: de la masca M11 (50 cm de zidăria peretelui TV) la masca G1 (~570,75), adică ~520,75 cm, nu 580."],
    "verifica": ["Grosimea tavanului fals: 7 cm în D-09, A.15 și A.16, 10 cm în legenda A.05 (L6).", "Capetele scafei: masca M11 și masca G1 urcă până la placă și închid scafa? Draperia și banda se opresc în fața lor? (LV14)", "Șina e dublă, pentru perdea și draperie? Draperia se strânge la un capăt sau la ambele? (LV15)", "Draperia până la pardoseală stă în fața caloriferelor CF1 și CF2 (LV11)."],
    "sursa": "A.02 și A.05, D-09 (1:5; cotele 15, 4 și 7); A.05 (cota 15 pe toată lungimea); datele peretelui cu fereastra (GR-V, SC, SD, M1) și ale tavanului"
   },
@@ -94,16 +92,16 @@ window.DETALII["D-09"] = {
    "sursa": "A.05 (cota 15); A.01 (27); datele peretelui cu fereastra (GR-V, M11, G1, SC); analiza/11 LV14"
   },
   {
-   "titlu": "Cablurile și sursele șinelor",
+   "titlu": "Cablul benzii M1",
    "cine": "electricianul",
    "stare": "propunere",
    "vedere": {"x0": -14, "x1": 62, "y0": -5, "y1": 40},
-   "apar": ["sjk", "e2-sjk", "e2-capat"],
-   "text": "Înainte de schelet se pozează: tubul TB-M1, care urcă prin capătul măștii G1 de la priza dublă P3 de după perdea și iese în scafă la capătul de nord al benzii M1; cablul de 230 V de la clapele J și K până la sursele șinelor (SJK), în golul tavanului de lângă scafă; cablurile de 24 V de la surse la șine (detaliul J-K).",
+   "apar": ["e2-capat"],
+   "text": "Înainte de schelet se pozează tubul TB-M1, care urcă prin capătul măștii G1 de la priza dublă P3 de după perdea și iese în scafă la capătul de nord al benzii M1. Șinele J și K sunt montate deja, cu sursa în șină (03.11.2026): pentru ele nu mai trebuie surse în golul tavanului.",
    "puncte": ["Cablul de 230 V tras pentru M1 (CB-M1) rămâne nefolosit: se leagă într-o doză cu capac, accesibilă, sau se scoate din circuit.", "Prin TB-M1 trebuie să treacă mufa cablului prelungitor Flux, fără coturi strânse."],
-   "verifica": ["Mufa cablului prelungitor trece prin TB-M1 de la un capăt la altul.", "Sursele SJK au loc în golul tavanului și se pot scoate (vezi pasul 4)."],
+   "verifica": ["Mufa cablului prelungitor trece prin TB-M1 de la un capăt la altul."],
    "atentie": "CB-M1 e desenat la 4,5 cm de grindă, unde vine șina SD (4–10 cm). Doza nu are loc sub șină: locul ei se stabilește cu electricianul, de exemplu în capătul măștii G1.",
-   "sursa": "specs/06 G7 (01.11.2026); specs/04, oferta LedHome (sursele lângă scafă); datele peretelui cu fereastra (P3, TB-M1, CB-M1) și ale tavanului (SJK)"
+   "sursa": "specs/06 G7 (01.11.2026); datele peretelui cu fereastra (P3, TB-M1, CB-M1)"
   },
   {
    "titlu": "Scheletul tavanului fals",
@@ -124,8 +122,7 @@ window.DETALII["D-09"] = {
    "apar": ["placa-v", "e4-placa", "e4-gol"],
    "text": "Pe profilul de margine se prinde o fâșie verticală de gips-carton de ~1,2 cm, de la placă până la nivelul plăcilor tavanului. Fața ei spre scafă e la 15 cm de grindă; lângă ea se lipește profilul benzii.",
    "verifica": ["Fâșia e verticală și la 15 cm de grindă pe toată lungimea."],
-   "atentie": "Fâșia închide golul tavanului spre scafă. Sursele șinelor J și K, puse în gol „lângă scafă” (specs/04), nu se mai ajung prin scafă: e nevoie de o deschidere în fâșie sau de o trapă. Se hotărăște înainte de plăci.",
-   "sursa": "A.02 și A.05, D-09 (marginea, măsurată pe desen); datele tavanului (SC, SJK); specs/04, oferta LedHome"
+   "sursa": "A.02 și A.05, D-09 (marginea, măsurată pe desen); datele tavanului (SC)"
   },
   {
    "titlu": "Plăcile tavanului fals",

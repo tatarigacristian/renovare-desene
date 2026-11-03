@@ -68,15 +68,21 @@ header.cap #subtitlu { color:var(--muted); }
 @media (hover: hover) and (prefers-reduced-motion: reduce) { .card:hover { border-color:color-mix(in srgb, var(--accent) 60%, var(--border)); } }
 @media (max-width: 559px) {
   .carduri { grid-template-columns:1fr 1fr; gap:10px; }
-  /* pașii, pe telefon: un rând care se derulează în lateral, ca desenele să rămână destul de mari */
-  .index-pasi .carduri { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding:0 14px; margin:0 -14px; padding:2px 14px 10px; scrollbar-width:none; }
-  .index-pasi .carduri::-webkit-scrollbar { display:none; }
-  .index-pasi .card { flex:0 0 78%; scroll-snap-align:start; }
+  /* pașii, pe telefon: un card pe rând, ca desenele să rămână destul de mari */
+  .index-pasi .carduri { grid-template-columns:1fr; }
+  .file-index [role="tab"] { flex:1 1 0; justify-content:center; }
   .card-text { padding:8px 10px 10px; }
   .card-text b { font-size:14px; }
   .card-text small { font-size:12.5px; }
 }
-.index-pasi h2, .index-titlu { margin:18px 0 8px; font-size:11.5px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+/* filele paginii: Camere și Pași de montaj */
+.file-index { display:flex; gap:2px; margin:4px 0 14px; border-bottom:1px solid var(--border); }
+.file-index [role="tab"] { display:inline-flex; align-items:center; gap:7px; margin-bottom:-1px; padding:10px 16px 9px; border:0; border-bottom:2px solid transparent; background:none; color:var(--muted); font-size:14.5px; font-weight:600; cursor:pointer; }
+.file-index [role="tab"]:hover { color:var(--heading); }
+.file-index [role="tab"][aria-selected="true"] { color:var(--heading); border-bottom-color:var(--accent); }
+.file-index .nr { min-width:20px; padding:0 6px; border-radius:999px; background:var(--surface-2); border:1px solid var(--border); color:var(--muted); font-size:11.5px; line-height:18px; text-align:center; }
+.file-index [aria-selected="true"] .nr { background:var(--accent); border-color:var(--accent); color:var(--surface); }
+.index-nota { margin:0 0 12px; color:var(--muted); }
 
 /* ---------------------------------------------------------------- aplicația: bară, comenzi, desen, panou */
 .app { height:100vh; height:100dvh; display:flex; flex-direction:column; }

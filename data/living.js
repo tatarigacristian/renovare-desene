@@ -5,9 +5,10 @@ window.CAMERE["living"] = {
  "id": "living",
  "nume": "Living",
  "revizie": {
-  "nr": 6,
+  "nr": 7,
   "data": "2026-11-03",
   "modificari": [
+   "Revizia 7: șinele magnetice J și K sunt montate deja, cu sursa în șină (03.11.2026): sursele separate SJK și pașii de montaj J-K au fost scoși. Unitatea AC de pe planul tavanului, mutată în față, ca pe peretele TV.",
    "Revizia 6: compartimentul AC din masca M11 desenat ca în dormitorul mic: coboară la 189,2 cm, unitatea vine în față, aerul cald intră prin capacul de sus cu lamele verticale (în loc de 9 găuri), cel rece iese prin fanta de jos, cu clapa CL; pașii de montaj D03' actualizați. De confirmat cu arhitecta (03.11.2026).",
    "Revizia 5: compartimentul AC din masca M11: aerul rece iese liber printr-o fantă jos, iar compartimentul coboară dacă manualul unității cere mai mult spațiu deasupra (decizia din 03.11.2026, de confirmat cu arhitecta).",
    "Revizia 4: pașii de montaj animați pentru scafa draperiei (D-09) și pentru șinele magnetice J și K (J-K) (02.11.2026).",
@@ -1603,7 +1604,7 @@ window.CAMERE["living"] = {
      "stare": "proiect",
      "detaliu": "D-09",
      "sursa": "A.05 (cota 15, pe toată lungimea); A.02 și A.05, detaliul D-09 (1:5)",
-     "nota": "În fantă, prinse de placa de beton (250): șina dublă SD la 4–10 cm de grindă și banda M1 la 12,6–15 cm, lipită de marginea tavanului fals. Lungimea utilă: de la masca M11 (50) până la masca G1 (~570,75), ~520,75 cm. Prin fantă se ajunge și la sursele șinelor J și K (specs/04): fanta nu se închide."
+     "nota": "În fantă, prinse de placa de beton (250): șina dublă SD la 4–10 cm de grindă și banda M1 la 12,6–15 cm, lipită de marginea tavanului fals. Lungimea utilă: de la masca M11 (50) până la masca G1 (~570,75), ~520,75 cm."
     },
     {
      "id": "G1",
@@ -2060,10 +2061,9 @@ window.CAMERE["living"] = {
     "lat": 300,
     "h": 117.5,
     "inalt": 5,
-    "stare": "proiect",
-    "sursa": "A.06 (300; 70 de la scafă; axa la 70 de la fața măștii D03); specs/04 (LedHome, 18.10.2026)",
-    "nota": "Șină magnetică încastrată LedHome Pro Slim, neagră, trimless, 24 V (oferta 6SVNKM3DY): 300 cm = o bară de 2 m + o bară de 1 m, cu conector electric și conector mecanic pentru rigips. Profilul are ~5 × 1,5 cm și se montează în placa de 12,5 mm; golul tavanului fals trebuie să aibă min. 6 cm (aici 7 cm). Unde șina e paralelă cu profilele scheletului se pune un profil suplimentar lângă ea (de verificat cu echipa). Tasta J din grupul JK. Stă deasupra măsuței de cafea, nu deasupra mesei.",
-    "detaliu": "J-K"
+    "stare": "de-verificat",
+    "sursa": "A.06 (300; 70 de la scafă; axa la 70 de la fața măștii D03); montată deja, cu sursa în șină (spus de beneficiar pe 03.11.2026)",
+    "nota": "Montată deja (03.11.2026). S-a ales un model cu sursa în șină, nu cel din oferta LedHome: nu mai sunt surse separate în tavanul fals. Modelul montat nu e trecut încă aici. Poziția e cea din A.06, de măsurat pe tavan. Tasta J din grupul JK. Stă deasupra măsuței de cafea, nu deasupra mesei."
    },
    {
     "id": "J1",
@@ -2076,8 +2076,7 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (desenat, necotat)",
-    "nota": "Modul magnetic: se mută pe șină, poziția din A.06 e orientativă. Oferta LedHome are acum un singur modul pe șină (spot 9 W 36° sau liniar 15 W), restul se cumpără separat.",
-    "detaliu": "J-K"
+    "nota": "Modul magnetic: se mută pe șină, poziția din A.06 e orientativă. Câte module și care: pentru șinele montate (LV18)."
    },
    {
     "id": "J2",
@@ -2090,8 +2089,7 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (desenat, necotat)",
-    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1.",
-    "detaliu": "J-K"
+    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1."
    },
    {
     "id": "J3",
@@ -2104,8 +2102,7 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (desenat, necotat)",
-    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1.",
-    "detaliu": "J-K"
+    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1."
    },
    {
     "id": "K",
@@ -2118,9 +2115,8 @@ window.CAMERE["living"] = {
     "inalt": 300,
     "pozitie": "aprox",
     "stare": "de-verificat",
-    "sursa": "A.06 (300; 100 de la fața grinzii peretelui cu M12, h 580; x măsurat pe desen); specs/04 (LedHome, 18.10.2026)",
-    "nota": "Ca J. Tasta K din grupul JK. Axa la ~419 cm, adică ~30 cm de fața grinzii GR2, care coboară ~38 cm sub tavanul fals: spoturile spre panoul de piatră se orientează pe sub ea. Cablul de 24 V de la surse (lângă scafă) are ~4 m: min. 2 × 1,5 mm², ideal 2 × 2,5 mm².",
-    "detaliu": "J-K"
+    "sursa": "A.06 (300; 100 de la fața grinzii peretelui cu M12, h 580; x măsurat pe desen); montată deja, cu sursa în șină (spus de beneficiar pe 03.11.2026)",
+    "nota": "Montată deja (03.11.2026), cu sursa în șină, ca J. Tasta K din grupul JK. Axa la ~419 cm, adică ~30 cm de fața grinzii GR2, care coboară ~38 cm sub tavanul fals: spoturile spre panoul de piatră se orientează pe sub ea."
    },
    {
     "id": "K1",
@@ -2133,8 +2129,7 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (desenat, necotat)",
-    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1.",
-    "detaliu": "J-K"
+    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1."
    },
    {
     "id": "K2",
@@ -2147,8 +2142,7 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (desenat, necotat)",
-    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1.",
-    "detaliu": "J-K"
+    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1."
    },
    {
     "id": "K3",
@@ -2161,8 +2155,7 @@ window.CAMERE["living"] = {
     "pozitie": "aprox",
     "stare": "de-verificat",
     "sursa": "A.06 (desenat, necotat)",
-    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1.",
-    "detaliu": "J-K"
+    "nota": "Modul magnetic, poziție orientativă (A.06). Vezi J1."
    },
    {
     "id": "N",
@@ -2228,30 +2221,19 @@ window.CAMERE["living"] = {
     "nota": "Tubul urcă prin placarea peretelui cu fereastra, de la priza dublă de după perdea, și iese în scafă la capătul alimentat al benzii M1. Diametru prin care trece mufa prelungitorului Flux, fără coturi strânse. Poziția se stabilește odată cu priza."
    },
    {
-    "id": "SJK",
-    "strat": "electric",
-    "tip": "doza",
-    "nume": "Sursele de 24 V ale șinelor J și K, în tavanul fals lângă scafă",
-    "pozitie": "necunoscuta",
-    "stare": "propunere",
-    "sursa": "specs/04, oferta LedHome 6SVNKM3DY (18.10.2026)",
-    "nota": "Câte o sursă IP67 pe șină (J și K pe taste separate; a treia sursă e cerută în ofertă). Stau în golul tavanului fals, lângă scafă, și se ajung prin fanta de 15 cm (fără trapă). Au nevoie de 230 V de la grupul JK. Sursele din ofertă nu permit reglajul intensității (de decis).",
-    "detaliu": "J-K"
-   },
-   {
     "id": "AC",
     "strat": "electric",
     "tip": "ac",
     "nume": "Unitatea interioară AC, în capul măștii șemineului",
     "x": 9,
     "lat": 78,
-    "h": 15,
+    "h": 25,
     "inalt": 19,
     "ascuns": true,
     "pozitie": "aprox",
     "stare": "de-verificat",
-    "sursa": "A.07 (poziția, măsurat pe desen); A.16 și A.29, D03 (zona de 36,8 cm din capul măștii)",
-    "nota": "Între ~205 și 242 cm de la pardoseală, prinsă pe fața grinzii GR1. Aerul trece prin rândul de găuri Ø3 cm din fața măștii D03 (A.16, A.29). Se leagă direct la doză (A.07). Doza, traseul țevilor și scurgerea condensului până la unitatea exterioară (pe fațadă, lângă colțul cu peretele TV, A.07) nu sunt desenate.",
+    "sursa": "A.07 (poziția, măsurat pe desen); A.16 și A.29, D03; propunerea din 03.11.2026, ca în dormitorul mic (de confirmat cu arhitecta, LV2)",
+    "nota": "Între ~196 și 225 cm de la pardoseală, pe un panou-suport prins de grinda GR1, cu fața la ~6 cm în spatele capacului M11-C. Aerul cald intră prin lamelele capacului, cel rece iese prin fanta de jos, cu clapa CL deschisă. Se leagă direct la doză (A.07). Traseul țevilor și scurgerea condensului până la unitatea exterioară (pe fațadă, lângă colțul cu peretele TV, A.07) nu sunt desenate (LV3).",
     "adanc": 37
    }
   ],
@@ -2297,8 +2279,8 @@ window.CAMERE["living"] = {
    },
    {
     "nivel": "info",
-    "text": "A.06 desenează câte 3 spoturi pe J și pe K. Oferta LedHome (18.10.2026) are acum câte un modul pe șină; modulele în plus costă 233–263 lei/buc.",
-    "sursa": "A.06, specs/04",
+    "text": "A.06 desenează câte 3 spoturi pe J și pe K. Câte module se cumpără se hotărăște pentru șinele montate (LV18).",
+    "sursa": "A.06",
     "ids": [
      "J1",
      "K1"
