@@ -153,7 +153,7 @@ window.DETALII["D-09"] = {
    "vedere": {"x0": 1, "x1": 23, "y0": -2, "y1": 10},
    "apar": ["profil", "c-s3", "e7-profil"],
    "text": "Profilul S3 de aluminiu alb (23,5 × 10 mm) se prinde de placă, lipit de fața marginii, cu deschiderea în jos. Ocupă ~12,5–15 cm de la grindă. Pe ~520 cm se îmbină 3 bare de 2 m.",
-   "puncte": ["Interiorul S3 are 20 × ~8 mm, deci încape banda Flux de 15,9 × 6,35 mm. D-09 desenează un profil mai mic (L1).", "Prinderea pe beton: după fișa produsului."],
+   "puncte": ["Interiorul S3 are 20 × ~8 mm, deci încape banda Flux de 14,5 × 6 mm. D-09 desenează un profil mai mic (L1).", "Prinderea pe beton: după fișa produsului."],
    "verifica": ["Îmbinările dintre bare nu fac trepte.", "Profilul stă lipit de fața marginii pe toată lungimea."],
    "sursa": "specs/04, „Profile pentru Flux” (S3 pentru M1: 3 bare de 2 m); D-09 (profilul la marginea tavanului); datele tavanului (M1 la 12,6–15 cm)"
   },

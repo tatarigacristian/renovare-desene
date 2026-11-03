@@ -1290,7 +1290,7 @@ window.DETALII["TFH"] = {
     "e10-banda",
     "e10-difuzor"
    ],
-   "text": "Profilul S3 de aluminiu alb (23,5 × 10 mm, interior 20 × ~8 mm) se prinde sus pe fața plăcii verticale, cu deschiderea spre mască. Banda Hue Flux (15,9 × 6,35 mm) se lipește pe fundul profilului, curățat cu alcool. La sfârșit se pune difuzorul opal.",
+   "text": "Profilul S3 de aluminiu alb (23,5 × 10 mm, interior 20 × ~8 mm) se prinde sus pe fața plăcii verticale, cu deschiderea spre mască. Banda Hue Flux (14,5 × 6 mm) se lipește pe fundul profilului, curățat cu alcool. La sfârșit se pune difuzorul opal.",
    "puncte": [
     "C2: o bară de 2 m. Banda are 12 segmente (~199 cm) dacă în fanta măsurată au loc și capacele și conectorul controllerului; altfel 11 segmente (~183 cm) (HL8).",
     "C1: două bare de 2 m îmbinate; banda are 18 segmente (~299 cm) pe traseul de 312 cm.",
